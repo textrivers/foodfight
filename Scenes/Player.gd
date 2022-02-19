@@ -25,8 +25,11 @@ func handle_input():
 func move_player():
 	pos_target.x += (dir.x * 60) - (dir.y * 60)
 	pos_target.y += (dir.x * 30) + (dir.y * 30) 
-	if position != pos_target:
+	if !position.is_equal_approx(pos_target):
 		position = lerp(position, pos_target, 0.2)
+		Clock.accruing = true
+	else:
+		Clock.accruing = false
 
 func _draw():
 	draw_circle(Vector2.ZERO, 10.0, Color.crimson)
