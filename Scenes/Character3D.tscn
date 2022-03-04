@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/character_bad2.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Character3D.gd" type="Script" id=2]
+
+[node name="Character3D" type="Spatial"]
+script = ExtResource( 2 )
+player = true
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0 )
+billboard = 1
+shaded = true
+double_sided = false
+texture = ExtResource( 1 )
