@@ -6,6 +6,7 @@ var actions: Array = [
 	["walk", true, 10],
 	["walk", true, 20],
 	["walk", true, 30],
+	["wait", true, 50],
 	]
 var walk_speed: float = 50
 var current_action
@@ -40,7 +41,7 @@ func take_turn():
 			tween_dur = dist_to_dest * walk_speed / 60
 			tween.interpolate_property(self, "translation", translation, dest3D, tween_dur)
 			tween.start()
-		emit_signal("action_taken", self, current_action)
+	emit_signal("action_taken", self, current_action)
 
 func on_red_light():
 	tween.stop_all()

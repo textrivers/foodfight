@@ -6,10 +6,11 @@ var tile = preload("res://Scenes/FloorTile3D.tscn")
 
 var characters: Array = []
 var turn_tracker: Dictionary = {}
+var whose_turn = null
 
 var cam_rig_rot_target: int
 var cam_rig
-
+var GUI
 var turn_marker
 var current_moment: int = 0
 var advancing: bool = true
@@ -20,6 +21,7 @@ signal green_light
 func _ready():
 	randomize()
 	cam_rig = $CameraRig
+	GUI = $GUI
 	turn_marker = $TurnMarker
 	cam_rig_rot_target = cam_rig.rotation_degrees.y
 	build()
@@ -72,10 +74,14 @@ func resolve_turns():
 				turn_marker.show()
 				turn_marker.translation.x = turn.translation.x
 				turn_marker.translation.z = turn.translation.z
+				display_character_options(turn.player)
+				whose_turn = turn
 				yield(turn.take_turn(), "completed")
+				whose_turn = null
 				advancing = true
 				emit_signal("green_light")
 				turn_marker.hide()
+				hide_character_options()
 
 func rotate_cam_rig():
 	if Input.is_action_just_pressed("ui_left"):
@@ -86,6 +92,19 @@ func rotate_cam_rig():
 		var new_rad = deg2rad(cam_rig_rot_target)
 		cam_rig.rotation.y = lerp_angle(cam_rig.rotation.y, new_rad, 0.05)
 
+func display_character_options(_player):
+	GUI.get_node("Right").show()
+	if _player == true: 
+		$GUI/Right/PlayerOptions.show()
+	else: 
+		pass
+
+func hide_character_options():
+	GUI.get_node("Left").hide()
+
 func update_turn(node, action):
-	print(node.name + " | " + str(turn_tracker[node] + action[2]))
 	turn_tracker[node] += action[2]
+
+func _on_Wait50_pressed():
+	whose_turn.current_action = whose_turn.actions[3]
+	whose_turn.take_turn().resume()
