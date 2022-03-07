@@ -17,6 +17,7 @@ var advancing: bool = true
 
 signal red_light
 signal green_light
+signal action_taken
 
 func _ready():
 	randomize()
@@ -76,7 +77,7 @@ func resolve_turns():
 				turn_marker.translation.z = turn.translation.z
 				display_character_options(turn.player)
 				whose_turn = turn
-				yield(turn.take_turn(), "completed")
+				yield(whose_turn.take_turn(), "completed")
 				whose_turn = null
 				advancing = true
 				emit_signal("green_light")
@@ -100,11 +101,15 @@ func display_character_options(_player):
 		pass
 
 func hide_character_options():
-	GUI.get_node("Left").hide()
+	GUI.get_node("Right").hide()
 
 func update_turn(node, action):
 	turn_tracker[node] += action[2]
 
 func _on_Wait50_pressed():
 	whose_turn.current_action = whose_turn.actions[3]
-	whose_turn.take_turn().resume()
+	emit_signal("action_taken")
+
+func _on_Wait100_pressed():
+	whose_turn.current_action = whose_turn.actions[4]
+	emit_signal("action_taken")

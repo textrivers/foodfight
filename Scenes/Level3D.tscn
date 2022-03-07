@@ -1,8 +1,25 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Character3D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Level3D.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/TurnMarker.tscn" type="PackedScene" id=3]
+
+[sub_resource type="ProceduralSky" id=2]
+sky_top_color = Color( 0, 0, 0, 1 )
+sky_horizon_color = Color( 0.117647, 0.027451, 0.2, 1 )
+sky_curve = 0.136414
+ground_bottom_color = Color( 0, 0, 0, 1 )
+ground_horizon_color = Color( 0.12549, 0.0431373, 0.203922, 1 )
+ground_curve = 0.0373214
+sun_color = Color( 0.176471, 0.0666667, 0.309804, 1 )
+
+[sub_resource type="Environment" id=1]
+background_mode = 2
+background_sky = SubResource( 2 )
+ambient_light_color = Color( 1, 1, 1, 1 )
+ambient_light_energy = 1.57
+ambient_light_sky_contribution = 0.78
+fog_enabled = true
 
 [node name="Level3D" type="Spatial"]
 script = ExtResource( 2 )
@@ -67,4 +84,8 @@ margin_right = 298.0
 margin_bottom = 44.0
 text = "Wait 100"
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+
 [connection signal="pressed" from="GUI/Right/PlayerOptions/Wait50" to="." method="_on_Wait50_pressed"]
+[connection signal="pressed" from="GUI/Right/PlayerOptions/Wait100" to="." method="_on_Wait100_pressed"]

@@ -7,6 +7,7 @@ var actions: Array = [
 	["walk", true, 20],
 	["walk", true, 30],
 	["wait", true, 50],
+	["wait", true, 100],
 	]
 var walk_speed: float = 50
 var current_action
@@ -25,7 +26,7 @@ func _physics_process(delta):
 
 func take_turn():
 	if player: 
-		yield()
+		yield(get_parent(), "action_taken")
 	else: 
 		##tween.resume()
 		yield(get_tree().create_timer(3.0), "timeout")
@@ -48,3 +49,7 @@ func on_red_light():
 
 func on_green_light():
 	tween.resume_all()
+
+func on_GUI_action_select(_action):
+	if player:
+		current_action = _action
