@@ -56,10 +56,19 @@ func register_character(_char):
 	_char.connect("action_taken", self, "update_turn")
 	self.connect("red_light", _char, "on_red_light")
 	self.connect("green_light", _char, "on_green_light")
+	## label in left panel
+	var lab = load("res://Scenes/TurnDisplay.tscn").instance()
+	lab.get_node("HBoxContainer/NameLabel").text = _char.name
+	if _char.player:
+		lab.get_node("HBoxContainer/NameLabel").text = _char.name + " (player)"
+	lab.get_node("HBoxContainer/TimeLabel").text = str(0)
+	lab.editable = true
+	GUI.get_node("Left").add_child(lab)
 
 func _physics_process(delta):
 	advance_time()
 	resolve_turns()
+	update_character_display()
 	rotate_cam_rig()
 
 func advance_time():
@@ -83,6 +92,40 @@ func resolve_turns():
 				emit_signal("green_light")
 				turn_marker.hide()
 				hide_character_options()
+				reorder_character_display()
+
+func reorder_character_display():
+	## make array of turn_tracker values
+	var display_array = []
+	for character in turn_tracker:
+		if display_array.size() == 0:
+			display_array.append([character.name, turn_tracker[character]])
+		else: ## append in order
+			var index = 0
+			for i in display_array: 
+				if turn_tracker[character] <= i[1]:
+					display_array.insert(index, [character.name, turn_tracker[character]])
+					break
+				else:
+					index += 1
+					continue
+			if index >= display_array.size():
+				display_array.insert(index, [character.name, turn_tracker[character]])
+	## set text values of Left/labels 
+	var index = 0
+	for child in $GUI/Left.get_children():
+		if !child.editable:
+			continue
+		else:
+			child.get_node("HBoxContainer/NameLabel").text = display_array[index][0]
+			child.get_node("HBoxContainer/TimeLabel").text = str(display_array[index][1])
+			index += 1
+
+func update_character_display():
+	for child in $GUI/Left.get_children():
+		if !child.editable:
+			child.get_node("HBoxContainer/TimeLabel").text = str(current_moment)
+			break
 
 func rotate_cam_rig():
 	if Input.is_action_just_pressed("ui_left"):
