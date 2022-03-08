@@ -10,14 +10,20 @@ var whose_turn = null
 
 var cam_rig_rot_target: int
 var cam_rig
+var PC
 var GUI
+var action_name: String
+var action_duration
+var move_destination: Vector3
 var turn_marker
 var current_moment: int = 0
 var advancing: bool = true
 
 signal red_light
 signal green_light
-signal action_taken
+signal GUI_action_taken
+signal selecting_move_destination
+signal done_selecting_move_destination
 
 func _ready():
 	randomize()
@@ -29,7 +35,6 @@ func _ready():
 	center_camera()
 	for character in get_tree().get_nodes_in_group("character"):
 		register_character(character)
-		
 
 func build():
 	var tot = board_size.x * board_size.y
@@ -43,24 +48,37 @@ func build():
 			var new_tile = tile.instance()
 			new_tile.translation.x = (x * tile_size)
 			new_tile.translation.z = (y * tile_size)
+			var new_mat = SpatialMaterial.new()
+			new_mat.albedo_color = Color.white
+			new_tile.set_material_override(new_mat)
 			if (x + y) % 2 == 0:
-				new_tile.set_material_override(null)
+				new_tile.material_override.albedo_color = Color.darkslategray
 			add_child(new_tile)
+			new_tile.connect("give_my_position", self, "on_move_destination_selected")
+			self.connect("selecting_move_destination", new_tile, "on_target_selecting")
 
 func center_camera():
-	cam_rig.translation.x = (board_size.x * tile_size / 2) - (tile_size / 2)
-	cam_rig.translation.z = (board_size.y * tile_size / 2) - (tile_size / 2)
+#	cam_rig.translation.x = (board_size.x * tile_size / 2) - (tile_size / 2)
+#	cam_rig.translation.z = (board_size.y * tile_size / 2) - (tile_size / 2)
+#	
+	#for character in get_tree().get_nodes_in_group("character"):
+#		if character.player:
+#			cam_rig.translation = character.translation
+#			break
+	pass
 
 func register_character(_char):
 	turn_tracker[_char] = 0
 	_char.connect("action_taken", self, "update_turn")
 	self.connect("red_light", _char, "on_red_light")
 	self.connect("green_light", _char, "on_green_light")
+	self.connect("GUI_action_taken", _char, "on_GUI_action_taken")
 	## label in left panel
 	var lab = load("res://Scenes/TurnDisplay.tscn").instance()
 	lab.get_node("HBoxContainer/NameLabel").text = _char.name
 	if _char.player:
 		lab.get_node("HBoxContainer/NameLabel").text = _char.name + " (player)"
+		PC = _char
 	lab.get_node("HBoxContainer/TimeLabel").text = str(0)
 	lab.editable = true
 	GUI.get_node("Left").add_child(lab)
@@ -69,6 +87,7 @@ func _physics_process(delta):
 	advance_time()
 	resolve_turns()
 	update_character_display()
+	translate_cam_rig()
 	rotate_cam_rig()
 
 func advance_time():
@@ -127,6 +146,9 @@ func update_character_display():
 			child.get_node("HBoxContainer/TimeLabel").text = str(current_moment)
 			break
 
+func translate_cam_rig():
+	cam_rig.translation = PC.translation
+
 func rotate_cam_rig():
 	if Input.is_action_just_pressed("ui_left"):
 		cam_rig_rot_target = (cam_rig_rot_target + 90) % 360
@@ -149,10 +171,32 @@ func hide_character_options():
 func update_turn(node, action):
 	turn_tracker[node] += action[2]
 
-func _on_Wait50_pressed():
-	whose_turn.current_action = whose_turn.actions[3]
-	emit_signal("action_taken")
+func _on_Wait_pressed():
+	$GUI/Right/PlayerOptions.hide()
+	$GUI/Right/WaitOptions.show()
+	$GUI/Right/ProceedCancel.show()
+	action_name = "wait"
 
-func _on_Wait100_pressed():
-	whose_turn.current_action = whose_turn.actions[4]
-	emit_signal("action_taken")
+func _on_Walk_pressed():
+	$GUI/Right/PlayerOptions.hide()
+	$GUI/Right/WalkOptions.show()
+	$GUI/Right/ProceedCancel.show()
+	action_name = "walk"
+	emit_signal("selecting_move_destination")
+
+func on_move_destination_selected(_dest):
+	move_destination = _dest
+
+func _on_Proceed_pressed():
+	var action = []
+	action.resize(3)
+	action[0] = action_name
+	if action_name == "wait":
+		action_duration = $GUI/Right/WaitOptions/WaitDuration.value
+		action[2] = action_duration
+	if action_name == "walk": ## player character calculates duration
+		action_duration = 0
+		action[1] = move_destination
+	emit_signal("GUI_action_taken", action)
+	$GUI/Right/PlayerOptions.hide()
+
