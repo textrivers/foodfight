@@ -56,6 +56,7 @@ func build():
 			add_child(new_tile)
 			new_tile.connect("give_my_position", self, "on_move_destination_selected")
 			self.connect("selecting_move_destination", new_tile, "on_target_selecting")
+			self.connect("done_selecting_move_destination", new_tile, "on_target_unselecting")
 
 func center_camera():
 #	cam_rig.translation.x = (board_size.x * tile_size / 2) - (tile_size / 2)
@@ -72,12 +73,11 @@ func register_character(_char):
 	_char.connect("action_taken", self, "update_turn")
 	self.connect("red_light", _char, "on_red_light")
 	self.connect("green_light", _char, "on_green_light")
-	self.connect("GUI_action_taken", _char, "on_GUI_action_taken")
+#	self.connect("GUI_action_taken", _char, "on_GUI_action_taken")
 	## label in left panel
 	var lab = load("res://Scenes/TurnDisplay.tscn").instance()
 	lab.get_node("HBoxContainer/NameLabel").text = _char.name
 	if _char.player:
-		lab.get_node("HBoxContainer/NameLabel").text = _char.name + " (player)"
 		PC = _char
 	lab.get_node("HBoxContainer/TimeLabel").text = str(0)
 	lab.editable = true
@@ -103,8 +103,8 @@ func resolve_turns():
 				turn_marker.show()
 				turn_marker.translation.x = turn.translation.x
 				turn_marker.translation.z = turn.translation.z
-				display_character_options(turn.player)
 				whose_turn = turn
+				display_character_options(turn.player)
 				yield(whose_turn.take_turn(), "completed")
 				whose_turn = null
 				advancing = true
@@ -159,17 +159,40 @@ func rotate_cam_rig():
 		cam_rig.rotation.y = lerp_angle(cam_rig.rotation.y, new_rad, 0.05)
 
 func display_character_options(_player):
-	GUI.get_node("Right").show()
+	reset_character_options()
+	$GUI/Right.show()
+	$GUI/Right/PlayerOptions.show()
 	if _player == true: 
-		$GUI/Right/PlayerOptions.show()
+		$GUI/Right/PlayerOptions/Label.text = "It is your turn"
+		for button in $GUI/Right/PlayerOptions.get_children():
+			if button is Button:
+				button.disabled = false
 	else: 
-		pass
+		$GUI/Right/PlayerOptions/Label.text = "It is " + whose_turn.name + "'s turn"
+		for button in $GUI/Right/PlayerOptions.get_children():
+			if button is Button:
+				button.disabled = true
+
+func reset_character_options():
+	for child in $GUI/Right/PlayerOptions.get_children():
+		child.show()
+	$GUI/Right/ThrowOptions.hide()
+	$GUI/Right/WaitOptions.hide()
+	$GUI/Right/WalkOptions.hide()
+	$GUI/Right/ProceedCancel.hide()
 
 func hide_character_options():
-	GUI.get_node("Right").hide()
+	$GUI/Right.hide()
 
 func update_turn(node, action):
 	turn_tracker[node] += action[2]
+
+func _on_Throw_pressed():
+	$GUI/Right/PlayerOptions.hide()
+	$GUI/Right/ThrowOptions.show()
+	$GUI/Right/ProceedCancel.show()
+	action_name = "throw"
+	emit_signal("selecting_move_destination")
 
 func _on_Wait_pressed():
 	$GUI/Right/PlayerOptions.hide()
@@ -186,6 +209,7 @@ func _on_Walk_pressed():
 
 func on_move_destination_selected(_dest):
 	move_destination = _dest
+	emit_signal("done_selecting_move_destination")
 
 func _on_Proceed_pressed():
 	var action = []
@@ -194,9 +218,18 @@ func _on_Proceed_pressed():
 	if action_name == "wait":
 		action_duration = $GUI/Right/WaitOptions/WaitDuration.value
 		action[2] = action_duration
+	if action_name == "throw":
+		action[1] = move_destination
 	if action_name == "walk": ## player character calculates duration
 		action_duration = 0
 		action[1] = move_destination
-	emit_signal("GUI_action_taken", action)
-	$GUI/Right/PlayerOptions.hide()
+	whose_turn.current_action = action
+	emit_signal("GUI_action_taken")
+	reset_character_options()
+	hide_character_options()
+
+func _on_Cancel_pressed():
+	reset_character_options()
+	emit_signal("selecting_move_destination")
+	emit_signal("done_selecting_move_destination")
 
