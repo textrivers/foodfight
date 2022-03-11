@@ -73,7 +73,9 @@ func register_character(_char):
 	_char.connect("action_taken", self, "update_turn")
 	self.connect("red_light", _char, "on_red_light")
 	self.connect("green_light", _char, "on_green_light")
-#	self.connect("GUI_action_taken", _char, "on_GUI_action_taken")
+	_char.connect("give_my_position", self, "on_move_destination_selected")
+	self.connect("selecting_move_destination", _char, "on_target_selecting")
+	self.connect("done_selecting_move_destination", _char, "on_target_unselecting")
 	## label in left panel
 	var lab = load("res://Scenes/TurnDisplay.tscn").instance()
 	lab.get_node("HBoxContainer/NameLabel").text = _char.name

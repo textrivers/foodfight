@@ -10,17 +10,18 @@ func _ready():
 	revert_color = material_override.albedo_color
 
 func on_target_selecting():
-	$StaticBody/CollisionShape.disabled = false
+	#$StaticBody/CollisionShape.disabled = false
 	selecting = true
 	_on_StaticBody_mouse_exited()
 
 func on_target_unselecting():
 	selecting = false
-	$StaticBody/CollisionShape.disabled = true
+	#$StaticBody/CollisionShape.disabled = true
 
 func _on_StaticBody_mouse_entered():
-	material_override.albedo_color = Color.crimson
-	highlit = true
+	if selecting == true:
+		material_override.albedo_color = Color.hotpink
+		highlit = true
 
 func _on_StaticBody_mouse_exited():
 	if selecting == true:
@@ -29,4 +30,5 @@ func _on_StaticBody_mouse_exited():
 
 func _on_StaticBody_input_event(camera, event, position, normal, shape_idx):
 	if highlit && event is InputEventMouseButton:
+		material_override.albedo_color = Color.crimson
 		emit_signal("give_my_position", translation)
