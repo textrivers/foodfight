@@ -33,6 +33,7 @@ transform = Transform( -0.707107, -0.241845, 0.664463, 0, 0.939693, 0.34202, -0.
 
 [node name="Camera" type="Camera" parent="CameraRig"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
+projection = 1
 current = true
 size = 10.0
 

@@ -10,7 +10,7 @@ var actions: Array = [
 	]
 var walk_speed: float = 0.02
 var throw_speed: float = 0.05
-var throw_apex: float = 3.0
+var throw_apex: float = 1.5
 var throw_start_height: float = 0.5
 var current_action
 var parent
@@ -68,14 +68,18 @@ func player_action():
 		var start_pos = translation
 		start_pos.y += throw_start_height
 		var new_vel: Vector3 = targ - start_pos ## x and z are easy
-		var t = start_pos.distance_to(targ) / throw_speed
+		var diffXZ: Vector3 = Vector3(new_vel.x, 0, new_vel.z)
+		var t = diffXZ.length() / throw_speed
 		t = t / 60 ## adjust this so it's in seconds, not frames
 		print("t = " + str(t))
+		new_vel = diffXZ.normalized() * throw_speed * 60
 		var grav = -4 * (start_pos.y - (2 * throw_apex) + targ.y) / (t * t)
-		new_vel.y = - ((3 * start_pos.y) - (4 * throw_apex) + targ.y / t)
+		new_vel.y = - ((3 * start_pos.y) - (4 * throw_apex) + targ.y) / t
 		var new_food = preload("res://Scenes/Food.tscn").instance()
 		new_food.velocity = new_vel
 		new_food.gravity = grav
+#		new_food.velocity = Vector3(new_vel.x, 0, new_vel.z)
+#		new_food.gravity = 0
 		new_food.translation = start_pos
 		get_parent().connect("red_light", new_food, "on_red_light")
 		get_parent().connect("green_light", new_food, "on_green_light")
