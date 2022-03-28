@@ -7,7 +7,7 @@
 [ext_resource path="res://Assets/Exxle_outline.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Gleop_outline.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Raym_outline.png" type="Texture" id=7]
-[ext_resource path="res://Assets/PanoramaSky/panorama_image_download_009.png" type="Texture" id=8]
+[ext_resource path="res://Assets/PanoramaSky/A_pano_FULL.png" type="Texture" id=8]
 
 [sub_resource type="PanoramaSky" id=2]
 panorama = ExtResource( 8 )
