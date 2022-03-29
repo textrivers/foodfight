@@ -21,6 +21,7 @@ var tween_dur
 
 var selecting: bool = false
 var highlit: bool = false
+var selected: bool = false
 var revert_color: Color
 
 signal action_taken
@@ -30,7 +31,8 @@ signal give_my_position
 func _ready():
 	parent = get_parent()
 	tween = $Tween
-	revert_color = $Sprite3D.modulate
+	revert_color = $Sprite3D.material_override.get_albedo()
+	$Sprite3D.material_override = $Sprite3D.material_override.duplicate()
 
 func _physics_process(delta):
 	pass
@@ -50,6 +52,9 @@ func on_red_light():
 	tween.stop_all()
 
 func on_green_light():
+	selecting = false
+	highlit = false
+	$Sprite3D.material_override.set_albedo(revert_color)
 	tween.resume_all()
 
 func player_action():
@@ -126,18 +131,32 @@ func on_target_unselecting():
 	selecting = false
 
 func _on_Character3D_input_event(camera, event, position, normal, shape_idx):
-	if highlit && event is InputEventMouseButton:
-		if !player:
-			$Sprite3D.modulate = Color.crimson
-			emit_signal("give_my_position", translation)
+	if event is InputEventMouseButton:
+		print("click")
+		if highlit:
+			if !player:
+				for child in get_tree().get_nodes_in_group("selectable"):
+					if selected:
+						print("I'm no longer selected")
+						selected = false
+						if child.is_in_group("character"):
+							child.get_node("Sprite3D").material_override.set_albedo(child.revert_color)
+						else:
+							child.material_override.albedo_color = child.revert_color
+				selected = true
+				$Sprite3D.material_override.set_albedo(Color.crimson)
+				emit_signal("give_my_position", translation)
 
 func _on_Character3D_mouse_entered():
-	if selecting == true:
-		print("me")
-		highlit = true
-		$Sprite3D.modulate == Color.hotpink
+	highlit = true
+	print("highlit")
+	if selecting == true && selected == false:
+		$Sprite3D.material_override.set_albedo(Color.hotpink)
+		print("mouse entered me")
 
 func _on_Character3D_mouse_exited():
-	if selecting == true:
-		highlit = false
-		$Sprite3D.modulate == revert_color
+	highlit = false
+	print("not highlit")
+	if selecting == true && selected == false:
+		$Sprite3D.material_override.set_albedo(revert_color)
+		print("mouse exited me")

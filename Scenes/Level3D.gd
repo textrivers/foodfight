@@ -211,9 +211,10 @@ func _on_Walk_pressed():
 
 func on_move_destination_selected(_dest):
 	move_destination = _dest
-	emit_signal("done_selecting_move_destination")
+	#emit_signal("done_selecting_move_destination")
 
 func _on_Proceed_pressed():
+	emit_signal("done_selecting_move_destination")
 	var action = []
 	action.resize(3)
 	action[0] = action_name

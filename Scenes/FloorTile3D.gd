@@ -2,6 +2,7 @@ extends MeshInstance
 
 var selecting: bool = false
 var highlit: bool = false
+var selected: bool = false
 var revert_color: Color
 
 signal give_my_position
