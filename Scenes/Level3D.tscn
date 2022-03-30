@@ -18,13 +18,13 @@ params_billboard_keep_scale = true
 albedo_color = Color( 0.72549, 0.72549, 0.72549, 1 )
 albedo_texture = ExtResource( 9 )
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=6]
 flags_use_shadow_to_opacity = true
 vertex_color_use_as_albedo = true
 params_billboard_mode = 1
 params_billboard_keep_scale = true
 albedo_color = Color( 0.529412, 0.831373, 0.521569, 1 )
-albedo_texture = ExtResource( 9 )
+albedo_texture = ExtResource( 6 )
 
 [sub_resource type="SpatialMaterial" id=5]
 flags_use_shadow_to_opacity = true
@@ -69,7 +69,7 @@ texture = ExtResource( 7 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 5 )
 
 [node name="Sprite3D" parent="Dave" index="0"]
-material_override = SubResource( 4 )
+material_override = SubResource( 6 )
 texture = ExtResource( 6 )
 
 [node name="Mike" parent="." instance=ExtResource( 1 )]

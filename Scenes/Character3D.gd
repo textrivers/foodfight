@@ -20,7 +20,6 @@ var tween
 var tween_dur
 
 var selecting: bool = false
-var highlit: bool = false
 var selected: bool = false
 var revert_color: Color
 
@@ -53,7 +52,6 @@ func on_red_light():
 
 func on_green_light():
 	selecting = false
-	highlit = false
 	$Sprite3D.material_override.set_albedo(revert_color)
 	tween.resume_all()
 
@@ -110,7 +108,6 @@ func throw_food():
 	var diffXZ: Vector3 = Vector3(new_vel.x, 0, new_vel.z)
 	var t = diffXZ.length() / throw_speed
 	t = t / 60 ## adjust this so it's in seconds, not frames
-	print("t = " + str(t))
 	new_vel = diffXZ.normalized() * throw_speed * 60
 	var grav = -4 * (start_pos.y - (2 * throw_apex) + targ.y) / (t * t)
 	new_vel.y = - ((3 * start_pos.y) - (4 * throw_apex) + targ.y) / t
@@ -131,32 +128,24 @@ func on_target_unselecting():
 	selecting = false
 
 func _on_Character3D_input_event(camera, event, position, normal, shape_idx):
-	if event is InputEventMouseButton:
-		print("click")
-		if highlit:
-			if !player:
-				for child in get_tree().get_nodes_in_group("selectable"):
-					if selected:
-						print("I'm no longer selected")
-						selected = false
-						if child.is_in_group("character"):
-							child.get_node("Sprite3D").material_override.set_albedo(child.revert_color)
-						else:
-							child.material_override.albedo_color = child.revert_color
-				selected = true
-				$Sprite3D.material_override.set_albedo(Color.crimson)
-				emit_signal("give_my_position", translation)
+	if event is InputEventMouseButton && event.pressed:
+		if !player:
+			for child in get_tree().get_nodes_in_group("selectable"):
+				if child.selected:
+					child.selected = false
+					if child.is_in_group("character"):
+						child.get_node("Sprite3D").material_override.set_albedo(child.revert_color)
+					else:
+						child.material_override.albedo_color = child.revert_color
+			selected = true
+			$Sprite3D.material_override.set_albedo(Color.crimson)
+			emit_signal("give_my_position", translation)
 
 func _on_Character3D_mouse_entered():
-	highlit = true
-	print("highlit")
 	if selecting == true && selected == false:
-		$Sprite3D.material_override.set_albedo(Color.hotpink)
-		print("mouse entered me")
+		if !player:
+			$Sprite3D.material_override.set_albedo(Color.hotpink)
 
 func _on_Character3D_mouse_exited():
-	highlit = false
-	print("not highlit")
 	if selecting == true && selected == false:
 		$Sprite3D.material_override.set_albedo(revert_color)
-		print("mouse exited me")
