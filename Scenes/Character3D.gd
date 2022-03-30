@@ -109,15 +109,16 @@ func throw_food():
 	var t = diffXZ.length() / throw_speed
 	t = t / 60 ## adjust this so it's in seconds, not frames
 	new_vel = diffXZ.normalized() * throw_speed * 60
-	var grav = -4 * (start_pos.y - (2 * throw_apex) + targ.y) / (t * t)
-	new_vel.y = - ((3 * start_pos.y) - (4 * throw_apex) + targ.y) / t
-	var new_food = preload("res://Scenes/Food.tscn").instance()
-	new_food.velocity = new_vel
-	new_food.gravity = grav
-	new_food.translation = start_pos
-	get_parent().connect("red_light", new_food, "on_red_light")
-	get_parent().connect("green_light", new_food, "on_green_light")
-	get_parent().add_child(new_food)
+	if t != 0:
+		var grav = -4 * (start_pos.y - (2 * throw_apex) + targ.y) / (t * t)
+		new_vel.y = - ((3 * start_pos.y) - (4 * throw_apex) + targ.y) / t
+		var new_food = preload("res://Scenes/Food.tscn").instance()
+		new_food.velocity = new_vel
+		new_food.gravity = grav
+		new_food.translation = start_pos
+		get_parent().connect("red_light", new_food, "on_red_light")
+		get_parent().connect("green_light", new_food, "on_green_light")
+		get_parent().add_child(new_food)
 
 ## selectability
 func on_target_selecting():

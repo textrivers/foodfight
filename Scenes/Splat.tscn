@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/Splat.gd" type="Script" id=1]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.379545 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+direction = Vector3( 1, 1, 1 )
+spread = 180.0
+flatness = 0.55
+initial_velocity = 4.0
+scale_random = 1.0
+scale_curve = SubResource( 2 )
+color = Color( 1, 0.968627, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_unshaded = true
+albedo_color = Color( 1, 0.968627, 0, 1 )
+depth_enabled = true
+depth_scale = 0.05
+depth_deep_parallax = false
+depth_flip_tangent = false
+depth_flip_binormal = false
+
+[sub_resource type="SphereMesh" id=5]
+material = SubResource( 4 )
+radius = 0.1
+height = 0.2
+radial_segments = 12
+rings = 12
+
+[node name="Splat" type="Particles"]
+emitting = false
+one_shot = true
+explosiveness = 0.93
+randomness = 0.61
+process_material = SubResource( 3 )
+draw_pass_1 = SubResource( 5 )
+script = ExtResource( 1 )
