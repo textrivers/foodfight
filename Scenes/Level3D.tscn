@@ -47,10 +47,11 @@ glow_enabled = true
 
 [node name="Level3D" type="Spatial"]
 script = ExtResource( 2 )
-board_size = Vector2( 8, 11 )
+board_size = Vector2( 8, 5 )
+mouse_sensitivity = 0.2
 
 [node name="CameraRig" type="Position3D" parent="."]
-transform = Transform( -0.707107, -0.241845, 0.664463, 0, 0.939693, 0.34202, -0.707107, 0.241845, -0.664463, 0, 0, 0 )
+transform = Transform( 0.707107, -0.241845, 0.664463, 0, 0.939693, 0.34202, -0.707107, -0.241845, 0.664463, 0, 0, 0 )
 
 [node name="Camera" type="Camera" parent="CameraRig"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )

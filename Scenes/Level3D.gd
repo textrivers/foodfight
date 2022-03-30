@@ -8,8 +8,10 @@ var characters: Array = []
 var turn_tracker: Dictionary = {}
 var whose_turn = null
 
-var cam_rig_rot_target: int
+var cam_rig_rot_target: Vector2
+var cam_rig_zoom_target: float = 10.0
 var cam_rig
+export var mouse_sensitivity = 0.05
 var PC
 var GUI
 var action_name: String
@@ -30,7 +32,8 @@ func _ready():
 	cam_rig = $CameraRig
 	GUI = $GUI
 	turn_marker = $TurnMarker
-	cam_rig_rot_target = cam_rig.rotation_degrees.y
+	cam_rig_rot_target = Vector2(cam_rig.rotation_degrees.y, cam_rig.rotation_degrees.x)
+	cam_rig_zoom_target = $CameraRig/Camera.translation.z
 	build()
 	center_camera()
 	for character in get_tree().get_nodes_in_group("character"):
@@ -84,6 +87,16 @@ func register_character(_char):
 	lab.get_node("HBoxContainer/TimeLabel").text = str(0)
 	lab.editable = true
 	GUI.get_node("Left").add_child(lab)
+
+func _input(event):
+	if event is InputEventMouseMotion && Input.is_action_pressed("right_click"):
+		cam_rig_rot_target.x += (event.relative.x * mouse_sensitivity * -1)
+		cam_rig_rot_target.y += (event.relative.y * mouse_sensitivity * -1)
+	if Input.is_action_just_released("scroll_in"):
+		cam_rig_zoom_target -= 1.0
+	if Input.is_action_just_released("scroll_out"):
+		cam_rig_zoom_target += 1.0
+		cam_rig_zoom_target = clamp(cam_rig_zoom_target, 1.0, 15.0)
 
 func _physics_process(delta):
 	advance_time()
@@ -150,15 +163,18 @@ func update_character_display():
 
 func translate_cam_rig():
 	cam_rig.translation = PC.translation
+	if $CameraRig/Camera.translation.z != cam_rig_zoom_target:
+		$CameraRig/Camera.translation.z = lerp($CameraRig/Camera.translation.z, cam_rig_zoom_target, 0.2)
 
 func rotate_cam_rig():
-	if Input.is_action_just_pressed("ui_left"):
-		cam_rig_rot_target = (cam_rig_rot_target + 90) % 360
-	if Input.is_action_just_pressed("ui_right"):
-		cam_rig_rot_target = (cam_rig_rot_target - 90) % 360
-	if cam_rig.rotation_degrees.y != cam_rig_rot_target:
-		var new_rad = deg2rad(cam_rig_rot_target)
-		cam_rig.rotation.y = lerp_angle(cam_rig.rotation.y, new_rad, 0.05)
+	# clamp value so you can only look so high or low
+	cam_rig_rot_target.y = clamp(cam_rig_rot_target.y, -30, 40)
+	if cam_rig.rotation_degrees.x != cam_rig_rot_target.y:
+		var new_rad_y = deg2rad(cam_rig_rot_target.y)
+		cam_rig.rotation.x = lerp_angle(cam_rig.rotation.x, new_rad_y, 0.1)
+	if cam_rig.rotation_degrees.y != cam_rig_rot_target.x:
+		var new_rad_x = deg2rad(cam_rig_rot_target.x)
+		cam_rig.rotation.y = lerp_angle(cam_rig.rotation.y, new_rad_x, 0.1)
 
 func display_character_options(_player):
 	reset_character_options()

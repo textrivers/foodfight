@@ -128,18 +128,19 @@ func on_target_unselecting():
 	selecting = false
 
 func _on_Character3D_input_event(camera, event, position, normal, shape_idx):
-	if event is InputEventMouseButton && event.pressed:
-		if !player:
-			for child in get_tree().get_nodes_in_group("selectable"):
-				if child.selected:
-					child.selected = false
-					if child.is_in_group("character"):
-						child.get_node("Sprite3D").material_override.set_albedo(child.revert_color)
-					else:
-						child.material_override.albedo_color = child.revert_color
-			selected = true
-			$Sprite3D.material_override.set_albedo(Color.crimson)
-			emit_signal("give_my_position", translation)
+	if selecting:
+		if event is InputEventMouseButton && event.pressed:
+			if !player:
+				for child in get_tree().get_nodes_in_group("selectable"):
+					if child.selected:
+						child.selected = false
+						if child.is_in_group("character"):
+							child.get_node("Sprite3D").material_override.set_albedo(child.revert_color)
+						else:
+							child.material_override.albedo_color = child.revert_color
+				selected = true
+				$Sprite3D.material_override.set_albedo(Color.crimson)
+				emit_signal("give_my_position", translation)
 
 func _on_Character3D_mouse_entered():
 	if selecting == true && selected == false:
