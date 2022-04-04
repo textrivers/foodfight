@@ -3,7 +3,7 @@ extends KinematicBody
 var velocity
 var moving: bool = false
 var gravity
-var splat = preload("res://Scenes/Splat.tscn")
+var splat = preload("res://Scenes/SplatParticles.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,6 +19,8 @@ func _physics_process(delta):
 			new_splat.translation = coll.position
 			new_splat.emitting = true
 			get_parent().add_child(new_splat)
+			if coll.collider.is_in_group("character"):
+				coll.collider.add_splatter()
 			call_deferred("queue_free")
 
 func on_red_light():

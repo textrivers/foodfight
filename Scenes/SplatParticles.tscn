@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Scenes/Splat.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/SplatParticles.gd" type="Script" id=1]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.379545 ), 0.0, 0.0, 0, 0 ]
@@ -33,7 +33,7 @@ height = 0.2
 radial_segments = 12
 rings = 12
 
-[node name="Splat" type="Particles"]
+[node name="SplatParticles" type="Particles"]
 emitting = false
 one_shot = true
 explosiveness = 0.93

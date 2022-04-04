@@ -14,6 +14,7 @@ var throw_speed: float = 0.05
 var throw_apex: float = 1.5
 var throw_start_height: float = 0.5
 var throw_clearance = 0.3 #avoid collision with parent
+var current_splat_num: int = 0
 var current_action
 var parent
 var tween
@@ -30,8 +31,10 @@ signal give_my_position
 func _ready():
 	parent = get_parent()
 	tween = $Tween
-	revert_color = $Sprite3D.material_override.get_albedo()
-	$Sprite3D.material_override = $Sprite3D.material_override.duplicate()
+	revert_color = $Viewport/CharacterSprite.modulate
+	#$Sprite3D.material_override = $Sprite3D.material_override.duplicate()
+	$Viewport.set_clear_mode(Viewport.CLEAR_MODE_ALWAYS)
+	$Sprite3D.texture = $Viewport.get_texture()
 
 func _physics_process(delta):
 	pass
@@ -52,7 +55,8 @@ func on_red_light():
 
 func on_green_light():
 	selecting = false
-	$Sprite3D.material_override.set_albedo(revert_color)
+	#$Sprite3D.material_override.set_albedo(revert_color)
+	$Viewport/CharacterSprite.modulate = revert_color
 	tween.resume_all()
 
 func player_action():
@@ -106,6 +110,8 @@ func throw_food():
 	start_pos += start_offset.normalized() * throw_clearance
 	new_vel = targ - start_pos
 	var diffXZ: Vector3 = Vector3(new_vel.x, 0, new_vel.z)
+	## set throw_apex higher for longer throws
+	throw_apex = throw_start_height + (diffXZ.length() * 0.1)
 	var t = diffXZ.length() / throw_speed
 	t = t / 60 ## adjust this so it's in seconds, not frames
 	new_vel = diffXZ.normalized() * throw_speed * 60
@@ -136,18 +142,30 @@ func _on_Character3D_input_event(camera, event, position, normal, shape_idx):
 					if child.selected:
 						child.selected = false
 						if child.is_in_group("character"):
-							child.get_node("Sprite3D").material_override.set_albedo(child.revert_color)
+							child.get_node("Viewport/CharacterSprite").modulate = child.revert_color
 						else:
 							child.material_override.albedo_color = child.revert_color
 				selected = true
-				$Sprite3D.material_override.set_albedo(Color.crimson)
+				#$Sprite3D.material_override.set_albedo(Color.crimson)
+				$Viewport/CharacterSprite.modulate = Color.crimson
 				emit_signal("give_my_position", translation)
 
 func _on_Character3D_mouse_entered():
 	if selecting == true && selected == false:
 		if !player:
-			$Sprite3D.material_override.set_albedo(Color.hotpink)
+			#$Sprite3D.material_override.set_albedo(Color.hotpink)
+			$Viewport/CharacterSprite.modulate = Color.hotpink
 
 func _on_Character3D_mouse_exited():
 	if selecting == true && selected == false:
-		$Sprite3D.material_override.set_albedo(revert_color)
+		#$Sprite3D.material_override.set_albedo(revert_color)
+		$Viewport/CharacterSprite.modulate = revert_color
+
+func add_splatter():
+	for child in $Viewport/CharacterSprite.get_children():
+		if "my_splat_num" in child:
+			if child.my_splat_num == current_splat_num:
+				child.update_splatter()
+				break
+	current_splat_num += 1
+	current_splat_num = current_splat_num % 3

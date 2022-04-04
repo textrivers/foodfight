@@ -31,7 +31,7 @@ func _on_StaticBody_input_event(camera, event, position, normal, shape_idx):
 				if child.selected:
 					child.selected = false
 					if child.is_in_group("character"):
-						child.get_node("Sprite3D").material_override.set_albedo(child.revert_color)
+						child.get_node("Viewport/CharacterSprite").modulate = child.revert_color
 					else:
 						child.material_override.albedo_color = child.revert_color
 			selected = true

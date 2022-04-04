@@ -1,38 +1,25 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/Character3D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Level3D.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/TurnMarker.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/TurnDisplay.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Assets/Exxle_outline.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Pringk_outline.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Gleop_outline.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Raym_outline.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Pringk_mask.png" type="Texture" id=7]
 [ext_resource path="res://Assets/PanoramaSky/A_pano_FULL.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Pnin_outline.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Gleop_mask.png" type="Texture" id=9]
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="ViewportTexture" id=6]
+viewport_path = NodePath("You/Viewport")
+
+[sub_resource type="SpatialMaterial" id=7]
+resource_local_to_scene = true
 flags_use_shadow_to_opacity = true
 vertex_color_use_as_albedo = true
 params_billboard_mode = 1
 params_billboard_keep_scale = true
-albedo_color = Color( 0.72549, 0.72549, 0.72549, 1 )
-albedo_texture = ExtResource( 9 )
-
-[sub_resource type="SpatialMaterial" id=6]
-flags_use_shadow_to_opacity = true
-vertex_color_use_as_albedo = true
-params_billboard_mode = 1
-params_billboard_keep_scale = true
-albedo_color = Color( 0.529412, 0.831373, 0.521569, 1 )
-albedo_texture = ExtResource( 6 )
-
-[sub_resource type="SpatialMaterial" id=5]
-flags_use_shadow_to_opacity = true
-vertex_color_use_as_albedo = true
-params_billboard_mode = 1
-params_billboard_keep_scale = true
-albedo_color = Color( 0.596078, 0.388235, 0.784314, 1 )
-albedo_texture = ExtResource( 9 )
+albedo_texture = SubResource( 6 )
 
 [sub_resource type="PanoramaSky" id=2]
 panorama = ExtResource( 8 )
@@ -63,22 +50,25 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2 )
 player = true
 
 [node name="Sprite3D" parent="You" index="0"]
-material_override = SubResource( 3 )
-texture = ExtResource( 7 )
+material_override = SubResource( 7 )
 
 [node name="Dave" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 5 )
 
-[node name="Sprite3D" parent="Dave" index="0"]
-material_override = SubResource( 6 )
-texture = ExtResource( 6 )
+[node name="Sprite" parent="Dave/Viewport/CharacterSprite" index="0"]
+texture = ExtResource( 5 )
+
+[node name="Light2D" parent="Dave/Viewport/CharacterSprite" index="1"]
+texture = ExtResource( 7 )
 
 [node name="Mike" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3 )
 
-[node name="Sprite3D" parent="Mike" index="0"]
-material_override = SubResource( 5 )
-texture = ExtResource( 5 )
+[node name="Sprite" parent="Mike/Viewport/CharacterSprite" index="0"]
+texture = ExtResource( 6 )
+
+[node name="Light2D" parent="Mike/Viewport/CharacterSprite" index="1"]
+texture = ExtResource( 9 )
 
 [node name="TurnMarker" parent="." instance=ExtResource( 3 )]
 
