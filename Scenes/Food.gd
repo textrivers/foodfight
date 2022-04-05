@@ -7,8 +7,8 @@ var splat = preload("res://Scenes/SplatParticles.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("I'm a food!")
-	print(gravity)
+	$MeshInstance.material_override = $MeshInstance.material_override.duplicate()
+	$MeshInstance.material_override.albedo_color = Color(randf(), randf(), randf())
 
 func _physics_process(delta):
 	if moving:
@@ -18,9 +18,10 @@ func _physics_process(delta):
 			var new_splat = splat.instance()
 			new_splat.translation = coll.position
 			new_splat.emitting = true
+			new_splat.material_override.albedo_color = $MeshInstance.material_override.albedo_color
 			get_parent().add_child(new_splat)
 			if coll.collider.is_in_group("character"):
-				coll.collider.add_splatter()
+				coll.collider.add_splatter($MeshInstance.material_override.albedo_color)
 			call_deferred("queue_free")
 
 func on_red_light():
@@ -30,4 +31,4 @@ func on_green_light():
 	moving = true
 
 func _on_Food_tree_exited():
-	print("food left tree for a reason")
+	pass

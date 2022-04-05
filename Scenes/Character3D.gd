@@ -161,11 +161,11 @@ func _on_Character3D_mouse_exited():
 		#$Sprite3D.material_override.set_albedo(revert_color)
 		$Viewport/CharacterSprite.modulate = revert_color
 
-func add_splatter():
+func add_splatter(color):
 	for child in $Viewport/CharacterSprite.get_children():
 		if "my_splat_num" in child:
 			if child.my_splat_num == current_splat_num:
-				child.update_splatter()
+				child.update_splatter(color)
 				break
 	current_splat_num += 1
 	current_splat_num = current_splat_num % 3
