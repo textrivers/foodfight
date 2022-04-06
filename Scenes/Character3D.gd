@@ -10,6 +10,7 @@ var actions: Array = [
 	["wait", true, 25],
 	]
 var walk_speed: float = 0.02
+var food_contacts: Array = []
 var throw_speed: float = 0.05
 var throw_apex: float = 1.5
 var throw_start_height: float = 0.5
@@ -62,8 +63,19 @@ func on_green_light():
 func player_action():
 	if current_action[0] == "wait":
 		pass
+	if current_action[0] == "pick_up":
+		if food_contacts.size() > 0:
+			var my_food = food_contacts.pop_back()
+			my_food.get_parent().remove_child(my_food)
+			add_child(my_food)
+			my_food.name = "MyFood"
+			my_food.translation = Vector3(0, 0.5, 0)
 	if current_action[0] == "throw":
-		throw_food()
+		if self.has_node("MyFood"):
+			throw_food()
+			get_node_or_null("MyFood").call_deferred("queue_free")
+		else:
+			throw_nothing()
 	if current_action[0] == "walk":
 		var dest3D = current_action[1]
 		var dist_to_dest = translation.distance_to(dest3D)
@@ -76,17 +88,20 @@ func NPC_action():
 	if current_action[0] == "wait":
 		pass
 	if current_action[0] == "throw":
-		current_action[2] = 25
-		var targs = []
-		for child in get_tree().get_nodes_in_group("character"):
-			if child == self:
-				continue
-			else:
-				targs.append(child)
-		var ind = randi() % targs.size()
-		var targ = targs[ind]
-		current_action[1] = targ.translation
-		throw_food()
+		if self.has_node("MyFood"):
+			current_action[2] = 25
+			var targs = []
+			for child in get_tree().get_nodes_in_group("character"):
+				if child == self:
+					continue
+				else:
+					targs.append(child)
+			var ind = randi() % targs.size()
+			var targ = targs[ind]
+			current_action[1] = targ.translation
+			throw_food()
+		else:
+			throw_nothing()
 	if current_action[0] == "walk":
 		var destination = Vector2()
 		destination.x = randi() % int(parent.board_size.x)
@@ -97,6 +112,14 @@ func NPC_action():
 		tween_dur = current_action[2] / 60
 		tween.interpolate_property(self, "translation", translation, dest3D, tween_dur)
 		tween.start()
+
+func add_to_food_contacts(floor_food):
+	if !food_contacts.has(floor_food):
+		food_contacts.append(floor_food)
+
+func remove_from_food_contacts(floor_food):
+	if food_contacts.has(floor_food):
+		food_contacts.erase(floor_food)
 
 func throw_food():
 	current_action[2] = 25
@@ -122,9 +145,11 @@ func throw_food():
 		new_food.velocity = new_vel
 		new_food.gravity = grav
 		new_food.translation = start_pos
-		get_parent().connect("red_light", new_food, "on_red_light")
-		get_parent().connect("green_light", new_food, "on_green_light")
+		new_food.food_type = $MyFood.type 
 		get_parent().add_child(new_food)
+
+func throw_nothing():
+	current_action[2] = 25
 
 ## selectability
 func on_target_selecting():
@@ -148,7 +173,7 @@ func _on_Character3D_input_event(camera, event, position, normal, shape_idx):
 				selected = true
 				#$Sprite3D.material_override.set_albedo(Color.crimson)
 				$Viewport/CharacterSprite.modulate = Color.crimson
-				emit_signal("give_my_position", translation)
+				emit_signal("give_my_position", to_global($TargetPosition.translation))
 
 func _on_Character3D_mouse_entered():
 	if selecting == true && selected == false:

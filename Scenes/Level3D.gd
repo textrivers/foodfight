@@ -10,6 +10,7 @@ var whose_turn = null
 
 var cam_rig_rot_target: Vector2
 var cam_rig_zoom_target: float = 10.0
+var cam_rig_trans_target
 var cam_rig
 export var mouse_sensitivity = 0.05
 var PC
@@ -84,6 +85,7 @@ func register_character(_char):
 	lab.get_node("HBoxContainer/NameLabel").text = _char.name
 	if _char.player:
 		PC = _char
+		cam_rig_trans_target = PC.get_node("TargetPosition")
 	lab.get_node("HBoxContainer/TimeLabel").text = str(0)
 	lab.editable = true
 	GUI.get_node("Left").add_child(lab)
@@ -162,7 +164,7 @@ func update_character_display():
 			break
 
 func translate_cam_rig():
-	cam_rig.translation = PC.translation
+	cam_rig.translation = cam_rig_trans_target.to_global(cam_rig_trans_target.translation)
 	if $CameraRig/Camera.translation.z != cam_rig_zoom_target:
 		$CameraRig/Camera.translation.z = lerp($CameraRig/Camera.translation.z, cam_rig_zoom_target, 0.2)
 
@@ -205,6 +207,11 @@ func hide_character_options():
 func update_turn(node, action):
 	turn_tracker[node] += action[2]
 
+func _on_PickUp_pressed():
+	action_name = "pick_up"
+	action_duration = 25
+	_on_Proceed_pressed()
+
 func _on_Throw_pressed():
 	$GUI/Right/PlayerOptions.hide()
 	$GUI/Right/ThrowOptions.show()
@@ -234,6 +241,8 @@ func _on_Proceed_pressed():
 	var action = []
 	action.resize(3)
 	action[0] = action_name
+	if action_name == "pick_up":
+		action[2] = action_duration
 	if action_name == "wait":
 		action_duration = $GUI/Right/WaitOptions/WaitDuration.value
 		action[2] = action_duration

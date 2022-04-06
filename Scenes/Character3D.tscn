@@ -24,7 +24,7 @@ alpha_cut = 2
 playback_process_mode = 0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.6, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.5, 0 )
 shape = SubResource( 1 )
 
 [node name="Viewport" type="Viewport" parent="."]
@@ -60,6 +60,9 @@ centered = false
 offset = Vector2( 20, 10 )
 script = ExtResource( 4 )
 my_splat_num = 2
+
+[node name="TargetPosition" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0 )
 
 [connection signal="input_event" from="." to="." method="_on_Character3D_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_Character3D_mouse_entered"]

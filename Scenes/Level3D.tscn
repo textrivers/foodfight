@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/Character3D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Level3D.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Assets/Pringk_mask.png" type="Texture" id=7]
 [ext_resource path="res://Assets/PanoramaSky/A_pano_FULL.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Gleop_mask.png" type="Texture" id=9]
+[ext_resource path="res://Scenes/FloorFood.tscn" type="PackedScene" id=10]
 
 [sub_resource type="ViewportTexture" id=6]
 viewport_path = NodePath("You/Viewport")
@@ -34,7 +35,7 @@ glow_enabled = true
 
 [node name="Level3D" type="Spatial"]
 script = ExtResource( 2 )
-board_size = Vector2( 8, 5 )
+board_size = Vector2( 8, 10 )
 mouse_sensitivity = 0.2
 
 [node name="CameraRig" type="Position3D" parent="."]
@@ -71,6 +72,9 @@ texture = ExtResource( 6 )
 texture = ExtResource( 9 )
 
 [node name="TurnMarker" parent="." instance=ExtResource( 3 )]
+
+[node name="FloorFood" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.2, 2 )
 
 [node name="GUI" type="HBoxContainer" parent="."]
 margin_right = 1024.0
@@ -309,6 +313,7 @@ transform = Transform( 0.824707, 0.300371, 0.479204, -0.534501, 0.690879, 0.4868
 visible = false
 
 [connection signal="pressed" from="GUI/Right/PlayerOptions/Walk" to="." method="_on_Walk_pressed"]
+[connection signal="pressed" from="GUI/Right/PlayerOptions/PickUp" to="." method="_on_PickUp_pressed"]
 [connection signal="pressed" from="GUI/Right/PlayerOptions/Throw" to="." method="_on_Throw_pressed"]
 [connection signal="pressed" from="GUI/Right/PlayerOptions/Wait" to="." method="_on_Wait_pressed"]
 [connection signal="pressed" from="GUI/Right/ProceedCancel/Proceed" to="." method="_on_Proceed_pressed"]
