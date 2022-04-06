@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://Assets/Meshes/banana_02.glb" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Food.gd" type="Script" id=2]
 
 [sub_resource type="SphereShape" id=1]
@@ -24,4 +25,10 @@ material_override = SubResource( 2 )
 mesh = SubResource( 3 )
 material/0 = null
 
+[node name="banana_02" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.175581, 0.184128 )
+visible = false
+
 [connection signal="tree_exited" from="." to="." method="_on_Food_tree_exited"]
+
+[editable path="banana_02"]
