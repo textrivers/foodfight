@@ -60,6 +60,9 @@ func on_green_light():
 	$Viewport/CharacterSprite.modulate = revert_color
 	tween.resume_all()
 
+func handle_action(action):
+	pass
+
 func player_action():
 	if current_action[0] == "wait":
 		pass

@@ -15,6 +15,7 @@ var cam_rig
 export var mouse_sensitivity = 0.05
 var PC
 var GUI
+var current_action = []
 var action_name: String
 var action_duration
 var move_destination: Vector3
@@ -36,7 +37,6 @@ func _ready():
 	cam_rig_rot_target = Vector2(cam_rig.rotation_degrees.y, cam_rig.rotation_degrees.x)
 	cam_rig_zoom_target = $CameraRig/Camera.translation.z
 	build()
-	center_camera()
 	for character in get_tree().get_nodes_in_group("character"):
 		register_character(character)
 
@@ -61,16 +61,6 @@ func build():
 			new_tile.connect("give_my_position", self, "on_move_destination_selected")
 			self.connect("selecting_move_destination", new_tile, "on_target_selecting")
 			self.connect("done_selecting_move_destination", new_tile, "on_target_unselecting")
-
-func center_camera():
-#	cam_rig.translation.x = (board_size.x * tile_size / 2) - (tile_size / 2)
-#	cam_rig.translation.z = (board_size.y * tile_size / 2) - (tile_size / 2)
-#	
-	#for character in get_tree().get_nodes_in_group("character"):
-#		if character.player:
-#			cam_rig.translation = character.translation
-#			break
-	pass
 
 func register_character(_char):
 	turn_tracker[_char] = 0
@@ -102,16 +92,16 @@ func _input(event):
 
 func _physics_process(delta):
 	advance_time()
-	resolve_turns()
-	update_character_display()
+	prompt_turns()
 	translate_cam_rig()
 	rotate_cam_rig()
 
 func advance_time():
 	if advancing:
 		current_moment += 1
+	$GUI/Left/TurnDisplay/HBoxContainer/TimeLabel.text = str(current_moment)
 
-func resolve_turns():
+func prompt_turns():
 	if advancing:
 		for turn in turn_tracker:
 			if current_moment >= turn_tracker[turn]:
@@ -122,13 +112,20 @@ func resolve_turns():
 				turn_marker.translation.z = turn.translation.z
 				whose_turn = turn
 				display_character_options(turn.player)
-				yield(whose_turn.take_turn(), "completed")
-				whose_turn = null
-				advancing = true
-				emit_signal("green_light")
-				turn_marker.hide()
-				hide_character_options()
-				reorder_character_display()
+				## TODO yield to something here so that this for loop doesn't continue
+				## yield(whose_turn.take_turn(), "completed")
+
+func resolve_turn():
+	## send the action info to the character
+	whose_turn.handle_action(current_action)
+	## send the action info to the GUI
+	turn_tracker[whose_turn] += current_action[2]
+	whose_turn = null
+	advancing = true
+	emit_signal("green_light")
+	turn_marker.hide()
+	hide_character_options()
+	reorder_character_display()
 
 func reorder_character_display():
 	## make array of turn_tracker values
@@ -156,12 +153,6 @@ func reorder_character_display():
 			child.get_node("HBoxContainer/NameLabel").text = display_array[index][0]
 			child.get_node("HBoxContainer/TimeLabel").text = str(display_array[index][1])
 			index += 1
-
-func update_character_display():
-	for child in $GUI/Left.get_children():
-		if !child.editable:
-			child.get_node("HBoxContainer/TimeLabel").text = str(current_moment)
-			break
 
 func translate_cam_rig():
 	cam_rig.translation = cam_rig_trans_target.to_global(cam_rig_trans_target.translation)
@@ -257,7 +248,7 @@ func _on_Proceed_pressed():
 	hide_character_options()
 
 func _on_Cancel_pressed():
-	reset_character_options()
+	display_character_options(true)
 	emit_signal("selecting_move_destination")
 	emit_signal("done_selecting_move_destination")
 
