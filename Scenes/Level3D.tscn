@@ -90,11 +90,28 @@ margin_bottom = 600.0
 rect_min_size = Vector2( 298, 0 )
 mouse_filter = 2
 
+[node name="TurnDelayLabel" type="Label" parent="GUI/Left"]
+margin_right = 298.0
+margin_bottom = 14.0
+text = "Opponent turn delay:"
+
+[node name="HSlider" type="HSlider" parent="GUI/Left"]
+margin_top = 18.0
+margin_right = 298.0
+margin_bottom = 34.0
+min_value = 0.5
+max_value = 5.0
+step = 0.5
+value = 1.0
+scrollable = false
+tick_count = 9
+ticks_on_borders = true
+
 [node name="TurnDisplay" parent="GUI/Left" instance=ExtResource( 4 )]
 margin_left = 0.0
-margin_top = 0.0
+margin_top = 38.0
 margin_right = 298.0
-margin_bottom = 40.0
+margin_bottom = 78.0
 
 [node name="Center" type="VBoxContainer" parent="GUI"]
 margin_left = 302.0
@@ -312,6 +329,7 @@ environment = SubResource( 1 )
 transform = Transform( 0.824707, 0.300371, 0.479204, -0.534501, 0.690879, 0.486821, -0.184845, -0.657619, 0.730321, 8.30672, 3.51017, 9.72209 )
 visible = false
 
+[connection signal="value_changed" from="GUI/Left/HSlider" to="." method="_on_HSlider_value_changed"]
 [connection signal="pressed" from="GUI/Right/PlayerOptions/Walk" to="." method="_on_Walk_pressed"]
 [connection signal="pressed" from="GUI/Right/PlayerOptions/PickUp" to="." method="_on_PickUp_pressed"]
 [connection signal="pressed" from="GUI/Right/PlayerOptions/Throw" to="." method="_on_Throw_pressed"]

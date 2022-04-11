@@ -17,6 +17,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Clock="*res://Singletons/Clock.gd"
+Global="*res://Singletons/Global.gd"
 
 [input]
 

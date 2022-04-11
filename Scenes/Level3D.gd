@@ -13,11 +13,14 @@ var cam_rig_zoom_target: float = 10.0
 var cam_rig_trans_target
 var cam_rig
 export var mouse_sensitivity = 0.05
-var PC
 var GUI
 var current_action = []
-var action_name: String
-var action_duration
+var AI_actions = [
+	["wait", null, 25],
+	["pick_up", null, 25],
+	["throw", null, 25],
+	["walk", null, 25]
+]
 var move_destination: Vector3
 var turn_marker
 var current_moment: int = 0
@@ -39,6 +42,7 @@ func _ready():
 	build()
 	for character in get_tree().get_nodes_in_group("character"):
 		register_character(character)
+	current_action.resize(3)
 
 func build():
 	var tot = board_size.x * board_size.y
@@ -56,7 +60,9 @@ func build():
 			new_mat.albedo_color = Color.white
 			new_tile.set_material_override(new_mat)
 			if (x + y) % 2 == 0:
-				new_tile.material_override.albedo_color = Color.darkslategray
+				new_tile.material_override.albedo_color = Color("#144552")
+			else:
+				new_tile.material_override.albedo_color = Color("#312244")
 			add_child(new_tile)
 			new_tile.connect("give_my_position", self, "on_move_destination_selected")
 			self.connect("selecting_move_destination", new_tile, "on_target_selecting")
@@ -74,10 +80,9 @@ func register_character(_char):
 	var lab = load("res://Scenes/TurnDisplay.tscn").instance()
 	lab.get_node("HBoxContainer/NameLabel").text = _char.name
 	if _char.player:
-		PC = _char
-		cam_rig_trans_target = PC.get_node("TargetPosition")
+		cam_rig_trans_target = _char.get_node("TargetPosition")
 	lab.get_node("HBoxContainer/TimeLabel").text = str(0)
-	lab.editable = true
+	lab.turn_disp_editable = true
 	GUI.get_node("Left").add_child(lab)
 
 func _input(event):
@@ -89,6 +94,10 @@ func _input(event):
 	if Input.is_action_just_released("scroll_out"):
 		cam_rig_zoom_target += 1.0
 		cam_rig_zoom_target = clamp(cam_rig_zoom_target, 1.0, 15.0)
+
+func _on_HSlider_value_changed(value):
+	Global.AI_turn_delay = value
+	$GUI/Left/TurnDelayLabel.text = "Opponent turn delay: " + str(value)
 
 func _physics_process(delta):
 	advance_time()
@@ -112,19 +121,46 @@ func prompt_turns():
 				turn_marker.translation.z = turn.translation.z
 				whose_turn = turn
 				display_character_options(turn.player)
-				## TODO yield to something here so that this for loop doesn't continue
-				## yield(whose_turn.take_turn(), "completed")
+				if !turn.player:
+					AI_turn_select()
+				yield(self, "GUI_action_taken")
+				resolve_turn()
+
+func AI_turn_select():
+	yield(get_tree().create_timer(Global.AI_turn_delay), "timeout")
+	current_action = AI_actions[randi() % AI_actions.size()]
+	if current_action[0] == "wait":
+		pass
+	if current_action[0] == "pick_up":
+		pass
+	if current_action[0] == "throw":
+		var targets = []
+		for target in get_tree().get_nodes_in_group("character"):
+			if target != whose_turn:
+				targets.append(target)
+		var throw_target = targets[randi() % targets.size()]
+		var targ_pos = throw_target.get_node("TargetPosition")
+		throw_target = targ_pos.to_global(targ_pos.translation)
+		current_action[1] = throw_target
+	if current_action[0] == "walk":
+		move_destination.x = randi() % int(board_size.x)
+		move_destination.y = 0
+		move_destination.z = randi() % int(board_size.y)
+		current_action[1] = move_destination
+		current_action[2] = calculate_walk_duration()
+	reset_character_options()
+	hide_character_options()
+	emit_signal("GUI_action_taken")
 
 func resolve_turn():
 	## send the action info to the character
 	whose_turn.handle_action(current_action)
 	## send the action info to the GUI
-	turn_tracker[whose_turn] += current_action[2]
+	turn_tracker[whose_turn] += int(ceil(current_action[2]))
 	whose_turn = null
 	advancing = true
 	emit_signal("green_light")
 	turn_marker.hide()
-	hide_character_options()
 	reorder_character_display()
 
 func reorder_character_display():
@@ -147,12 +183,13 @@ func reorder_character_display():
 	## set text values of Left/labels 
 	var index = 0
 	for child in $GUI/Left.get_children():
-		if !child.editable:
-			continue
-		else:
-			child.get_node("HBoxContainer/NameLabel").text = display_array[index][0]
-			child.get_node("HBoxContainer/TimeLabel").text = str(display_array[index][1])
-			index += 1
+		if "turn_disp_editable" in child:
+			if !child.turn_disp_editable:
+				continue
+			else:
+				child.get_node("HBoxContainer/NameLabel").text = display_array[index][0]
+				child.get_node("HBoxContainer/TimeLabel").text = str(display_array[index][1])
+				index += 1
 
 func translate_cam_rig():
 	cam_rig.translation = cam_rig_trans_target.to_global(cam_rig_trans_target.translation)
@@ -195,60 +232,65 @@ func reset_character_options():
 func hide_character_options():
 	$GUI/Right.hide()
 
-func update_turn(node, action):
-	turn_tracker[node] += action[2]
+#func update_turn(node, action):
+#	turn_tracker[node] += action[2]
 
 func _on_PickUp_pressed():
-	action_name = "pick_up"
-	action_duration = 25
+	current_action[0] = "pick_up"
+	current_action[2] = 25
 	_on_Proceed_pressed()
 
 func _on_Throw_pressed():
 	$GUI/Right/PlayerOptions.hide()
 	$GUI/Right/ThrowOptions.show()
 	$GUI/Right/ProceedCancel.show()
-	action_name = "throw"
+	current_action[0] = "throw"
+	current_action[2] = 25
 	emit_signal("selecting_move_destination")
 
 func _on_Wait_pressed():
 	$GUI/Right/PlayerOptions.hide()
 	$GUI/Right/WaitOptions.show()
 	$GUI/Right/ProceedCancel.show()
-	action_name = "wait"
+	current_action[0] = "wait"
 
 func _on_Walk_pressed():
 	$GUI/Right/PlayerOptions.hide()
 	$GUI/Right/WalkOptions.show()
 	$GUI/Right/ProceedCancel.show()
-	action_name = "walk"
+	current_action[0] = "walk"
 	emit_signal("selecting_move_destination")
+
+func calculate_walk_duration():
+	var walk_dur: float
+	var dist = whose_turn.translation.distance_to(move_destination)
+	walk_dur = dist / whose_turn.walk_speed
+	return walk_dur
 
 func on_move_destination_selected(_dest):
 	move_destination = _dest
-	#emit_signal("done_selecting_move_destination")
 
 func _on_Proceed_pressed():
 	emit_signal("done_selecting_move_destination")
-	var action = []
-	action.resize(3)
-	action[0] = action_name
-	if action_name == "pick_up":
-		action[2] = action_duration
-	if action_name == "wait":
-		action_duration = $GUI/Right/WaitOptions/WaitDuration.value
-		action[2] = action_duration
-	if action_name == "throw":
-		action[1] = move_destination
-	if action_name == "walk": ## player character calculates duration
-		action_duration = 0
-		action[1] = move_destination
-	whose_turn.current_action = action
-	emit_signal("GUI_action_taken")
+	if current_action[0] == "wait":
+		current_action[2] = $GUI/Right/WaitOptions/WaitDuration.value
+	if current_action[0] == "throw":
+		current_action[1] = move_destination
+	if current_action[0] == "walk": ## player character calculates duration
+		current_action[1] = move_destination
+		## TODO calculate duration and assign it to current_action[2]
+		current_action[2] = calculate_walk_duration()
 	reset_character_options()
 	hide_character_options()
+	emit_signal("GUI_action_taken")
 
 func _on_Cancel_pressed():
 	display_character_options(true)
+	current_action = []
+	current_action.resize(3)
 	emit_signal("selecting_move_destination")
 	emit_signal("done_selecting_move_destination")
+
+
+
 
