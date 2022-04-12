@@ -58,7 +58,6 @@ func handle_action(action):
 	if action[0] == "throw":
 		if self.has_node("MyFood"):
 			throw_food(action[1])
-			get_node_or_null("MyFood").call_deferred("queue_free")
 		else:
 			throw_nothing()
 	if action[0] == "walk":
@@ -94,11 +93,13 @@ func throw_food(targ):
 	if t != 0:
 		var grav = -4 * (start_pos.y - (2 * throw_apex) + targ.y) / (t * t)
 		new_vel.y = - ((3 * start_pos.y) - (4 * throw_apex) + targ.y) / t
-		var new_food = preload("res://Scenes/Banana.tscn").instance()
+		var new_food = get_node_or_null("MyFood")
+		remove_child(new_food)
 		new_food.velocity = new_vel
 		new_food.gravity = grav
 		new_food.translation = start_pos
-		new_food.food_type = $MyFood.type 
+		new_food.thrown = true
+		new_food.set_collision_layer_bit(2, true)
 		get_parent().add_child(new_food)
 
 func throw_nothing():
