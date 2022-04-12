@@ -22,6 +22,7 @@ var tween
 
 var selecting: bool = false
 var selected: bool = false
+var sel = Selection.new()
 var revert_color: Color
 
 signal action_taken
@@ -37,17 +38,6 @@ func _ready():
 
 func _physics_process(delta):
 	pass
-
-#func take_turn():
-#	if player: 
-#		yield(get_parent(), "GUI_action_taken")
-#		player_action()
-#	else: 
-#		yield(get_tree().create_timer(3.0), "timeout")
-#		var act_index = randi() % actions.size()
-#		current_action = actions[act_index]
-#		NPC_action()
-#	emit_signal("action_taken", self, current_action)
 
 func on_red_light():
 	tween.stop_all()
@@ -79,59 +69,6 @@ func handle_action(action):
 		var tween_dur = action_frames / 60
 		tween.interpolate_property(self, "translation", translation, action[1], tween_dur)
 		tween.start()
-
-#func player_action():
-#	if current_action[0] == "wait":
-#		pass
-#	if current_action[0] == "pick_up":
-#		if food_contacts.size() > 0:
-#			var my_food = food_contacts.pop_back()
-#			my_food.get_parent().remove_child(my_food)
-#			add_child(my_food)
-#			my_food.name = "MyFood"
-#			my_food.translation = Vector3(0, 0.5, 0)
-#	if current_action[0] == "throw":
-#		if self.has_node("MyFood"):
-#			throw_food()
-#			get_node_or_null("MyFood").call_deferred("queue_free")
-#		else:
-#			throw_nothing()
-#	if current_action[0] == "walk":
-#		var dest3D = current_action[1]
-#		var dist_to_dest = translation.distance_to(dest3D)
-#		current_action[2] = dist_to_dest / walk_speed
-#		tween_dur = current_action[2] / 60
-#		tween.interpolate_property(self, "translation", translation, dest3D, tween_dur)
-#		tween.start()
-
-#func NPC_action():
-#	if current_action[0] == "wait":
-#		pass
-#	if current_action[0] == "throw":
-#		if self.has_node("MyFood"):
-#			current_action[2] = 25
-#			var targs = []
-#			for child in get_tree().get_nodes_in_group("character"):
-#				if child == self:
-#					continue
-#				else:
-#					targs.append(child)
-#			var ind = randi() % targs.size()
-#			var targ = targs[ind]
-#			current_action[1] = targ.translation
-#			throw_food(current_action[1])
-#		else:
-#			throw_nothing()
-#	if current_action[0] == "walk":
-#		var destination = Vector2()
-#		destination.x = randi() % int(parent.board_size.x)
-#		destination.y = randi() % int(parent.board_size.y)
-#		var dest3D = Vector3(destination.x, 0, destination.y)
-#		var dist_to_dest = translation.distance_to(dest3D)
-#		current_action[2] = dist_to_dest / walk_speed
-#		tween_dur = current_action[2] / 60
-#		tween.interpolate_property(self, "translation", translation, dest3D, tween_dur)
-#		tween.start()
 
 func add_to_food_contacts(floor_food):
 	if !food_contacts.has(floor_food):
@@ -172,10 +109,14 @@ func throw_nothing():
 
 ## selectability
 func on_target_selecting():
+	sel.active = true
+	print(sel)
 	selecting = true
 	_on_Character3D_mouse_exited()
 
 func on_target_unselecting():
+	sel.active = false
+	print(sel)
 	selecting = false
 
 func _on_Character3D_input_event(camera, event, position, normal, shape_idx):

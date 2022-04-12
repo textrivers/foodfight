@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node",
+"class": "Selection",
+"language": "GDScript",
+"path": "res://Singletons/Selection.gd"
+} ]
+_global_script_class_icons={
+"Selection": ""
+}
+
 [application]
 
 config/name="Foodfight"
