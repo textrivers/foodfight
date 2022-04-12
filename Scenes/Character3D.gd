@@ -1,6 +1,7 @@
 extends KinematicBody
 
 export var player: bool 
+export var char_description: String
 var actions: Array = [
 	## [name, enabled, duration]
 	["walk", true, 10],
@@ -25,15 +26,12 @@ var selected: bool = false
 var sel = Selection.new()
 var revert_color: Color
 
-signal action_taken
-signal GUI_action_resolved
-signal give_my_position
+signal give_on_select_info
 
 func _ready():
 	parent = get_parent()
 	tween = $Tween
 	revert_color = $Viewport/CharacterSprite.modulate
-	$Viewport.set_clear_mode(Viewport.CLEAR_MODE_ALWAYS)
 	$Sprite3D.texture = $Viewport.get_texture()
 
 func _physics_process(delta):
@@ -96,7 +94,7 @@ func throw_food(targ):
 	if t != 0:
 		var grav = -4 * (start_pos.y - (2 * throw_apex) + targ.y) / (t * t)
 		new_vel.y = - ((3 * start_pos.y) - (4 * throw_apex) + targ.y) / t
-		var new_food = preload("res://Scenes/Food.tscn").instance()
+		var new_food = preload("res://Scenes/Banana.tscn").instance()
 		new_food.velocity = new_vel
 		new_food.gravity = grav
 		new_food.translation = start_pos
@@ -109,31 +107,27 @@ func throw_nothing():
 
 ## selectability
 func on_target_selecting():
-	sel.active = true
-	print(sel)
 	selecting = true
 	_on_Character3D_mouse_exited()
 
 func on_target_unselecting():
-	sel.active = false
-	print(sel)
 	selecting = false
 
 func _on_Character3D_input_event(camera, event, position, normal, shape_idx):
 	if selecting:
 		if event is InputEventMouseButton && event.pressed:
 			if !player:
-				for child in get_tree().get_nodes_in_group("selectable"):
-					if child.selected:
-						child.selected = false
-						if child.is_in_group("character"):
-							child.get_node("Viewport/CharacterSprite").modulate = child.revert_color
-						else:
-							child.material_override.albedo_color = child.revert_color
-				selected = true
+#				for child in get_tree().get_nodes_in_group("selectable"):
+#					if child.selected:
+#						child.selected = false
+#						if child.is_in_group("character"):
+#							child.get_node("Viewport/CharacterSprite").modulate = child.revert_color
+#						else:
+#							child.material_override.albedo_color = child.revert_color
+#				selected = true
 				#$Sprite3D.material_override.set_albedo(Color.crimson)
 				$Viewport/CharacterSprite.modulate = Color.crimson
-				emit_signal("give_my_position", to_global($TargetPosition.translation))
+				emit_signal("give_on_select_info", to_global($TargetPosition.translation), char_description)
 
 func _on_Character3D_mouse_entered():
 	if selecting == true && selected == false:

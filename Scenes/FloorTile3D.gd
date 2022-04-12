@@ -4,7 +4,9 @@ var selecting: bool = false
 var selected: bool = false
 var revert_color: Color
 
-signal give_my_position
+export var tile_description: String
+
+signal give_on_select_info
 
 func _ready():
 	revert_color = material_override.albedo_color
@@ -36,4 +38,4 @@ func _on_StaticBody_input_event(camera, event, position, normal, shape_idx):
 						child.material_override.albedo_color = child.revert_color
 			selected = true
 			material_override.albedo_color = Color.crimson
-			emit_signal("give_my_position", translation)
+			emit_signal("give_on_select_info", translation, tile_description)

@@ -1,16 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Assets/Meshes/banana_02.glb" type="PackedScene" id=1]
+[ext_resource path="res://Assets/yellow_dot.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Food.gd" type="Script" id=2]
 
 [sub_resource type="SphereShape" id=1]
 radius = 0.15
-
-[sub_resource type="SpatialMaterial" id=2]
-
-[sub_resource type="SphereMesh" id=3]
-radius = 0.15
-height = 0.3
 
 [node name="Food" type="KinematicBody"]
 collision_layer = 4
@@ -20,15 +14,21 @@ script = ExtResource( 2 )
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
-material_override = SubResource( 2 )
-mesh = SubResource( 3 )
-material/0 = null
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 1
+shaded = true
+double_sided = false
 
-[node name="banana_02" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.175581, 0.184128 )
-visible = false
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 40, 40 )
+transparent_bg = true
+handle_input_locally = false
+render_target_v_flip = true
+
+[node name="FoodSprite" type="Node2D" parent="Viewport"]
+
+[node name="Sprite" type="Sprite" parent="Viewport/FoodSprite"]
+texture = ExtResource( 1 )
+centered = false
 
 [connection signal="tree_exited" from="." to="." method="_on_Food_tree_exited"]
-
-[editable path="banana_02"]

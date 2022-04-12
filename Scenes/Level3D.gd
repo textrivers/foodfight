@@ -21,7 +21,7 @@ var AI_actions = [
 	["throw", null, 25],
 	["walk", null, 25]
 ]
-var move_destination: Vector3
+var action_target: Vector3
 var turn_marker
 var current_moment: int = 0
 var advancing: bool = true
@@ -29,8 +29,8 @@ var advancing: bool = true
 signal red_light
 signal green_light
 signal GUI_action_taken
-signal selecting_move_destination
-signal done_selecting_move_destination
+signal selecting_action_target
+signal done_selecting_action_target
 
 func _ready():
 	randomize()
@@ -64,18 +64,17 @@ func build():
 			else:
 				new_tile.material_override.albedo_color = Color("#312244")
 			add_child(new_tile)
-			new_tile.connect("give_my_position", self, "on_move_destination_selected")
-			self.connect("selecting_move_destination", new_tile, "on_target_selecting")
-			self.connect("done_selecting_move_destination", new_tile, "on_target_unselecting")
+			new_tile.connect("give_on_select_info", self, "on_action_target_selected")
+			self.connect("selecting_action_target", new_tile, "on_target_selecting")
+			self.connect("done_selecting_action_target", new_tile, "on_target_unselecting")
 
 func register_character(_char):
 	turn_tracker[_char] = 0
-	_char.connect("action_taken", self, "update_turn")
 	self.connect("red_light", _char, "on_red_light")
 	self.connect("green_light", _char, "on_green_light")
-	_char.connect("give_my_position", self, "on_move_destination_selected")
-	self.connect("selecting_move_destination", _char, "on_target_selecting")
-	self.connect("done_selecting_move_destination", _char, "on_target_unselecting")
+	_char.connect("give_on_select_info", self, "on_action_target_selected")
+	self.connect("selecting_action_target", _char, "on_target_selecting")
+	self.connect("done_selecting_action_target", _char, "on_target_unselecting")
 	## label in left panel
 	var lab = load("res://Scenes/TurnDisplay.tscn").instance()
 	lab.get_node("HBoxContainer/NameLabel").text = _char.name
@@ -143,10 +142,10 @@ func AI_turn_select():
 		throw_target = targ_pos.to_global(targ_pos.translation)
 		current_action[1] = throw_target
 	if current_action[0] == "walk":
-		move_destination.x = randi() % int(board_size.x)
-		move_destination.y = 0
-		move_destination.z = randi() % int(board_size.y)
-		current_action[1] = move_destination
+		action_target.x = randi() % int(board_size.x)
+		action_target.y = 0
+		action_target.z = randi() % int(board_size.y)
+		current_action[1] = action_target
 		current_action[2] = calculate_walk_duration()
 	reset_character_options()
 	hide_character_options()
@@ -246,7 +245,7 @@ func _on_Throw_pressed():
 	$GUI/Right/ProceedCancel.show()
 	current_action[0] = "throw"
 	current_action[2] = 25
-	emit_signal("selecting_move_destination")
+	emit_signal("selecting_action_target")
 
 func _on_Wait_pressed():
 	$GUI/Right/PlayerOptions.hide()
@@ -259,25 +258,26 @@ func _on_Walk_pressed():
 	$GUI/Right/WalkOptions.show()
 	$GUI/Right/ProceedCancel.show()
 	current_action[0] = "walk"
-	emit_signal("selecting_move_destination")
+	emit_signal("selecting_action_target")
 
 func calculate_walk_duration():
 	var walk_dur: float
-	var dist = whose_turn.translation.distance_to(move_destination)
+	var dist = whose_turn.translation.distance_to(action_target)
 	walk_dur = dist / whose_turn.walk_speed
 	return walk_dur
 
-func on_move_destination_selected(_dest):
-	move_destination = _dest
+func on_action_target_selected(dest, desc):
+	action_target = dest
+	_on_Proceed_pressed()
 
 func _on_Proceed_pressed():
-	emit_signal("done_selecting_move_destination")
+	emit_signal("done_selecting_action_target")
 	if current_action[0] == "wait":
 		current_action[2] = $GUI/Right/WaitOptions/WaitDuration.value
 	if current_action[0] == "throw":
-		current_action[1] = move_destination
+		current_action[1] = action_target
 	if current_action[0] == "walk": ## player character calculates duration
-		current_action[1] = move_destination
+		current_action[1] = action_target
 		## TODO calculate duration and assign it to current_action[2]
 		current_action[2] = calculate_walk_duration()
 	reset_character_options()
@@ -288,8 +288,8 @@ func _on_Cancel_pressed():
 	display_character_options(true)
 	current_action = []
 	current_action.resize(3)
-	emit_signal("selecting_move_destination")
-	emit_signal("done_selecting_move_destination")
+	emit_signal("selecting_action_target")
+	emit_signal("done_selecting_action_target")
 
 
 
