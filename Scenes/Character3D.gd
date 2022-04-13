@@ -49,7 +49,7 @@ func handle_action(action):
 	if action[0] == "wait":
 		pass
 	if action[0] == "pick_up":
-		if food_contacts.size() > 0:
+		if food_contacts.size() > 0 && !self.has_node("MyFood"):
 			var my_food = food_contacts.pop_back()
 			my_food.get_parent().remove_child(my_food)
 			add_child(my_food)
