@@ -17,7 +17,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Food" type="KinematicBody"]
+[node name="Food" type="KinematicBody" groups=["throwable"]]
 collision_layer = 32768
 collision_mask = 7
 script = ExtResource( 2 )

@@ -121,13 +121,22 @@ func prompt_turns():
 				whose_turn = turn
 				display_character_options(turn.player)
 				if !turn.player:
-					AI_turn_select()
+					AI_action_select()
 				yield(self, "GUI_action_taken")
 				resolve_turn()
 
-func AI_turn_select():
+func AI_action_select():
 	yield(get_tree().create_timer(Global.AI_turn_delay), "timeout")
-	current_action = AI_actions[randi() % AI_actions.size()]
+	#current_action = AI_actions[randi() % AI_actions.size()]
+	if whose_turn.has_node("MyFood"):
+		current_action = AI_actions[2] ## throw
+	else:
+		if whose_turn.food_contacts.size() > 0:
+			current_action = AI_actions[1] ## pick up
+		else:
+			var food_arr = get_tree().get_nodes_in_group("throwable")
+			if food_arr.size() > 0:
+				current_action = AI_actions[3] ## walk
 	if current_action[0] == "wait":
 		pass
 	if current_action[0] == "pick_up":
@@ -142,14 +151,29 @@ func AI_turn_select():
 		throw_target = targ_pos.to_global(targ_pos.translation)
 		current_action[1] = throw_target
 	if current_action[0] == "walk":
-		action_target.x = randi() % int(board_size.x)
-		action_target.y = 0
-		action_target.z = randi() % int(board_size.y)
-		current_action[1] = action_target
+		if randi() % 3 == 0:
+			action_target.x = randi() % int(board_size.x)
+			action_target.y = 0
+			action_target.z = randi() % int(board_size.y)
+			current_action[1] = action_target
+		else:
+			action_target = find_closest_food()
+			current_action[1] = action_target
 		current_action[2] = calculate_walk_duration()
 	reset_character_options()
 	hide_character_options()
 	emit_signal("GUI_action_taken")
+
+func find_closest_food():
+	var nearest = null
+	var food_array = get_tree().get_nodes_in_group("throwable")
+	for food in food_array: 
+		if nearest == null:
+			nearest = food
+		elif whose_turn.translation.distance_to(food.translation) < whose_turn.translation.distance_to(nearest.translation):
+			nearest = food
+	nearest.translation.y = 0
+	return nearest.translation
 
 func resolve_turn():
 	## send the action info to the character
@@ -273,7 +297,10 @@ func on_action_target_selected(dest, desc):
 func _on_Proceed_pressed():
 	emit_signal("done_selecting_action_target")
 	if current_action[0] == "wait":
-		current_action[2] = $GUI/Right/WaitOptions/WaitDuration.value
+		if whose_turn.player:
+			current_action[2] = $GUI/Right/WaitOptions/WaitDuration.value
+		else: 
+			current_action[2] = (randi() % 101) + 25
 	if current_action[0] == "throw":
 		current_action[1] = action_target
 	if current_action[0] == "walk": ## player character calculates duration
