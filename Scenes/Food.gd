@@ -4,7 +4,7 @@ var velocity
 var moving: bool = false
 var thrown: bool = false
 var gravity
-var splat = preload("res://Scenes/SplatParticles.tscn")
+var splat = preload("res://Scenes/SplatSpriteParticles.tscn")
 export var splat_color: Color
 
 # Called when the node enters the scene tree for the first time.
@@ -25,7 +25,7 @@ func _physics_process(delta):
 			var new_splat = splat.instance()
 			new_splat.translation = coll.position
 			new_splat.emitting = true
-			new_splat.material_override.albedo_color = splat_color
+			new_splat.material_override.albedo_texture = $Viewport/FoodSprite/AnimatedSprite.frames.get_frame("default", 0)
 			#new_splat.draw_pass_1 = $MeshInstance.mesh
 			get_parent().add_child(new_splat)
 			if coll.collider.is_in_group("character"):
