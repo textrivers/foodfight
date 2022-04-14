@@ -21,6 +21,7 @@ func _physics_process(delta):
 		var coll = move_and_collide(velocity * delta, false, true, false)
 		velocity.y -= gravity * delta
 		if coll: 
+			print(velocity)
 			var new_splat = splat.instance()
 			new_splat.translation = coll.position
 			new_splat.emitting = true

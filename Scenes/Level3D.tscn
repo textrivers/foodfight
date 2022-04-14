@@ -50,7 +50,7 @@ texture = ExtResource( 5 )
 texture = ExtResource( 7 )
 
 [node name="Mike" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 8 )
 
 [node name="Sprite" parent="Mike/Viewport/CharacterSprite" index="0"]
 texture = ExtResource( 6 )
@@ -322,19 +322,19 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.2, 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.2, 3 )
 
 [node name="Banana3" parent="LevelFood" instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.2, 8 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.2, 7 )
 
 [node name="Banana4" parent="LevelFood" instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.2, 8 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.2, 8 )
 
 [node name="Banana5" parent="LevelFood" instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.2, 8 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.2, 9 )
 
 [node name="Banana6" parent="LevelFood" instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.2, 8 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.2, 6 )
 
 [node name="Banana7" parent="LevelFood" instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.2, 8 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.2, 5.5 )
 
 [node name="BadPie" parent="LevelFood" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 8 )

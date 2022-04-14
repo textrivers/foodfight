@@ -20,6 +20,7 @@ var current_splat_num: int = 0
 var current_action
 var parent
 var tween
+var bullseye: Vector3
 
 var selecting: bool = false
 var selected: bool = false
@@ -35,7 +36,7 @@ func _ready():
 	$Sprite3D.texture = $Viewport.get_texture()
 
 func _physics_process(delta):
-	pass
+	bullseye = Vector3(translation.x, 0.6, translation.z)
 
 func on_red_light():
 	tween.stop_all()
@@ -76,6 +77,7 @@ func remove_from_food_contacts(floor_food):
 		food_contacts.erase(floor_food)
 
 func throw_food(targ):
+	print(targ)
 	## using target translation, solve for velocity vector of thrown thing
 	## adapted from https://www.forrestthewoods.com/blog/solving_ballistic_trajectories/
 	var start_pos = translation

@@ -19,7 +19,7 @@ var AI_actions = [
 	["wait", null, 25],
 	["pick_up", null, 25],
 	["throw", null, 25],
-	["walk", null, 25]
+	["walk", null, 25],
 ]
 var action_target: Vector3
 var turn_marker
@@ -113,6 +113,9 @@ func prompt_turns():
 	if advancing:
 		for turn in turn_tracker:
 			if current_moment >= turn_tracker[turn]:
+				current_action.clear()
+				current_action.resize(3)
+				action_target = Vector3.ZERO
 				advancing = false
 				emit_signal("red_light")
 				turn_marker.show()
@@ -127,16 +130,17 @@ func prompt_turns():
 
 func AI_action_select():
 	yield(get_tree().create_timer(Global.AI_turn_delay), "timeout")
+	#breakpoint
 	#current_action = AI_actions[randi() % AI_actions.size()]
 	if whose_turn.has_node("MyFood"):
-		current_action = AI_actions[2] ## throw
+		current_action = AI_actions[2].duplicate(false) ## throw
 	else:
 		if whose_turn.food_contacts.size() > 0:
-			current_action = AI_actions[1] ## pick up
+			current_action = AI_actions[1].duplicate(false) ## pick up
 		else:
 			var food_arr = get_tree().get_nodes_in_group("throwable")
 			if food_arr.size() > 0:
-				current_action = AI_actions[3] ## walk
+				current_action = AI_actions[3].duplicate(false) ## walk
 	if current_action[0] == "wait":
 		pass
 	if current_action[0] == "pick_up":
@@ -147,9 +151,9 @@ func AI_action_select():
 			if target != whose_turn:
 				targets.append(target)
 		var throw_target = targets[randi() % targets.size()]
-		var targ_pos = throw_target.get_node("TargetPosition")
-		throw_target = targ_pos.to_global(targ_pos.translation)
-		current_action[1] = throw_target
+#		var targ_pos = throw_target.get_node("TargetPosition")
+#		throw_target = targ_pos.to_global(targ_pos.translation)
+		current_action[1] = throw_target.bullseye
 	if current_action[0] == "walk":
 		if randi() % 3 == 0:
 			action_target.x = randi() % int(board_size.x)
@@ -177,9 +181,10 @@ func find_closest_food():
 
 func resolve_turn():
 	## send the action info to the character
-	whose_turn.handle_action(current_action)
+	whose_turn.handle_action(current_action.duplicate(false))
 	## send the action info to the GUI
 	turn_tracker[whose_turn] += int(ceil(current_action[2]))
+	## cleanup and proceed
 	whose_turn = null
 	advancing = true
 	emit_signal("green_light")
