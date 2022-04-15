@@ -3,7 +3,7 @@ extends Sprite3D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
-	$Timer.wait_time = randf() / 2
+	$Timer.wait_time = (randf() / 2) + 0.5
 	$Timer.start()
 	get_parent().connect("red_light", self, "on_red_light")
 	get_parent().connect("green_light", self, "on_green_light")
