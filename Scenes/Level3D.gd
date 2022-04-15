@@ -138,30 +138,24 @@ func AI_action_select():
 		if whose_turn.food_contacts.size() > 0:
 			current_action = AI_actions[1].duplicate(false) ## pick up
 		else:
-			var food_arr = get_tree().get_nodes_in_group("throwable")
-			if food_arr.size() > 0:
-				current_action = AI_actions[3].duplicate(false) ## walk
+			current_action = AI_actions[3].duplicate(false) ## walk
 	if current_action[0] == "wait":
 		pass
 	if current_action[0] == "pick_up":
 		pass
 	if current_action[0] == "throw":
-		var targets = []
-		for target in get_tree().get_nodes_in_group("character"):
-			if target != whose_turn:
-				targets.append(target)
+		var targets = get_tree().get_nodes_in_group("character").duplicate()
+		targets.erase(whose_turn)
 		var throw_target = targets[randi() % targets.size()]
-#		var targ_pos = throw_target.get_node("TargetPosition")
-#		throw_target = targ_pos.to_global(targ_pos.translation)
 		current_action[1] = throw_target.bullseye
 	if current_action[0] == "walk":
-		if randi() % 3 == 0:
+		if get_tree().get_nodes_in_group("throwable").size() > 0:
+			action_target = find_closest_food()
+			current_action[1] = action_target
+		else:
 			action_target.x = randi() % int(board_size.x)
 			action_target.y = 0
 			action_target.z = randi() % int(board_size.y)
-			current_action[1] = action_target
-		else:
-			action_target = find_closest_food()
 			current_action[1] = action_target
 		current_action[2] = calculate_walk_duration()
 	reset_character_options()
@@ -174,10 +168,11 @@ func find_closest_food():
 	for food in food_array: 
 		if nearest == null:
 			nearest = food
+			continue
 		elif whose_turn.translation.distance_to(food.translation) < whose_turn.translation.distance_to(nearest.translation):
 			nearest = food
-	nearest.translation.y = 0
-	return nearest.translation
+	var nearest_translation = (nearest.translation + nearest.get_parent().translation)
+	return Vector3(nearest_translation.x, 0, nearest_translation.z)
 
 func resolve_turn():
 	## send the action info to the character
@@ -215,7 +210,7 @@ func reorder_character_display():
 			if !child.turn_disp_editable:
 				continue
 			else:
-				child.get_node("HBoxContainer/NameLabel").text = display_array[index][0]
+				child.get_node("HBoxContainer/NameLabel").text = display_array[index][0] + " (" + current_action[0] + ")"
 				child.get_node("HBoxContainer/TimeLabel").text = str(display_array[index][1])
 				index += 1
 

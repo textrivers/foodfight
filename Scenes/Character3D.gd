@@ -17,7 +17,6 @@ var throw_apex: float = 1.5
 var throw_start_height: float = 0.5
 var throw_clearance = 0.3 #avoid collision with parent
 var current_splat_num: int = 0
-var current_action
 var parent
 var tween
 var bullseye: Vector3
@@ -47,15 +46,24 @@ func on_green_light():
 	tween.resume_all()
 
 func handle_action(action):
+	tween.remove_all()
 	if action[0] == "wait":
 		pass
 	if action[0] == "pick_up":
 		if food_contacts.size() > 0 && !self.has_node("MyFood"):
 			var my_food = food_contacts.pop_back()
 			my_food.get_parent().remove_child(my_food)
-			add_child(my_food)
-			my_food.name = "MyFood"
-			my_food.translation = Vector3(0, 0.5, 0)
+			if my_food.name == "MyFood": ## taking from someone else
+				get_parent().add_child(my_food)
+				my_food.thrown = true
+				my_food.set_collision_layer_bit(2, true)
+				my_food.velocity = Vector3.ZERO
+				my_food.gravity = 0
+				my_food.translation = translation
+			else:
+				add_child(my_food)
+				my_food.name = "MyFood"
+				my_food.translation = Vector3(0, 0.5, 0)
 	if action[0] == "throw":
 		if self.has_node("MyFood"):
 			throw_food(action[1])
@@ -120,27 +128,16 @@ func _on_Character3D_input_event(camera, event, position, normal, shape_idx):
 	if selecting:
 		if event is InputEventMouseButton && event.pressed:
 			if !player:
-#				for child in get_tree().get_nodes_in_group("selectable"):
-#					if child.selected:
-#						child.selected = false
-#						if child.is_in_group("character"):
-#							child.get_node("Viewport/CharacterSprite").modulate = child.revert_color
-#						else:
-#							child.material_override.albedo_color = child.revert_color
-#				selected = true
-				#$Sprite3D.material_override.set_albedo(Color.crimson)
 				$Viewport/CharacterSprite.modulate = Color.crimson
 				emit_signal("give_on_select_info", to_global($TargetPosition.translation), char_description)
 
 func _on_Character3D_mouse_entered():
 	if selecting == true && selected == false:
 		if !player:
-			#$Sprite3D.material_override.set_albedo(Color.hotpink)
 			$Viewport/CharacterSprite.modulate = Color.hotpink
 
 func _on_Character3D_mouse_exited():
 	if selecting == true && selected == false:
-		#$Sprite3D.material_override.set_albedo(revert_color)
 		$Viewport/CharacterSprite.modulate = revert_color
 
 func add_splatter(color):

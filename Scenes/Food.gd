@@ -14,22 +14,29 @@ func _ready():
 	get_parent().get_parent().connect("red_light", self, "on_red_light")
 	get_parent().get_parent().connect("green_light", self, "on_green_light")
 	$Viewport/FoodSprite/AnimatedSprite.play("default", bool(randi() % 2))
+	$Viewport/FoodSprite/AnimatedSprite.set_frame(0)
 	$Viewport/FoodSprite/AnimatedSprite.playing = false
+	
 
 func _physics_process(delta):
+	if translation.y < 0: 
+		spawn_splatter_particles(translation)
+		call_deferred("queue_free")
 	if moving:
 		var coll = move_and_collide(velocity * delta, false, true, false)
 		velocity.y -= gravity * delta
 		if coll: 
-			print(velocity)
-			var new_splat = splat.instance()
-			new_splat.translation = coll.position
-			new_splat.emitting = true
-			new_splat.material_override.albedo_texture = $Viewport/FoodSprite/AnimatedSprite.frames.get_frame("default", 0)
-			get_parent().add_child(new_splat)
+			spawn_splatter_particles(coll.position)
 			if coll.collider.is_in_group("character"):
 				coll.collider.add_splatter(splat_color)
 			call_deferred("queue_free")
+
+func spawn_splatter_particles(pos):
+	var new_splat = splat.instance()
+	new_splat.translation = pos
+	new_splat.emitting = true
+	new_splat.material_override.albedo_texture = $Viewport/FoodSprite/AnimatedSprite.frames.get_frame("default", 0)
+	get_parent().add_child(new_splat)
 
 func on_red_light():
 	if thrown:
