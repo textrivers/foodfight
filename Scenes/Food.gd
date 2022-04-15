@@ -5,6 +5,7 @@ var moving: bool = false
 var thrown: bool = false
 var gravity
 var splat = preload("res://Scenes/SplatSpriteParticles.tscn")
+var floor_splat = preload("res://Scenes/FloorSplat.tscn")
 export var splat_color: Color
 
 # Called when the node enters the scene tree for the first time.
@@ -20,7 +21,7 @@ func _ready():
 
 func _physics_process(delta):
 	if translation.y < 0: 
-		spawn_splatter_particles(translation)
+		#spawn_splatter_particles(translation)
 		call_deferred("queue_free")
 	if moving:
 		var coll = move_and_collide(velocity * delta, false, true, false)
@@ -29,6 +30,15 @@ func _physics_process(delta):
 			spawn_splatter_particles(coll.position)
 			if coll.collider.is_in_group("character"):
 				coll.collider.add_splatter(splat_color)
+			for i in ((randi() % 3) + 1):
+				var new_floor_splat = floor_splat.instance()
+				new_floor_splat.modulate = splat_color
+				new_floor_splat.translation = coll.position
+				new_floor_splat.translation.x += randf() - 0.5
+				new_floor_splat.translation.y = 0.06
+				new_floor_splat.translation.z += randf() - 0.5
+				new_floor_splat.rotation_degrees.y += randf() * 360
+				get_parent().add_child(new_floor_splat)
 			call_deferred("queue_free")
 
 func spawn_splatter_particles(pos):

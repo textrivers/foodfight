@@ -13,20 +13,20 @@ func _ready():
 
 func _process(delta):
 	dir = Vector2.ZERO
-	if Clock.time >= cooldown_over:
-		$AnimationPlayer.play("yourturn")
-		my_turn = true
-		Clock.paused = true
-	if !Clock.paused:
-		move_player()
-	else:
-		if my_turn:
-			handle_input()
-			if dir != Vector2.ZERO:
-				my_turn = false
-				Clock.paused = false
-				cooldown_over = Clock.time + cooldown
-				$AnimationPlayer.stop(true)
+#	if Clock.time >= cooldown_over:
+#		$AnimationPlayer.play("yourturn")
+#		my_turn = true
+#		Clock.paused = true
+#	if !Clock.paused:
+#		move_player()
+#	else:
+#		if my_turn:
+#			handle_input()
+#			if dir != Vector2.ZERO:
+#				my_turn = false
+#				Clock.paused = false
+#				cooldown_over = Clock.time + cooldown
+#				$AnimationPlayer.stop(true)
 
 func handle_input():
 	if Input.is_action_just_pressed("ui_right"):

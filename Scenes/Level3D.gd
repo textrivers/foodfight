@@ -319,5 +319,3 @@ func _on_Cancel_pressed():
 	emit_signal("done_selecting_action_target")
 
 
-
-
