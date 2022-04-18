@@ -45,7 +45,7 @@ func spawn_splatter_particles(pos):
 	var new_splat = splat.instance()
 	new_splat.translation = pos
 	new_splat.emitting = true
-	new_splat.material_override.albedo_texture = $Viewport/FoodSprite/AnimatedSprite.frames.get_frame("default", 0)
+	new_splat.material_override.albedo_texture = $Viewport/FoodSprite/AnimatedSprite.frames.get_frame("default", 0).duplicate()
 	get_parent().add_child(new_splat)
 
 func on_red_light():

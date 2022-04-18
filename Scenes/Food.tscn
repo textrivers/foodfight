@@ -33,7 +33,6 @@ shape = SubResource( 2 )
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 billboard = 1
-shaded = true
 double_sided = false
 alpha_cut = 2
 

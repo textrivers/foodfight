@@ -20,9 +20,11 @@ panorama = ExtResource( 8 )
 background_mode = 2
 background_sky = SubResource( 2 )
 ambient_light_color = Color( 1, 1, 1, 1 )
-ambient_light_energy = 4.14
-ambient_light_sky_contribution = 0.78
+ambient_light_energy = 2.0
+ambient_light_sky_contribution = 0.5
 glow_enabled = true
+adjustment_enabled = true
+adjustment_saturation = 0.7
 
 [node name="Level3D" type="Spatial"]
 script = ExtResource( 2 )

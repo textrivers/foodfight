@@ -5,6 +5,7 @@
 
 [sub_resource type="SpatialMaterial" id=6]
 flags_transparent = true
+flags_vertex_lighting = true
 params_billboard_mode = 3
 params_billboard_keep_scale = true
 particles_anim_h_frames = 1
