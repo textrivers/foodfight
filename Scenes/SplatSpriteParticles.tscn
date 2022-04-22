@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/SplatParticles.gd" type="Script" id=1]
-[ext_resource path="res://Assets/bad_banana.png" type="Texture" id=2]
+[ext_resource path="res://Assets/white_dot.png" type="Texture" id=2]
 
 [sub_resource type="SpatialMaterial" id=6]
 flags_transparent = true
-flags_vertex_lighting = true
+flags_unshaded = true
 params_billboard_mode = 3
 params_billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -25,13 +25,8 @@ direction = Vector3( 0, 1, 0 )
 spread = 60.0
 flatness = 0.5
 initial_velocity = 4.0
-angular_velocity = 437.64
-angular_velocity_random = 0.85
-angle = 169.4
-angle_random = 0.79
 scale_random = 1.0
 scale_curve = SubResource( 2 )
-color = Color( 1, 0.968627, 0, 1 )
 
 [sub_resource type="QuadMesh" id=5]
 size = Vector2( 0.25, 0.25 )

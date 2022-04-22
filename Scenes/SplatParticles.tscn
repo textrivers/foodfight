@@ -27,6 +27,7 @@ height = 0.2
 [node name="SplatParticles" type="Particles"]
 material_override = SubResource( 4 )
 emitting = false
+amount = 12
 one_shot = true
 explosiveness = 0.93
 randomness = 0.61

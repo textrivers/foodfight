@@ -35,7 +35,7 @@ func _physics_process(delta):
 				new_floor_splat.modulate = splat_color
 				new_floor_splat.translation = coll.position
 				new_floor_splat.translation.x += randf() - 0.5
-				new_floor_splat.translation.y = 0.06
+				new_floor_splat.translation.y = 0.07
 				new_floor_splat.translation.z += randf() - 0.5
 				new_floor_splat.rotation_degrees.y += randf() * 360
 				get_parent().add_child(new_floor_splat)
@@ -45,7 +45,8 @@ func spawn_splatter_particles(pos):
 	var new_splat = splat.instance()
 	new_splat.translation = pos
 	new_splat.emitting = true
-	new_splat.material_override.albedo_texture = $Viewport/FoodSprite/AnimatedSprite.frames.get_frame("default", 0).duplicate()
+	#new_splat.material_override.albedo_texture = $Viewport/FoodSprite/AnimatedSprite.frames.get_frame("default", 0).duplicate()
+	new_splat.material_override.albedo_color = splat_color
 	get_parent().add_child(new_splat)
 
 func on_red_light():
