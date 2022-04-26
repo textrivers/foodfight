@@ -20,5 +20,5 @@ func update_splatter(_color):
 	var rand_splat = randi() % splat_array.size()
 	set_texture(load(splat_array[rand_splat]))
 	modulate = _color
-	offset = Vector2((randf() * 40) - 20, (randf() * 40) - 20)
+	offset = Vector2((randf() * 40) + 80, (randf() * 80) - 20)
 	#rotation_degrees = (randf() * 360) - 180

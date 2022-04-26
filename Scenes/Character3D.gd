@@ -2,6 +2,16 @@ extends KinematicBody
 
 export var player: bool 
 export var char_description: String
+export var wait_tex: Texture
+export var move_tex: Texture
+export var crouch_tex: Texture
+export var throw_tex: Texture
+export var wait_mask: Texture
+export var move_mask: Texture
+export var crouch_mask: Texture
+export var throw_mask: Texture
+var sprite_dict: Dictionary
+var mask_dict: Dictionary
 var actions: Array = [
 	## [name, enabled, duration]
 	["walk", true, 10],
@@ -32,7 +42,18 @@ func _ready():
 	parent = get_parent()
 	tween = $Tween
 	revert_color = $Viewport/CharacterSprite.modulate
+	build_sprite_dictionaries()
 	$Sprite3D.texture = $Viewport.get_texture()
+
+func build_sprite_dictionaries():
+	sprite_dict["wait"] = wait_tex
+	sprite_dict["pick_up"] = crouch_tex
+	sprite_dict["throw"] = throw_tex
+	sprite_dict["walk"] = move_tex
+	mask_dict["wait"] = wait_mask
+	mask_dict["pick_up"] = crouch_mask
+	mask_dict["throw"] = throw_mask
+	mask_dict["walk"] = move_mask
 
 func _physics_process(delta):
 	bullseye = Vector3(translation.x, 0.6, translation.z)
@@ -47,6 +68,8 @@ func on_green_light():
 
 func handle_action(action):
 	tween.remove_all()
+	$Viewport/CharacterSprite/Sprite.texture = sprite_dict[action[0]]
+	$Viewport/CharacterSprite/Light2D.texture = mask_dict[action[0]]
 	if action[0] == "wait":
 		pass
 	if action[0] == "pick_up":

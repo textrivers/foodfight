@@ -1,9 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Assets/Exxle_mask.png" type="Texture" id=1]
+[ext_resource path="res://Assets/CharacterSprites/Uni/UniWait.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Character3D.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Exxle_outline.png" type="Texture" id=3]
+[ext_resource path="res://Assets/CharacterSprites/Uni/UniWaitMask.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Splatter.gd" type="Script" id=4]
+[ext_resource path="res://Assets/CharacterSprites/Uni/UniCrouch.png" type="Texture" id=5]
+[ext_resource path="res://Assets/CharacterSprites/Uni/UniMove.png" type="Texture" id=6]
+[ext_resource path="res://Assets/CharacterSprites/Uni/UniThrow.png" type="Texture" id=7]
+[ext_resource path="res://Assets/CharacterSprites/Uni/UniMoveMask.png" type="Texture" id=8]
+[ext_resource path="res://Assets/CharacterSprites/Uni/UniCrouchMask.png" type="Texture" id=9]
+[ext_resource path="res://Assets/CharacterSprites/Uni/UniThrowMask.png" type="Texture" id=10]
+[ext_resource path="res://Assets/splat_4.png" type="Texture" id=11]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.25
@@ -12,9 +19,18 @@ height = 0.6
 [node name="Character3D" type="KinematicBody" groups=["character", "selectable"]]
 collision_layer = 2
 script = ExtResource( 2 )
+wait_tex = ExtResource( 1 )
+move_tex = ExtResource( 6 )
+crouch_tex = ExtResource( 5 )
+throw_tex = ExtResource( 7 )
+wait_mask = ExtResource( 3 )
+move_mask = ExtResource( 8 )
+crouch_mask = ExtResource( 9 )
+throw_mask = ExtResource( 10 )
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0 )
+pixel_size = 0.005
 billboard = 1
 shaded = true
 alpha_cut = 2
@@ -27,7 +43,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.6,
 shape = SubResource( 1 )
 
 [node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 120, 120 )
+size = Vector2( 240, 240 )
 transparent_bg = true
 handle_input_locally = false
 render_target_v_flip = true
@@ -35,18 +51,20 @@ render_target_v_flip = true
 [node name="CharacterSprite" type="Node2D" parent="Viewport"]
 
 [node name="Sprite" type="Sprite" parent="Viewport/CharacterSprite"]
-texture = ExtResource( 3 )
+texture = ExtResource( 1 )
 centered = false
 
 [node name="Light2D" type="Light2D" parent="Viewport/CharacterSprite"]
 light_mask = 2
-texture = ExtResource( 1 )
-offset = Vector2( 60, 60 )
+texture = ExtResource( 3 )
+offset = Vector2( 120, 120 )
 mode = 3
 
 [node name="Splatter1" type="Sprite" parent="Viewport/CharacterSprite"]
 rotation = 0.230383
+texture = ExtResource( 11 )
 centered = false
+offset = Vector2( 100, 0 )
 script = ExtResource( 4 )
 
 [node name="Splatter2" type="Sprite" parent="Viewport/CharacterSprite"]
