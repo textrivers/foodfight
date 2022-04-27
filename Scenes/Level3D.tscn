@@ -20,10 +20,8 @@ panorama = ExtResource( 8 )
 background_mode = 2
 background_sky = SubResource( 2 )
 ambient_light_color = Color( 1, 1, 1, 1 )
-ambient_light_energy = 2.0
-ambient_light_sky_contribution = 0.5
+ambient_light_sky_contribution = 0.0
 glow_enabled = true
-adjustment_enabled = true
 adjustment_saturation = 0.7
 
 [node name="Level3D" type="Spatial"]
@@ -356,7 +354,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.25, 0 )
 
 [node name="Orange3" parent="LevelFood" instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.25, 3 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.25, 4 )
 
 [node name="Orange4" parent="LevelFood" instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.25, 4 )
