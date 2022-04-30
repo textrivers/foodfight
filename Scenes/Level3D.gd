@@ -69,6 +69,19 @@ func build():
 					new_tile.material_override.albedo_color = Color("#144552")
 				else:
 					new_tile.material_override.albedo_color = Color("#0a242b")
+#			var my_mat = new_tile.get_surface_material(1)
+#			if (x + y) % 2 == 0:
+#				if randi() % 2 == 0: 
+#					my_mat.albedo_color = Color("#312244")
+#				else:
+#					my_mat.albedo_color = Color("#15101c")
+#			else:
+#				if randi() % 2 == 0:
+#					my_mat.albedo_color = Color("#144552")
+#				else:
+#					my_mat.albedo_color = Color("#0a242b")
+#			new_tile.set_surface_material(1, my_mat.duplicate())
+			
 			add_child(new_tile)
 			new_tile.connect("give_on_select_info", self, "on_action_target_selected")
 			self.connect("selecting_action_target", new_tile, "on_target_selecting")
