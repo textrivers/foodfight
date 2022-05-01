@@ -14,7 +14,8 @@ particles_anim_loop = false
 albedo_texture = ExtResource( 2 )
 
 [sub_resource type="Curve" id=1]
-_data = [ Vector2( 0, 1 ), 0.0, -0.0179864, 0, 0, Vector2( 1, 0 ), -3.16623, 0.0, 0, 0 ]
+max_value = 2.0
+_data = [ Vector2( 0, 1.49059 ), 0.0, -0.0179864, 0, 0, Vector2( 0.918478, 0 ), -3.16623, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=2]
 curve = SubResource( 1 )
@@ -25,7 +26,8 @@ direction = Vector3( 0, 1, 0 )
 spread = 60.0
 flatness = 0.5
 initial_velocity = 4.0
-scale_random = 1.0
+scale = 0.25
+scale_random = 0.75
 scale_curve = SubResource( 2 )
 
 [sub_resource type="QuadMesh" id=5]
@@ -35,7 +37,6 @@ size = Vector2( 0.25, 0.25 )
 material_override = SubResource( 6 )
 emitting = false
 amount = 12
-lifetime = 1.5
 one_shot = true
 explosiveness = 0.93
 randomness = 0.61

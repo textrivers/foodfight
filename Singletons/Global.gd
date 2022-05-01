@@ -1,6 +1,9 @@
 extends Node
 
 var AI_turn_delay: float = 1.0
+var palette_dict: Dictionary = {
+	
+}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

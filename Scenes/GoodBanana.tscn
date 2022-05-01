@@ -3,4 +3,4 @@
 [ext_resource path="res://Scenes/Food.tscn" type="PackedScene" id=1]
 
 [node name="GoodBanana" instance=ExtResource( 1 )]
-splat_color = Color( 0.788235, 0.694118, 0.0666667, 1 )
+splat_colors = [ Color( 1, 0.878431, 0.054902, 1 ), Color( 0.788235, 0.694118, 0.0666667, 1 ), Color( 0.498039, 0.439216, 0.0313726, 1 ) ]

@@ -68,8 +68,8 @@ func on_green_light():
 
 func handle_action(action):
 	tween.remove_all()
-	$Viewport/CharacterSprite/Sprite.texture = sprite_dict[action[0]]
-	$Viewport/CharacterSprite/Light2D.texture = mask_dict[action[0]]
+	#$Viewport/CharacterSprite/Sprite.texture = sprite_dict[action[0]]
+	#$Viewport/CharacterSprite/Light2D.texture = mask_dict[action[0]]
 	if action[0] == "wait":
 		pass
 	if action[0] == "pick_up":
