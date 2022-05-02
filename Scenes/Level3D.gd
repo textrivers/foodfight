@@ -61,26 +61,14 @@ func build():
 			new_tile.set_material_override(new_mat)
 			if (x + y) % 2 == 0:
 				if randi() % 2 == 0: 
-					new_tile.material_override.albedo_color = Color("#312244")
+					new_tile.material_override.albedo_color = Global.palette_dict["babyblue_1"]
 				else:
-					new_tile.material_override.albedo_color = Color("#15101c")
+					new_tile.material_override.albedo_color = Global.palette_dict["babyblue_2"]
 			else:
 				if randi() % 2 == 0:
-					new_tile.material_override.albedo_color = Color("#144552")
+					new_tile.material_override.albedo_color = Global.palette_dict["black_2"]
 				else:
-					new_tile.material_override.albedo_color = Color("#0a242b")
-#			var my_mat = new_tile.get_surface_material(1)
-#			if (x + y) % 2 == 0:
-#				if randi() % 2 == 0: 
-#					my_mat.albedo_color = Color("#312244")
-#				else:
-#					my_mat.albedo_color = Color("#15101c")
-#			else:
-#				if randi() % 2 == 0:
-#					my_mat.albedo_color = Color("#144552")
-#				else:
-#					my_mat.albedo_color = Color("#0a242b")
-#			new_tile.set_surface_material(1, my_mat.duplicate())
+					new_tile.material_override.albedo_color = Global.palette_dict["teal_3"]
 			
 			add_child(new_tile)
 			new_tile.connect("give_on_select_info", self, "on_action_target_selected")
@@ -257,6 +245,10 @@ func display_character_options(_player):
 		for button in $GUI/Right/PlayerOptions.get_children():
 			if button is Button:
 				button.disabled = false
+		if !whose_turn.has_node("MyFood"):
+			$GUI/Right/PlayerOptions/Throw.disabled = true
+#		if whose_turn.food_contacts.size() == 0:
+#			$GUI/Right/PlayerOptions/PickUp.disabled = true
 	else: 
 		$GUI/Right/PlayerOptions/Label.text = "It is " + whose_turn.name + "'s turn"
 		for button in $GUI/Right/PlayerOptions.get_children():
@@ -266,7 +258,6 @@ func display_character_options(_player):
 func reset_character_options():
 	for child in $GUI/Right/PlayerOptions.get_children():
 		child.show()
-	$GUI/Right/ThrowOptions.hide()
 	$GUI/Right/WaitOptions.hide()
 	$GUI/Right/WalkOptions.hide()
 	$GUI/Right/ProceedCancel.hide()
@@ -284,7 +275,6 @@ func _on_PickUp_pressed():
 
 func _on_Throw_pressed():
 	$GUI/Right/PlayerOptions.hide()
-	$GUI/Right/ThrowOptions.show()
 	$GUI/Right/ProceedCancel.show()
 	current_action[0] = "throw"
 	current_action[2] = 25

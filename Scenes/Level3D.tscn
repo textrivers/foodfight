@@ -38,20 +38,11 @@ player = true
 shaded = false
 double_sided = false
 
-[node name="Splatter1" parent="You/Viewport/CharacterSprite" index="2"]
-texture = null
-
 [node name="Dave" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 5 )
 
-[node name="Splatter1" parent="Dave/Viewport/CharacterSprite" index="2"]
-texture = null
-
 [node name="Mike" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 8 )
-
-[node name="Splatter1" parent="Mike/Viewport/CharacterSprite" index="2"]
-texture = null
 
 [node name="TurnMarker" parent="." instance=ExtResource( 3 )]
 
@@ -108,7 +99,7 @@ mouse_filter = 2
 
 [node name="PlayerOptions" type="VBoxContainer" parent="GUI/Right"]
 margin_right = 298.0
-margin_bottom = 158.0
+margin_bottom = 134.0
 
 [node name="Label" type="Label" parent="GUI/Right/PlayerOptions"]
 margin_right = 298.0
@@ -116,47 +107,42 @@ margin_bottom = 14.0
 text = "It is Derp's turn"
 align = 1
 
-[node name="Duck" type="Button" parent="GUI/Right/PlayerOptions"]
+[node name="Look" type="Button" parent="GUI/Right/PlayerOptions"]
 margin_top = 18.0
 margin_right = 298.0
 margin_bottom = 38.0
-text = "Duck"
-
-[node name="Look" type="Button" parent="GUI/Right/PlayerOptions"]
-margin_top = 42.0
-margin_right = 298.0
-margin_bottom = 62.0
 text = "Look"
 
 [node name="Walk" type="Button" parent="GUI/Right/PlayerOptions"]
-margin_top = 66.0
+margin_top = 42.0
 margin_right = 298.0
-margin_bottom = 86.0
+margin_bottom = 62.0
 text = "Move"
 
 [node name="PickUp" type="Button" parent="GUI/Right/PlayerOptions"]
-margin_top = 90.0
+margin_top = 66.0
 margin_right = 298.0
-margin_bottom = 110.0
+margin_bottom = 86.0
 disabled = true
 text = "Pick Up"
 
 [node name="Throw" type="Button" parent="GUI/Right/PlayerOptions"]
-margin_top = 114.0
+margin_top = 90.0
 margin_right = 298.0
-margin_bottom = 134.0
+margin_bottom = 110.0
 text = "Throw"
 
 [node name="Wait" type="Button" parent="GUI/Right/PlayerOptions"]
-margin_top = 138.0
+margin_top = 114.0
 margin_right = 298.0
-margin_bottom = 158.0
+margin_bottom = 134.0
 text = "Wait"
 
 [node name="LookOptions" type="VBoxContainer" parent="GUI/Right"]
 visible = false
+margin_top = 138.0
 margin_right = 298.0
-margin_bottom = 260.0
+margin_bottom = 398.0
 
 [node name="Label" type="Label" parent="GUI/Right/LookOptions"]
 margin_right = 298.0
@@ -186,8 +172,9 @@ text = "Cancel"
 
 [node name="WalkOptions" type="VBoxContainer" parent="GUI/Right"]
 visible = false
+margin_top = 138.0
 margin_right = 298.0
-margin_bottom = 14.0
+margin_bottom = 152.0
 
 [node name="Label" type="Label" parent="GUI/Right/WalkOptions"]
 margin_right = 298.0
@@ -196,72 +183,15 @@ text = "Choose your destination, then click \"Proceed\""
 align = 1
 
 [node name="PickUpOptions" type="VBoxContainer" parent="GUI/Right"]
-margin_top = 162.0
+margin_top = 138.0
 margin_right = 298.0
-margin_bottom = 162.0
-
-[node name="ThrowOptions" type="VBoxContainer" parent="GUI/Right"]
-visible = false
-margin_top = 4.0
-margin_right = 298.0
-margin_bottom = 66.0
-
-[node name="Label" type="Label" parent="GUI/Right/ThrowOptions"]
-margin_right = 298.0
-margin_bottom = 14.0
-text = "What would you like to throw?"
-align = 1
-
-[node name="Throwables" type="HBoxContainer" parent="GUI/Right/ThrowOptions"]
-margin_top = 18.0
-margin_right = 298.0
-margin_bottom = 38.0
-alignment = 1
-
-[node name="Nothing" type="Button" parent="GUI/Right/ThrowOptions/Throwables"]
-margin_left = 26.0
-margin_right = 88.0
-margin_bottom = 20.0
-text = "Nothing"
-
-[node name="Self" type="Button" parent="GUI/Right/ThrowOptions/Throwables"]
-margin_left = 92.0
-margin_right = 127.0
-margin_bottom = 20.0
-text = "Self"
-
-[node name="Food" type="Button" parent="GUI/Right/ThrowOptions/Throwables"]
-margin_left = 131.0
-margin_right = 174.0
-margin_bottom = 20.0
-text = "Food"
-
-[node name="PrimateStuff" type="Button" parent="GUI/Right/ThrowOptions/Throwables"]
-margin_left = 178.0
-margin_right = 272.0
-margin_bottom = 20.0
-disabled = true
-text = "Primate Stuff"
-
-[node name="Label2" type="Label" parent="GUI/Right/ThrowOptions"]
-visible = false
-margin_top = 42.0
-margin_right = 298.0
-margin_bottom = 56.0
-text = "Choose your target, then click \"Proceed\""
-align = 1
-
-[node name="Button" type="Button" parent="GUI/Right/ThrowOptions"]
-margin_top = 42.0
-margin_right = 298.0
-margin_bottom = 62.0
-text = "Cancel"
+margin_bottom = 138.0
 
 [node name="WaitOptions" type="VBoxContainer" parent="GUI/Right"]
 visible = false
-margin_top = 70.0
+margin_top = 142.0
 margin_right = 298.0
-margin_bottom = 112.0
+margin_bottom = 184.0
 
 [node name="Label" type="Label" parent="GUI/Right/WaitOptions"]
 margin_right = 298.0
@@ -279,9 +209,9 @@ value = 100.0
 
 [node name="ProceedCancel" type="HBoxContainer" parent="GUI/Right"]
 visible = false
-margin_top = 46.0
+margin_top = 142.0
 margin_right = 298.0
-margin_bottom = 66.0
+margin_bottom = 162.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false

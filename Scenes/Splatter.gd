@@ -2,9 +2,9 @@ extends Sprite
 
 export var my_splat_num: int = 0
 var splat_array = [
-	"res://Assets/splat_0.png",
-	"res://Assets/splat_1.png",
-	"res://Assets/splat_2.png",
+#	"res://Assets/splat_0.png",
+#	"res://Assets/splat_1.png",
+#	"res://Assets/splat_2.png",
 	"res://Assets/splat_3.png",
 	"res://Assets/splat_4.png",
 	"res://Assets/splat_5.png",

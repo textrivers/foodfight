@@ -2,16 +2,74 @@ extends KinematicBody
 
 export var player: bool 
 export var char_description: String
-export var wait_tex: Texture
-export var move_tex: Texture
-export var crouch_tex: Texture
-export var throw_tex: Texture
-export var wait_mask: Texture
-export var move_mask: Texture
-export var crouch_mask: Texture
-export var throw_mask: Texture
-var sprite_dict: Dictionary
-var mask_dict: Dictionary
+var character_config: Dictionary = { # 0: [name, sprite_path, mask_path]
+	0: ["Cho", "res://Assets/CharacterSprites/Cho_Vanilla.png", "res://Assets/CharacterSprites/Cho_Mask.png"],
+	1: ["Cho", "res://Assets/CharacterSprites/Cho_Halo.png", "res://Assets/CharacterSprites/Cho_Mask.png"], 
+	2: ["Cho", "res://Assets/CharacterSprites/Cho_Horns.png", "res://Assets/CharacterSprites/Cho_Mask.png"], 
+	3: ["Cho", "res://Assets/CharacterSprites/Cho_HaloHorns.png", "res://Assets/CharacterSprites/Cho_Mask.png"], 
+	4: ["Mer", "res://Assets/CharacterSprites/Mer_Vanilla.png", "res://Assets/CharacterSprites/Mer_Mask.png"], 
+	5: ["Mer", "res://Assets/CharacterSprites/Mer_Halo.png", "res://Assets/CharacterSprites/Mer_Mask.png"],
+	6: ["Mer", "res://Assets/CharacterSprites/Mer_Horns.png", "res://Assets/CharacterSprites/Mer_Mask.png"],
+	7: ["Mer", "res://Assets/CharacterSprites/Mer_HaloHorns.png", "res://Assets/CharacterSprites/Mer_Mask.png"],
+	8: ["Nor", "res://Assets/CharacterSprites/Nor_Vanilla.png", "res://Assets/CharacterSprites/Nor_Mask.png"], 
+	9: ["Nor", "res://Assets/CharacterSprites/Nor_Halo.png", "res://Assets/CharacterSprites/Nor_Mask.png"],
+	10: ["Nor", "res://Assets/CharacterSprites/Nor_Horns.png", "res://Assets/CharacterSprites/Nor_Mask.png"],
+	11: ["Nor", "res://Assets/CharacterSprites/Nor_HaloHorns.png", "res://Assets/CharacterSprites/Nor_Mask.png"],
+	12: ["Ort", "res://Assets/CharacterSprites/Ort_Vanilla.png", "res://Assets/CharacterSprites/Ort_Mask.png"], 
+	13: ["Ort", "res://Assets/CharacterSprites/Ort_Halo.png", "res://Assets/CharacterSprites/Ort_Mask.png"],
+	14: ["Ort", "res://Assets/CharacterSprites/Ort_Horns.png", "res://Assets/CharacterSprites/Ort_Mask.png"],
+	15: ["Ort", "res://Assets/CharacterSprites/Ort_HaloHorns.png", "res://Assets/CharacterSprites/Ort_Mask.png"],
+	16: ["Pik", "res://Assets/CharacterSprites/Pik_Vanilla.png", "res://Assets/CharacterSprites/Pik_Mask.png"], 
+	17: ["Pik", "res://Assets/CharacterSprites/Pik_Halo.png", "res://Assets/CharacterSprites/Pik_Mask.png"],
+	18: ["Pik", "res://Assets/CharacterSprites/Pik_Horns.png", "res://Assets/CharacterSprites/Pik_Mask.png"],
+	19: ["Pik", "res://Assets/CharacterSprites/Pik_HaloHorns.png", "res://Assets/CharacterSprites/Pik_Mask.png"],
+	20: ["Tal", "res://Assets/CharacterSprites/Tal_Vanilla.png", "res://Assets/CharacterSprites/Tal_Mask.png"], 
+	21: ["Tal", "res://Assets/CharacterSprites/Tal_Halo.png", "res://Assets/CharacterSprites/Tal_Mask.png"],
+	22: ["Tal", "res://Assets/CharacterSprites/Tal_Horns.png", "res://Assets/CharacterSprites/Tal_Mask.png"],
+	23: ["Tal", "res://Assets/CharacterSprites/Tal_HaloHorns.png", "res://Assets/CharacterSprites/Tal_Mask.png"],
+	24: ["Unj", "res://Assets/CharacterSprites/Uni_Vanilla.png", "res://Assets/CharacterSprites/Uni_Mask.png"], 
+	25: ["Unj", "res://Assets/CharacterSprites/Uni_Halo.png", "res://Assets/CharacterSprites/Uni_Mask.png"],
+	26: ["Unj", "res://Assets/CharacterSprites/Uni_Horns.png", "res://Assets/CharacterSprites/Uni_Mask.png"],
+	27: ["Unj", "res://Assets/CharacterSprites/Uni_HaloHorns.png", "res://Assets/CharacterSprites/Uni_Mask.png"],
+	28: ["Wid", "res://Assets/CharacterSprites/Wid_Vanilla.png", "res://Assets/CharacterSprites/Wid_Mask.png"], 
+	29: ["Wid", "res://Assets/CharacterSprites/Wid_Halo.png", "res://Assets/CharacterSprites/Wid_Mask.png"],
+	30: ["Wid", "res://Assets/CharacterSprites/Wid_Horns.png", "res://Assets/CharacterSprites/Wid_Mask.png"],
+	31: ["Wid", "res://Assets/CharacterSprites/Wid_HaloHorns.png", "res://Assets/CharacterSprites/Wid_Mask.png"],
+}
+var char_name_suffixes: Array = [
+	"eye",
+	"heart",
+	"fingers",
+	"toes",
+	"eyeball",
+	"soup",
+	"bread",
+	"candy",
+	"artichoke",
+	"food",
+	"glass",
+	"saliva",
+	"swab",
+	"claw",
+	"span",
+	"mist",
+	"paper",
+	"slouch",
+	"guava",
+	"tree",
+	"star",
+	"fail",
+	"shock",
+	"shot",
+	"see",
+	"cost",
+	"loot",
+	"what",
+	"where",
+	"want",
+	"weren't",
+	"white",
+]
 var actions: Array = [
 	## [name, enabled, duration]
 	["walk", true, 10],
@@ -39,21 +97,32 @@ var revert_color: Color
 signal give_on_select_info
 
 func _ready():
+	randomize()
 	parent = get_parent()
 	tween = $Tween
-	revert_color = $Viewport/CharacterSprite.modulate
-	build_sprite_dictionaries()
+	generate_unique_appearance()
+	revert_color = $Viewport/CharacterSprite/Sprite.modulate
 	$Sprite3D.texture = $Viewport.get_texture()
 
-func build_sprite_dictionaries():
-	sprite_dict["wait"] = wait_tex
-	sprite_dict["pick_up"] = crouch_tex
-	sprite_dict["throw"] = throw_tex
-	sprite_dict["walk"] = move_tex
-	mask_dict["wait"] = wait_mask
-	mask_dict["pick_up"] = crouch_mask
-	mask_dict["throw"] = throw_mask
-	mask_dict["walk"] = move_mask
+func generate_unique_appearance():
+	## rand base color for char sprite
+	var my_key = Global.palette_dict.keys()[randi() % Global.palette_dict.size()]
+	$Viewport/CharacterSprite/Sprite.modulate = Global.palette_dict[my_key]
+	if $Viewport/CharacterSprite/Sprite.modulate == Color.black:
+		$Viewport/CharacterSprite/Sprite.modulate = Global.palette_dict["black_2"]
+	var my_config = character_config[randi() % character_config.size()]
+	self.name = generate_unique_name(my_config[0])
+	$Viewport/CharacterSprite/Sprite.texture = load(my_config[1])
+	$Viewport/CharacterSprite/Light2D.texture = load(my_config[2])
+
+func generate_unique_name(name_prefix):
+	if player: 
+		return "You"
+	var name_suffix = char_name_suffixes[randi() % char_name_suffixes.size()]
+	var new_name = str(name_prefix + name_suffix)
+	if parent.has_node(new_name):
+		new_name = generate_unique_name(name_prefix)
+	return new_name
 
 func _physics_process(delta):
 	bullseye = Vector3(translation.x, 0.6, translation.z)
@@ -63,7 +132,7 @@ func on_red_light():
 
 func on_green_light():
 	selecting = false
-	$Viewport/CharacterSprite.modulate = revert_color
+	$Viewport/CharacterSprite/Sprite.modulate = revert_color
 	tween.resume_all()
 
 func handle_action(action):
@@ -151,17 +220,17 @@ func _on_Character3D_input_event(camera, event, position, normal, shape_idx):
 	if selecting:
 		if event is InputEventMouseButton && event.pressed:
 			if !player:
-				$Viewport/CharacterSprite.modulate = Color.crimson
+				$Viewport/CharacterSprite/Sprite.modulate = Color.crimson
 				emit_signal("give_on_select_info", to_global($TargetPosition.translation), char_description)
 
 func _on_Character3D_mouse_entered():
 	if selecting == true && selected == false:
 		if !player:
-			$Viewport/CharacterSprite.modulate = Color.hotpink
+			$Viewport/CharacterSprite/Sprite.modulate = Color.hotpink
 
 func _on_Character3D_mouse_exited():
 	if selecting == true && selected == false:
-		$Viewport/CharacterSprite.modulate = revert_color
+		$Viewport/CharacterSprite/Sprite.modulate = revert_color
 
 func add_splatter(color):
 	for child in $Viewport/CharacterSprite.get_children():
