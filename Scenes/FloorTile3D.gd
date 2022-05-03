@@ -28,7 +28,7 @@ func _on_StaticBody_mouse_exited():
 
 func _on_StaticBody_input_event(camera, event, position, normal, shape_idx):
 	if selecting:
-		if event is InputEventMouseButton && event.pressed:
+		if Input.is_action_just_pressed("left_click"):
 			for child in get_tree().get_nodes_in_group("selectable"):
 				if child.selected:
 					child.selected = false

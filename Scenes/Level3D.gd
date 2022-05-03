@@ -16,7 +16,7 @@ export var mouse_sensitivity = 0.05
 var GUI
 var current_action = []
 var AI_actions = [
-	["wait", null, 25],
+	["wait", null, 100],
 	["pick_up", null, 25],
 	["throw", null, 25],
 	["walk", null, 25],
@@ -137,15 +137,18 @@ func prompt_turns():
 
 func AI_action_select():
 	yield(get_tree().create_timer(Global.AI_turn_delay), "timeout")
-	#breakpoint
-	#current_action = AI_actions[randi() % AI_actions.size()]
-	if whose_turn.has_node("MyFood"):
-		current_action = AI_actions[2].duplicate(false) ## throw
+	## decide action
+	if randi() % 4 == 0: ## 1 in 4 chance to just stand there doing nothing
+		current_action = AI_actions[0].duplicate(false) ## wait 100 
 	else:
-		if whose_turn.food_contacts.size() > 0:
-			current_action = AI_actions[1].duplicate(false) ## pick up
+		if whose_turn.has_node("MyFood"):
+			current_action = AI_actions[2].duplicate(false) ## throw
 		else:
-			current_action = AI_actions[3].duplicate(false) ## walk
+			if whose_turn.food_contacts.size() > 0:
+				current_action = AI_actions[1].duplicate(false) ## pick up
+			else:
+				current_action = AI_actions[3].duplicate(false) ## walk
+	## set action parameters
 	if current_action[0] == "wait":
 		pass
 	if current_action[0] == "pick_up":
