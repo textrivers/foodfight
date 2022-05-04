@@ -130,13 +130,15 @@ func prompt_turns():
 				turn_marker.translation.z = turn.translation.z
 				whose_turn = turn
 				display_character_options(turn.player)
+				show_turn_tracker()
 				if !turn.player:
 					AI_action_select()
 				yield(self, "GUI_action_taken")
 				resolve_turn()
+				hide_turn_tracker()
 
 func AI_action_select():
-	yield(get_tree().create_timer(Global.AI_turn_delay), "timeout")
+	yield(get_tree().create_timer(0.01), "timeout")
 	## decide action
 	if randi() % 4 == 0: ## 1 in 4 chance to just stand there doing nothing
 		current_action = AI_actions[0].duplicate(false) ## wait 100 
@@ -248,10 +250,12 @@ func display_character_options(_player):
 		for button in $GUI/Right/PlayerOptions.get_children():
 			if button is Button:
 				button.disabled = false
-		if !whose_turn.has_node("MyFood"):
+		if whose_turn.has_node("MyFood"):
+			$GUI/Right/PlayerOptions/PickUp.disabled = true
+		else:
 			$GUI/Right/PlayerOptions/Throw.disabled = true
-#		if whose_turn.food_contacts.size() == 0:
-#			$GUI/Right/PlayerOptions/PickUp.disabled = true
+		if whose_turn.food_contacts.size() == 0:
+			$GUI/Right/PlayerOptions/PickUp.disabled = true
 	else: 
 		$GUI/Right/PlayerOptions/Label.text = "It is " + whose_turn.name + "'s turn"
 		for button in $GUI/Right/PlayerOptions.get_children():
@@ -267,6 +271,14 @@ func reset_character_options():
 
 func hide_character_options():
 	$GUI/Right.hide()
+
+func hide_turn_tracker():
+	for child in $GUI/Left.get_children():
+		child.hide()
+
+func show_turn_tracker():
+	for child in $GUI/Left.get_children():
+		child.show()
 
 #func update_turn(node, action):
 #	turn_tracker[node] += action[2]

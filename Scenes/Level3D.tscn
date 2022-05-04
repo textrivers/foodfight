@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/Character3D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Level3D.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/TurnMarker.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/TurnDisplay.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/GoodOrange.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/PanoramaSky/A_pano_FULL.png" type="Texture" id=8]
 [ext_resource path="res://Scenes/GoodBanana.tscn" type="PackedScene" id=13]
 
@@ -31,7 +32,7 @@ current = true
 size = 10.0
 
 [node name="You" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 1 )
 player = true
 
 [node name="Sprite3D" parent="You" index="0"]
@@ -277,6 +278,30 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 3.07178 )
 
 [node name="GoodBanana9" parent="LevelFood" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.948029, 0.25, 2 )
+
+[node name="GoodOrange" parent="LevelFood" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.25, 1 )
+
+[node name="GoodOrange2" parent="LevelFood" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.25, 1.99581 )
+
+[node name="GoodOrange3" parent="LevelFood" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.82789, 0.25, 1.99581 )
+
+[node name="GoodOrange4" parent="LevelFood" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.82789, 0.25, 1.03273 )
+
+[node name="GoodOrange5" parent="LevelFood" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.71693, 0.25, 1.03273 )
+
+[node name="GoodOrange6" parent="LevelFood" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.89895, 0.25, 1.03273 )
+
+[node name="GoodOrange7" parent="LevelFood" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.89895, 0.25, 1.17774 )
+
+[node name="GoodOrange8" parent="LevelFood" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.89895, 0.25, 0.784404 )
 
 [node name="LevelFood5" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0, -0.1 )

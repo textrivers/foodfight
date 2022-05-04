@@ -107,6 +107,7 @@ func _ready():
 func generate_unique_appearance():
 	## rand base color for char sprite
 	var my_key = Global.palette_dict.keys()[randi() % Global.palette_dict.size()]
+	print(my_key)
 	$Viewport/CharacterSprite/Sprite.modulate = Global.palette_dict[my_key]
 	if $Viewport/CharacterSprite/Sprite.modulate == Color.black:
 		$Viewport/CharacterSprite/Sprite.modulate = Global.palette_dict["black_2"]
