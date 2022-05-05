@@ -100,9 +100,12 @@ func _ready():
 	randomize()
 	parent = get_parent()
 	tween = $Tween
+	
 	generate_unique_appearance()
 	revert_color = $Viewport/CharacterSprite/Sprite.modulate
+	$Sprite3D.material_override = $Sprite3D.material_override.duplicate(true)
 	$Sprite3D.texture = $Viewport.get_texture()
+	$Sprite3D.material_override.albedo_texture = $Viewport.get_texture()
 
 func generate_unique_appearance():
 	## rand base color for char sprite

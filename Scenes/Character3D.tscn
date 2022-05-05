@@ -1,7 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Character3D.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Splatter.gd" type="Script" id=4]
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_transparent = true
+flags_albedo_tex_force_srgb = true
+params_depth_draw_mode = 3
+params_billboard_mode = 1
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.25
@@ -13,9 +19,10 @@ script = ExtResource( 2 )
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0 )
+material_override = SubResource( 2 )
 pixel_size = 0.005
 billboard = 1
-shaded = true
+double_sided = false
 alpha_cut = 2
 
 [node name="Tween" type="Tween" parent="."]
@@ -29,6 +36,7 @@ shape = SubResource( 1 )
 size = Vector2( 240, 240 )
 transparent_bg = true
 handle_input_locally = false
+keep_3d_linear = true
 render_target_v_flip = true
 
 [node name="CharacterSprite" type="Node2D" parent="Viewport"]

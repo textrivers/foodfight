@@ -11,7 +11,9 @@ export var splat_colors: Array
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
+	$Sprite3D.material_override = $Sprite3D.material_override.duplicate(true)
 	$Sprite3D.texture = $Viewport.get_texture()
+	$Sprite3D.material_override.albedo_texture = $Viewport.get_texture()
 	get_parent().get_parent().connect("red_light", self, "on_red_light")
 	get_parent().get_parent().connect("green_light", self, "on_green_light")
 	$Viewport/FoodSprite/AnimatedSprite.play("default", bool(randi() % 2))

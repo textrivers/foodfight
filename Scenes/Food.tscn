@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Food.gd" type="Script" id=2]
 
@@ -7,6 +7,12 @@ radius = 0.15
 
 [sub_resource type="SphereShape" id=2]
 radius = 0.15
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_transparent = true
+flags_albedo_tex_force_srgb = true
+params_depth_draw_mode = 3
+params_billboard_mode = 1
 
 [sub_resource type="SpriteFrames" id=3]
 resource_local_to_scene = true
@@ -32,6 +38,7 @@ shape = SubResource( 1 )
 shape = SubResource( 2 )
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+material_override = SubResource( 4 )
 pixel_size = 0.005
 billboard = 1
 double_sided = false
@@ -41,6 +48,7 @@ alpha_cut = 2
 size = Vector2( 96, 96 )
 transparent_bg = true
 handle_input_locally = false
+keep_3d_linear = true
 render_target_v_flip = true
 gui_disable_input = true
 

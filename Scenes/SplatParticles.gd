@@ -8,6 +8,11 @@ func _ready():
 
 func _on_red_light():
 	speed_scale = 0
+	$Timer.set_paused(true) 
 
 func _on_green_light():
 	speed_scale = 1
+	$Timer.set_paused(false) 
+
+func _on_Timer_timeout():
+	call_deferred("queue_free")

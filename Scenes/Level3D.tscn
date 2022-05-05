@@ -16,7 +16,10 @@ background_mode = 2
 background_sky = SubResource( 2 )
 ambient_light_color = Color( 1, 1, 1, 1 )
 ambient_light_sky_contribution = 0.0
-adjustment_saturation = 0.7
+glow_intensity = 4.34
+glow_strength = 2.0
+glow_bloom = 0.67
+adjustment_saturation = 2.13
 
 [node name="Level3D" type="Spatial"]
 script = ExtResource( 2 )
@@ -36,7 +39,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 1 )
 player = true
 
 [node name="Sprite3D" parent="You" index="0"]
-shaded = false
 double_sided = false
 
 [node name="Dave" parent="." instance=ExtResource( 1 )]
