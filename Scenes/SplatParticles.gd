@@ -5,6 +5,7 @@ func _ready():
 	get_parent().connect("red_light", self, "_on_red_light")
 	get_parent().connect("green_light", self, "_on_green_light")
 	material_override = material_override.duplicate()
+	material_override.albedo_texture = $Viewport.get_texture()
 
 func _on_red_light():
 	speed_scale = 0
