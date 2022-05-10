@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/SplatParticles.gd" type="Script" id=1]
 [ext_resource path="res://Assets/white_dot.png" type="Texture" id=2]
@@ -33,12 +33,70 @@ direction = Vector3( 0, 1, 0 )
 spread = 60.0
 flatness = 0.5
 initial_velocity = 4.0
+angle = 180.0
+angle_random = 1.0
 scale = 0.25
 scale_random = 0.75
 scale_curve = SubResource( 2 )
 
 [sub_resource type="QuadMesh" id=5]
 size = Vector2( 0.25, 0.25 )
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Viewport/PartSprite/Light2D:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.01 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Viewport/PartSprite/Light2D:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 25, 25 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "splort"
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Viewport/PartSprite/Light2D:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 3.36359, 1 ),
+"update": 0,
+"values": [ 0.4, 1.2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Viewport/PartSprite/Light2D:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 33, 25 ) ]
+}
 
 [node name="SplatSpriteParticles" type="Particles"]
 material_override = SubResource( 6 )
@@ -75,5 +133,7 @@ texture_scale = 0.01
 mode = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 8 )
+anims/splort = SubResource( 9 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
