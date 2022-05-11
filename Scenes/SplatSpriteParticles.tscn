@@ -68,10 +68,21 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 25, 25 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Viewport/PartSprite/Sprite2:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 60, 40 ) ]
+}
 
 [sub_resource type="Animation" id=9]
 resource_name = "splort"
-loop = true
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Viewport/PartSprite/Light2D:texture_scale")
@@ -83,7 +94,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 3.36359, 1 ),
 "update": 0,
-"values": [ 0.4, 1.2 ]
+"values": [ 0.01, 1.2 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Viewport/PartSprite/Light2D:offset")
@@ -122,15 +133,24 @@ render_target_v_flip = true
 [node name="PartSprite" type="Node2D" parent="Viewport"]
 
 [node name="Sprite" type="Sprite" parent="Viewport/PartSprite"]
+light_mask = 2
 texture = ExtResource( 2 )
 centered = false
 offset = Vector2( 5, 5 )
 
+[node name="Sprite2" type="Sprite" parent="Viewport/PartSprite"]
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 2 )
+centered = false
+offset = Vector2( 60, 40 )
+
 [node name="Light2D" type="Light2D" parent="Viewport/PartSprite"]
+visible = false
 texture = ExtResource( 3 )
 offset = Vector2( 25, 25 )
 texture_scale = 0.01
 mode = 3
+range_item_cull_mask = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 8 )

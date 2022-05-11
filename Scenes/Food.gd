@@ -29,7 +29,6 @@ func _physics_process(delta):
 		var coll = move_and_collide(velocity * delta, false, true, false)
 		velocity.y -= gravity * delta
 		if coll: 
-			print(coll.position.y)
 			for splat_col in splat_colors:
 				spawn_splatter_particles(coll.position, splat_col)
 			if coll.collider.is_in_group("character"):
