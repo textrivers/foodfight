@@ -10,6 +10,8 @@
 [ext_resource path="res://Assets/PanoramaSky/A_pano_FULL.png" type="Texture" id=8]
 [ext_resource path="res://Scenes/GoodBanana.tscn" type="PackedScene" id=13]
 
+[sub_resource type="Theme" id=3]
+
 [sub_resource type="PanoramaSky" id=2]
 panorama = ExtResource( 8 )
 
@@ -61,11 +63,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 9 )
 margin_right = 1024.0
 margin_bottom = 600.0
 mouse_filter = 2
+theme = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Left" type="VBoxContainer" parent="GUI"]
+visible = false
 margin_right = 298.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 298, 0 )
@@ -95,22 +99,21 @@ margin_right = 298.0
 margin_bottom = 78.0
 
 [node name="Center" type="VBoxContainer" parent="GUI"]
-margin_left = 302.0
-margin_right = 722.0
+visible = false
+margin_right = 420.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 420, 0 )
 mouse_filter = 2
 
 [node name="Right" type="VBoxContainer" parent="GUI"]
-margin_left = 726.0
-margin_right = 1024.0
+margin_right = 298.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 298, 0 )
 mouse_filter = 2
 
 [node name="PlayerOptions" type="VBoxContainer" parent="GUI/Right"]
 margin_right = 298.0
-margin_bottom = 134.0
+margin_bottom = 178.0
 
 [node name="Label" type="Label" parent="GUI/Right/PlayerOptions"]
 margin_right = 298.0
@@ -148,6 +151,24 @@ margin_top = 114.0
 margin_right = 298.0
 margin_bottom = 134.0
 text = "Wait"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Right/PlayerOptions"]
+margin_top = 138.0
+margin_right = 298.0
+margin_bottom = 178.0
+alignment = 1
+
+[node name="Label" type="Label" parent="GUI/Right/PlayerOptions/HBoxContainer"]
+margin_left = 12.0
+margin_top = 13.0
+margin_right = 206.0
+margin_bottom = 27.0
+text = "Pause during opponents' turns"
+
+[node name="CheckButton" type="CheckButton" parent="GUI/Right/PlayerOptions/HBoxContainer"]
+margin_left = 210.0
+margin_right = 286.0
+margin_bottom = 40.0
 
 [node name="LookOptions" type="VBoxContainer" parent="GUI/Right"]
 visible = false
@@ -194,9 +215,9 @@ text = "Choose your destination, then click \"Proceed\""
 align = 1
 
 [node name="PickUpOptions" type="VBoxContainer" parent="GUI/Right"]
-margin_top = 138.0
+margin_top = 182.0
 margin_right = 298.0
-margin_bottom = 138.0
+margin_bottom = 182.0
 
 [node name="WaitOptions" type="VBoxContainer" parent="GUI/Right"]
 visible = false
@@ -623,6 +644,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.948029, 0.25, 2 )
 [connection signal="pressed" from="GUI/Right/PlayerOptions/PickUp" to="." method="_on_PickUp_pressed"]
 [connection signal="pressed" from="GUI/Right/PlayerOptions/Throw" to="." method="_on_Throw_pressed"]
 [connection signal="pressed" from="GUI/Right/PlayerOptions/Wait" to="." method="_on_Wait_pressed"]
+[connection signal="toggled" from="GUI/Right/PlayerOptions/HBoxContainer/CheckButton" to="." method="_on_CheckButton_toggled"]
 [connection signal="pressed" from="GUI/Right/ProceedCancel/Proceed" to="." method="_on_Proceed_pressed"]
 [connection signal="pressed" from="GUI/Right/ProceedCancel/Cancel" to="." method="_on_Cancel_pressed"]
 

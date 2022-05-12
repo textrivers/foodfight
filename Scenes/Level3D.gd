@@ -138,7 +138,7 @@ func prompt_turns():
 				hide_turn_tracker()
 
 func AI_action_select():
-	yield(get_tree().create_timer(0.01), "timeout")
+	yield(get_tree().create_timer(Global.AI_turn_delay), "timeout")
 	## decide action
 	if randi() % 4 == 0: ## 1 in 4 chance to just stand there doing nothing
 		current_action = AI_actions[0].duplicate(false) ## wait 100 
@@ -342,4 +342,8 @@ func _on_Cancel_pressed():
 	emit_signal("selecting_action_target")
 	emit_signal("done_selecting_action_target")
 
-
+func _on_CheckButton_toggled(button_pressed):
+	if button_pressed == true:
+		Global.AI_turn_delay = 3
+	else:
+		Global.AI_turn_delay = 0.01

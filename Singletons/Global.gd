@@ -1,6 +1,6 @@
 extends Node
 
-var AI_turn_delay: float = 1.0
+var AI_turn_delay: float = 0.01
 var palette_dict: Dictionary = {
 	"teal_1": Color("#0d647b"), 
 	"teal_2": Color("#144552"), 
