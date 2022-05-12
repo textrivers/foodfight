@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scenes/Character3D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Level3D.gd" type="Script" id=2]
@@ -8,9 +8,120 @@
 [ext_resource path="res://Scenes/GoodIceCream.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/GoodBlueberry.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/PanoramaSky/A_pano_FULL.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Fonts/TCM_____.TTF" type="DynamicFontData" id=9]
 [ext_resource path="res://Scenes/GoodBanana.tscn" type="PackedScene" id=13]
 
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.329412, 0.384314, 0.505882, 0.784314 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 0.670588, 0.0588235, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id=10]
+Panel/styles/panel = SubResource( 9 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+content_margin_right = 0.0
+bg_color = Color( 0.458824, 0.458824, 0.458824, 1 )
+border_width_left = 2
+border_width_top = 2
+border_color = Color( 0.819608, 0.819608, 0.819608, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 2
+shadow_offset = Vector2( 2, 2 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.556863, 0.815686, 0.878431, 1 )
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.0509804, 0.392157, 0.482353, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0784314, 0.270588, 0.321569, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+shadow_size = 2
+shadow_offset = Vector2( 2, 2 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.192157, 0.133333, 0.266667, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.262745, 0.0980392, 0.466667, 1 )
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+shadow_size = 2
+shadow_offset = Vector2( 2, 2 )
+
+[sub_resource type="Image" id=14]
+data = {
+"data": PoolByteArray( 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42 ),
+"format": "RGB8",
+"height": 8,
+"mipmaps": false,
+"width": 8
+}
+
+[sub_resource type="ImageTexture" id=12]
+flags = 4
+flags = 4
+image = SubResource( 14 )
+size = Vector2( 8, 8 )
+
+[sub_resource type="StyleBoxTexture" id=13]
+texture = SubResource( 12 )
+region_rect = Rect2( 0, 0, 8, 8 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 20
+font_data = ExtResource( 9 )
+
 [sub_resource type="Theme" id=3]
+default_font = SubResource( 8 )
+Button/colors/font_color = Color( 0.788235, 0.694118, 0.0666667, 1 )
+Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+Button/colors/font_color_focus = Color( 1, 0.878431, 0.054902, 1 )
+Button/colors/font_color_hover = Color( 1, 0.878431, 0.054902, 1 )
+Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+Button/constants/hseparation = 0
+Button/fonts/font = null
+Button/styles/disabled = SubResource( 4 )
+Button/styles/focus = SubResource( 7 )
+Button/styles/hover = SubResource( 5 )
+Button/styles/normal = SubResource( 6 )
+Button/styles/pressed = SubResource( 7 )
+Panel/styles/panel = SubResource( 13 )
 
 [sub_resource type="PanoramaSky" id=2]
 panorama = ExtResource( 8 )
@@ -27,7 +138,7 @@ adjustment_saturation = 2.13
 
 [node name="Level3D" type="Spatial"]
 script = ExtResource( 2 )
-board_size = Vector2( 20, 20 )
+board_size = Vector2( 10, 10 )
 mouse_sensitivity = 0.2
 
 [node name="CameraRig" type="Position3D" parent="."]
@@ -49,17 +160,26 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 5 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 8 )
 
 [node name="Character3D" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 16 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10 )
 
 [node name="Character3D2" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 12 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 9 )
 
 [node name="Character3D3" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 9 )
 
 [node name="TurnMarker" parent="." instance=ExtResource( 3 )]
 
+[node name="Panel" type="Panel" parent="."]
+margin_right = 328.0
+margin_bottom = 229.0
+theme = SubResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="GUI" type="HBoxContainer" parent="."]
+margin_left = 8.0
 margin_right = 1024.0
 margin_bottom = 600.0
 mouse_filter = 2
@@ -106,118 +226,136 @@ rect_min_size = Vector2( 420, 0 )
 mouse_filter = 2
 
 [node name="Right" type="VBoxContainer" parent="GUI"]
-margin_right = 298.0
+margin_right = 310.0
 margin_bottom = 600.0
-rect_min_size = Vector2( 298, 0 )
+rect_min_size = Vector2( 310, 0 )
 mouse_filter = 2
+size_flags_horizontal = 5
 
 [node name="PlayerOptions" type="VBoxContainer" parent="GUI/Right"]
-margin_right = 298.0
-margin_bottom = 178.0
+margin_right = 310.0
+margin_bottom = 218.0
 
 [node name="Label" type="Label" parent="GUI/Right/PlayerOptions"]
-margin_right = 298.0
-margin_bottom = 14.0
+margin_right = 310.0
+margin_bottom = 23.0
 text = "It is Derp's turn"
 align = 1
 
 [node name="Look" type="Button" parent="GUI/Right/PlayerOptions"]
-margin_top = 18.0
-margin_right = 298.0
-margin_bottom = 38.0
+margin_top = 27.0
+margin_right = 310.0
+margin_bottom = 54.0
 text = "Look"
 
 [node name="Walk" type="Button" parent="GUI/Right/PlayerOptions"]
-margin_top = 42.0
-margin_right = 298.0
-margin_bottom = 62.0
+margin_top = 58.0
+margin_right = 310.0
+margin_bottom = 85.0
 text = "Move"
 
 [node name="PickUp" type="Button" parent="GUI/Right/PlayerOptions"]
-margin_top = 66.0
-margin_right = 298.0
-margin_bottom = 86.0
+margin_top = 89.0
+margin_right = 310.0
+margin_bottom = 116.0
 disabled = true
 text = "Pick Up"
 
 [node name="Throw" type="Button" parent="GUI/Right/PlayerOptions"]
-margin_top = 90.0
-margin_right = 298.0
-margin_bottom = 110.0
+margin_top = 120.0
+margin_right = 310.0
+margin_bottom = 147.0
 text = "Throw"
 
 [node name="Wait" type="Button" parent="GUI/Right/PlayerOptions"]
-margin_top = 114.0
-margin_right = 298.0
-margin_bottom = 134.0
+margin_top = 151.0
+margin_right = 310.0
+margin_bottom = 178.0
 text = "Wait"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/Right/PlayerOptions"]
-margin_top = 138.0
-margin_right = 298.0
-margin_bottom = 178.0
+margin_top = 182.0
+margin_right = 310.0
+margin_bottom = 218.0
 alignment = 1
 
 [node name="Label" type="Label" parent="GUI/Right/PlayerOptions/HBoxContainer"]
-margin_left = 12.0
-margin_top = 13.0
-margin_right = 206.0
-margin_bottom = 27.0
+margin_top = 6.0
+margin_right = 238.0
+margin_bottom = 29.0
 text = "Pause during opponents' turns"
 
 [node name="CheckButton" type="CheckButton" parent="GUI/Right/PlayerOptions/HBoxContainer"]
-margin_left = 210.0
-margin_right = 286.0
-margin_bottom = 40.0
+margin_left = 242.0
+margin_right = 310.0
+margin_bottom = 36.0
 
 [node name="LookOptions" type="VBoxContainer" parent="GUI/Right"]
 visible = false
-margin_top = 138.0
-margin_right = 298.0
-margin_bottom = 398.0
+margin_top = 210.0
+margin_right = 349.0
+margin_bottom = 493.0
 
 [node name="Label" type="Label" parent="GUI/Right/LookOptions"]
-margin_right = 298.0
-margin_bottom = 14.0
+margin_right = 349.0
+margin_bottom = 23.0
 text = "Click on something you would like to look at"
 align = 1
 
 [node name="Label3" type="Label" parent="GUI/Right/LookOptions"]
-margin_top = 18.0
-margin_right = 298.0
-margin_bottom = 32.0
+margin_top = 27.0
+margin_right = 349.0
+margin_bottom = 50.0
 text = "Click \"Cancel\" when finished"
 align = 1
 
 [node name="Description" type="Label" parent="GUI/Right/LookOptions"]
-margin_top = 36.0
-margin_right = 298.0
-margin_bottom = 236.0
+margin_top = 54.0
+margin_right = 349.0
+margin_bottom = 254.0
 rect_min_size = Vector2( 0, 200 )
 align = 1
 
 [node name="Button" type="Button" parent="GUI/Right/LookOptions"]
-margin_top = 240.0
-margin_right = 298.0
-margin_bottom = 260.0
+margin_top = 258.0
+margin_right = 349.0
+margin_bottom = 283.0
 text = "Cancel"
 
 [node name="WalkOptions" type="VBoxContainer" parent="GUI/Right"]
 visible = false
-margin_top = 138.0
-margin_right = 298.0
-margin_bottom = 152.0
+margin_top = 222.0
+margin_right = 310.0
+margin_bottom = 271.0
+size_flags_horizontal = 7
+alignment = 1
 
 [node name="Label" type="Label" parent="GUI/Right/WalkOptions"]
-margin_right = 298.0
-margin_bottom = 14.0
-text = "Choose your destination, then click \"Proceed\""
+margin_right = 310.0
+margin_bottom = 49.0
+text = "Choose your destination,
+or click \"Cancel\""
 align = 1
 
 [node name="PickUpOptions" type="VBoxContainer" parent="GUI/Right"]
-margin_top = 182.0
-margin_right = 298.0
-margin_bottom = 182.0
+margin_top = 222.0
+margin_right = 310.0
+margin_bottom = 222.0
+
+[node name="ThrowOptions" type="VBoxContainer" parent="GUI/Right"]
+visible = false
+margin_top = 4.0
+margin_right = 310.0
+margin_bottom = 53.0
+size_flags_horizontal = 5
+alignment = 1
+
+[node name="Label" type="Label" parent="GUI/Right/ThrowOptions"]
+margin_right = 310.0
+margin_bottom = 49.0
+text = "Click your target, 
+or \"Cancel\""
+align = 1
 
 [node name="WaitOptions" type="VBoxContainer" parent="GUI/Right"]
 visible = false
@@ -241,25 +379,26 @@ value = 100.0
 
 [node name="ProceedCancel" type="HBoxContainer" parent="GUI/Right"]
 visible = false
-margin_top = 142.0
-margin_right = 298.0
-margin_bottom = 162.0
+margin_top = 226.0
+margin_right = 310.0
+margin_bottom = 253.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Proceed" type="Button" parent="GUI/Right/ProceedCancel"]
-margin_left = 3.0
-margin_right = 147.0
-margin_bottom = 20.0
+visible = false
+margin_left = 8.0
+margin_right = 152.0
+margin_bottom = 25.0
 rect_min_size = Vector2( 144, 0 )
 text = "Proceed"
 
 [node name="Cancel" type="Button" parent="GUI/Right/ProceedCancel"]
-margin_left = 151.0
-margin_right = 295.0
-margin_bottom = 20.0
+margin_left = 83.0
+margin_right = 227.0
+margin_bottom = 27.0
 rect_min_size = Vector2( 144, 0 )
 text = "Cancel"
 
@@ -490,13 +629,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 3.07178 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.948029, 0.25, 2 )
 
 [node name="LevelFood6" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.07351, 0, 0.203637 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0.204 )
 
 [node name="GoodBanana" parent="LevelFood6" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.922452, 0.25, 5.935 )
 
 [node name="GoodBanana2" parent="LevelFood6" instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.91693, 0.25, 3.04989 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.99361, 0.25, 3.04989 )
 
 [node name="GoodBanana3" parent="LevelFood6" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.01222, 0.25, 5.96714 )
@@ -520,13 +659,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 3.07178 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.948029, 0.25, 2 )
 
 [node name="LevelFood7" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.07351, 0, 0.00363722 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0.004 )
 
 [node name="GoodBanana" parent="LevelFood7" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.922452, 0.25, 5.935 )
 
 [node name="GoodBanana2" parent="LevelFood7" instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.91693, 0.25, 3.04989 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.00698, 0.25, 3.04989 )
 
 [node name="GoodBanana3" parent="LevelFood7" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.01222, 0.25, 5.96714 )
@@ -550,7 +689,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 3.07178 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.948029, 0.25, 2 )
 
 [node name="LevelFood8" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.87351, 0, 0.203637 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0.204 )
 
 [node name="GoodBanana" parent="LevelFood8" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.922452, 0.25, 5.935 )
@@ -580,7 +719,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 3.07178 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.948029, 0.25, 2 )
 
 [node name="LevelFood9" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.87351, 0, 0.00363722 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1, 0, 0.004 )
 
 [node name="GoodBanana" parent="LevelFood9" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.922452, 0.25, 5.935 )
@@ -610,7 +749,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 3.07178 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.948029, 0.25, 2 )
 
 [node name="LevelFood10" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.97351, 0, 0.103637 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9, 0, 0.104 )
 
 [node name="GoodBanana" parent="LevelFood10" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.922452, 0.25, 5.935 )

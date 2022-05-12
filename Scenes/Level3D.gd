@@ -140,8 +140,11 @@ func prompt_turns():
 func AI_action_select():
 	yield(get_tree().create_timer(Global.AI_turn_delay), "timeout")
 	## decide action
-	if randi() % 4 == 0: ## 1 in 4 chance to just stand there doing nothing
+	var AI_rand = randi() % 4
+	if AI_rand == 0: ## 1 in 4 chance to just stand there doing nothing
 		current_action = AI_actions[0].duplicate(false) ## wait 100 
+	elif AI_rand == 1:
+		current_action = AI_actions[3].duplicate(false) ## walk somewhere
 	else:
 		if whose_turn.has_node("MyFood"):
 			current_action = AI_actions[2].duplicate(false) ## throw
@@ -181,7 +184,7 @@ func find_closest_food():
 		if nearest == null:
 			nearest = food
 			continue
-		elif whose_turn.translation.distance_to(food.translation) < whose_turn.translation.distance_to(nearest.translation):
+		elif whose_turn.translation.distance_to(food.to_global(food.translation)) < whose_turn.translation.distance_to(nearest.to_global(nearest.translation)):
 			nearest = food
 	var nearest_translation = (nearest.translation + nearest.get_parent().translation)
 	return Vector3(nearest_translation.x, 0, nearest_translation.z)
@@ -243,6 +246,7 @@ func rotate_cam_rig():
 
 func display_character_options(_player):
 	reset_character_options()
+	$Panel.show()
 	$GUI/Right.show()
 	$GUI/Right/PlayerOptions.show()
 	if _player == true: 
@@ -267,9 +271,12 @@ func reset_character_options():
 		child.show()
 	$GUI/Right/WaitOptions.hide()
 	$GUI/Right/WalkOptions.hide()
+	$GUI/Right/ThrowOptions.hide()
 	$GUI/Right/ProceedCancel.hide()
+	$GUI/Right/ProceedCancel/Proceed.hide()
 
 func hide_character_options():
+	$Panel.hide()
 	$GUI/Right.hide()
 
 func hide_turn_tracker():
@@ -290,6 +297,7 @@ func _on_PickUp_pressed():
 
 func _on_Throw_pressed():
 	$GUI/Right/PlayerOptions.hide()
+	$GUI/Right/ThrowOptions.show()
 	$GUI/Right/ProceedCancel.show()
 	current_action[0] = "throw"
 	current_action[2] = 25
@@ -299,6 +307,7 @@ func _on_Wait_pressed():
 	$GUI/Right/PlayerOptions.hide()
 	$GUI/Right/WaitOptions.show()
 	$GUI/Right/ProceedCancel.show()
+	$GUI/Right/ProceedCancel/Proceed.show()
 	current_action[0] = "wait"
 
 func _on_Walk_pressed():
