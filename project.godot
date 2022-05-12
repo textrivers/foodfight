@@ -27,6 +27,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Global="*res://Singletons/Global.gd"
+ParticlesCache="*res://Singletons/ParticlesCache.gd"
 
 [input]
 
