@@ -4,7 +4,7 @@ var velocity
 var moving: bool = false
 var thrown: bool = false
 var gravity
-var splat = preload("res://Scenes/SplatSpriteParticles.tscn")
+var splat = preload("res://Scenes/ParticleContainer.tscn")
 var floor_splat = preload("res://Scenes/FloorSplat.tscn")
 export var splat_colors: Array
 
@@ -47,9 +47,12 @@ func _physics_process(delta):
 func spawn_splatter_particles(pos, col):
 	var new_splat = splat.instance()
 	new_splat.translation = pos
-	new_splat.emitting = true
-	new_splat.material_override.albedo_texture = new_splat.get_node("Viewport").get_texture()
-	new_splat.material_override.albedo_color = col
+	new_splat.get_node("SplatSpriteParticles").emitting = true
+	#new_splat.material_override.albedo_texture = new_splat.get_node("Viewport").get_texture()
+	#new_splat.material_override.albedo_color = col
+	new_splat.get_node("Viewport/PartSprite/Sprite").modulate = col
+	new_splat.get_node("Viewport/PartSprite/Sprite2").modulate = splat_colors[randi() % 3]
+	new_splat.get_node("Viewport/PartSprite/Sprite3").modulate = splat_colors[randi() % 3]
 	get_parent().add_child(new_splat)
 
 func on_red_light():
