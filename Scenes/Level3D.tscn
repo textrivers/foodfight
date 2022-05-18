@@ -3,7 +3,6 @@
 [ext_resource path="res://Scenes/Character3D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Level3D.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/TurnMarker.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/TurnDisplay.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/GoodOrange.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/GoodIceCream.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/GoodBlueberry.tscn" type="PackedScene" id=7]
@@ -84,7 +83,7 @@ expand_margin_bottom = 2.0
 shadow_size = 2
 shadow_offset = Vector2( 2, 2 )
 
-[sub_resource type="Image" id=14]
+[sub_resource type="Image" id=16]
 data = {
 "data": PoolByteArray( 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42 ),
 "format": "RGB8",
@@ -96,7 +95,7 @@ data = {
 [sub_resource type="ImageTexture" id=12]
 flags = 4
 flags = 4
-image = SubResource( 14 )
+image = SubResource( 16 )
 size = Vector2( 8, 8 )
 
 [sub_resource type="StyleBoxTexture" id=13]
@@ -123,13 +122,19 @@ Button/styles/normal = SubResource( 6 )
 Button/styles/pressed = SubResource( 7 )
 Panel/styles/panel = SubResource( 13 )
 
+[sub_resource type="DynamicFont" id=15]
+size = 17
+font_data = ExtResource( 9 )
+
 [sub_resource type="PanoramaSky" id=2]
 panorama = ExtResource( 8 )
 
 [sub_resource type="Environment" id=1]
 background_mode = 2
 background_sky = SubResource( 2 )
+background_energy = 10.0
 ambient_light_color = Color( 1, 1, 1, 1 )
+ambient_light_energy = 0.7
 ambient_light_sky_contribution = 0.0
 glow_intensity = 4.34
 glow_strength = 2.0
@@ -171,188 +176,141 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 9 )
 [node name="TurnMarker" parent="." instance=ExtResource( 3 )]
 
 [node name="Panel" type="Panel" parent="."]
-margin_right = 328.0
+margin_right = 250.0
 margin_bottom = 229.0
 theme = SubResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="GUI" type="HBoxContainer" parent="."]
-margin_left = 8.0
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_right = 249.0
+margin_bottom = 228.0
 mouse_filter = 2
 theme = SubResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Left" type="VBoxContainer" parent="GUI"]
-visible = false
-margin_right = 298.0
-margin_bottom = 600.0
-rect_min_size = Vector2( 298, 0 )
-mouse_filter = 2
-
-[node name="TurnDelayLabel" type="Label" parent="GUI/Left"]
-margin_right = 298.0
-margin_bottom = 14.0
-text = "Opponent turn delay:"
-
-[node name="HSlider" type="HSlider" parent="GUI/Left"]
-margin_top = 18.0
-margin_right = 298.0
-margin_bottom = 34.0
-min_value = 0.1
-max_value = 5.0
-step = 0.1
-value = 1.0
-scrollable = false
-tick_count = 50
-ticks_on_borders = true
-
-[node name="TurnDisplay" parent="GUI/Left" instance=ExtResource( 4 )]
-margin_left = 0.0
-margin_top = 38.0
-margin_right = 298.0
-margin_bottom = 78.0
-
-[node name="Center" type="VBoxContainer" parent="GUI"]
-visible = false
-margin_right = 420.0
-margin_bottom = 600.0
-rect_min_size = Vector2( 420, 0 )
-mouse_filter = 2
+alignment = 1
 
 [node name="Right" type="VBoxContainer" parent="GUI"]
-margin_right = 310.0
-margin_bottom = 600.0
-rect_min_size = Vector2( 310, 0 )
+margin_left = 5.0
+margin_right = 244.0
+margin_bottom = 228.0
+rect_min_size = Vector2( 200, 0 )
 mouse_filter = 2
-size_flags_horizontal = 5
+size_flags_horizontal = 4
 
 [node name="PlayerOptions" type="VBoxContainer" parent="GUI/Right"]
-margin_right = 310.0
+margin_right = 239.0
 margin_bottom = 218.0
+size_flags_horizontal = 4
+alignment = 1
 
 [node name="Label" type="Label" parent="GUI/Right/PlayerOptions"]
-margin_right = 310.0
+margin_right = 239.0
 margin_bottom = 23.0
 text = "It is Derp's turn"
 align = 1
 
-[node name="Look" type="Button" parent="GUI/Right/PlayerOptions"]
+[node name="Read" type="Button" parent="GUI/Right/PlayerOptions"]
+margin_left = 82.0
 margin_top = 27.0
-margin_right = 310.0
+margin_right = 157.0
 margin_bottom = 54.0
-text = "Look"
+rect_min_size = Vector2( 75, 0 )
+size_flags_horizontal = 4
+disabled = true
+text = "Read"
 
 [node name="Walk" type="Button" parent="GUI/Right/PlayerOptions"]
+margin_left = 82.0
 margin_top = 58.0
-margin_right = 310.0
+margin_right = 157.0
 margin_bottom = 85.0
+rect_min_size = Vector2( 75, 0 )
+size_flags_horizontal = 4
 text = "Move"
 
 [node name="PickUp" type="Button" parent="GUI/Right/PlayerOptions"]
+margin_left = 82.0
 margin_top = 89.0
-margin_right = 310.0
+margin_right = 157.0
 margin_bottom = 116.0
+rect_min_size = Vector2( 75, 0 )
+size_flags_horizontal = 4
 disabled = true
 text = "Pick Up"
 
 [node name="Throw" type="Button" parent="GUI/Right/PlayerOptions"]
+margin_left = 82.0
 margin_top = 120.0
-margin_right = 310.0
+margin_right = 157.0
 margin_bottom = 147.0
+rect_min_size = Vector2( 75, 0 )
+size_flags_horizontal = 4
 text = "Throw"
 
 [node name="Wait" type="Button" parent="GUI/Right/PlayerOptions"]
+margin_left = 82.0
 margin_top = 151.0
-margin_right = 310.0
+margin_right = 157.0
 margin_bottom = 178.0
+rect_min_size = Vector2( 75, 0 )
+size_flags_horizontal = 4
 text = "Wait"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/Right/PlayerOptions"]
 margin_top = 182.0
-margin_right = 310.0
+margin_right = 239.0
 margin_bottom = 218.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 4
 alignment = 1
 
 [node name="Label" type="Label" parent="GUI/Right/PlayerOptions/HBoxContainer"]
-margin_top = 6.0
-margin_right = 238.0
-margin_bottom = 29.0
-text = "Pause during opponents' turns"
+visible = false
+margin_top = 8.0
+margin_right = 149.0
+margin_bottom = 27.0
+size_flags_horizontal = 7
+custom_fonts/font = SubResource( 15 )
+text = "Pause during all turns "
 
 [node name="CheckButton" type="CheckButton" parent="GUI/Right/PlayerOptions/HBoxContainer"]
-margin_left = 242.0
-margin_right = 310.0
+margin_right = 239.0
 margin_bottom = 36.0
-
-[node name="LookOptions" type="VBoxContainer" parent="GUI/Right"]
-visible = false
-margin_top = 210.0
-margin_right = 349.0
-margin_bottom = 493.0
-
-[node name="Label" type="Label" parent="GUI/Right/LookOptions"]
-margin_right = 349.0
-margin_bottom = 23.0
-text = "Click on something you would like to look at"
-align = 1
-
-[node name="Label3" type="Label" parent="GUI/Right/LookOptions"]
-margin_top = 27.0
-margin_right = 349.0
-margin_bottom = 50.0
-text = "Click \"Cancel\" when finished"
-align = 1
-
-[node name="Description" type="Label" parent="GUI/Right/LookOptions"]
-margin_top = 54.0
-margin_right = 349.0
-margin_bottom = 254.0
-rect_min_size = Vector2( 0, 200 )
-align = 1
-
-[node name="Button" type="Button" parent="GUI/Right/LookOptions"]
-margin_top = 258.0
-margin_right = 349.0
-margin_bottom = 283.0
-text = "Cancel"
+size_flags_horizontal = 7
+text = "Pause during all turns"
 
 [node name="WalkOptions" type="VBoxContainer" parent="GUI/Right"]
 visible = false
-margin_top = 222.0
-margin_right = 310.0
-margin_bottom = 271.0
-size_flags_horizontal = 7
+margin_right = 229.0
+margin_bottom = 49.0
+rect_min_size = Vector2( 229, 0 )
+size_flags_horizontal = 4
 alignment = 1
 
 [node name="Label" type="Label" parent="GUI/Right/WalkOptions"]
-margin_right = 310.0
+margin_left = 17.0
+margin_right = 212.0
 margin_bottom = 49.0
+size_flags_horizontal = 4
 text = "Choose your destination,
 or click \"Cancel\""
 align = 1
 
 [node name="PickUpOptions" type="VBoxContainer" parent="GUI/Right"]
-margin_top = 222.0
-margin_right = 310.0
-margin_bottom = 222.0
+visible = false
+margin_right = 200.0
 
 [node name="ThrowOptions" type="VBoxContainer" parent="GUI/Right"]
 visible = false
-margin_top = 4.0
-margin_right = 310.0
-margin_bottom = 53.0
-size_flags_horizontal = 5
+margin_right = 229.0
+margin_bottom = 49.0
+rect_min_size = Vector2( 229, 0 )
+size_flags_horizontal = 4
 alignment = 1
 
 [node name="Label" type="Label" parent="GUI/Right/ThrowOptions"]
-margin_right = 310.0
+margin_left = 42.0
+margin_right = 186.0
 margin_bottom = 49.0
+size_flags_horizontal = 4
 text = "Click your target, 
 or \"Cancel\""
 align = 1
@@ -380,7 +338,7 @@ value = 100.0
 [node name="ProceedCancel" type="HBoxContainer" parent="GUI/Right"]
 visible = false
 margin_top = 226.0
-margin_right = 310.0
+margin_right = 229.0
 margin_bottom = 253.0
 alignment = 1
 __meta__ = {
@@ -388,18 +346,17 @@ __meta__ = {
 }
 
 [node name="Proceed" type="Button" parent="GUI/Right/ProceedCancel"]
-visible = false
-margin_left = 8.0
-margin_right = 152.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 144, 0 )
+margin_left = 37.0
+margin_right = 112.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 75, 0 )
 text = "Proceed"
 
 [node name="Cancel" type="Button" parent="GUI/Right/ProceedCancel"]
-margin_left = 83.0
-margin_right = 227.0
+margin_left = 116.0
+margin_right = 191.0
 margin_bottom = 27.0
-rect_min_size = Vector2( 144, 0 )
+rect_min_size = Vector2( 75, 0 )
 text = "Cancel"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -778,7 +735,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 3.07178 )
 [node name="GoodBanana9" parent="LevelFood10" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.948029, 0.25, 2 )
 
-[connection signal="value_changed" from="GUI/Left/HSlider" to="." method="_on_HSlider_value_changed"]
 [connection signal="pressed" from="GUI/Right/PlayerOptions/Walk" to="." method="_on_Walk_pressed"]
 [connection signal="pressed" from="GUI/Right/PlayerOptions/PickUp" to="." method="_on_PickUp_pressed"]
 [connection signal="pressed" from="GUI/Right/PlayerOptions/Throw" to="." method="_on_Throw_pressed"]

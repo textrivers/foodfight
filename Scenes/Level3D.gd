@@ -82,14 +82,14 @@ func register_character(_char):
 	_char.connect("give_on_select_info", self, "on_action_target_selected")
 	self.connect("selecting_action_target", _char, "on_target_selecting")
 	self.connect("done_selecting_action_target", _char, "on_target_unselecting")
-	## label in left panel
-	var lab = load("res://Scenes/TurnDisplay.tscn").instance()
-	lab.get_node("HBoxContainer/NameLabel").text = _char.name
 	if _char.player:
 		cam_rig_trans_target = _char.get_node("TargetPosition")
-	lab.get_node("HBoxContainer/TimeLabel").text = str(0)
-	lab.turn_disp_editable = true
-	GUI.get_node("Left").add_child(lab)
+	## label in left panel
+#	var lab = load("res://Scenes/TurnDisplay.tscn").instance()
+#	lab.get_node("HBoxContainer/NameLabel").text = _char.name
+#	lab.get_node("HBoxContainer/TimeLabel").text = str(0)
+#	lab.turn_disp_editable = true
+#	GUI.get_node("Left").add_child(lab)
 
 func _input(event):
 	if event is InputEventMouseMotion && Input.is_action_pressed("right_click"):
@@ -114,7 +114,7 @@ func _physics_process(delta):
 func advance_time():
 	if advancing:
 		current_moment += 1
-	$GUI/Left/TurnDisplay/HBoxContainer/TimeLabel.text = str(current_moment)
+	#$GUI/Left/TurnDisplay/HBoxContainer/TimeLabel.text = str(current_moment)
 
 func prompt_turns():
 	if advancing:
@@ -220,14 +220,14 @@ func reorder_character_display():
 				display_array.insert(index, [character.name, turn_tracker[character]])
 	## set text values of Left/labels 
 	var index = 0
-	for child in $GUI/Left.get_children():
-		if "turn_disp_editable" in child:
-			if !child.turn_disp_editable:
-				continue
-			else:
-				child.get_node("HBoxContainer/NameLabel").text = display_array[index][0] + " (" + current_action[0] + ")"
-				child.get_node("HBoxContainer/TimeLabel").text = str(display_array[index][1])
-				index += 1
+#	for child in $GUI/Left.get_children():
+#		if "turn_disp_editable" in child:
+#			if !child.turn_disp_editable:
+#				continue
+#			else:
+#				child.get_node("HBoxContainer/NameLabel").text = display_array[index][0] + " (" + current_action[0] + ")"
+#				child.get_node("HBoxContainer/TimeLabel").text = str(display_array[index][1])
+#				index += 1
 
 func translate_cam_rig():
 	cam_rig.translation = cam_rig_trans_target.to_global(cam_rig_trans_target.translation)
@@ -260,6 +260,10 @@ func display_character_options(_player):
 			$GUI/Right/PlayerOptions/Throw.disabled = true
 		if whose_turn.food_contacts.size() == 0:
 			$GUI/Right/PlayerOptions/PickUp.disabled = true
+		if Global.splat_count >= Global.splat_threshold:
+			$GUI/Right/PlayerOptions/Read.disabled = false
+		else:
+			$GUI/Right/PlayerOptions/Read.disabled = true
 	else: 
 		$GUI/Right/PlayerOptions/Label.text = "It is " + whose_turn.name + "'s turn"
 		for button in $GUI/Right/PlayerOptions.get_children():
@@ -280,12 +284,14 @@ func hide_character_options():
 	$GUI/Right.hide()
 
 func hide_turn_tracker():
-	for child in $GUI/Left.get_children():
-		child.hide()
+#	for child in $GUI/Left.get_children():
+#		child.hide()
+	pass
 
 func show_turn_tracker():
-	for child in $GUI/Left.get_children():
-		child.show()
+#	for child in $GUI/Left.get_children():
+#		child.show()
+	pass
 
 #func update_turn(node, action):
 #	turn_tracker[node] += action[2]

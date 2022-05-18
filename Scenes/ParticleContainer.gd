@@ -27,6 +27,7 @@ func _ready():
 	anim_player.play("splort")
 	$Viewport/PartSprite/Sprite2.offset = Vector2(randf() * 84, randf() * 84)
 	$Viewport/PartSprite/Sprite3.offset = Vector2(randf() * 125, randf() * 125)
+	Global.splat_count += 1
 
 func _on_red_light():
 	particles.speed_scale = 0
@@ -39,4 +40,5 @@ func _on_green_light():
 	anim_player.play()
 
 func _on_Timer_timeout():
+	Global.splat_count -= 1
 	call_deferred("queue_free")
