@@ -53,6 +53,8 @@ func spawn_splatter_particles(pos, col):
 	new_splat.get_node("Viewport/PartSprite/Sprite").modulate = col
 	new_splat.get_node("Viewport/PartSprite/Sprite2").modulate = splat_colors[randi() % 3]
 	new_splat.get_node("Viewport/PartSprite/Sprite3").modulate = splat_colors[randi() % 3]
+	new_splat.get_node("Viewport/PartSprite/Label").add_color_override("font_color", splat_colors[randi() % 3])
+	new_splat.get_node("Viewport/PartSprite/Label").add_color_override("font_outline_modulate", splat_colors[randi() % 3])
 	get_parent().add_child(new_splat)
 
 func on_red_light():

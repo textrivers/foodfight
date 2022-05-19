@@ -1,15 +1,24 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/inv_white_dot_mask.png" type="Texture" id=1]
 [ext_resource path="res://Assets/white_dot.png" type="Texture" id=2]
 [ext_resource path="res://Materials/SplatSpriteParticlesMaterial.tres" type="Material" id=3]
 [ext_resource path="res://Scenes/ParticleContainer.gd" type="Script" id=4]
 [ext_resource path="res://Materials/ParticleContainerMatOverrideMaterial.tres" type="Material" id=5]
+[ext_resource path="res://Assets/Fonts/TCM_____.TTF" type="DynamicFontData" id=6]
 
-[sub_resource type="QuadMesh" id=5]
+[sub_resource type="DynamicFont" id=18]
+size = 14
+outline_size = 1
+font_data = ExtResource( 6 )
+
+[sub_resource type="Theme" id=19]
+default_font = SubResource( 18 )
+
+[sub_resource type="QuadMesh" id=16]
 size = Vector2( 0.25, 0.25 )
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=17]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Viewport/PartSprite/Light2D:texture_scale")
@@ -92,7 +101,20 @@ texture = ExtResource( 2 )
 centered = false
 offset = Vector2( 5, 5 )
 
+[node name="Label" type="Label" parent="Viewport/PartSprite"]
+visible = false
+light_mask = 2
+margin_top = 35.0
+margin_right = 50.0
+margin_bottom = 85.0
+rect_min_size = Vector2( 50, 50 )
+size_flags_horizontal = 7
+size_flags_vertical = 7
+theme = SubResource( 19 )
+text = "sandwich"
+
 [node name="Sprite2" type="Sprite" parent="Viewport/PartSprite"]
+visible = false
 modulate = Color( 0.662745, 0.603922, 0.603922, 1 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 2 )
@@ -100,6 +122,7 @@ centered = false
 offset = Vector2( 60, 40 )
 
 [node name="Sprite3" type="Sprite" parent="Viewport/PartSprite"]
+visible = false
 modulate = Color( 0.137255, 0.0901961, 0.0901961, 1 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 2 )
@@ -107,6 +130,7 @@ centered = false
 offset = Vector2( 125, 125 )
 
 [node name="Light2D" type="Light2D" parent="Viewport/PartSprite"]
+visible = false
 texture = ExtResource( 1 )
 offset = Vector2( 25, 25 )
 texture_scale = 0.01
@@ -121,7 +145,7 @@ one_shot = true
 explosiveness = 0.93
 randomness = 0.61
 process_material = ExtResource( 3 )
-draw_pass_1 = SubResource( 5 )
+draw_pass_1 = SubResource( 16 )
 
 [node name="Timer" type="Timer" parent="SplatSpriteParticles"]
 wait_time = 1.2
@@ -129,7 +153,7 @@ one_shot = true
 autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SplatSpriteParticles"]
-anims/RESET = SubResource( 8 )
+anims/RESET = SubResource( 17 )
 anims/splort = SubResource( 9 )
 
 [connection signal="timeout" from="SplatSpriteParticles/Timer" to="." method="_on_Timer_timeout"]
