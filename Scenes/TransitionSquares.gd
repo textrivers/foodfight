@@ -21,7 +21,6 @@ func _process(_delta):
 #			do_fade(fade_to_black)
 	pass
 
-
 func do_fade(to_black):
 	fade_to_black = to_black
 	if can_fade:
@@ -29,12 +28,17 @@ func do_fade(to_black):
 		#$LoadingSprite.hide()
 		var my_delay = 0.0
 		var squares = $SquaresContainer.get_children()
-		squares.shuffle()
+		#squares.shuffle()
 		for square in squares:
-			tween.interpolate_property(square, "scale", null, Vector2(float(fade_to_black), float(fade_to_black)), 0.5, Tween.TRANS_QUART, Tween.EASE_OUT, my_delay)
-			tween.interpolate_property(square, "rotation_degrees", null, square.rotation_degrees + 90, 0.5, Tween.TRANS_QUART, Tween.EASE_OUT, my_delay)
-			my_delay += 0.01
-		tween.interpolate_property($LoadingSprite, "modulate", null, Color(1, 1, 1, float(fade_to_black)), 0.5, Tween.TRANS_QUINT, Tween.EASE_IN, 0)
+			var my_rot = randi() % 2
+			if my_rot == 0:
+				my_rot = 90
+			else:
+				 my_rot = -90
+			tween.interpolate_property(square, "scale", null, Vector2(float(fade_to_black), float(fade_to_black)), 0.9, Tween.TRANS_CIRC, Tween.EASE_OUT_IN, my_delay)
+			tween.interpolate_property(square, "rotation_degrees", null, square.rotation_degrees + my_rot, 0.9, Tween.TRANS_QUART, Tween.EASE_OUT, my_delay)
+			my_delay += 0.015
+		tween.interpolate_property($LoadingSprite, "modulate", null, Color(1, 1, 1, float(fade_to_black)), 0.2, Tween.TRANS_QUINT, Tween.EASE_IN, 0.5)
 		tween.start()
 		fade_to_black = !fade_to_black
 		can_fade = true

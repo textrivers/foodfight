@@ -1,6 +1,6 @@
 extends Node2D
 
-var next_scene = "res://Scenes/DummyGame.tscn"
+var next_scene = "res://Scenes/Level3D.tscn"
 var game_start: bool = false
 
 func _ready():
