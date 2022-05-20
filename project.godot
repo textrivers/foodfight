@@ -28,6 +28,7 @@ config/icon="res://icon.png"
 
 Global="*res://Singletons/Global.gd"
 ParticlesCache="*res://Singletons/ParticlesCache.gd"
+SceneManager="*res://Singletons/SceneManager.gd"
 
 [input]
 
