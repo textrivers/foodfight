@@ -1,0 +1,386 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Assets/Screens/character_screen_001.png" type="Texture" id=1]
+[ext_resource path="res://Assets/CharacterSprites/Uni_Vanilla.png" type="Texture" id=2]
+[ext_resource path="res://Assets/CharacterSprites/Tal_Vanilla.png" type="Texture" id=3]
+[ext_resource path="res://Assets/CharacterSprites/Pik_Vanilla.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Screens/empty_rect_96x96.png" type="Texture" id=5]
+[ext_resource path="res://Assets/CharacterSprites/Cho_HaloHorns.png" type="Texture" id=6]
+[ext_resource path="res://Assets/CharacterSprites/Ort_Vanilla.png" type="Texture" id=7]
+[ext_resource path="res://Assets/CharacterSprites/Nor_Vanilla.png" type="Texture" id=8]
+[ext_resource path="res://Assets/CharacterSprites/Wid_Vanilla.png" type="Texture" id=9]
+[ext_resource path="res://Assets/CharacterSprites/Mer_Vanilla.png" type="Texture" id=10]
+[ext_resource path="res://Assets/CharacterSprites/Cho_Vanilla.png" type="Texture" id=11]
+[ext_resource path="res://Themes/GUI_Default.tres" type="Theme" id=12]
+
+[node name="CharacterSelection" type="Node2D"]
+
+[node name="Backdrop" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="CharGUI" type="MarginContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+theme = ExtResource( 12 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CharGUI"]
+margin_right = 1049.0
+margin_bottom = 600.0
+
+[node name="CharSelectLabel" type="Label" parent="CharGUI/VBoxContainer"]
+margin_right = 1049.0
+margin_bottom = 23.0
+text = "Character Select"
+align = 1
+
+[node name="MainChoiceArea" type="HBoxContainer" parent="CharGUI/VBoxContainer"]
+margin_top = 27.0
+margin_right = 1049.0
+margin_bottom = 338.0
+
+[node name="ThumbsEtc" type="VBoxContainer" parent="CharGUI/VBoxContainer/MainChoiceArea"]
+margin_right = 805.0
+margin_bottom = 311.0
+
+[node name="Control" type="Control" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc"]
+margin_right = 805.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 0, 55 )
+
+[node name="MarginContainer" type="MarginContainer" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc"]
+margin_top = 59.0
+margin_right = 805.0
+margin_bottom = 155.0
+
+[node name="Thumbs" type="HBoxContainer" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer"]
+margin_right = 805.0
+margin_bottom = 96.0
+alignment = 1
+
+[node name="Control" type="Control" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs"]
+margin_right = 5.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 5, 0 )
+
+[node name="CharFrame" type="TextureRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs"]
+margin_left = 9.0
+margin_right = 105.0
+margin_bottom = 96.0
+texture = ExtResource( 5 )
+stretch_mode = 1
+
+[node name="CharThumb" type="TextureRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs/CharFrame"]
+margin_right = 96.0
+margin_bottom = 96.0
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 6
+
+[node name="CharFrame2" type="TextureRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs"]
+margin_left = 109.0
+margin_right = 205.0
+margin_bottom = 96.0
+texture = ExtResource( 5 )
+
+[node name="CharThumb" type="TextureRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs/CharFrame2"]
+margin_right = 96.0
+margin_bottom = 96.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+
+[node name="CharFrame3" type="TextureRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs"]
+margin_left = 209.0
+margin_right = 305.0
+margin_bottom = 96.0
+texture = ExtResource( 5 )
+
+[node name="CharThumb" type="TextureRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs/CharFrame3"]
+margin_right = 96.0
+margin_bottom = 96.0
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="CharFrame4" type="TextureRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs"]
+margin_left = 309.0
+margin_right = 405.0
+margin_bottom = 96.0
+texture = ExtResource( 5 )
+
+[node name="CharThumb" type="TextureRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs/CharFrame4"]
+margin_right = 96.0
+margin_bottom = 96.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+
+[node name="CharFrame5" type="TextureRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs"]
+margin_left = 409.0
+margin_right = 505.0
+margin_bottom = 96.0
+texture = ExtResource( 5 )
+
+[node name="CharThumb" type="TextureRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs/CharFrame5"]
+margin_right = 96.0
+margin_bottom = 96.0
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 6
+
+[node name="CharFrame6" type="TextureRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs"]
+margin_left = 509.0
+margin_right = 605.0
+margin_bottom = 96.0
+texture = ExtResource( 5 )
+
+[node name="CharThumb" type="TextureRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs/CharFrame6"]
+margin_right = 96.0
+margin_bottom = 96.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 6
+
+[node name="CharFrame7" type="TextureRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs"]
+margin_left = 609.0
+margin_right = 705.0
+margin_bottom = 96.0
+texture = ExtResource( 5 )
+
+[node name="CharThumb" type="TextureRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs/CharFrame7"]
+margin_right = 96.0
+margin_bottom = 96.0
+texture = ExtResource( 10 )
+expand = true
+stretch_mode = 6
+
+[node name="CharFrame8" type="TextureRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs"]
+margin_left = 709.0
+margin_right = 805.0
+margin_bottom = 96.0
+texture = ExtResource( 5 )
+
+[node name="CharThumb" type="TextureRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs/CharFrame8"]
+margin_right = 96.0
+margin_bottom = 96.0
+texture = ExtResource( 11 )
+expand = true
+stretch_mode = 6
+
+[node name="MarginContainer2" type="CenterContainer" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc"]
+margin_top = 159.0
+margin_right = 805.0
+margin_bottom = 311.0
+
+[node name="GridContainer" type="GridContainer" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer2"]
+margin_left = 196.0
+margin_right = 608.0
+margin_bottom = 152.0
+columns = 8
+
+[node name="ColorRect" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer2/GridContainer"]
+margin_right = 48.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+color = Color( 0.0509804, 0.392157, 0.482353, 1 )
+
+[node name="ColorRect2" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer2/GridContainer"]
+margin_left = 52.0
+margin_right = 100.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+color = Color( 0.262745, 0.0980392, 0.592157, 1 )
+
+[node name="ColorRect3" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer2/GridContainer"]
+margin_left = 104.0
+margin_right = 152.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+color = Color( 1, 0.878431, 0.054902, 1 )
+
+[node name="ColorRect4" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer2/GridContainer"]
+margin_left = 156.0
+margin_right = 204.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+color = Color( 1, 0.533333, 0, 1 )
+
+[node name="ColorRect5" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer2/GridContainer"]
+margin_left = 208.0
+margin_right = 256.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+rect_pivot_offset = Vector2( 48, 52 )
+color = Color( 0.556863, 0.815686, 0.878431, 1 )
+
+[node name="ColorRect6" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer2/GridContainer"]
+margin_left = 260.0
+margin_right = 308.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+color = Color( 0.443137, 0.615686, 1, 1 )
+
+[node name="ColorRect7" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer2/GridContainer"]
+margin_left = 312.0
+margin_right = 360.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+
+[node name="ColorRect8" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer2/GridContainer"]
+margin_left = 364.0
+margin_right = 412.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
+
+[node name="ColorRect9" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer2/GridContainer"]
+margin_top = 52.0
+margin_right = 48.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 48, 48 )
+color = Color( 0.0784314, 0.270588, 0.321569, 1 )
+
+[node name="ColorRect10" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer2/GridContainer"]
+margin_left = 52.0
+margin_top = 52.0
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 48, 48 )
+color = Color( 0.192157, 0.133333, 0.266667, 1 )
+
+[node name="ColorRect11" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer2/GridContainer"]
+margin_left = 104.0
+margin_top = 52.0
+margin_right = 152.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 48, 48 )
+color = Color( 0.788235, 0.694118, 0.0666667, 1 )
+
+[node name="ColorRect12" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer2/GridContainer"]
+margin_left = 156.0
+margin_top = 52.0
+margin_right = 204.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 48, 48 )
+rect_pivot_offset = Vector2( 24, 48 )
+color = Color( 0.72549, 0.384314, 0.0352941, 1 )
+
+[node name="ColorRect13" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer2/GridContainer"]
+margin_left = 208.0
+margin_top = 52.0
+margin_right = 256.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 48, 48 )
+color = Color( 0.470588, 0.635294, 0.67451, 1 )
+
+[node name="ColorRect14" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer2/GridContainer"]
+margin_left = 260.0
+margin_top = 52.0
+margin_right = 308.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 48, 48 )
+color = Color( 0.490196, 0.584314, 0.788235, 1 )
+
+[node name="ColorRect15" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer2/GridContainer"]
+margin_left = 312.0
+margin_top = 52.0
+margin_right = 360.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 48, 48 )
+color = Color( 0.819608, 0.819608, 0.819608, 1 )
+
+[node name="ColorRect16" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer2/GridContainer"]
+margin_left = 364.0
+margin_top = 52.0
+margin_right = 412.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 48, 48 )
+color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
+
+[node name="ColorRect17" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer2/GridContainer"]
+margin_top = 104.0
+margin_right = 48.0
+margin_bottom = 152.0
+rect_min_size = Vector2( 48, 48 )
+color = Color( 0.0392157, 0.141176, 0.168627, 1 )
+
+[node name="ColorRect18" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer2/GridContainer"]
+margin_left = 52.0
+margin_top = 104.0
+margin_right = 100.0
+margin_bottom = 152.0
+rect_min_size = Vector2( 48, 48 )
+rect_pivot_offset = Vector2( 636, 177 )
+color = Color( 0.0823529, 0.0627451, 0.109804, 1 )
+
+[node name="ColorRect19" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer2/GridContainer"]
+margin_left = 104.0
+margin_top = 104.0
+margin_right = 152.0
+margin_bottom = 152.0
+rect_min_size = Vector2( 48, 48 )
+rect_pivot_offset = Vector2( 52, 52 )
+color = Color( 0.498039, 0.439216, 0.0313726, 1 )
+
+[node name="ColorRect20" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer2/GridContainer"]
+margin_left = 156.0
+margin_top = 104.0
+margin_right = 204.0
+margin_bottom = 152.0
+rect_min_size = Vector2( 48, 48 )
+color = Color( 0.513726, 0.298039, 0.0313726, 1 )
+
+[node name="ColorRect21" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer2/GridContainer"]
+margin_left = 208.0
+margin_top = 104.0
+margin_right = 256.0
+margin_bottom = 152.0
+rect_min_size = Vector2( 48, 48 )
+rect_pivot_offset = Vector2( 52, 48 )
+color = Color( 0.282353, 0.333333, 0.345098, 1 )
+
+[node name="ColorRect22" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer2/GridContainer"]
+margin_left = 260.0
+margin_top = 104.0
+margin_right = 308.0
+margin_bottom = 152.0
+rect_min_size = Vector2( 48, 48 )
+color = Color( 0.329412, 0.384314, 0.505882, 1 )
+
+[node name="ColorRect23" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer2/GridContainer"]
+margin_left = 312.0
+margin_top = 104.0
+margin_right = 360.0
+margin_bottom = 152.0
+rect_min_size = Vector2( 48, 48 )
+color = Color( 0.458824, 0.458824, 0.458824, 1 )
+
+[node name="ColorRect24" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer2/GridContainer"]
+margin_left = 364.0
+margin_top = 104.0
+margin_right = 412.0
+margin_bottom = 152.0
+rect_min_size = Vector2( 48, 48 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="PhotoEtc" type="VBoxContainer" parent="CharGUI/VBoxContainer/MainChoiceArea"]
+margin_left = 809.0
+margin_right = 1049.0
+margin_bottom = 311.0
+
+[node name="Control" type="Control" parent="CharGUI/VBoxContainer/MainChoiceArea/PhotoEtc"]
+margin_right = 240.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+
+[node name="TextureRect" type="TextureRect" parent="CharGUI/VBoxContainer/MainChoiceArea/PhotoEtc"]
+margin_top = 54.0
+margin_right = 240.0
+margin_bottom = 294.0
+texture = ExtResource( 6 )
+
+[node name="RandomOrDone" type="HBoxContainer" parent="CharGUI/VBoxContainer"]
+margin_top = 342.0
+margin_right = 1049.0
+margin_bottom = 342.0

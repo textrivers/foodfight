@@ -30,6 +30,11 @@ Global="*res://Singletons/Global.gd"
 ParticlesCache="*res://Singletons/ParticlesCache.gd"
 SceneManager="*res://Singletons/SceneManager.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_height"
+
 [input]
 
 right_click={

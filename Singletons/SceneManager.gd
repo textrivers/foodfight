@@ -9,7 +9,7 @@ var transition_squares
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	transition_squares = get_node("/root/Main/TransitionSquares")
+	transition_squares = get_node_or_null("/root/Main/TransitionSquares")
 
 func goto_scene(current_scene, path):
 	emit_signal("fade_to_black", true)
