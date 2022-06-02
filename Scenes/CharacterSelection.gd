@@ -61,3 +61,5 @@ func on_halo_or_horns(_pressed):
 
 func on_color_changed(new_color):
 	$CharGUI/VBoxContainer/MainChoiceArea/PhotoEtc/TextureRect.self_modulate = new_color
+	## TODO assign color to Global character dictionary
+	

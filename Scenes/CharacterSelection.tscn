@@ -18,6 +18,7 @@
 
 [sub_resource type="StyleBoxFlat" id=11]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
+draw_center = false
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -31,6 +32,7 @@ expand_margin_bottom = 1.0
 anti_aliasing = false
 
 [sub_resource type="Theme" id=10]
+Button/styles/disabled = SubResource( 11 )
 Button/styles/focus = SubResource( 11 )
 Button/styles/hover = SubResource( 11 )
 Button/styles/normal = SubResource( 11 )
@@ -170,12 +172,13 @@ thumb_num = 28
 margin_top = 165.0
 margin_right = 748.0
 margin_bottom = 325.0
-mouse_filter = 1
+mouse_filter = 2
 
 [node name="GridContainer" type="GridContainer" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer"]
 margin_left = 154.0
 margin_right = 594.0
 margin_bottom = 160.0
+mouse_filter = 2
 theme = SubResource( 10 )
 custom_constants/vseparation = 8
 custom_constants/hseparation = 8
@@ -185,12 +188,17 @@ columns = 8
 margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
+script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button2"]
 show_behind_parent = true
 margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Button" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer"]
 margin_left = 56.0
@@ -198,6 +206,7 @@ margin_right = 104.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
 mouse_filter = 1
+input_pass_on_modal_close_click = false
 script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button"]
@@ -205,32 +214,44 @@ show_behind_parent = true
 margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
+mouse_filter = 2
 color = Color( 1, 0.533333, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Button3" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer"]
 margin_left = 112.0
 margin_right = 160.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
+mouse_filter = 1
+script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button3"]
 show_behind_parent = true
 margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
+mouse_filter = 2
 color = Color( 1, 0.878431, 0.054902, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Button4" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer"]
 margin_left = 168.0
 margin_right = 216.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
+script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button4"]
 show_behind_parent = true
 margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
+mouse_filter = 2
 color = Color( 0.0509804, 0.392157, 0.482353, 1 )
 
 [node name="Button5" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer"]
@@ -238,6 +259,7 @@ margin_left = 224.0
 margin_right = 272.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
+script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button5"]
 show_behind_parent = true
@@ -245,6 +267,7 @@ margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
 rect_pivot_offset = Vector2( 48, 52 )
+mouse_filter = 2
 color = Color( 0.556863, 0.815686, 0.878431, 1 )
 
 [node name="Button6" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer"]
@@ -252,12 +275,14 @@ margin_left = 280.0
 margin_right = 328.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
+script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button6"]
 show_behind_parent = true
 margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
+mouse_filter = 2
 color = Color( 0.443137, 0.615686, 1, 1 )
 
 [node name="Button7" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer"]
@@ -265,24 +290,28 @@ margin_left = 336.0
 margin_right = 384.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
+script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button7"]
 show_behind_parent = true
 margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
+mouse_filter = 2
 color = Color( 0.262745, 0.0980392, 0.592157, 1 )
 
 [node name="Button8" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer"]
 margin_left = 392.0
 margin_right = 440.0
 margin_bottom = 48.0
+script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button8"]
 show_behind_parent = true
 margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
+mouse_filter = 2
 color = Color( 0.12549, 0.12549, 0.12549, 1 )
 
 [node name="Button9" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer"]
@@ -290,12 +319,14 @@ margin_top = 56.0
 margin_right = 48.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 48, 48 )
+script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button9"]
 show_behind_parent = true
 margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
+mouse_filter = 2
 color = Color( 0.819608, 0.819608, 0.819608, 1 )
 
 [node name="Button10" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer"]
@@ -304,6 +335,7 @@ margin_top = 56.0
 margin_right = 104.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 48, 48 )
+script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button10"]
 show_behind_parent = true
@@ -311,6 +343,7 @@ margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
 rect_pivot_offset = Vector2( 24, 48 )
+mouse_filter = 2
 color = Color( 0.72549, 0.384314, 0.0352941, 1 )
 
 [node name="Button11" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer"]
@@ -319,12 +352,14 @@ margin_top = 56.0
 margin_right = 160.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 48, 48 )
+script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button11"]
 show_behind_parent = true
 margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
+mouse_filter = 2
 color = Color( 0.788235, 0.694118, 0.0666667, 1 )
 
 [node name="Button12" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer"]
@@ -333,12 +368,14 @@ margin_top = 56.0
 margin_right = 216.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 48, 48 )
+script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button12"]
 show_behind_parent = true
 margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
+mouse_filter = 2
 color = Color( 0.0784314, 0.270588, 0.321569, 1 )
 
 [node name="Button13" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer"]
@@ -347,12 +384,14 @@ margin_top = 56.0
 margin_right = 272.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 48, 48 )
+script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button13"]
 show_behind_parent = true
 margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
+mouse_filter = 2
 color = Color( 0.470588, 0.635294, 0.67451, 1 )
 
 [node name="Button14" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer"]
@@ -361,12 +400,14 @@ margin_top = 56.0
 margin_right = 328.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 48, 48 )
+script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button14"]
 show_behind_parent = true
 margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
+mouse_filter = 2
 color = Color( 0.490196, 0.584314, 0.788235, 1 )
 
 [node name="Button15" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer"]
@@ -375,12 +416,14 @@ margin_top = 56.0
 margin_right = 384.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 48, 48 )
+script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button15"]
 show_behind_parent = true
 margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
+mouse_filter = 2
 color = Color( 0.192157, 0.133333, 0.266667, 1 )
 
 [node name="Button16" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer"]
@@ -389,24 +432,28 @@ margin_top = 56.0
 margin_right = 440.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 48, 48 )
+script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button16"]
 show_behind_parent = true
 margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
+mouse_filter = 2
 color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
 
 [node name="Button17" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer"]
 margin_top = 112.0
 margin_right = 48.0
 margin_bottom = 160.0
+script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button17"]
 show_behind_parent = true
 margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
+mouse_filter = 2
 color = Color( 0.458824, 0.458824, 0.458824, 1 )
 
 [node name="Button18" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer"]
@@ -414,12 +461,14 @@ margin_left = 56.0
 margin_top = 112.0
 margin_right = 104.0
 margin_bottom = 160.0
+script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button18"]
 show_behind_parent = true
 margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
+mouse_filter = 2
 color = Color( 0.513726, 0.298039, 0.0313726, 1 )
 
 [node name="Button19" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer"]
@@ -427,6 +476,7 @@ margin_left = 112.0
 margin_top = 112.0
 margin_right = 160.0
 margin_bottom = 160.0
+script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button19"]
 show_behind_parent = true
@@ -434,6 +484,7 @@ margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
 rect_pivot_offset = Vector2( 52, 52 )
+mouse_filter = 2
 color = Color( 0.498039, 0.439216, 0.0313726, 1 )
 
 [node name="Button20" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer"]
@@ -441,12 +492,14 @@ margin_left = 168.0
 margin_top = 112.0
 margin_right = 216.0
 margin_bottom = 160.0
+script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button20"]
 show_behind_parent = true
 margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
+mouse_filter = 2
 color = Color( 0.0392157, 0.141176, 0.168627, 1 )
 
 [node name="Button21" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer"]
@@ -454,6 +507,7 @@ margin_left = 224.0
 margin_top = 112.0
 margin_right = 272.0
 margin_bottom = 160.0
+script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button21"]
 show_behind_parent = true
@@ -461,6 +515,7 @@ margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
 rect_pivot_offset = Vector2( 52, 48 )
+mouse_filter = 2
 color = Color( 0.282353, 0.333333, 0.345098, 1 )
 
 [node name="Button22" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer"]
@@ -468,12 +523,14 @@ margin_left = 280.0
 margin_top = 112.0
 margin_right = 328.0
 margin_bottom = 160.0
+script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button22"]
 show_behind_parent = true
 margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
+mouse_filter = 2
 color = Color( 0.329412, 0.384314, 0.505882, 1 )
 
 [node name="Button23" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer"]
@@ -481,6 +538,7 @@ margin_left = 336.0
 margin_top = 112.0
 margin_right = 384.0
 margin_bottom = 160.0
+script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button23"]
 show_behind_parent = true
@@ -488,6 +546,7 @@ margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
 rect_pivot_offset = Vector2( 636, 177 )
+mouse_filter = 2
 color = Color( 0.0823529, 0.0627451, 0.109804, 1 )
 
 [node name="Button24" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer"]
@@ -496,12 +555,14 @@ margin_top = 112.0
 margin_right = 440.0
 margin_bottom = 160.0
 rect_min_size = Vector2( 48, 48 )
+script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button24"]
 show_behind_parent = true
 margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
+mouse_filter = 2
 color = Color( 0, 0, 0, 1 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc"]
@@ -576,8 +637,53 @@ margin_bottom = 393.0
 [connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs/Button7" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs/Button7" method="_on_Button_pressed"]
 [connection signal="change_thumb" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs/Button8" to="." method="on_thumbnail_changed"]
 [connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs/Button8" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs/Button8" method="_on_Button_pressed"]
+[connection signal="change_color" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button2" to="." method="on_color_changed"]
+[connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button2" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button2" method="_on_Button_pressed"]
 [connection signal="change_color" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button" to="." method="on_color_changed"]
-[connection signal="mouse_entered" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button" method="_on_Button_mouse_entered"]
 [connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button" method="_on_Button_pressed"]
+[connection signal="change_color" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button3" to="." method="on_color_changed"]
+[connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button3" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button3" method="_on_Button_pressed"]
+[connection signal="change_color" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button4" to="." method="on_color_changed"]
+[connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button4" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button4" method="_on_Button_pressed"]
+[connection signal="change_color" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button5" to="." method="on_color_changed"]
+[connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button5" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button5" method="_on_Button_pressed"]
+[connection signal="change_color" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button6" to="." method="on_color_changed"]
+[connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button6" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button6" method="_on_Button_pressed"]
+[connection signal="change_color" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button7" to="." method="on_color_changed"]
+[connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button7" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button7" method="_on_Button_pressed"]
+[connection signal="change_color" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button8" to="." method="on_color_changed"]
+[connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button8" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button8" method="_on_Button_pressed"]
+[connection signal="change_color" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button9" to="." method="on_color_changed"]
+[connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button9" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button9" method="_on_Button_pressed"]
+[connection signal="change_color" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button10" to="." method="on_color_changed"]
+[connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button10" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button10" method="_on_Button_pressed"]
+[connection signal="change_color" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button11" to="." method="on_color_changed"]
+[connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button11" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button11" method="_on_Button_pressed"]
+[connection signal="change_color" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button12" to="." method="on_color_changed"]
+[connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button12" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button12" method="_on_Button_pressed"]
+[connection signal="change_color" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button13" to="." method="on_color_changed"]
+[connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button13" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button13" method="_on_Button_pressed"]
+[connection signal="change_color" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button14" to="." method="on_color_changed"]
+[connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button14" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button14" method="_on_Button_pressed"]
+[connection signal="change_color" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button15" to="." method="on_color_changed"]
+[connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button15" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button15" method="_on_Button_pressed"]
+[connection signal="change_color" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button16" to="." method="on_color_changed"]
+[connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button16" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button16" method="_on_Button_pressed"]
+[connection signal="change_color" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button17" to="." method="on_color_changed"]
+[connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button17" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button17" method="_on_Button_pressed"]
+[connection signal="change_color" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button18" to="." method="on_color_changed"]
+[connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button18" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button18" method="_on_Button_pressed"]
+[connection signal="change_color" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button19" to="." method="on_color_changed"]
+[connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button19" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button19" method="_on_Button_pressed"]
+[connection signal="change_color" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button20" to="." method="on_color_changed"]
+[connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button20" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button20" method="_on_Button_pressed"]
+[connection signal="change_color" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button21" to="." method="on_color_changed"]
+[connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button21" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button21" method="_on_Button_pressed"]
+[connection signal="change_color" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button22" to="." method="on_color_changed"]
+[connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button22" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button22" method="_on_Button_pressed"]
+[connection signal="change_color" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button23" to="." method="on_color_changed"]
+[connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button23" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button23" method="_on_Button_pressed"]
+[connection signal="change_color" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button24" to="." method="on_color_changed"]
+[connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button24" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button24" method="_on_Button_pressed"]
 [connection signal="toggled" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/HBoxContainer/HaloCheck" to="." method="on_halo_or_horns"]
 [connection signal="toggled" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/HBoxContainer/HornsCheck" to="." method="on_halo_or_horns"]

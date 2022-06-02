@@ -9,6 +9,3 @@ func _on_Button_pressed():
 	print("pressed")
 	emit_signal("change_color", $ColorRect.color)
 
-
-func _on_Button_mouse_entered():
-	print("mouse entered")
