@@ -185,9 +185,11 @@ custom_constants/hseparation = 8
 columns = 8
 
 [node name="Button2" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer"]
+modulate = Color( 1, 1, 1, 0 )
 margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
+disabled = true
 script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button2"]
@@ -196,9 +198,6 @@ margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
 mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Button" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer"]
 margin_left = 56.0
@@ -550,11 +549,13 @@ mouse_filter = 2
 color = Color( 0.0823529, 0.0627451, 0.109804, 1 )
 
 [node name="Button24" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer"]
+modulate = Color( 1, 1, 1, 0 )
 margin_left = 392.0
 margin_top = 112.0
 margin_right = 440.0
 margin_bottom = 160.0
 rect_min_size = Vector2( 48, 48 )
+disabled = true
 script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button24"]
@@ -607,7 +608,7 @@ rect_min_size = Vector2( 50, 50 )
 margin_top = 54.0
 margin_right = 240.0
 margin_bottom = 294.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="TextureRect" type="TextureRect" parent="CharGUI/VBoxContainer/MainChoiceArea/PhotoEtc/TextureRect"]
 show_behind_parent = true
