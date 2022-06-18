@@ -39,6 +39,8 @@ func do_fade(to_black):
 		can_fade = true
 
 func _on_Tween_tween_all_completed():
-	#$LoadingSprite.visible = !fade_to_black
-	#$Timer.start()
+	for square in $SquaresContainer.get_children():
+		if square.scale != Vector2(1, 1):
+			square.rotation_degrees = 0
+			print(square.rotation_degrees)
 	can_fade = true

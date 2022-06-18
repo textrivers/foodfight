@@ -617,10 +617,23 @@ margin_bottom = 40.0
 rect_scale = Vector2( 2.4, 2.4 )
 texture = ExtResource( 5 )
 
-[node name="RandomOrDone" type="HBoxContainer" parent="CharGUI/VBoxContainer"]
+[node name="Spacer" type="MarginContainer" parent="CharGUI/VBoxContainer"]
 margin_top = 393.0
 margin_right = 1024.0
-margin_bottom = 393.0
+margin_bottom = 433.0
+rect_min_size = Vector2( 0, 40 )
+
+[node name="RandomOrDone" type="HBoxContainer" parent="CharGUI/VBoxContainer"]
+margin_top = 437.0
+margin_right = 1024.0
+margin_bottom = 464.0
+alignment = 1
+
+[node name="DoneButton" type="Button" parent="CharGUI/VBoxContainer/RandomOrDone"]
+margin_left = 471.0
+margin_right = 552.0
+margin_bottom = 27.0
+text = "Play Now"
 
 [connection signal="change_thumb" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs/Button" to="." method="on_thumbnail_changed"]
 [connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs/Button" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs/Button" method="_on_Button_pressed"]
@@ -688,3 +701,4 @@ margin_bottom = 393.0
 [connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button24" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/CenterContainer/GridContainer/Button24" method="_on_Button_pressed"]
 [connection signal="toggled" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/HBoxContainer/HaloCheck" to="." method="on_halo_or_horns"]
 [connection signal="toggled" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/HBoxContainer/HornsCheck" to="." method="on_halo_or_horns"]
+[connection signal="pressed" from="CharGUI/VBoxContainer/RandomOrDone/DoneButton" to="." method="_on_DoneButton_pressed"]

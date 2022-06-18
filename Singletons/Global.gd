@@ -32,6 +32,43 @@ var palette_dict: Dictionary = {
 	"black_2": Color("#101010"), 
 	"black_3": Color("#000000"),
 }
+var character_sprite = "res://Assets/CharacterSprites/Wid_Vanilla.png"
+var character_modulate = Color.white
+var character_light_mask = "res://Assets/CharacterSprites/Wid_Mask.png"
+var light_mask_lookup: Dictionary = {
+	"res://Assets/CharacterSprites/Wid_Vanilla.png" : "res://Assets/CharacterSprites/Wid_Mask.png",
+	"res://Assets/CharacterSprites/Wid_Halo.png" : "res://Assets/CharacterSprites/Wid_Mask.png",
+	"res://Assets/CharacterSprites/Wid_Horns.png" : "res://Assets/CharacterSprites/Wid_Mask.png",
+	"res://Assets/CharacterSprites/Wid_HaloHorns.png" : "res://Assets/CharacterSprites/Wid_Mask.png",
+	"res://Assets/CharacterSprites/Uni_Vanilla.png" : "res://Assets/CharacterSprites/Uni_Mask.png", 
+	"res://Assets/CharacterSprites/Uni_Halo.png" : "res://Assets/CharacterSprites/Uni_Mask.png", 
+	"res://Assets/CharacterSprites/Uni_Horns.png" : "res://Assets/CharacterSprites/Uni_Mask.png", 
+	"res://Assets/CharacterSprites/Uni_HaloHorns.png" : "res://Assets/CharacterSprites/Uni_Mask.png",
+	"res://Assets/CharacterSprites/Tal_Vanilla.png" : "res://Assets/CharacterSprites/Tal_Mask.png",
+	"res://Assets/CharacterSprites/Tal_Halo.png" : "res://Assets/CharacterSprites/Tal_Mask.png",
+	"res://Assets/CharacterSprites/Tal_Horns.png" : "res://Assets/CharacterSprites/Tal_Mask.png",
+	"res://Assets/CharacterSprites/Tal_HaloHorns.png" : "res://Assets/CharacterSprites/Tal_Mask.png",
+	"res://Assets/CharacterSprites/Pik_Vanilla.png" : "res://Assets/CharacterSprites/Pik_Mask.png",
+	"res://Assets/CharacterSprites/Pik_Halo.png" : "res://Assets/CharacterSprites/Pik_Mask.png",
+	"res://Assets/CharacterSprites/Pik_Horns.png" : "res://Assets/CharacterSprites/Pik_Mask.png",
+	"res://Assets/CharacterSprites/Pik_HaloHorns.png" : "res://Assets/CharacterSprites/Pik_Mask.png",
+	"res://Assets/CharacterSprites/Ort_Vanilla.png" : "res://Assets/CharacterSprites/Ort_Mask.png",
+	"res://Assets/CharacterSprites/Ort_Halo.png" : "res://Assets/CharacterSprites/Ort_Mask.png",
+	"res://Assets/CharacterSprites/Ort_Horns.png" : "res://Assets/CharacterSprites/Ort_Mask.png",
+	"res://Assets/CharacterSprites/Ort_HaloHorns.png" : "res://Assets/CharacterSprites/Ort_Mask.png",
+	"res://Assets/CharacterSprites/Nor_Vanilla.png" : "res://Assets/CharacterSprites/Nor_Mask.png",
+	"res://Assets/CharacterSprites/Nor_Halo.png" : "res://Assets/CharacterSprites/Nor_Mask.png",
+	"res://Assets/CharacterSprites/Nor_Horns.png" : "res://Assets/CharacterSprites/Nor_Mask.png",
+	"res://Assets/CharacterSprites/Nor_HaloHorns.png" : "res://Assets/CharacterSprites/Nor_Mask.png",
+	"res://Assets/CharacterSprites/Mer_Vanilla.png" : "res://Assets/CharacterSprites/Mer_Mask.png",
+	"res://Assets/CharacterSprites/Mer_Halo.png" : "res://Assets/CharacterSprites/Mer_Mask.png",
+	"res://Assets/CharacterSprites/Mer_Horns.png" : "res://Assets/CharacterSprites/Mer_Mask.png",
+	"res://Assets/CharacterSprites/Mer_HaloHorns.png" : "res://Assets/CharacterSprites/Mer_Mask.png",
+	"res://Assets/CharacterSprites/Cho_Vanilla.png" : "res://Assets/CharacterSprites/Cho_Mask.png",
+	"res://Assets/CharacterSprites/Cho_Halo.png" : "res://Assets/CharacterSprites/Cho_Mask.png",
+	"res://Assets/CharacterSprites/Cho_Horns.png" : "res://Assets/CharacterSprites/Cho_Mask.png",
+	"res://Assets/CharacterSprites/Cho_HaloHorns.png" : "res://Assets/CharacterSprites/Cho_Mask.png" 
+}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

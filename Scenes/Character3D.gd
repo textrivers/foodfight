@@ -100,17 +100,23 @@ func _ready():
 	randomize()
 	parent = get_parent()
 	tween = $Tween
-	
-	generate_unique_appearance()
+	if player:
+		get_appearance_from_global()
+	else:
+		generate_unique_appearance()
 	revert_color = $Viewport/CharacterSprite/Sprite.modulate
 	$Sprite3D.material_override = $Sprite3D.material_override.duplicate(true)
 	$Sprite3D.texture = $Viewport.get_texture()
 	$Sprite3D.material_override.albedo_texture = $Viewport.get_texture()
 
+func get_appearance_from_global():
+	$Viewport/CharacterSprite/Sprite.modulate = Global.character_modulate
+	$Viewport/CharacterSprite/Sprite.texture = load(Global.character_sprite)
+	$Viewport/CharacterSprite/Light2D.texture = load(Global.character_light_mask)
+
 func generate_unique_appearance():
 	## rand base color for char sprite
 	var my_key = Global.palette_dict.keys()[randi() % Global.palette_dict.size()]
-	print(my_key)
 	$Viewport/CharacterSprite/Sprite.modulate = Global.palette_dict[my_key]
 	if $Viewport/CharacterSprite/Sprite.modulate == Color.black:
 		$Viewport/CharacterSprite/Sprite.modulate = Global.palette_dict["black_2"]

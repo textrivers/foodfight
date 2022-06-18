@@ -35,10 +35,10 @@ var thumbnails: Array = [
 	"res://Assets/CharacterSprites/Cho_Horns.png",
 	"res://Assets/CharacterSprites/Cho_HaloHorns.png"
 ]
+var next_scene = "res://Scenes/Level3D.tscn"
 
 func _ready():
 	pass
-
 
 func on_thumbnail_changed(thumb_num):
 	thumb_calc = thumb_num
@@ -47,7 +47,8 @@ func on_thumbnail_changed(thumb_num):
 	if $CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/HBoxContainer/HornsCheck.pressed == true:
 		thumb_calc += 2
 	$CharGUI/VBoxContainer/MainChoiceArea/PhotoEtc/TextureRect.texture = load(thumbnails[thumb_calc])
-	## TODO handle assigning info to Global character dictionary
+	Global.character_sprite = thumbnails[thumb_calc]
+	Global.character_light_mask = Global.light_mask_lookup[thumbnails[thumb_calc]]
 
 func on_halo_or_horns(_pressed):
 	while thumb_calc % 4 != 0:
@@ -57,9 +58,12 @@ func on_halo_or_horns(_pressed):
 	if $CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/HBoxContainer/HornsCheck.pressed == true:
 		thumb_calc += 2
 	$CharGUI/VBoxContainer/MainChoiceArea/PhotoEtc/TextureRect.texture = load(thumbnails[thumb_calc])
-	## TODO handle assigning info to Global character dictionary
+	Global.character_sprite = thumbnails[thumb_calc]
+	Global.character_light_mask = Global.light_mask_lookup[thumbnails[thumb_calc]]
 
 func on_color_changed(new_color):
 	$CharGUI/VBoxContainer/MainChoiceArea/PhotoEtc/TextureRect.self_modulate = new_color
-	## TODO assign color to Global character dictionary
+	Global.character_modulate = new_color
 	
+func _on_DoneButton_pressed():
+	SceneManager.goto_scene(self, next_scene)
