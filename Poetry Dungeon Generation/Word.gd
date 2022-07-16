@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+var min_move_threshold: Vector2 = Vector2(0.2, 0.2)
+var fixable: bool = false
 
 func _ready():
 	randomize()
@@ -19,25 +21,20 @@ func _ready():
 	$Polygon2D.polygon = PoolVector2Array(new_poly)
 	new_poly.append(new_poly[0])
 	$Line2D.points = PoolVector2Array(new_poly)
+	set_physics_process(false)
 
 func _physics_process(delta):
-	if get_linear_velocity() < Vector2(5, 5):
-		set_linear_velocity(Vector2.ZERO)
-		rotation_degrees = 0
-		position.y = stepify(position.y, 30)
-		#sleeping = true
-		$Polygon2D.hide()
-		$Line2D.hide()
-		#set_physics_process(false)
 
+		rectify()
 
-func _on_Word_sleeping_state_changed():
-	sleeping = false
-	apply_central_impulse(Vector2((randf() * 2) - 1, (randf() * 2) - 1))
-	if contacts_reported == 0:
-		rotation_degrees = 0
-		position.y = stepify(position.y, 40)
-		sleeping = true
-		$Polygon2D.hide()
-		$Line2D.hide()
-	
+func rectify():
+	rotation_degrees = 0
+	position.y = stepify(position.y, 30)
+	#sleeping = true
+
+func solidify():
+	rectify()
+	$Polygon2D.hide()
+	$Line2D.hide()
+	set_linear_velocity(Vector2.ZERO)
+	$CollisionShape2D.disabled = true

@@ -6,6 +6,12 @@
 script = ExtResource( 1 )
 word_count = 40
 source_text = "How much longer will I be able to inhabit the divine sepulcher Of life, my great love?  Do dolphins plunge bottomward To find the light?  Or is it rock That is searched?  Unrelentingly?  Huh.  And if some day"
+time_to_solid = 5.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
+
+[node name="WordContainer" type="Node2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
