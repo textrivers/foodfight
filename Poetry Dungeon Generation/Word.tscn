@@ -33,12 +33,11 @@ width = 2.0
 default_color = Color( 0.964706, 0.376471, 0.317647, 1 )
 
 [node name="Label" type="Label" parent="."]
-margin_left = -30.0
-margin_top = -10.0
-margin_right = 30.0
-margin_bottom = 10.0
+margin_top = -8.0
+margin_bottom = 8.0
+grow_horizontal = 2
 theme = SubResource( 3 )
-text = "laser"
+text = "gumdrop"
 align = 1
 valign = 1
 
