@@ -1,28 +1,50 @@
 extends Node2D
 
-export var word_count: int = 30
+var text_counter: int = 0
+var word_count: int = 30
 export var source_text: String
 var word_node = load("res://Word.tscn")
 var blank_node = load("res://Blank.tscn")
 var line_dict: Dictionary = {}
 export var time_to_solid: float = 15
-var space_size: float = 5
+var space_size: float = 5.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	place_words()
-	$Timer.wait_time = time_to_solid
+	$GUI/HBoxContainer/SourceContainer/SourceText.text = Repository.AW_text_dict[0]
 # warning-ignore:return_value_discarded
 	$Timer.connect("timeout", self, "solidify_words")
 
 func _process(_delta):
 	pass
 
+func parse_and_place():
+	line_dict.clear()
+	source_text = $GUI/HBoxContainer/SourceContainer/SourceText.text
+	$GUI/HBoxContainer/Control/FinishedButton.show()
+	$GUI/HBoxContainer/SourceContainer.hide()
+	place_words()
+	$Timer.wait_time = time_to_solid
+	$Timer.start()
+
+func parse_and_finish():
+	## TODO get text from line_dict, parse it and put it in OutputText
+	$GUI/HBoxContainer/Control/FinishedButton.hide()
+	$GUI/HBoxContainer/OutputContainer.show()
+
+func next_text():
+	for child in $WordContainer.get_children():
+		child.call_deferred("queue_free")
+	text_counter += 1
+	$GUI/HBoxContainer/OutputContainer.hide()
+	$GUI/HBoxContainer/SourceContainer.show()
+	$GUI/HBoxContainer/SourceContainer/SourceText.text = Repository.AW_text_dict[text_counter % Repository.AW_text_dict.size()]
+
 func place_words():
 	var new_text = source_text.split(" ", false, 0)
 	word_count = new_text.size()
 	for word in word_count:
-		yield(get_tree().create_timer(0.1), "timeout")
+		yield(get_tree().create_timer(0.05), "timeout")
 		var new_word = word_node.instance()
 		new_word.position.x = (randf() * 60) - 30
 		new_word.position.x += 512
@@ -35,7 +57,6 @@ func place_words():
 	for child in $WordContainer.get_children():
 		child.get_node("CollisionShape2D").set_deferred("disabled", false)
 		child.set_physics_process(true)
-	$Timer.start()
 
 func solidify_words():
 	for word in $WordContainer.get_children():
@@ -74,12 +95,11 @@ func place_blanks():
 			if new_pos >= line_dict[word.position.y].size():
 				line_dict[word.position.y].append(word)
 	for line in line_dict:
-		pass
 		## duplicate the line's array and iterate over that
 		var dupe_line = line_dict[line].duplicate(false)
 		var word_index: int = 0
 		for word in dupe_line:
-			yield(get_tree().create_timer(0.1), "timeout") ## special effect
+			yield(get_tree().create_timer(0.05), "timeout") ## special effect
 			## blank to left of first word in line
 			if word_index == 0:
 				if word.position.x > 10: 

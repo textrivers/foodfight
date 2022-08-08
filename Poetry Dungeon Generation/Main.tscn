@@ -4,8 +4,6 @@
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
-word_count = 40
-source_text = "How much longer will I be able to inhabit the divine sepulcher Of life, my great love?  Do dolphins plunge bottomward To find the light?  Or is it rock That is searched?  Unrelentingly?  Huh.  And if some day"
 time_to_solid = 5.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -15,3 +13,126 @@ anchor_mode = 0
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="GUI" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 1024, 600 )
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI"]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="GUI/HBoxContainer"]
+margin_right = 200.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 200, 0 )
+mouse_filter = 2
+
+[node name="FinishedButton" type="Button" parent="GUI/HBoxContainer/Control"]
+visible = false
+margin_right = 12.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 200, 0 )
+text = "Click when finished"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SourceContainer" type="VBoxContainer" parent="GUI/HBoxContainer"]
+margin_left = 204.0
+margin_right = 828.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 624, 600 )
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GUI/HBoxContainer/SourceContainer"]
+margin_top = 67.0
+margin_right = 624.0
+margin_bottom = 81.0
+text = "Source Text:"
+align = 1
+
+[node name="SourceText" type="TextEdit" parent="GUI/HBoxContainer/SourceContainer"]
+margin_top = 85.0
+margin_right = 624.0
+margin_bottom = 485.0
+rect_min_size = Vector2( 600, 400 )
+text = "How much longer will I be able to inhabit the divine sepulcher 
+Of life, my great love?  Do dolphins plunge bottomward 
+To find the light?  Or is it rock 
+That is searched?  Unrelentingly?  Huh.  And if some day"
+
+[node name="Control" type="Control" parent="GUI/HBoxContainer/SourceContainer"]
+margin_top = 489.0
+margin_right = 624.0
+margin_bottom = 509.0
+rect_min_size = Vector2( 0, 20 )
+
+[node name="Generate" type="Button" parent="GUI/HBoxContainer/SourceContainer"]
+margin_top = 513.0
+margin_right = 624.0
+margin_bottom = 533.0
+text = "Generate"
+
+[node name="OutputContainer" type="VBoxContainer" parent="GUI/HBoxContainer"]
+visible = false
+margin_left = 832.0
+margin_right = 1456.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 624, 600 )
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GUI/HBoxContainer/OutputContainer"]
+margin_top = 67.0
+margin_right = 624.0
+margin_bottom = 81.0
+text = "Output Text:"
+align = 1
+
+[node name="OutputText" type="TextEdit" parent="GUI/HBoxContainer/OutputContainer"]
+margin_top = 85.0
+margin_right = 624.0
+margin_bottom = 485.0
+rect_min_size = Vector2( 600, 400 )
+text = "How much longer will I be able to inhabit the divine sepulcher 
+Of life, my great love?  Do dolphins plunge bottomward 
+To find the light?  Or is it rock 
+That is searched?  Unrelentingly?  Huh.  And if some day"
+
+[node name="Control" type="Control" parent="GUI/HBoxContainer/OutputContainer"]
+margin_top = 489.0
+margin_right = 624.0
+margin_bottom = 509.0
+rect_min_size = Vector2( 0, 20 )
+
+[node name="Next Text" type="Button" parent="GUI/HBoxContainer/OutputContainer"]
+margin_top = 513.0
+margin_right = 624.0
+margin_bottom = 533.0
+text = "Next Text"
+
+[node name="Control2" type="Control" parent="GUI/HBoxContainer"]
+margin_left = 832.0
+margin_right = 1032.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 200, 0 )
+mouse_filter = 2
+
+[connection signal="pressed" from="GUI/HBoxContainer/Control/FinishedButton" to="." method="parse_and_finish"]
+[connection signal="pressed" from="GUI/HBoxContainer/SourceContainer/Generate" to="." method="parse_and_place"]
+[connection signal="pressed" from="GUI/HBoxContainer/OutputContainer/Next Text" to="." method="next_text"]
