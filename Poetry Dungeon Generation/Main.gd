@@ -29,12 +29,13 @@ func parse_and_place():
 
 func parse_and_finish():
 	## TODO get text from line_dict, parse it and put it in OutputText
+	## clear screen
+	for child in $WordContainer.get_children():
+		child.call_deferred("queue_free")
 	$GUI/HBoxContainer/Control/FinishedButton.hide()
 	$GUI/HBoxContainer/OutputContainer.show()
 
 func next_text():
-	for child in $WordContainer.get_children():
-		child.call_deferred("queue_free")
 	text_counter += 1
 	$GUI/HBoxContainer/OutputContainer.hide()
 	$GUI/HBoxContainer/SourceContainer.show()
@@ -67,18 +68,29 @@ func solidify_words():
 
 func place_blanks():
 	var left_margin: float = 1024
+	var left_word
 	var right_margin: float = 0
+	var right_word
 	for word in $WordContainer.get_children():
 		## check word position;
 		## queue_free anything outside the screen bounds;
 		if word.position.y < 16 || word.position.y > (600 - 16):
 			word.call_deferred("queue_free")
 			continue
+		if word.position.x < 40 || word.position.x > (1024 - 40):
+			word.call_deferred("queue_free")
+			continue
 		## use x position extremes to establish left and right margins
-		if word.position.x < left_margin:
-			left_margin = word.position.x
-		if word.position.x > right_margin:
-			right_margin = word.position.x
+		if word.position.x - (word.get_node("Label").rect_size.x / 2) < left_margin:
+			left_margin = word.position.x - (word.get_node("Label").rect_size.x / 2)
+			left_word = word
+			if left_margin < 10:
+				left_margin = 10
+		if word.position.x + (word.get_node("Label").rect_size.x / 2) > right_margin:
+			right_margin = word.position.x + (word.get_node("Label").rect_size.x / 2)
+			right_word = word
+			if right_margin > 1014:
+				right_margin = 1014
 		## if line_dict has no entry for that y position, create array and append word node inside it
 		if !line_dict.has(word.position.y):
 			line_dict[word.position.y] = []
@@ -101,7 +113,7 @@ func place_blanks():
 		for word in dupe_line:
 			yield(get_tree().create_timer(0.05), "timeout") ## special effect
 			## blank to left of first word in line
-			if word_index == 0:
+			if word_index == 0 && word != left_word:
 				if word.position.x > 10: 
 					var word_0_left_margin = word.position.x - (word.get_node("Label").rect_size.x / 2) - space_size
 					var left_blank_pos: Vector2 = Vector2((word_0_left_margin + left_margin) / 2, word.position.y)
@@ -110,6 +122,8 @@ func place_blanks():
 					line_dict[line].insert(0, first_blank)
 			## blank right of last line
 			if word_index == dupe_line.size() - 1:
+				if word == right_word:
+					break
 				if word.position.x < right_margin - 10:
 					var last_word_right_margin = word.position.x + (word.get_node("Label").rect_size.x / 2) + space_size
 					var last_blank_pos: Vector2 = Vector2((last_word_right_margin + right_margin) / 2, word.position.y)
@@ -117,10 +131,10 @@ func place_blanks():
 					var last_blank = position_resize_place_blank(last_blank_pos, last_blank_size)
 					line_dict[line].append(last_blank)
 				break
-			## place it to the right, halfway between this word's right margin and next word's left margin
+			## place blank to the right, halfway between this word's right margin and next word's left margin
 			var word_right_margin = word.position.x + (word.get_node("Label").rect_size.x / 2) + space_size
 			var next_word_left_margin = dupe_line[word_index + 1].position.x - (dupe_line[word_index + 1].get_node("Label").rect_size.x / 2) - space_size
-			if next_word_left_margin < word_right_margin: 
+			if next_word_left_margin - word_right_margin < 20: 
 				continue
 			var blank_pos = Vector2((word_right_margin + next_word_left_margin) / 2, word.position.y)
 			var blank_size = next_word_left_margin - word_right_margin 
@@ -138,14 +152,15 @@ func place_blanks():
 func position_resize_place_blank(blank_pos, blank_size):
 	var new_blank = blank_node.instance()
 	new_blank.position = blank_pos
-	var gap_between = blank_size
-	var edit = new_blank.get_node("TextEdit")
-	## change new blank's size, position, and margins, in that order
-	edit.rect_size = Vector2(gap_between, 16)
-	edit.rect_position = Vector2(-gap_between / 2, -8)
-	edit.margin_left = -gap_between / 2
-	edit.margin_right = gap_between / 2
-	edit.margin_top = -8
-	edit.margin_bottom = 8
-	$WordContainer.add_child(new_blank)
+	if blank_size > 15:
+		var gap_between = blank_size
+		var edit = new_blank.get_node("TextEdit")
+		## change new blank's size, position, and margins, in that order
+		edit.rect_size = Vector2(gap_between, 16)
+		edit.rect_position = Vector2(-gap_between / 2, -8)
+		edit.margin_left = -gap_between / 2
+		edit.margin_right = gap_between / 2
+		edit.margin_top = -8
+		edit.margin_bottom = 8
+		$WordContainer.add_child(new_blank)
 	return new_blank
