@@ -11,7 +11,7 @@ extents = Vector2( 30, 10 )
 [sub_resource type="Theme" id=3]
 Label/colors/font_color = Color( 0, 0, 0, 1 )
 
-[node name="Word" type="RigidBody2D"]
+[node name="Word" type="RigidBody2D" groups=["word"]]
 physics_material_override = SubResource( 2 )
 contact_monitor = true
 can_sleep = false
@@ -23,11 +23,13 @@ shape = SubResource( 1 )
 disabled = true
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
 z_index = -2
 color = Color( 0.223529, 0.494118, 0.494118, 1 )
 polygon = PoolVector2Array( -30, -10, 30, -10, 30, 10, -30, 10 )
 
 [node name="Line2D" type="Line2D" parent="."]
+visible = false
 points = PoolVector2Array( -30, -10, 30, -10, 30, 10, -30, 10, -30, -10 )
 width = 2.0
 default_color = Color( 0.964706, 0.376471, 0.317647, 1 )

@@ -21,14 +21,32 @@ func _process(_delta):
 func parse_and_place():
 	line_dict.clear()
 	source_text = $GUI/HBoxContainer/SourceContainer/SourceText.text
-	$GUI/HBoxContainer/Control/FinishedButton.show()
+	
 	$GUI/HBoxContainer/SourceContainer.hide()
 	place_words()
-	$Timer.wait_time = time_to_solid
-	$Timer.start()
 
 func parse_and_finish():
 	## TODO get text from line_dict, parse it and put it in OutputText
+	var my_output_string: String
+	while line_dict.size() > 0:
+		var lowest_key = 2000
+		## iterate over keys in line_dict to find lowest
+		for key in line_dict.keys():
+			if key < lowest_key:
+				lowest_key = key
+		## iterate over its array and put text in string
+		for word in line_dict[lowest_key]:
+			var word_text: String
+			if word.is_in_group("word"):
+				word_text = word.get_node("Label").text
+			if word.is_in_group("blank"):
+				word_text = word.get_node("TextEdit").text
+			my_output_string = my_output_string + word_text + " "
+		## at the end of that, put a newline
+		my_output_string = my_output_string + "\n"
+		## remove it from line_dict
+		line_dict.erase(lowest_key)
+	$GUI/HBoxContainer/OutputContainer/OutputText.text = my_output_string
 	## clear screen
 	for child in $WordContainer.get_children():
 		child.call_deferred("queue_free")
@@ -58,6 +76,8 @@ func place_words():
 	for child in $WordContainer.get_children():
 		child.get_node("CollisionShape2D").set_deferred("disabled", false)
 		child.set_physics_process(true)
+	$Timer.wait_time = time_to_solid
+	$Timer.start()
 
 func solidify_words():
 	for word in $WordContainer.get_children():
@@ -148,6 +168,7 @@ func place_blanks():
 				else:
 					pos_index += 1
 			word_index += 1
+	$GUI/HBoxContainer/Control/FinishedButton.show()
 
 func position_resize_place_blank(blank_pos, blank_size):
 	var new_blank = blank_node.instance()
