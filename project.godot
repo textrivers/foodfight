@@ -69,5 +69,6 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-quality/filters/msaa=2
+quality/reflections/texture_array_reflections=false
+quality/filters/use_fxaa=true
 environment/default_environment="res://default_env.tres"

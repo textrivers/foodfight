@@ -2,6 +2,10 @@
 
 [ext_resource path="res://Assets/Fonts/TCM_____.TTF" type="DynamicFontData" id=1]
 
+[sub_resource type="DynamicFont" id=8]
+size = 20
+font_data = ExtResource( 1 )
+
 [sub_resource type="StyleBoxFlat" id=4]
 content_margin_right = 0.0
 bg_color = Color( 0.458824, 0.458824, 0.458824, 1 )
@@ -79,10 +83,6 @@ size = Vector2( 8, 8 )
 texture = SubResource( 12 )
 region_rect = Rect2( 0, 0, 8, 8 )
 
-[sub_resource type="DynamicFont" id=8]
-size = 20
-font_data = ExtResource( 1 )
-
 [resource]
 resource_local_to_scene = true
 default_font = SubResource( 8 )
@@ -92,7 +92,7 @@ Button/colors/font_color_focus = Color( 1, 0.878431, 0.054902, 1 )
 Button/colors/font_color_hover = Color( 1, 0.878431, 0.054902, 1 )
 Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
 Button/constants/hseparation = 0
-Button/fonts/font = null
+Button/fonts/font = SubResource( 8 )
 Button/styles/disabled = SubResource( 4 )
 Button/styles/focus = SubResource( 7 )
 Button/styles/hover = SubResource( 5 )

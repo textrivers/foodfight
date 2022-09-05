@@ -6,12 +6,13 @@ export var source_text: String
 var word_node = load("res://Word.tscn")
 var blank_node = load("res://Blank.tscn")
 var line_dict: Dictionary = {}
-export var time_to_solid: float = 15
+export var time_to_solid: float = 10
 var space_size: float = 5.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$GUI/HBoxContainer/SourceContainer/SourceText.text = Repository.AW_text_dict[0]
+	$GUI/HBoxContainer/SourceContainer/SourceText.text = Repository.current_text[0]
+	$GUI/HBoxContainer/SourceContainer/Label.text = "Source text by " + Repository.current_writer
 # warning-ignore:return_value_discarded
 	$Timer.connect("timeout", self, "solidify_words")
 
@@ -21,7 +22,6 @@ func _process(_delta):
 func parse_and_place():
 	line_dict.clear()
 	source_text = $GUI/HBoxContainer/SourceContainer/SourceText.text
-	
 	$GUI/HBoxContainer/SourceContainer.hide()
 	place_words()
 
@@ -57,7 +57,7 @@ func next_text():
 	text_counter += 1
 	$GUI/HBoxContainer/OutputContainer.hide()
 	$GUI/HBoxContainer/SourceContainer.show()
-	$GUI/HBoxContainer/SourceContainer/SourceText.text = Repository.AW_text_dict[text_counter % Repository.AW_text_dict.size()]
+	$GUI/HBoxContainer/SourceContainer/SourceText.text = Repository.current_text[text_counter % Repository.current_text.size()]
 
 func place_words():
 	var new_text = source_text.split(" ", false, 0)
@@ -72,7 +72,7 @@ func place_words():
 		new_word.get_node("Label").text = new_text[word]
 		## TODO resize Label to fit new word
 		$WordContainer.add_child(new_word)
-		new_word.apply_central_impulse(Vector2((randf() * 2) - 1, (randf() * 2) - 1))
+		#new_word.apply_central_impulse(Vector2((randf() * 2) - 1, (randf() * 2) - 1))
 	for child in $WordContainer.get_children():
 		child.get_node("CollisionShape2D").set_deferred("disabled", false)
 		child.set_physics_process(true)
@@ -83,7 +83,7 @@ func solidify_words():
 	for word in $WordContainer.get_children():
 		word.solidify()
 		word.set_deferred("rotation_degrees", 0.0)
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(get_tree().create_timer(0.1), "timeout")
 	place_blanks()
 
 func place_blanks():
@@ -140,7 +140,7 @@ func place_blanks():
 					var left_blank_size = word_0_left_margin - left_margin - space_size
 					var first_blank = position_resize_place_blank(left_blank_pos, left_blank_size)
 					line_dict[line].insert(0, first_blank)
-			## blank right of last line
+			## blank right of last word in line
 			if word_index == dupe_line.size() - 1:
 				if word == right_word:
 					break
@@ -154,8 +154,8 @@ func place_blanks():
 			## place blank to the right, halfway between this word's right margin and next word's left margin
 			var word_right_margin = word.position.x + (word.get_node("Label").rect_size.x / 2) + space_size
 			var next_word_left_margin = dupe_line[word_index + 1].position.x - (dupe_line[word_index + 1].get_node("Label").rect_size.x / 2) - space_size
-			if next_word_left_margin - word_right_margin < 20: 
-				continue
+#			if next_word_left_margin - word_right_margin < 20: 
+#				continue
 			var blank_pos = Vector2((word_right_margin + next_word_left_margin) / 2, word.position.y)
 			var blank_size = next_word_left_margin - word_right_margin 
 			var new_blank = position_resize_place_blank(blank_pos, blank_size)
@@ -173,15 +173,17 @@ func place_blanks():
 func position_resize_place_blank(blank_pos, blank_size):
 	var new_blank = blank_node.instance()
 	new_blank.position = blank_pos
-	if blank_size > 15:
-		var gap_between = blank_size
+	if blank_size > 10:
 		var edit = new_blank.get_node("TextEdit")
 		## change new blank's size, position, and margins, in that order
-		edit.rect_size = Vector2(gap_between, 16)
-		edit.rect_position = Vector2(-gap_between / 2, -8)
-		edit.margin_left = -gap_between / 2
-		edit.margin_right = gap_between / 2
+		edit.rect_size = Vector2(blank_size, 16)
+		edit.rect_position = Vector2(-blank_size / 2, -8)
+		edit.margin_left = -blank_size / 2
+		edit.margin_right = blank_size / 2
 		edit.margin_top = -8
 		edit.margin_bottom = 8
 		$WordContainer.add_child(new_blank)
 	return new_blank
+
+func _on_QuitToMenu_pressed():
+	get_tree().change_scene("res://TitleScreen.tscn")

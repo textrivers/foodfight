@@ -52,7 +52,7 @@ func _ready():
 	if splat_eval == 0:
 		wordy = true
 	if splat_eval < 4:
-		porous = true
+		#porous = true
 		extra3 = true
 	if splat_eval < 2:
 		extra2 = true
@@ -70,11 +70,11 @@ func _ready():
 	if extra3:
 		get_node("Viewport/PartSprite/Sprite3").show()
 		$Viewport/PartSprite/Sprite3.offset = Vector2(randf() * 125, randf() * 125)
-	if wordy: 
-		print("wordy")
-		get_node("Viewport/PartSprite/Label").show()
-		$Viewport/PartSprite/Label.rect_position.y = randf() * 35
-		$Viewport/PartSprite/Label.text = words[randi() % words.size()]
+#	if wordy: 
+#		print("wordy")
+#		get_node("Viewport/PartSprite/Label").show()
+#		$Viewport/PartSprite/Label.rect_position.y = randf() * 35
+#		$Viewport/PartSprite/Label.text = words[randi() % words.size()]
 	anim_player.play("splort")
 	$Viewport/PartSprite/Sprite2.offset = Vector2(randf() * 84, randf() * 84)
 	

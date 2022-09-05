@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Word.gd" type="Script" id=1]
+[ext_resource path="res://fonts/bahnschrift.ttf" type="DynamicFontData" id=2]
 
 [sub_resource type="PhysicsMaterial" id=2]
 bounce = 0.57
@@ -8,7 +9,11 @@ bounce = 0.57
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 10 )
 
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 2 )
+
 [sub_resource type="Theme" id=3]
+default_font = SubResource( 4 )
 Label/colors/font_color = Color( 0, 0, 0, 1 )
 
 [node name="Word" type="RigidBody2D" groups=["word"]]

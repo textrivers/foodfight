@@ -1,7 +1,9 @@
 extends Node
 
-## all source text by Andrew Weatherhead
+var current_text
+var current_writer: String
 
+## this text by Andrew Weatherhead
 var AW_text_dict: Dictionary = {
 	0: " Things are funny until they aren't\n Though you only change as much as you have to\n So I sit in the corner and call it progress\n I'd say I deserve it", 
 	1: " Information wants to be disorganized\n Try to make edits -- you can't\n The lattice flattens, correctly\n History revs its cute little engine",
@@ -16,4 +18,9 @@ var AW_text_dict: Dictionary = {
 	10: " So this is my final poem\n And I wish I could forget each one\n But words require logic, definition\n Surely nature can do better",
 	11: " The night scoots\n Days like shirts, numbers like bugs\n So I go round and around, like a ghost\n Cops on every corner, magicians sawing folks in half",
 	12: " So we end up back at the beginning\n Like it's the only thing left\n But I didn't used to talk like this...\n It's the only way a poem can end"
+}
+
+## this text by Jon Woodward
+var JW_text_dict: Dictionary = {
+	## TODO put stuff here
 }

@@ -1,0 +1,69 @@
+[gd_resource type="Theme" load_steps=6 format=2]
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.239216, 0.87451, 0.87451, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.239216, 0.74902, 0.87451, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.956863, 0.709804, 1, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.937255, 0.501961, 0.972549, 1 )
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.239216, 0.87451, 0.87451, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.239216, 0.74902, 0.87451, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=9]
+content_margin_left = 5.0
+content_margin_right = 5.0
+bg_color = Color( 0.545098, 0.27451, 0.678431, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[resource]
+ItemList/colors/font_color = Color( 0.815686, 0.933333, 0.929412, 1 )
+ItemList/colors/font_color_selected = Color( 0, 0, 0, 1 )
+ItemList/colors/guide_color = Color( 0.239216, 0.74902, 0.87451, 1 )
+ItemList/constants/hseparation = 0
+ItemList/constants/icon_margin = 0
+ItemList/constants/line_separation = 0
+ItemList/constants/vseparation = 0
+ItemList/fonts/font = null
+ItemList/styles/bg = SubResource( 4 )
+ItemList/styles/bg_focus = null
+ItemList/styles/cursor = null
+ItemList/styles/cursor_unfocused = null
+ItemList/styles/selected = null
+ItemList/styles/selected_focus = null
+VScrollBar/styles/grabber = SubResource( 6 )
+VScrollBar/styles/grabber_highlight = SubResource( 7 )
+VScrollBar/styles/grabber_pressed = SubResource( 8 )
+VScrollBar/styles/scroll = SubResource( 9 )
