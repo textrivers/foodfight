@@ -185,5 +185,11 @@ func position_resize_place_blank(blank_pos, blank_size):
 		$WordContainer.add_child(new_blank)
 	return new_blank
 
+func _on_SaveToFile_pressed():
+	var txt_for_file = $GUI/HBoxContainer/OutputContainer/OutputText.text
+	var txt_buff: PoolByteArray = txt_for_file.to_utf8()
+	JavaScript.download_buffer(txt_buff, "txt.txt", "text/plain")
+	
 func _on_QuitToMenu_pressed():
 	get_tree().change_scene("res://TitleScreen.tscn")
+

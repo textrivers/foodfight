@@ -103,16 +103,16 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="GUI/HBoxContainer/OutputContainer"]
-margin_top = 55.0
+margin_top = 40.0
 margin_right = 624.0
-margin_bottom = 69.0
+margin_bottom = 57.0
 text = "Output Text:"
 align = 1
 
 [node name="OutputText" type="TextEdit" parent="GUI/HBoxContainer/OutputContainer"]
-margin_top = 73.0
+margin_top = 61.0
 margin_right = 624.0
-margin_bottom = 473.0
+margin_bottom = 461.0
 rect_min_size = Vector2( 600, 400 )
 theme = ExtResource( 5 )
 text = "How much longer will I be able to inhabit the divine sepulcher 
@@ -121,22 +121,29 @@ To find the light?  Or is it rock
 That is searched?  Unrelentingly?  Huh.  And if some day"
 
 [node name="Control" type="Control" parent="GUI/HBoxContainer/OutputContainer"]
-margin_top = 477.0
+margin_top = 465.0
 margin_right = 624.0
-margin_bottom = 497.0
+margin_bottom = 485.0
 rect_min_size = Vector2( 0, 20 )
 
 [node name="NextText" type="Button" parent="GUI/HBoxContainer/OutputContainer"]
-margin_top = 501.0
+margin_top = 489.0
 margin_right = 624.0
-margin_bottom = 521.0
+margin_bottom = 510.0
 theme = ExtResource( 3 )
 text = "Next Text"
 
-[node name="QuitToMenu" type="Button" parent="GUI/HBoxContainer/OutputContainer"]
-margin_top = 525.0
+[node name="SaveToFile" type="Button" parent="GUI/HBoxContainer/OutputContainer"]
+margin_top = 514.0
 margin_right = 624.0
-margin_bottom = 545.0
+margin_bottom = 535.0
+theme = ExtResource( 3 )
+text = "Save This Output Text To File"
+
+[node name="QuitToMenu" type="Button" parent="GUI/HBoxContainer/OutputContainer"]
+margin_top = 539.0
+margin_right = 624.0
+margin_bottom = 560.0
 theme = ExtResource( 3 )
 text = "Quit to Menu"
 
@@ -155,4 +162,5 @@ centered = false
 [connection signal="pressed" from="GUI/HBoxContainer/Control/FinishedButton" to="." method="parse_and_finish"]
 [connection signal="pressed" from="GUI/HBoxContainer/SourceContainer/Generate" to="." method="parse_and_place"]
 [connection signal="pressed" from="GUI/HBoxContainer/OutputContainer/NextText" to="." method="next_text"]
+[connection signal="pressed" from="GUI/HBoxContainer/OutputContainer/SaveToFile" to="." method="_on_SaveToFile_pressed"]
 [connection signal="pressed" from="GUI/HBoxContainer/OutputContainer/QuitToMenu" to="." method="_on_QuitToMenu_pressed"]
