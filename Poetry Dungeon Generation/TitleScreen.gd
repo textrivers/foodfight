@@ -2,7 +2,10 @@ extends Node2D
 
 var text_dict_dict: Dictionary = {
 	0: [Repository.AW_text_dict, "Andrew Weatherhead"],
-	1: [Repository.JW_text_dict, "Jon Woodward"],
+	1: [Repository.GM_text_dict, "Grant Maierhofer"],
+	2: [Repository.FJH_text_dict, "Francine J. Harris"],
+	3: [Repository.ID_text_dict, "Ian Dreiblatt"],
+	4: [Repository.JW_text_dict, "Jon Woodward"],
 }
 
 func _ready():

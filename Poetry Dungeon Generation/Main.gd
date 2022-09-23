@@ -60,6 +60,7 @@ func next_text():
 	$GUI/HBoxContainer/SourceContainer/SourceText.text = Repository.current_text[text_counter % Repository.current_text.size()]
 
 func place_words():
+	source_text = source_text.replace("\n", " ")
 	var new_text = source_text.split(" ", false, 0)
 	word_count = new_text.size()
 	for word in word_count:
