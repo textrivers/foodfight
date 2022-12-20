@@ -1,18 +1,22 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Meshes/floortilebevel.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://Scenes/FloorTile3D.gd" type="Script" id=2]
 [ext_resource path="res://Assets/tile3d_black_rim.png" type="Texture" id=3]
 
+[sub_resource type="SpatialMaterial" id=3]
+
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 0.5, 0.03, 0.5 )
 
-[node name="FloorTile3D" type="MeshInstance" groups=["selectable"]]
+[node name="FloorTile3D" type="MeshInstance" groups=["selectable", "tile"]]
+visible = false
+material_override = SubResource( 3 )
 mesh = ExtResource( 1 )
-material/0 = null
 script = ExtResource( 2 )
 
-[node name="StaticBody" type="StaticBody" parent="."]
+[node name="StaticBody" type="StaticBody" parent="." groups=["proximity"]]
+input_ray_pickable = false
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
 shape = SubResource( 2 )

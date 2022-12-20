@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/Food.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/FoodSprites/bettericecreamcone/5.PNG" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Assets/FoodSprites/bettericecreamcone/4.PNG" type="Texture" id=7]
 [ext_resource path="res://Assets/FoodSprites/bettericecreamcone/2.PNG" type="Texture" id=8]
 [ext_resource path="res://Assets/FoodSprites/bettericecreamcone/3.PNG" type="Texture" id=9]
+[ext_resource path="res://Scenes/Text.tscn" type="PackedScene" id=10]
 
 [sub_resource type="SpriteFrames" id=1]
 resource_local_to_scene = true
@@ -24,3 +25,5 @@ splat_colors = [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.513726, 0.29
 
 [node name="AnimatedSprite" parent="Viewport/FoodSprite" index="0"]
 frames = SubResource( 1 )
+
+[node name="Text" parent="." index="4" instance=ExtResource( 10 )]

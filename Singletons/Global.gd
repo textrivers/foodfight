@@ -31,6 +31,8 @@ var palette_dict: Dictionary = {
 	"black_1": Color("#202020"), 
 	"black_2": Color("#101010"), 
 	"black_3": Color("#000000"),
+	"pink_1": Color("#d43d43"), 
+	"pink_2": Color("#921921")
 }
 var character_sprite = "res://Assets/CharacterSprites/Wid_Vanilla.png"
 var character_modulate = Color.white
@@ -68,6 +70,21 @@ var light_mask_lookup: Dictionary = {
 	"res://Assets/CharacterSprites/Cho_Halo.png" : "res://Assets/CharacterSprites/Cho_Mask.png",
 	"res://Assets/CharacterSprites/Cho_Horns.png" : "res://Assets/CharacterSprites/Cho_Mask.png",
 	"res://Assets/CharacterSprites/Cho_HaloHorns.png" : "res://Assets/CharacterSprites/Cho_Mask.png" 
+}
+var player_node
+var character_proximity_radius: float = 8.0 #change this if size of character's proximity area is changed
+
+var poem_text_dict: Dictionary = {
+	0: "Loss", 
+	1: "Heart", 
+	2: "Finger",
+	3: "Toe", 
+	4: "Eyeball",
+	5: "Soup", 
+	7: "Candy",
+	8: "Sandwich",
+	9: "Food", 
+	10: "Glass"
 }
 
 # Called when the node enters the scene tree for the first time.

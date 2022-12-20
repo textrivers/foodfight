@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.168627, 0.988235, 0.141176, 1 )
+
+[node name="DebugSphere" type="CSGSphere" groups=["debug"]]
+material_override = SubResource( 1 )
+radius = 0.2

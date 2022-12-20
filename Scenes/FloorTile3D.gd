@@ -20,7 +20,7 @@ func on_target_unselecting():
 
 func _on_StaticBody_mouse_entered():
 	if selecting == true && selected == false:
-		material_override.albedo_color = Color.hotpink
+		material_override.albedo_color = Global.palette_dict["pink_1"]
 
 func _on_StaticBody_mouse_exited():
 	if selecting == true && selected == false:

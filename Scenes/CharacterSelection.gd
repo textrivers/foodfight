@@ -35,7 +35,7 @@ var thumbnails: Array = [
 	"res://Assets/CharacterSprites/Cho_Horns.png",
 	"res://Assets/CharacterSprites/Cho_HaloHorns.png"
 ]
-var next_scene = "res://Scenes/Level3D.tscn"
+var next_scene = "res://Scenes/Level4.tscn"
 
 func _ready():
 	pass

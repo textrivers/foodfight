@@ -4,7 +4,12 @@ extends Sprite3D
 func _ready():
 	randomize()
 	$Timer.wait_time = (randf() / 2) + 0.5
-	$Timer.start()
+	for character in get_tree().get_nodes_in_group("character"):
+		if character.player == true:
+			if self.global_translation.distance_to(character.global_translation) < Global.character_proximity_radius:
+				$Timer.start()
+			else: 
+				queue_free()
 	get_parent().connect("red_light", self, "on_red_light")
 	get_parent().connect("green_light", self, "on_green_light")
 
