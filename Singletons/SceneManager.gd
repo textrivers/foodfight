@@ -7,13 +7,13 @@ export var max_time = 20000
 signal fade_to_black
 var transition_squares
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	transition_squares = get_node_or_null("/root/Main/TransitionSquares")
 
 func goto_scene(current_scene, path):
 	emit_signal("fade_to_black", true)
 	yield(get_node("/root/Main/TransitionSquares/Tween"), "tween_all_completed")
+	current_scene.queue_free()
 	var loader = ResourceLoader.load_interactive(path)
 	if loader == null:
 		print("error, could not load level")
@@ -26,7 +26,7 @@ func goto_scene(current_scene, path):
 		if err == ERR_FILE_EOF: #Load complete
 			var resource = loader.get_resource()
 			get_tree().get_root().call_deferred("add_child", resource.instance())
-			current_scene.queue_free()
+#			current_scene.queue_free()
 			break
 		elif err == OK:
 			var progress = float(loader.get_stage()) / loader.get_stage_count()
