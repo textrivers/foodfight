@@ -3,9 +3,7 @@ extends Area
 signal enable_read_action
 signal disable_read_action
 var readable: bool = false
-export var poem_text: Dictionary = {
-	
-}
+var poem_text: Array = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,8 +11,10 @@ func _ready():
 	var k
 	var v
 	k = Global.poem_text_dict.keys()[randi() % Global.poem_text_dict.keys().size()]
+	print("key = " + str(k))
 	v = Global.poem_text_dict[k]
-	poem_text[k] = v
+	poem_text.append(k)
+	poem_text.append(v)
 	Global.poem_text_dict.erase(k)
 
 func _on_Text_body_entered(body):

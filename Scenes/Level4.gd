@@ -294,7 +294,7 @@ func display_character_options(_player):
 	if _player == true: 
 		$GUI/Right/PlayerOptions/Label.text = "It is your turn"
 		for button in $GUI/Right/PlayerOptions.get_children():
-			if button is Button:
+			if button is Button && button.name != "Read":
 				button.disabled = false
 		if whose_turn.has_node("MyFood"):
 			$GUI/Right/PlayerOptions/PickUp.disabled = true
@@ -302,10 +302,6 @@ func display_character_options(_player):
 			$GUI/Right/PlayerOptions/Throw.disabled = true
 		if whose_turn.food_contacts.size() == 0:
 			$GUI/Right/PlayerOptions/PickUp.disabled = true
-		if Global.splat_count >= Global.splat_threshold:
-			$GUI/Right/PlayerOptions/Read.disabled = false
-		else:
-			$GUI/Right/PlayerOptions/Read.disabled = true
 	else: 
 		$GUI/Right/PlayerOptions/Label.text = "It is " + whose_turn.name + "'s turn"
 		for button in $GUI/Right/PlayerOptions.get_children():
@@ -328,14 +324,16 @@ func hide_character_options():
 func activate_read_button(text):
 	$GUI/Right/PlayerOptions/Read.disabled = false
 	available_text = text
+	print("read button activated")
 
 func deactivate_read_button():
 	$GUI/Right/PlayerOptions/Read.disabled = true
+	print("read button deactivated")
 
 func _on_Read_pressed():
 	display_character_options(true)
 	deactivate_read_button()
-	print("you are reading")
+	print(available_text[1])
 
 func _on_PickUp_pressed():
 	current_action[0] = "pick_up"
@@ -374,13 +372,10 @@ func calculate_walk_duration():
 		walk_dist += walk_path[point].distance_to(walk_path[point + 1])
 	walk_dur = walk_dist / whose_turn.walk_speed * 60
 	walk_dur = ceil(walk_dur)
-	#walk_dur += 1 ## add one frame to allow character to reach destination
-	print("walk duration = " + str(walk_dur))
 	return walk_dur
 
 # warning-ignore:unused_argument
 func on_action_target_selected(dest, desc):
-	print(dest)
 	action_target = dest
 	_on_Proceed_pressed()
 

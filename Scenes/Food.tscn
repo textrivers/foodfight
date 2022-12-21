@@ -24,8 +24,8 @@ animations = [ {
 } ]
 
 [node name="Food" type="KinematicBody" groups=["throwable"]]
-collision_layer = 32776
-collision_mask = 7
+collision_layer = 32792
+collision_mask = 3
 script = ExtResource( 2 )
 splat_colors = [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ) ]
 
@@ -34,7 +34,7 @@ shape = SubResource( 1 )
 disabled = true
 
 [node name="Area" type="Area" parent="."]
-collision_mask = 19
+collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 shape = SubResource( 2 )
