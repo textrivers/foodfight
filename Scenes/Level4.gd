@@ -6,14 +6,14 @@ var tile = preload("res://Scenes/FloorTile3D.tscn")
 var food_palettes: Dictionary = {
 	#"all_bananas": [preload("res://Scenes/ClusterBanana.tscn"), preload("res://Scenes/ClusterBanana.tscn")],
 	#"all_oranges": [preload("res://Scenes/ClusterOrange.tscn"), preload("res://Scenes/ClusterOrange.tscn")],
-	"orange_you_glad": [preload("res://Scenes/ClusterOrange.tscn"), preload("res://Scenes/ClusterBanana.tscn")],
-#	"all_fruits": [
-#		load("res://Scenes/ClusterOrange.tscn"), 
-#		load("res://Scenes/ClusterBanana.tscn"), 
-#		load("res://Scenes/ClusterBlackberry.tscn"),
-#		load("res://Scenes/ClusterWatermelon.tscn"),
-#		load("res://Scenes/ClusterTomato.tscn")
-#		]
+#	"orange_you_glad": [preload("res://Scenes/ClusterOrange.tscn"), preload("res://Scenes/ClusterBanana.tscn")],	
+	"all_fruits": [
+		load("res://Scenes/ClusterOrange.tscn"), 
+		load("res://Scenes/ClusterBanana.tscn"), 
+		load("res://Scenes/ClusterBlackberry.tscn"),
+		load("res://Scenes/ClusterWatermelon.tscn"),
+		load("res://Scenes/ClusterTomato.tscn")
+		]
 }
 var characters: Array = []
 var turn_tracker: Dictionary = {}

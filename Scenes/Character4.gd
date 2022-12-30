@@ -163,8 +163,8 @@ func on_green_light():
 	$Viewport/CharacterSprite/Sprite.modulate = revert_color
 
 func acquire_target():
-	$RayCast.cast_to = (Global.player_node.bullseye - $RayCast.global_translation)
-	if $RayCast.get_collider() == Global.player_node:
+	$RayCast.cast_to = (Global.player_node.bullseye - $RayCast.global_translation).normalized() * Global.character_proximity_radius
+	if $RayCast.is_colliding() && $RayCast.get_collider() == Global.player_node:
 		parent.turn_tracker[self] = parent.current_moment
 		return true
 	else:
@@ -178,18 +178,15 @@ func handle_action(action):
 		walking = false
 		if food_contacts.size() > 0 && !self.has_node("MyFood"):
 			var my_food = food_contacts.pop_back()
-			my_food.get_parent().remove_child(my_food)
-			if my_food.name == "MyFood": ## taking from someone else
-				get_parent().add_child(my_food)
-				my_food.thrown = true
-				my_food.set_collision_layer_bit(2, true)
-				my_food.velocity = Vector3.ZERO
-				my_food.gravity = 0
-				my_food.translation = translation
+			var food_par = my_food.get_parent()
+			food_par.remove_child(my_food)
+			add_child(my_food)
+			my_food.translation = Vector3(0, 0.5, 0)
+			if my_food.name == "MyFood": ## taking from someone else, food ends up thrown at them
+				throw_food(food_par.global_translation)
 			else:
-				add_child(my_food)
 				my_food.name = "MyFood"
-				my_food.translation = Vector3(0, 0.5, 0)
+
 	if action[0] == "throw":
 		walking = false
 		if self.has_node("MyFood"):
@@ -270,6 +267,23 @@ func add_splatter(color):
 				break
 	current_splat_num += 1
 	current_splat_num = current_splat_num % 3
+	
+func start_knockback(new_vel):
+	#breakpoint
+	knockback = true
+	walking = true
+	hunting = false
+	var new_pos = global_translation + (Vector3(new_vel.x, 0, new_vel.z) * knockback_dist)
+	$NavigationAgent.set_target_location(new_pos)
+#	if parent.debug:
+#		var new_sphere = load("res://Scenes/DebugSphere.tscn").instantiate()
+#		new_sphere.position = new_pos
+#		var new_mat = new_sphere.material.duplicate()
+#		new_mat.albedo_color = Global.palette_dict["pink_1"]
+#		new_sphere.material = new_mat
+#		parent.add_child(new_sphere)
+	yield($NavigationAgent, "path_changed")
+	parent.turn_tracker[self] = ceil(parent.current_moment + (knockback_dist / knockback_speed * 60))
 
 func _on_Area_body_entered(body):
 	if player && body.is_in_group("proximity"):

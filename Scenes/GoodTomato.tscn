@@ -1,0 +1,26 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Scenes/Food.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/FoodSprites/bettertomato/bettertomato_6.png" type="Texture" id=2]
+[ext_resource path="res://Assets/FoodSprites/bettertomato/bettertomato_4.png" type="Texture" id=3]
+[ext_resource path="res://Assets/FoodSprites/bettertomato/bettertomato_1.png" type="Texture" id=4]
+[ext_resource path="res://Assets/FoodSprites/bettertomato/bettertomato_5.png" type="Texture" id=5]
+[ext_resource path="res://Assets/FoodSprites/bettertomato/bettertomato_2.png" type="Texture" id=6]
+[ext_resource path="res://Assets/FoodSprites/bettertomato/bettertomato_0.png" type="Texture" id=7]
+[ext_resource path="res://Assets/FoodSprites/bettertomato/bettertomato_3.png" type="Texture" id=8]
+[ext_resource path="res://Assets/FoodSprites/bettertomato/bettertomato_7.png" type="Texture" id=9]
+
+[sub_resource type="SpriteFrames" id=1]
+resource_local_to_scene = true
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 20.0
+} ]
+
+[node name="GoodTomato" instance=ExtResource( 1 )]
+splat_colors = [ Color( 0.572549, 0.0980392, 0.129412, 1 ), Color( 0.866667, 0.266667, 0.2, 1 ), Color( 0.572549, 0.0980392, 0.129412, 1 ) ]
+
+[node name="AnimatedSprite" parent="Viewport/FoodSprite" index="0"]
+frames = SubResource( 1 )
