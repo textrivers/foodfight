@@ -47,7 +47,7 @@ func _physics_process(delta):
 
 func spawn_splatter_particles(pos, col):
 	var new_splat = splat.instance()
-	new_splat.translation = pos
+	new_splat.global_translation = pos
 	new_splat.emitting = true
 	#new_splat.material_override.albedo_texture = new_splat.get_node("Viewport").get_texture()
 	new_splat.material_override.albedo_color = col

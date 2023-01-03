@@ -301,6 +301,11 @@ func _on_Read_pressed():
 	display_character_options(true)
 	deactivate_read_button()
 	print(available_text[1])
+	current_action[0] = "throw"
+	current_action[1] = whose_turn.global_translation
+	action_target = whose_turn.global_translation
+	current_action[2] = 25
+	_on_Proceed_pressed()
 
 func _on_PickUp_pressed():
 	current_action[0] = "pick_up"

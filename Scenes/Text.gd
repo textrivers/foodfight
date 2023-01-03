@@ -17,9 +17,7 @@ func _ready():
 	Global.poem_text_dict.erase(k)
 
 func _on_Text_body_entered(body):
-	if body.player == true: 
-		readable = true
-		emit_signal("enable_read_action", poem_text)
+	pass
 
 func _on_Text_body_exited(body):
 	if body.player == true: 

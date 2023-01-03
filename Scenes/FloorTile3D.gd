@@ -5,6 +5,7 @@ var selected: bool = false
 var revert_color: Color
 var fade_time: float = 0.5
 var fade_coefficient: float = 0
+var timer
 
 export var tile_description: String
 
@@ -13,10 +14,11 @@ signal give_on_select_info
 func _ready():
 	set_process(false)
 	revert_color = material_override.albedo_color
+	timer = $Timer
 
 func _process(_delta):
 	var mat_a = material_override.albedo_color.a
-	material_override.albedo_color.a = abs(fade_coefficient - ($Timer.time_left * 2))
+	material_override.albedo_color.a = abs(fade_coefficient - (timer.time_left * 2))
 	if material_override.albedo_color.a == mat_a:
 		print("mat albedo not assigned correctly")
 
@@ -51,11 +53,12 @@ func _on_StaticBody_input_event(camera, event, position, normal, shape_idx):
 
 func proximity_fade(_fade_in):
 	fade_coefficient = float(_fade_in)
-	if $Timer.is_stopped():
-		$Timer.wait_time = fade_time
+	if timer.is_stopped():
+		timer.wait_time = fade_time
 	else:
-		$Timer.wait_time = abs(fade_time - material_override.albedo_color.a) 
-	$Timer.start()
+		timer.wait_time = abs(fade_time - material_override.albedo_color.a) 
+	if timer.is_inside_tree():
+		timer.start()
 	set_process(true)
 
 func _on_Timer_timeout():

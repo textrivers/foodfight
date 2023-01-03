@@ -291,72 +291,72 @@ position = Vector2( 1013, 600 )
 texture = ExtResource( 1 )
 
 [node name="Sprite2" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 113, 0 )
 texture = ExtResource( 1 )
 
 [node name="Sprite4" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 313, 0 )
 texture = ExtResource( 1 )
 
 [node name="Sprite6" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 513, 0 )
 texture = ExtResource( 1 )
 
 [node name="Sprite8" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 713, 0 )
 texture = ExtResource( 1 )
 
 [node name="Sprite10" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 913, 0 )
 texture = ExtResource( 1 )
 
 [node name="Sprite12" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 13, 100 )
 texture = ExtResource( 1 )
 
 [node name="Sprite14" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 213, 100 )
 texture = ExtResource( 1 )
 
 [node name="Sprite16" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 413, 100 )
 texture = ExtResource( 1 )
 
 [node name="Sprite18" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 613, 100 )
 texture = ExtResource( 1 )
 
 [node name="Sprite20" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 813, 100 )
 texture = ExtResource( 1 )
 
 [node name="Sprite22" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 1013, 100 )
 texture = ExtResource( 1 )
 
 [node name="Sprite24" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 113, 200 )
 texture = ExtResource( 1 )
 
 [node name="Sprite26" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 313, 200 )
 texture = ExtResource( 1 )
 
 [node name="Sprite28" type="Sprite" parent="SquaresContainer"]
-self_modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 513, 200 )
 texture = ExtResource( 1 )
 
@@ -366,22 +366,22 @@ frames = SubResource( 1 )
 centered = true
 
 [node name="Sprite30" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 713, 200 )
 texture = ExtResource( 1 )
 
 [node name="Sprite32" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 913, 200 )
 texture = ExtResource( 1 )
 
 [node name="Sprite34" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 13, 300 )
 texture = ExtResource( 1 )
 
 [node name="Sprite36" type="Sprite" parent="SquaresContainer"]
-self_modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 213, 300 )
 texture = ExtResource( 1 )
 
@@ -396,7 +396,7 @@ theme = SubResource( 4 )
 text = "L"
 
 [node name="Sprite38" type="Sprite" parent="SquaresContainer"]
-self_modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 413, 300 )
 texture = ExtResource( 1 )
 
@@ -411,7 +411,7 @@ theme = SubResource( 4 )
 text = "A"
 
 [node name="Sprite40" type="Sprite" parent="SquaresContainer"]
-self_modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 613, 300 )
 texture = ExtResource( 1 )
 
@@ -426,7 +426,7 @@ theme = SubResource( 4 )
 text = "I"
 
 [node name="Sprite42" type="Sprite" parent="SquaresContainer"]
-self_modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 813, 300 )
 texture = ExtResource( 1 )
 
@@ -441,22 +441,22 @@ theme = SubResource( 4 )
 text = "G"
 
 [node name="Sprite44" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 1013, 300 )
 texture = ExtResource( 1 )
 
 [node name="Sprite46" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 113, 400 )
 texture = ExtResource( 1 )
 
 [node name="Sprite48" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 313, 400 )
 texture = ExtResource( 1 )
 
 [node name="Sprite50" type="Sprite" parent="SquaresContainer"]
-self_modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 513, 400 )
 rotation = -1.5708
 texture = ExtResource( 1 )
@@ -466,67 +466,67 @@ frames = SubResource( 2 )
 centered = true
 
 [node name="Sprite52" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 713, 400 )
 texture = ExtResource( 1 )
 
 [node name="Sprite54" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 913, 400 )
 texture = ExtResource( 1 )
 
 [node name="Sprite56" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 13, 500 )
 texture = ExtResource( 1 )
 
 [node name="Sprite58" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 213, 500 )
 texture = ExtResource( 1 )
 
 [node name="Sprite60" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 413, 500 )
 texture = ExtResource( 1 )
 
 [node name="Sprite62" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 613, 500 )
 texture = ExtResource( 1 )
 
 [node name="Sprite64" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 813, 500 )
 texture = ExtResource( 1 )
 
 [node name="Sprite66" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 1013, 500 )
 texture = ExtResource( 1 )
 
 [node name="Sprite68" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 113, 600 )
 texture = ExtResource( 1 )
 
 [node name="Sprite70" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 313, 600 )
 texture = ExtResource( 1 )
 
 [node name="Sprite72" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 513, 600 )
 texture = ExtResource( 1 )
 
 [node name="Sprite74" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 713, 600 )
 texture = ExtResource( 1 )
 
 [node name="Sprite76" type="Sprite" parent="SquaresContainer"]
-modulate = Color( 0.12549, 0.12549, 0.12549, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 913, 600 )
 texture = ExtResource( 1 )
 

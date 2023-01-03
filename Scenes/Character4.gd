@@ -143,7 +143,7 @@ func generate_unique_name(name_prefix):
 	return new_name
 
 func _physics_process(delta):
-	bullseye = Vector3(translation.x, 0.6, translation.z)
+	bullseye = Vector3(global_translation.x, 0.6, global_translation.z)
 	var next_loc = $NavigationAgent.get_next_location()
 	if walking:
 		if !red_light:
@@ -189,7 +189,10 @@ func handle_action(action):
 				throw_food(food_par.global_translation)
 			else:
 				my_food.name = "MyFood"
-
+			if player && my_food.has_node("Text"):
+				var text = my_food.get_node("Text")
+				text.readable = true
+				text.emit_signal("enable_read_action", text.poem_text)
 	if action[0] == "throw":
 		walking = false
 		if self.has_node("MyFood"):
@@ -225,19 +228,21 @@ func throw_food(targ):
 	var t = diffXZ.length() / throw_speed
 	t = t / 60 ## adjust this so it's in seconds, not frames
 	new_vel = diffXZ.normalized() * throw_speed * 60
-	if t != 0:
-		var grav = -4 * (start_pos.y - (2 * throw_apex) + targ.y) / (t * t)
-		new_vel.y = - ((3 * start_pos.y) - (4 * throw_apex) + targ.y) / t
-		var new_food = get_node_or_null("MyFood")
-		remove_child(new_food)
-		new_food.velocity = new_vel
-		new_food.gravity = grav
-		new_food.translation = start_pos
-		new_food.thrown = true
-		new_food.get_node("CollisionShape").disabled = false
-		new_food.set_collision_mask_bit(3, true)
-		new_food.set_collision_mask_bit(1, true)
-		get_parent().add_child(new_food)
+	if t == 0:
+		t = 0.05
+	var grav = -4 * (start_pos.y - (2 * throw_apex) + targ.y) / (t * t)
+	new_vel.y = - ((3 * start_pos.y) - (4 * throw_apex) + targ.y) / t
+	var new_food = get_node_or_null("MyFood")
+	remove_child(new_food)
+	new_food.velocity = new_vel
+	new_food.gravity = grav
+	new_food.translation = start_pos
+	new_food.thrown = true
+	new_food.get_node("CollisionShape").disabled = false
+	new_food.set_collision_mask_bit(3, true)
+	new_food.set_collision_mask_bit(1, true)
+	get_parent().add_child(new_food)
+
 
 ## selectability
 func on_target_selecting():
