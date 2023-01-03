@@ -51,7 +51,6 @@ func _ready():
 	turn_marker = $TurnMarker
 	cam_rig_rot_target = Vector2(cam_rig.rotation_degrees.y, cam_rig.rotation_degrees.x)
 	cam_rig_zoom_target = $CameraRig/Camera.translation.z
-	#build()
 	place_objects()
 	for character in get_tree().get_nodes_in_group("character"):
 		register_character(character)
@@ -71,42 +70,10 @@ func _ready():
 		else: 
 			new_tile_color = Color("#719dff")
 		new_mat.albedo_color = new_tile_color
+		new_mat.flags_transparent = true
+		new_mat.albedo_color.a = 0
 		new_tile.set_material_override(new_mat)
 		new_tile.revert_color = new_tile_color
-
-func build():
-	var tot = board_size.x * board_size.y
-# warning-ignore:unused_variable
-	var rando = randi() % int(tot) + 1
-# warning-ignore:unused_variable
-	var rand_index = 0
-	for x in board_size.x:
-		for y in board_size.y: 
-			rand_index += 1
-#			if rand_index == rando: ## randomly don't place this tile
-#				continue
-			var new_tile = tile.instance()
-			new_tile.translation.x = (x * tile_size)
-			new_tile.translation.z = (y * tile_size)
-			var new_mat = SpatialMaterial.new()
-			new_mat.albedo_color = Color.white
-			new_tile.set_material_override(new_mat)
-			if (x + y) % 2 == 0:
-				if randi() % 2 == 0: 
-					new_tile.material_override.albedo_color = Global.palette_dict["babyblue_1"]
-				else:
-					new_tile.material_override.albedo_color = Global.palette_dict["babyblue_2"]
-			else:
-				if randi() % 2 == 0:
-					new_tile.material_override.albedo_color = Global.palette_dict["black_2"]
-				else:
-					new_tile.material_override.albedo_color = Global.palette_dict["teal_3"]
-			add_child(new_tile)
-			new_tile.connect("give_on_select_info", self, "on_action_target_selected")
-# warning-ignore:return_value_discarded
-			self.connect("selecting_action_target", new_tile, "on_target_selecting")
-# warning-ignore:return_value_discarded
-			self.connect("done_selecting_action_target", new_tile, "on_target_unselecting")
 
 func place_objects():
 	## place food

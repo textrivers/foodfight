@@ -107,6 +107,9 @@ func _ready():
 	parent = get_parent()
 	if player:
 		get_appearance_from_global()
+		visible = true
+		$Area.monitoring = true
+		Global.player_node = self
 	else:
 		generate_unique_appearance()
 	revert_color = $Viewport/CharacterSprite/Sprite.modulate
@@ -233,6 +236,7 @@ func throw_food(targ):
 		new_food.thrown = true
 		new_food.get_node("CollisionShape").disabled = false
 		new_food.set_collision_mask_bit(3, true)
+		new_food.set_collision_mask_bit(1, true)
 		get_parent().add_child(new_food)
 
 ## selectability
@@ -286,20 +290,20 @@ func start_knockback(new_vel):
 	parent.turn_tracker[self] = ceil(parent.current_moment + (knockback_dist / knockback_speed * 60))
 
 func _on_Area_body_entered(body):
-	if player && body.is_in_group("proximity"):
+	if body.is_in_group("proximity"):
 		var body_parent = body.get_parent()
-		if body_parent.is_in_group("tile") || body_parent.is_in_group("wall"):
+		if body_parent.is_in_group("tile"):
 			body.input_ray_pickable = true
-			body_parent.visible = true
+			body_parent.proximity_fade(true)
 		else:
 			body.visible = true
 
 func _on_Area_body_exited(body):
 	if player && body.is_in_group("proximity"):
 		var body_parent = body.get_parent()
-		if body_parent.is_in_group("tile") || body_parent.is_in_group("wall"):
+		if body_parent.is_in_group("tile"):
 			body.input_ray_pickable = false
-			body_parent.visible = false
+			body_parent.proximity_fade(false)
 		else:
 			body.visible = false
 

@@ -11,7 +11,6 @@ func _ready():
 	var k
 	var v
 	k = Global.poem_text_dict.keys()[randi() % Global.poem_text_dict.keys().size()]
-	print("key = " + str(k))
 	v = Global.poem_text_dict[k]
 	poem_text.append(k)
 	poem_text.append(v)

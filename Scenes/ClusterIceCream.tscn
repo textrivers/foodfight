@@ -6,4 +6,3 @@
 
 [node name="GoodIceCream" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0 )
-collision_layer = 32768

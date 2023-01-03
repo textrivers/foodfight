@@ -31,15 +31,14 @@ animations = [ {
 "speed": 20.0
 } ]
 
-[node name="Food" type="KinematicBody" groups=["throwable"]]
-collision_layer = 32792
-collision_mask = 3
+[node name="Food" type="KinematicBody" groups=["proximity", "throwable"]]
+visible = false
+collision_layer = 24
 script = ExtResource( 2 )
 splat_colors = [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ) ]
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
-disabled = true
 
 [node name="Area" type="Area" parent="."]
 collision_mask = 2

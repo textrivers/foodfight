@@ -5,17 +5,19 @@
 [ext_resource path="res://Assets/tile3d_black_rim.png" type="Texture" id=3]
 
 [sub_resource type="SpatialMaterial" id=3]
+flags_transparent = true
+albedo_color = Color( 1, 1, 1, 0 )
 
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 0.5, 0.03, 0.5 )
 
-[node name="FloorTile3D" type="MeshInstance" groups=["selectable", "tile"]]
-visible = false
+[node name="FloorTile3D" type="MeshInstance" groups=["proximity", "selectable", "tile"]]
 material_override = SubResource( 3 )
 mesh = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="StaticBody" type="StaticBody" parent="." groups=["proximity"]]
+collision_layer = 17
 input_ray_pickable = false
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
@@ -29,6 +31,10 @@ double_sided = false
 alpha_cut = 2
 texture = ExtResource( 3 )
 
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="input_event" from="StaticBody" to="." method="_on_StaticBody_input_event"]
 [connection signal="mouse_entered" from="StaticBody" to="." method="_on_StaticBody_mouse_entered"]
 [connection signal="mouse_exited" from="StaticBody" to="." method="_on_StaticBody_mouse_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
