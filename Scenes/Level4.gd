@@ -308,11 +308,22 @@ func _on_Read_pressed():
 	$You/PoemCamRig/PoemCam.current = true
 	$You/PoemCamRig/Label3D.show()
 	$You/PoemCamRig/Label3D.text = available_text[1]
+	## TODO evaluate how many splat particles are in the air at that moment
+	## and choose text based on that? 
+	## ALSO TODO make the splat stuff commented out below happen before the reading/screenshot above
 #	current_action[0] = "throw"
 #	current_action[1] = whose_turn.global_translation
 #	action_target = whose_turn.global_translation
 #	current_action[2] = 25
 #	_on_Proceed_pressed()
+
+func _on_Screenshot_pressed():
+	## TODO make this create a jpg screenshot, open save prompt on user's computer
+	## see here: https://godotengine.org/qa/104093/how-can-i-save-an-image-to-the-users-filesystem-in-a-web-export
+#	var new_screen = get_viewport().get_texture().get_data()
+#	new_screen.flip_y()
+#	JavaScript.download_buffer(new_screen, "my_screenshot", )
+	pass # Replace with function body.
 
 func _on_PickUp_pressed():
 	current_action[0] = "pick_up"
@@ -408,3 +419,6 @@ func display_debug_path():
 func remove_debug_path():
 	for sphere in get_tree().get_nodes_in_group("debug"):
 		sphere.queue_free()
+
+
+

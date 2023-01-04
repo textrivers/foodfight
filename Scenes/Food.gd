@@ -19,7 +19,12 @@ func _ready():
 	$Viewport/FoodSprite/AnimatedSprite.play("default", bool(randi() % 2))
 	$Viewport/FoodSprite/AnimatedSprite.set_frame(0)
 	$Viewport/FoodSprite/AnimatedSprite.playing = false
-	
+	if self.is_in_group("icecream"):
+		var icecream_color_key = Global.palette_dict.keys()[randi() % Global.palette_dict.keys().size()]
+		var icecream_color = Global.palette_dict[icecream_color_key]
+		$Viewport/FoodSprite/AnimatedSprite.self_modulate = icecream_color
+		splat_colors[0] = icecream_color
+		splat_colors[1] = icecream_color
 
 func _physics_process(delta):
 	if translation.y < 0: 

@@ -29,7 +29,7 @@ scale = 0.8
 scale_random = 1.0
 scale_curve = SubResource( 2 )
 
-[node name="SplatParticles" type="Particles"]
+[node name="SplatParticles" type="Particles" groups=["splatparticles"]]
 material_override = SubResource( 4 )
 emitting = false
 amount = 20

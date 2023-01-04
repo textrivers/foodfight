@@ -311,5 +311,6 @@ shadow_enabled = true
 [connection signal="pressed" from="GUI/Right/PlayerOptions/Throw" to="." method="_on_Throw_pressed"]
 [connection signal="pressed" from="GUI/Right/PlayerOptions/Wait" to="." method="_on_Wait_pressed"]
 [connection signal="toggled" from="GUI/Right/PlayerOptions/HBoxContainer/CheckButton" to="." method="_on_CheckButton_toggled"]
+[connection signal="pressed" from="GUI/Right/ReadOptions/Screenshot" to="." method="_on_Screenshot_pressed"]
 [connection signal="pressed" from="GUI/Right/ProceedCancel/Proceed" to="." method="_on_Proceed_pressed"]
 [connection signal="pressed" from="GUI/Right/ProceedCancel/Cancel" to="." method="_on_Cancel_pressed"]
