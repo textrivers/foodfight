@@ -278,6 +278,7 @@ func display_character_options(_player):
 func reset_character_options():
 	for child in $GUI/Right/PlayerOptions.get_children():
 		child.show()
+	$GUI/Right/ReadOptions.hide()
 	$GUI/Right/WaitOptions.hide()
 	$GUI/Right/WalkOptions.hide()
 	$GUI/Right/ThrowOptions.hide()
@@ -291,21 +292,27 @@ func hide_character_options():
 func activate_read_button(text):
 	$GUI/Right/PlayerOptions/Read.disabled = false
 	available_text = text
-	print("read button activated")
 
 func deactivate_read_button():
 	$GUI/Right/PlayerOptions/Read.disabled = true
-	print("read button deactivated")
 
 func _on_Read_pressed():
-	display_character_options(true)
-	deactivate_read_button()
 	print(available_text[1])
-	current_action[0] = "throw"
-	current_action[1] = whose_turn.global_translation
-	action_target = whose_turn.global_translation
-	current_action[2] = 25
-	_on_Proceed_pressed()
+	$TurnMarker.hide()
+	$GUI/Right/PlayerOptions.hide()
+	$GUI/Right/ReadOptions.show()
+	$GUI/Right/ProceedCancel.show()
+	deactivate_read_button()
+	$You/PoemCamRig.global_translation = whose_turn.global_translation
+	$You/PoemCamRig.direction = !$You/PoemCamRig.direction
+	$You/PoemCamRig/PoemCam.current = true
+	$You/PoemCamRig/Label3D.show()
+	$You/PoemCamRig/Label3D.text = available_text[1]
+#	current_action[0] = "throw"
+#	current_action[1] = whose_turn.global_translation
+#	action_target = whose_turn.global_translation
+#	current_action[2] = 25
+#	_on_Proceed_pressed()
 
 func _on_PickUp_pressed():
 	current_action[0] = "pick_up"
@@ -379,6 +386,9 @@ func _on_Cancel_pressed():
 	current_action.resize(3)
 	emit_signal("selecting_action_target")
 	emit_signal("done_selecting_action_target")
+	$CameraRig/Camera.current = true
+	$You/PoemCamRig/Label3D.hide()
+	$TurnMarker.show()
 
 func _on_CheckButton_toggled(button_pressed):
 	if button_pressed == true:
