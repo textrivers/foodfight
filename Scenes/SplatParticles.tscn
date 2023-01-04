@@ -1,6 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/SplatParticles.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Meshes/test_splat_particle.obj" type="ArrayMesh" id=2]
 
 [sub_resource type="SpatialMaterial" id=4]
 flags_unshaded = true
@@ -12,18 +13,21 @@ _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.00454545 ), 0.0, 0.0, 0
 curve = SubResource( 1 )
 
 [sub_resource type="ParticlesMaterial" id=3]
+lifetime_randomness = 0.43
+flag_rotate_y = true
 direction = Vector3( 0, 1, 0 )
 spread = 90.0
 flatness = 0.6
-initial_velocity = 4.0
+initial_velocity = 8.0
 initial_velocity_random = 0.5
+angular_velocity = 339.62
+angular_velocity_random = 1.0
+damping = 8.0
+angle = -217.4
+angle_random = 1.0
 scale = 0.8
 scale_random = 1.0
 scale_curve = SubResource( 2 )
-
-[sub_resource type="SphereMesh" id=5]
-radius = 0.1
-height = 0.2
 
 [node name="SplatParticles" type="Particles"]
 material_override = SubResource( 4 )
@@ -32,8 +36,9 @@ amount = 20
 one_shot = true
 explosiveness = 0.93
 randomness = 0.61
+draw_order = 2
 process_material = SubResource( 3 )
-draw_pass_1 = SubResource( 5 )
+draw_pass_1 = ExtResource( 2 )
 script = ExtResource( 1 )
 
 [node name="Timer" type="Timer" parent="."]

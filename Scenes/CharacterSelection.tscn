@@ -1,6 +1,5 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
-[ext_resource path="res://Assets/Screens/character_screen_001.png" type="Texture" id=1]
 [ext_resource path="res://Assets/CharacterSprites/Uni_Vanilla.png" type="Texture" id=2]
 [ext_resource path="res://Assets/CharacterSprites/Tal_Vanilla.png" type="Texture" id=3]
 [ext_resource path="res://Assets/CharacterSprites/Pik_Vanilla.png" type="Texture" id=4]
@@ -17,6 +16,18 @@
 [ext_resource path="res://Themes/ThumbsTheme.tres" type="Theme" id=15]
 [ext_resource path="res://Assets/Fonts/TCM_____.TTF" type="DynamicFontData" id=16]
 [ext_resource path="res://Assets/PanoramaSky/A_pano_1.png" type="Texture" id=17]
+
+[sub_resource type="Gradient" id=14]
+offsets = PoolRealArray( 0, 0.296296, 1 )
+colors = PoolColorArray( 0.470588, 0.635294, 0.67451, 1, 0.470588, 0.635294, 0.67451, 1, 0.0823529, 0.0627451, 0.109804, 1 )
+
+[sub_resource type="GradientTexture2D" id=15]
+gradient = SubResource( 14 )
+width = 1024
+height = 600
+fill = 1
+fill_from = Vector2( 0.5, 0.5 )
+fill_to = Vector2( 1, 1 )
 
 [sub_resource type="DynamicFont" id=12]
 size = 36
@@ -48,12 +59,16 @@ Button/styles/pressed = SubResource( 11 )
 size = 26
 font_data = ExtResource( 16 )
 
+[sub_resource type="DynamicFont" id=16]
+extra_spacing_space = 2
+font_data = ExtResource( 16 )
+
 [node name="CharacterSelection" type="Node2D"]
 script = ExtResource( 13 )
 
 [node name="Backdrop" type="Sprite" parent="."]
 light_mask = 2
-texture = ExtResource( 1 )
+texture = SubResource( 15 )
 centered = false
 
 [node name="Light2D" type="Light2D" parent="Backdrop"]
@@ -75,9 +90,9 @@ margin_bottom = 600.0
 
 [node name="CharSelectLabel" type="Label" parent="CharGUI/VBoxContainer"]
 margin_right = 1024.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 0, 100 )
-custom_colors/font_color = Color( 0.490196, 0.584314, 0.788235, 1 )
+margin_bottom = 70.0
+rect_min_size = Vector2( 0, 70 )
+custom_colors/font_color = Color( 0.443137, 0.615686, 1, 1 )
 custom_colors/font_color_shadow = Color( 0.192157, 0.133333, 0.266667, 1 )
 custom_constants/shadow_offset_x = 2
 custom_constants/shadow_offset_y = 2
@@ -87,9 +102,9 @@ align = 1
 valign = 1
 
 [node name="MainChoiceArea" type="HBoxContainer" parent="CharGUI/VBoxContainer"]
-margin_top = 104.0
+margin_top = 74.0
 margin_right = 1024.0
-margin_bottom = 518.0
+margin_bottom = 488.0
 custom_constants/separation = 12
 alignment = 1
 
@@ -750,15 +765,15 @@ disabled = true
 text = "Poetry Integration? "
 
 [node name="Spacer" type="MarginContainer" parent="CharGUI/VBoxContainer"]
-margin_top = 522.0
+margin_top = 492.0
 margin_right = 1024.0
-margin_bottom = 538.0
+margin_bottom = 508.0
 rect_min_size = Vector2( 0, 16 )
 
 [node name="RandomOrDone" type="HBoxContainer" parent="CharGUI/VBoxContainer"]
-margin_top = 542.0
+margin_top = 512.0
 margin_right = 1024.0
-margin_bottom = 576.0
+margin_bottom = 546.0
 alignment = 1
 
 [node name="DoneButton" type="Button" parent="CharGUI/VBoxContainer/RandomOrDone"]
@@ -768,6 +783,19 @@ margin_bottom = 34.0
 rect_min_size = Vector2( 120, 0 )
 custom_fonts/font = SubResource( 13 )
 text = "Play Now"
+
+[node name="Spacer2" type="Label" parent="CharGUI/VBoxContainer"]
+margin_top = 550.0
+margin_right = 1024.0
+margin_bottom = 596.0
+rect_min_size = Vector2( 0, 46 )
+custom_colors/font_color = Color( 0.470588, 0.635294, 0.67451, 1 )
+custom_colors/font_outline_modulate = Color( 0.192157, 0.133333, 0.266667, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 16 )
+text = "If together we throw enough food, we could make enough of a mess, but we would have to keep our mouths tightly closed, to disappear from hunger."
+align = 1
+valign = 1
 
 [connection signal="change_thumb" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs/Button" to="." method="on_thumbnail_changed"]
 [connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs/Button" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/MarginContainer/Thumbs/Button" method="_on_Button_pressed"]

@@ -36,7 +36,7 @@ font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=8]
 size = 47
-outline_size = 1
+outline_size = 2
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=9]
@@ -191,14 +191,14 @@ z_index = -2
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 offset = Vector2( 1024, 330 )
-energy = 1.6
+energy = 1.4
 
 [node name="Sprite2" type="Light2D" parent="ScrollingBackground"]
 position = Vector2( 1024, 0 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 offset = Vector2( 1024, 330 )
-energy = 1.6
+energy = 1.4
 
 [node name="GUI" type="VBoxContainer" parent="."]
 light_mask = 2
@@ -230,11 +230,11 @@ margin_bottom = 304.0
 rect_min_size = Vector2( 0, 90 )
 custom_colors/font_color = Color( 0.192157, 0.133333, 0.266667, 1 )
 custom_colors/font_outline_modulate = Color( 0.831373, 0.239216, 0.262745, 0.690196 )
-custom_colors/font_color_shadow = Color( 0.819608, 0.819608, 0.819608, 1 )
+custom_colors/font_color_shadow = Color( 0.788235, 0.694118, 0.0666667, 1 )
 custom_constants/shadow_offset_x = 2
 custom_constants/shadow_offset_y = 0
 custom_fonts/font = SubResource( 7 )
-text = "a food fight simulator
+text = "a simulated food fight
 adjoining a poetry book:"
 align = 1
 valign = 2
@@ -293,7 +293,8 @@ custom_colors/font_color = Color( 0.443137, 0.615686, 1, 1 )
 custom_colors/font_outline_modulate = Color( 1, 0.533333, 0, 1 )
 custom_colors/font_color_shadow = Color( 0.0823529, 0.0627451, 0.109804, 1 )
 custom_fonts/font = SubResource( 10 )
-text = "Game, visuals, and texts by Jon Woodward. Sounds by Bleep Blorp. Music by Greep Grop."
+text = "Game, visuals, and texts by Jon Woodward. Sounds by Bleep Blorp. Music by Greep Grop.
+Where two things are joined together, something was necessarily removed from in between them."
 align = 1
 valign = 1
 

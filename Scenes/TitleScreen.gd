@@ -4,7 +4,7 @@ var next_scene = "res://Scenes/CharacterSelection.tscn"
 var game_start: bool = false
 var back1
 var back2
-var scroll_rate: float = 1.0
+var scroll_rate: float = 0.5
 
 func _ready():
 	back1 = $ScrollingBackground/Sprite
