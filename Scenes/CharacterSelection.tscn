@@ -793,7 +793,6 @@ custom_colors/font_color = Color( 0.470588, 0.635294, 0.67451, 1 )
 custom_colors/font_outline_modulate = Color( 0.192157, 0.133333, 0.266667, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 16 )
-text = "If together we throw enough food, we could make enough of a mess, but we would have to keep our mouths tightly closed, to disappear from hunger."
 align = 1
 valign = 1
 
