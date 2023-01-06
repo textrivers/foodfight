@@ -74,16 +74,16 @@ script = ExtResource( 8 )
 
 [node name="PoemCam" type="Camera" parent="You/PoemCamRig"]
 transform = Transform( 1, 0, 0, 0, 0.939693, -0.34202, 0, 0.34202, 0.939693, 3, 0.8, 4 )
-far = 120.0
+far = 200.0
 
 [node name="DebugSphere" parent="You/PoemCamRig/PoemCam" instance=ExtResource( 9 )]
 visible = false
 
 [node name="Label3D" type="Label3D" parent="You/PoemCamRig"]
-transform = Transform( 1, 6.73711e-10, -2.98023e-08, -7.45058e-09, 0.996195, -0.0871558, 0, 0.0871557, 0.996195, -50, 50, -70 )
+transform = Transform( 1, 6.73711e-10, -2.98023e-08, -7.45058e-09, 0.996195, -0.0871558, 0, 0.0871557, 0.996195, 20, 50, -70 )
+visible = false
 pixel_size = 0.1
-billboard = 2
-double_sided = false
+offset = Vector2( -750, 0 )
 outline_modulate = Color( 0.831373, 0.239216, 0.262745, 1 )
 text = "I didn't send it
 yet, you're reading an

@@ -223,9 +223,8 @@ margin_bottom = 240.0
 mouse_filter = 2
 
 [node name="GridContainer" type="GridContainer" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/HBoxContainer2/CenterContainer"]
-margin_top = 42.0
 margin_right = 576.0
-margin_bottom = 198.0
+margin_bottom = 240.0
 mouse_filter = 2
 theme = SubResource( 10 )
 custom_constants/vseparation = 12
@@ -512,10 +511,9 @@ __meta__ = {
 
 [node name="Button16" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/HBoxContainer2/CenterContainer/GridContainer"]
 visible = false
-margin_left = 504.0
-margin_top = 84.0
-margin_right = 576.0
-margin_bottom = 156.0
+margin_top = 168.0
+margin_right = 72.0
+margin_bottom = 240.0
 rect_min_size = Vector2( 72, 72 )
 script = ExtResource( 6 )
 
@@ -528,7 +526,6 @@ mouse_filter = 2
 color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
 
 [node name="Button17" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/HBoxContainer2/CenterContainer/GridContainer"]
-visible = false
 margin_top = 168.0
 margin_right = 72.0
 margin_bottom = 240.0
@@ -547,7 +544,6 @@ __meta__ = {
 }
 
 [node name="Button18" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/HBoxContainer2/CenterContainer/GridContainer"]
-visible = false
 margin_left = 84.0
 margin_top = 168.0
 margin_right = 156.0
@@ -567,7 +563,6 @@ __meta__ = {
 }
 
 [node name="Button19" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/HBoxContainer2/CenterContainer/GridContainer"]
-visible = false
 margin_left = 168.0
 margin_top = 168.0
 margin_right = 240.0
@@ -588,7 +583,6 @@ __meta__ = {
 }
 
 [node name="Button20" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/HBoxContainer2/CenterContainer/GridContainer"]
-visible = false
 margin_left = 252.0
 margin_top = 168.0
 margin_right = 324.0
@@ -608,7 +602,6 @@ __meta__ = {
 }
 
 [node name="Button21" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/HBoxContainer2/CenterContainer/GridContainer"]
-visible = false
 margin_left = 336.0
 margin_top = 168.0
 margin_right = 408.0
@@ -629,7 +622,6 @@ __meta__ = {
 }
 
 [node name="Button22" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/HBoxContainer2/CenterContainer/GridContainer"]
-visible = false
 margin_left = 420.0
 margin_top = 168.0
 margin_right = 492.0
@@ -649,7 +641,6 @@ __meta__ = {
 }
 
 [node name="Button23" type="Button" parent="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/HBoxContainer2/CenterContainer/GridContainer"]
-visible = false
 margin_left = 504.0
 margin_top = 168.0
 margin_right = 576.0
@@ -664,7 +655,7 @@ margin_bottom = 48.0
 rect_min_size = Vector2( 72, 72 )
 rect_pivot_offset = Vector2( 636, 177 )
 mouse_filter = 2
-color = Color( 0.0823529, 0.0627451, 0.109804, 1 )
+color = Color( 0.572549, 0.0980392, 0.129412, 1 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
