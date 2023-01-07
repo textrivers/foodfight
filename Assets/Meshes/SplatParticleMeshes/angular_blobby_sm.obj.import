@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/angular_blobby_sm.obj-c459f5b25ac57c037210cdaeeb044ecd.mesh"
+
+[deps]
+
+files=[ "res://.import/angular_blobby_sm.obj-c459f5b25ac57c037210cdaeeb044ecd.mesh" ]
+
+source_file="res://Assets/Meshes/SplatParticleMeshes/angular_blobby_sm.obj"
+dest_files=[ "res://.import/angular_blobby_sm.obj-c459f5b25ac57c037210cdaeeb044ecd.mesh", "res://.import/angular_blobby_sm.obj-c459f5b25ac57c037210cdaeeb044ecd.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

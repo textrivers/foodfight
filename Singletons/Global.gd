@@ -84,7 +84,7 @@ var poem_text_dict: Dictionary = {
 	6: "I blackened every question mark\nI hung them in plain sight\nI know the author didn’t want them\nwritten white on white",
 	7: "Dot your own arm\nwith a stranger’s blemishes\nwith a borrowed Sharpie\nat an audition.",
 	8: "Dealer deals eleven cards each.\nGhosts (dealer and dealer’s opposite)\nhold their cards face out,\ncan gain no knowledge, and do not play.",
-	9: "“Thou makest darkness,”\nI guess.\n\nI made eyes\nat a pop-up book\n\nbefore I knew\nwhat was what\nonce.", 
+	9: "“Thou makest darkness,”\nI guess.\n\nI made eyes\nat a pop-up book\n\nbefore I knew\nwhat was what", 
 	10: "a convulsive distress followed\nwhich I’ve somehow still\nstopped experiencing it just\nended at some point\nand for no reason", 
 	11: "the exhibit doesn’t end\nas the species does\nas each species does\nin an undifferentiated unsaidness \nan end of blood", 
 	12: "Hunger is a human\nright. Every time roles\nreverse they remain true\nwhich honestly feels fair.",

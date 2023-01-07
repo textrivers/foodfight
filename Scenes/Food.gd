@@ -39,7 +39,8 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 		if coll: 
 			for splat_col in splat_colors:
-				spawn_splatter_particles(coll.position, splat_col)
+				for i in 2:
+					spawn_splatter_particles(coll.position, splat_col)
 			if coll.collider.is_in_group("character"):
 				coll.collider.add_splatter(splat_colors[randi() % splat_colors.size()])
 				coll.collider.start_knockback(velocity.normalized())

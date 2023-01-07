@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/double_blobby.obj-8d64728d8a3aeae243cf0ebcc5c7fbde.mesh"
+
+[deps]
+
+files=[ "res://.import/double_blobby.obj-8d64728d8a3aeae243cf0ebcc5c7fbde.mesh" ]
+
+source_file="res://Assets/Meshes/SplatParticleMeshes/double_blobby.obj"
+dest_files=[ "res://.import/double_blobby.obj-8d64728d8a3aeae243cf0ebcc5c7fbde.mesh", "res://.import/double_blobby.obj-8d64728d8a3aeae243cf0ebcc5c7fbde.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

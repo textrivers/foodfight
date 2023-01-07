@@ -69,6 +69,7 @@ size = 10.0
 [node name="TurnMarker" parent="." instance=ExtResource( 5 )]
 
 [node name="PoemLabelContainer" type="Spatial" parent="."]
+visible = false
 
 [node name="Label3D" type="Label3D" parent="PoemLabelContainer"]
 transform = Transform( 1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 30, -80 )
@@ -135,7 +136,6 @@ visible = true
 player = true
 
 [node name="PoemCamRig" type="Position3D" parent="You"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 script = ExtResource( 8 )
 
 [node name="PoemCam" type="Camera" parent="You/PoemCamRig"]
