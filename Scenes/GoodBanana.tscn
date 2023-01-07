@@ -16,7 +16,7 @@ animations = [ {
 "frames": [ ExtResource( 8 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "default",
-"speed": 20.0
+"speed": 30.0
 } ]
 
 [node name="GoodBanana" instance=ExtResource( 1 )]

@@ -16,15 +16,19 @@ func _ready():
 	$Sprite3D.material_override.albedo_texture = $Viewport.get_texture()
 	get_parent().get_parent().connect("red_light", self, "on_red_light")
 	get_parent().get_parent().connect("green_light", self, "on_green_light")
-	$Viewport/FoodSprite/AnimatedSprite.play("default", bool(randi() % 2))
+	var play_dir = bool(randi() % 2)
+	$Viewport/FoodSprite/AnimatedSprite.play("default", play_dir)
 	$Viewport/FoodSprite/AnimatedSprite.set_frame(0)
 	$Viewport/FoodSprite/AnimatedSprite.playing = false
 	if self.is_in_group("icecream"):
 		var icecream_color_key = Global.palette_dict.keys()[randi() % Global.palette_dict.keys().size()]
 		var icecream_color = Global.palette_dict[icecream_color_key]
-		$Viewport/FoodSprite/AnimatedSprite.self_modulate = icecream_color
+		$Viewport/FoodSprite/AnimatedSprite2.self_modulate = icecream_color
 		splat_colors[0] = icecream_color
 		splat_colors[1] = icecream_color
+		$Viewport/FoodSprite/AnimatedSprite2.play("default", play_dir)
+		$Viewport/FoodSprite/AnimatedSprite2.set_frame(0)
+		$Viewport/FoodSprite/AnimatedSprite2.playing = false
 
 func _physics_process(delta):
 	if translation.y < 0: 
@@ -67,11 +71,15 @@ func on_red_light():
 	if thrown:
 		moving = false
 		$Viewport/FoodSprite/AnimatedSprite.playing = false
+		if self.is_in_group("icecream"):
+			$Viewport/FoodSprite/AnimatedSprite2.playing = false
 
 func on_green_light():
 	if thrown:
 		moving = true
 		$Viewport/FoodSprite/AnimatedSprite.playing = true
+		if self.is_in_group("icecream"):
+			$Viewport/FoodSprite/AnimatedSprite2.playing = true
 
 func _on_Area_body_entered(body):
 	if !thrown:

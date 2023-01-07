@@ -15,6 +15,6 @@ func _process(delta):
 			rotation_degrees.y += rot_speed
 		else:
 			rotation_degrees.y -= rot_speed
-		$Label3D.rotation_degrees.y += rot_speed * poem_rot_multiplier
-		if abs($Label3D.rotation_degrees.y) >= 70:
-			poem_rot_multiplier = -poem_rot_multiplier
+#		$Label3D.rotation_degrees.y += rot_speed * poem_rot_multiplier
+#		if abs($Label3D.rotation_degrees.y) >= 70:
+#			poem_rot_multiplier = -poem_rot_multiplier
