@@ -301,13 +301,15 @@ func _on_Read_pressed():
 	$TurnMarker.hide()
 	$GUI/Right/PlayerOptions.hide()
 	$GUI/Right/ReadOptions.show()
+	$Panel.hide()
 	$GUI/Right/ProceedCancel.show()
 	deactivate_read_button()
 	$You/PoemCamRig.global_translation = whose_turn.global_translation
 	$You/PoemCamRig.direction = !$You/PoemCamRig.direction
 	$You/PoemCamRig/PoemCam.current = true
-	$You/PoemCamRig/Label3D.show()
-	$You/PoemCamRig/Label3D.text = available_text[1]
+	$PoemLabelContainer.show()
+	for child in $PoemLabelContainer.get_children():
+		child.text = available_text[1]
 	## TODO evaluate how many splat particles are in the air at that moment
 	## and choose text based on that? 
 	## ALSO TODO make the splat stuff commented out below happen before the reading/screenshot above
@@ -398,7 +400,7 @@ func _on_Cancel_pressed():
 	emit_signal("selecting_action_target")
 	emit_signal("done_selecting_action_target")
 	$CameraRig/Camera.current = true
-	$You/PoemCamRig/Label3D.hide()
+	$PoemLabelContainer.hide()
 	$TurnMarker.show()
 
 func _on_CheckButton_toggled(button_pressed):
