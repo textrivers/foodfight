@@ -44,13 +44,11 @@ panorama = ExtResource( 2 )
 [sub_resource type="Environment" id=1]
 background_mode = 2
 background_sky = SubResource( 2 )
-background_energy = 6.0
+background_energy = 4.0
 ambient_light_color = Color( 1, 1, 1, 1 )
 ambient_light_energy = 0.7
 ambient_light_sky_contribution = 0.0
-glow_intensity = 4.34
-glow_strength = 2.0
-glow_bloom = 0.67
+glow_enabled = true
 adjustment_saturation = 2.13
 
 [node name="Level4" type="Spatial"]

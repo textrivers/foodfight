@@ -37,6 +37,7 @@ var turn_marker
 var debug: bool = false
 var current_moment: int = 0
 var advancing: bool = true
+var screenshot_int: int = 1
 
 signal red_light
 signal green_light
@@ -297,7 +298,6 @@ func deactivate_read_button():
 	$GUI/Right/PlayerOptions/Read.disabled = true
 
 func _on_Read_pressed():
-	print(available_text[1])
 	$TurnMarker.hide()
 	$GUI/Right/PlayerOptions.hide()
 	$GUI/Right/ReadOptions.show()
@@ -320,12 +320,20 @@ func _on_Read_pressed():
 #	_on_Proceed_pressed()
 
 func _on_Screenshot_pressed():
-	## TODO make this create a jpg screenshot, open save prompt on user's computer
-	## see here: https://godotengine.org/qa/104093/how-can-i-save-an-image-to-the-users-filesystem-in-a-web-export
-#	var new_screen = get_viewport().get_texture().get_data()
-#	new_screen.flip_y()
-#	JavaScript.download_buffer(new_screen, "my_screenshot", )
-	pass # Replace with function body.
+	## from here: https://godotengine.org/qa/104093/how-can-i-save-an-image-to-the-users-filesystem-in-a-web-export
+	$GUI/Right/ReadOptions.hide()
+	$GUI/Right/ProceedCancel/Cancel.hide()
+	yield(VisualServer, "frame_post_draw")
+	var new_screen = get_viewport().get_texture().get_data()
+	new_screen.flip_y()
+	new_screen.save_png("user://" + "%04d" % screenshot_int + ".png")
+	var f = File.new()
+	f.open("user://" + "%04d" % screenshot_int + ".png", File.READ)
+	var buf = f.get_buffer(f.get_len())
+	JavaScript.download_buffer(buf, "%04d" % screenshot_int + ".png")
+	screenshot_int += 1
+	$GUI/Right/ReadOptions.show()
+	$GUI/Right/ProceedCancel/Cancel.show()
 
 func _on_PickUp_pressed():
 	current_action[0] = "pick_up"
