@@ -298,6 +298,7 @@ func deactivate_read_button():
 	$GUI/Right/PlayerOptions/Read.disabled = true
 
 func _on_Read_pressed():
+	Global.poem_text_dict[available_text[0]][3] = true
 	$TurnMarker.hide()
 	$GUI/Right/PlayerOptions.hide()
 	$GUI/Right/ReadOptions.show()

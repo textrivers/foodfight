@@ -1,6 +1,6 @@
 extends Node2D
 
-var next_scene = "res://Scenes/CharacterSelection.tscn"
+var next_scene
 var game_start: bool = false
 var back1
 var back2
@@ -17,9 +17,20 @@ func _process(delta):
 		if child.position.x <= -1024:
 			child.position.x = 1024
 
+#func _input(event):
+#	if game_start == false:
+#		if event is InputEventMouseButton || event is InputEventKey:
+#			game_start = true
+#			SceneManager.goto_scene(self, next_scene)
 
-func _input(event):
-	if game_start == false:
-		if event is InputEventMouseButton || event is InputEventKey:
-			game_start = true
-			SceneManager.goto_scene(self, next_scene)
+func _on_Play_pressed():
+	next_scene = "res://Scenes/CharacterSelection.tscn"
+	SceneManager.goto_scene(self, next_scene)
+
+func _on_Tutorial_pressed():
+	next_scene = "res://Scenes/Tutorial.tscn"
+	SceneManager.goto_scene(self, next_scene)
+
+func _on_Texts_pressed():
+	next_scene = "res://Scenes/TextGallery.tscn"
+	SceneManager.goto_scene(self, next_scene)

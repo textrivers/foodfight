@@ -2,10 +2,10 @@ extends Node2D
 
 var thumb_calc: int = 0
 var thumbnails: Array = [
-	"res://Assets/CharacterSprites/Wid_Vanilla.png",
-	"res://Assets/CharacterSprites/Wid_Halo.png",
-	"res://Assets/CharacterSprites/Wid_Horns.png",
-	"res://Assets/CharacterSprites/Wid_HaloHorns.png",
+	"res://Assets/CharacterSprites/Wid2_Vanilla.png",
+	"res://Assets/CharacterSprites/Wid2_Halo.png",
+	"res://Assets/CharacterSprites/Wid2_Horns.png",
+	"res://Assets/CharacterSprites/Wid2_HaloHorns.png",
 	"res://Assets/CharacterSprites/Uni_Vanilla.png", 
 	"res://Assets/CharacterSprites/Uni_Halo.png", 
 	"res://Assets/CharacterSprites/Uni_Horns.png", 

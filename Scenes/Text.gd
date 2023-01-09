@@ -11,10 +11,10 @@ func _ready():
 	var k
 	var v
 	k = Global.poem_text_dict.keys()[randi() % Global.poem_text_dict.keys().size()]
-	v = Global.poem_text_dict[k]
+	v = Global.poem_text_dict[k][0]
 	poem_text.append(k)
 	poem_text.append(v)
-	Global.poem_text_dict.erase(k)
+	Global.poem_text_dict[k][2] = true
 
 func _on_Text_body_entered(body):
 	pass
