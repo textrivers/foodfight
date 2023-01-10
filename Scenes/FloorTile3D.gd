@@ -56,7 +56,7 @@ func proximity_fade(_fade_in):
 	if timer.is_stopped():
 		timer.wait_time = fade_time
 	else:
-		timer.wait_time = abs(fade_time - material_override.albedo_color.a) 
+		timer.wait_time = abs(fade_time - material_override.albedo_color.a) + 0.001
 		if timer.wait_time <= 0:
 			timer.wait_time = 0.001
 	if timer.is_inside_tree():

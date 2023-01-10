@@ -593,7 +593,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
 
-[node name="Button" type="Button" parent="Control/VBoxContainer/HBox"]
+[node name="MainMenu" type="Button" parent="Control/VBoxContainer/HBox"]
 margin_top = 11.0
 margin_right = 100.0
 margin_bottom = 38.0
@@ -606,4 +606,5 @@ icon_align = 1
 
 [node name="Tween" type="Tween" parent="."]
 
+[connection signal="pressed" from="Control/VBoxContainer/HBox/MainMenu" to="." method="_on_MainMenu_pressed"]
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]

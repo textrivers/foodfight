@@ -43,7 +43,7 @@ func _physics_process(delta):
 					spawn_splatter_particles(coll.position, splat_col)
 			if coll.collider.is_in_group("character"):
 				coll.collider.add_splatter(splat_colors[randi() % splat_colors.size()])
-				coll.collider.start_knockback(velocity.normalized())
+				coll.collider.start_knockback(Vector3(velocity.x, 0, velocity.z))
 			for i in ((randi() % 3) + 1):
 				var new_floor_splat = floor_splat.instance()
 				new_floor_splat.modulate = splat_colors[randi() % splat_colors.size()]

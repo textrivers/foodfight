@@ -62,3 +62,7 @@ func _on_Tween_tween_all_completed():
 			child.disabled = false
 		viewed_sprite.z_index = 2
 
+
+
+func _on_MainMenu_pressed():
+	SceneManager.goto_scene(self, "res://Scenes/TitleScreen.tscn")

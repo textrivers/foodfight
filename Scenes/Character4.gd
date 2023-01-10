@@ -83,8 +83,9 @@ var walking: bool = false
 var velocity
 var walk_speed: float = 4.0
 var knockback: bool = false
-var knockback_dist: float = 2.0
+var knockback_dist: float = 4.0
 var knockback_speed: float = 8.0
+var knockback_speed_attrition: float = 0.05
 var hunting: bool = false
 var food_contacts: Array = []
 var throw_speed: float = 0.1
@@ -150,6 +151,7 @@ func _physics_process(delta):
 			velocity = global_translation.direction_to(next_loc) * walk_speed
 			if knockback:
 				velocity = global_translation.direction_to(next_loc) * knockback_speed
+				knockback_speed -= knockback_speed * knockback_speed_attrition
 			move_and_slide(velocity)
 			if hunting: 
 				hunting = !acquire_target()
@@ -282,7 +284,8 @@ func start_knockback(new_vel):
 	knockback = true
 	walking = true
 	hunting = false
-	var new_pos = global_translation + (Vector3(new_vel.x, 0, new_vel.z) * knockback_dist)
+	knockback_speed = new_vel.length()
+	var new_pos = global_translation + (new_vel.normalized() * knockback_dist)
 	$NavigationAgent.set_target_location(new_pos)
 #	if parent.debug:
 #		var new_sphere = load("res://Scenes/DebugSphere.tscn").instantiate()
