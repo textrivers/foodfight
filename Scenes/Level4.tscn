@@ -57,10 +57,10 @@ board_size = Vector2( 10, 10 )
 mouse_sensitivity = 0.2
 
 [node name="CameraRig" type="Position3D" parent="."]
-transform = Transform( 0.707107, -0.241845, 0.664463, 0, 0.939693, 0.34202, -0.707107, -0.241845, 0.664463, 0, 0, 0 )
+transform = Transform( -0.707107, 0.183013, -0.683013, 0, 0.965926, 0.258819, 0.707107, 0.183013, -0.683013, 0, 0, 0 )
 
 [node name="Camera" type="Camera" parent="CameraRig"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4 )
 current = true
 size = 10.0
 

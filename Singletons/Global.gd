@@ -77,7 +77,10 @@ var character_proximity_radius: float = 8.0 #change this if size of character's 
 var poem_text_dict: Dictionary = { ## syntax: ID: ["text", "source", checked-out, found/read]
 	## checked-out is a bool that ensures unique texts in each ice cream
 	## source is a string, found is a bool, used in the gallery display 
-	0: ["If together we throw enough food,\nwe could make enough of a mess,\nbut we would have to keep our mouths\ntightly closed, to disappear\nfrom hunger.", "from Upside-Down Crown", true, true],
+	0: ["If together we throw enough food,\nwe could make enough of a mess,\nbut we would have to keep our mouths\ntightly closed, to disappear\nfrom hunger.", 
+	"from Upside-Down Crown", 
+	true, 
+	true],
 	1: ["That that lifelike\neyeball hologram you\ncommute through faces\nyou both ways\nwithout turning to?", "from The Amber in Ambrose", false, false], 
 	2: ["That one continuum’s\nlike: continual, ambrosial,\ncandied, pickled, freeze-dried,\nmemorialized, fossilized, and\nso on: so?", "from The Amber in Ambrose", false, false],
 	3: ["That how much\na “hand” of\nfood costs costs\nmoney to know\nhas human costs?", "from The Amber in Ambrose", false, false], 

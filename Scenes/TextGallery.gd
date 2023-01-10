@@ -10,6 +10,7 @@ var viewing: bool = false
 var tweening: bool = false
 var viewed_sprite 
 var tween
+var text_button_scene = preload("res://Scenes/TextButton0.tscn")
 var text_sprite_dict: Dictionary = {
 	0: "res://Assets/TextThumbs/text_0_450px.png",
 	1: "res://Assets/TextThumbs/text_1_450px.png", 
@@ -20,23 +21,24 @@ var text_sprite_dict: Dictionary = {
 
 func _ready():
 	tween = $Tween
-	var index: int = 0
-	for child in $Control/VBoxContainer/GridContainer.get_children():
-		child.connect("pressed", child, "on_self_pressed")
-		child.connect("text_button_pressed", self, "tween_text")
-		if Global.poem_text_dict[index][3] == true:
-			child.get_node("Sprite").texture = load(text_sprite_dict[index])
+	## TODO redo this. It should be: 
+	for text in Global.poem_text_dict:
+		var new_text_button = text_button_scene.instance()
+		$Control/VBoxContainer/GridContainer.add_child(new_text_button)
+		new_text_button.connect("pressed", new_text_button, "on_self_pressed")
+		new_text_button.connect("text_button_pressed", self, "tween_text")
+		if Global.poem_text_dict[text][3] == true:
+			new_text_button.get_node("Sprite").texture = load(text_sprite_dict[text])
 		else:
-			child.get_node("Sprite").texture = load("res://Assets/TextThumbs/questionmark.png")
-		index += 1
+			new_text_button.get_node("Sprite").texture = load("res://Assets/TextThumbs/questionmark.png")
 
 func _process(_delta):
 	if Input.is_action_just_pressed("left_click"):
 		if viewing && !tweening:
 			tweening = true
 			viewing = false
-			$Tween.interpolate_property(viewed_sprite, "scale", viewed_sprite.scale, revert_scale, 1, Tween.TRANS_BACK, Tween.EASE_OUT, 0)
-			$Tween.interpolate_property(viewed_sprite, "global_position", viewed_sprite.global_position, revert_pos, 1, Tween.TRANS_BACK, Tween.EASE_OUT, 0)
+			$Tween.interpolate_property(viewed_sprite, "scale", viewed_sprite.scale, revert_scale, 1, Tween.TRANS_QUINT, Tween.EASE_OUT, 0)
+			$Tween.interpolate_property(viewed_sprite, "global_position", viewed_sprite.global_position, revert_pos, 1, Tween.TRANS_QUINT, Tween.EASE_OUT, 0)
 			$Tween.start()
 
 func tween_text(text_sprite): 
@@ -49,8 +51,8 @@ func tween_text(text_sprite):
 		viewed_sprite = text_sprite
 		revert_pos = text_sprite.global_position
 		revert_scale = text_sprite.scale
-		$Tween.interpolate_property(text_sprite, "scale", text_sprite.scale, Vector2(1, 1), 1, Tween.TRANS_BACK, Tween.EASE_OUT, 0)
-		$Tween.interpolate_property(text_sprite, "global_position", text_sprite.global_position, Vector2(512, 300), 1, Tween.TRANS_BACK, Tween.EASE_OUT, 0)
+		$Tween.interpolate_property(text_sprite, "scale", text_sprite.scale, Vector2(1, 1), 1, Tween.TRANS_QUINT, Tween.EASE_OUT, 0)
+		$Tween.interpolate_property(text_sprite, "global_position", text_sprite.global_position, Vector2(512, 300), 1, Tween.TRANS_QUINT, Tween.EASE_OUT, 0)
 		$Tween.start()
 
 func _on_Tween_tween_all_completed():

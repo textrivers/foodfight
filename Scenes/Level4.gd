@@ -136,7 +136,7 @@ func _input(event):
 		cam_rig_zoom_target -= 1.0
 	if Input.is_action_just_released("scroll_out"):
 		cam_rig_zoom_target += 1.0
-		cam_rig_zoom_target = clamp(cam_rig_zoom_target, 1.0, 15.0)
+	cam_rig_zoom_target = clamp(cam_rig_zoom_target, 1.0, 10.0)
 
 func _on_HSlider_value_changed(value):
 	Global.AI_turn_delay = value

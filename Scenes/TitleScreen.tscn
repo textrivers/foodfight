@@ -1,10 +1,9 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Assets/PanoramaSky/A_pano_3.png" type="Texture" id=1]
 [ext_resource path="res://Assets/PanoramaSky/A_pano_1.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/TitleScreen.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Fonts/ARCADE_I.TTF" type="DynamicFontData" id=4]
-[ext_resource path="res://Assets/Fonts/ARCADE_R.TTF" type="DynamicFontData" id=5]
 [ext_resource path="res://Assets/Fonts/TCM_____.TTF" type="DynamicFontData" id=6]
 [ext_resource path="res://Assets/Fonts/ARCADE_N.TTF" type="DynamicFontData" id=7]
 [ext_resource path="res://Themes/GUI_Default.tres" type="Theme" id=8]
@@ -23,21 +22,20 @@ fill_from = Vector2( 0.5, 0.5 )
 fill_to = Vector2( 1, 1 )
 
 [sub_resource type="DynamicFont" id=7]
-size = 20
+size = 18
 outline_size = 1
-font_data = ExtResource( 5 )
+font_data = ExtResource( 7 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 80
-outline_size = 2
+outline_size = 1
 use_mipmaps = true
 use_filter = true
 extra_spacing_char = 4
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=8]
-size = 47
-outline_size = 2
+size = 24
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=9]
@@ -210,8 +208,8 @@ mouse_filter = 2
 modulate = Color( 1, 1, 1, 0 )
 light_mask = 2
 margin_right = 1024.0
-margin_bottom = 90.0
-rect_min_size = Vector2( 0, 90 )
+margin_bottom = 60.0
+rect_min_size = Vector2( 0, 60 )
 custom_colors/font_color = Color( 0.192157, 0.133333, 0.266667, 1 )
 custom_colors/font_outline_modulate = Color( 0.831373, 0.239216, 0.262745, 0.690196 )
 custom_colors/font_color_shadow = Color( 0.788235, 0.694118, 0.0666667, 1 )
@@ -225,42 +223,58 @@ valign = 2
 
 [node name="Title" type="Label" parent="GUI"]
 light_mask = 2
-margin_top = 94.0
+margin_top = 64.0
 margin_right = 1024.0
-margin_bottom = 304.0
-rect_min_size = Vector2( 0, 210 )
+margin_bottom = 264.0
+rect_min_size = Vector2( 0, 200 )
 custom_colors/font_color = Color( 0.0509804, 0.392157, 0.482353, 1 )
 custom_colors/font_outline_modulate = Color( 0.572549, 0.0980392, 0.129412, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 4
-custom_constants/shadow_offset_y = 4
+custom_constants/shadow_offset_y = 0
 custom_fonts/font = SubResource( 4 )
 text = "ENOUGH
 OF A MESS"
 align = 1
 valign = 1
 
-[node name="Subtitle2" type="Label" parent="GUI"]
-modulate = Color( 1, 1, 1, 0 )
+[node name="Subtitle3" type="Label" parent="GUI"]
+modulate = Color( 1, 1, 1, 0.501961 )
 light_mask = 2
-margin_top = 308.0
+margin_top = 268.0
 margin_right = 1024.0
-margin_bottom = 388.0
+margin_bottom = 348.0
+rect_min_size = Vector2( 0, 80 )
+custom_colors/font_color = Color( 0.192157, 0.133333, 0.266667, 1 )
+custom_colors/font_outline_modulate = Color( 0.443137, 0.615686, 1, 1 )
+custom_colors/font_color_shadow = Color( 0.788235, 0.694118, 0.0666667, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 0
+custom_fonts/font = SubResource( 7 )
+text = "being a promotional instrument for"
+align = 1
+valign = 2
+
+[node name="Subtitle2" type="Label" parent="GUI"]
+light_mask = 2
+margin_top = 352.0
+margin_right = 1024.0
+margin_bottom = 432.0
 rect_min_size = Vector2( 0, 80 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_outline_modulate = Color( 0.192157, 0.133333, 0.266667, 1 )
 custom_colors/font_color_shadow = Color( 0.788235, 0.694118, 0.0666667, 1 )
-custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_x = 4
 custom_constants/shadow_offset_y = 0
 custom_fonts/font = SubResource( 8 )
-text = "the amber in ambrose"
+text = "The Amber in Ambrose * trnsfr books, 2023"
 align = 1
 valign = 1
 
 [node name="HBoxContainer" type="VBoxContainer" parent="GUI"]
-margin_top = 392.0
+margin_top = 436.0
 margin_right = 1024.0
-margin_bottom = 495.0
+margin_bottom = 539.0
 rect_min_size = Vector2( 0, 75 )
 custom_constants/separation = 11
 alignment = 1
@@ -296,22 +310,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 8 )
 text = "TEXT GALLERY"
-
-[node name="Subtitle3" type="Label" parent="GUI"]
-modulate = Color( 1, 1, 1, 0 )
-light_mask = 2
-margin_top = 499.0
-margin_right = 1024.0
-margin_bottom = 539.0
-rect_min_size = Vector2( 0, 40 )
-custom_colors/font_color = Color( 0.192157, 0.133333, 0.266667, 1 )
-custom_colors/font_outline_modulate = Color( 0.443137, 0.615686, 1, 1 )
-custom_colors/font_color_shadow = Color( 0.788235, 0.694118, 0.0666667, 1 )
-custom_constants/shadow_offset_x = 2
-custom_constants/shadow_offset_y = 0
-custom_fonts/font = SubResource( 7 )
-text = "trnsfr books, 2023"
-align = 1
 
 [node name="PressAnyKey" type="Label" parent="GUI"]
 visible = false
