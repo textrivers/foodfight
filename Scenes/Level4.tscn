@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scenes/Level4.gd" type="Script" id=1]
 [ext_resource path="res://Assets/PanoramaSky/A_pano_FULL.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Assets/Fonts/TCM_____.TTF" type="DynamicFontData" id=6]
 [ext_resource path="res://Themes/GUI_Default.tres" type="Theme" id=7]
 [ext_resource path="res://Scenes/PoemCamRig.gd" type="Script" id=8]
+[ext_resource path="res://Themes/ProgressBar.tres" type="Theme" id=9]
 [ext_resource path="res://Assets/Fonts/ARCADE_I.TTF" type="DynamicFontData" id=10]
 
 [sub_resource type="DynamicFont" id=16]
@@ -20,7 +21,7 @@ extra_spacing_space = -18
 font_data = ExtResource( 10 )
 
 [sub_resource type="StyleBoxFlat" id=9]
-bg_color = Color( 0.329412, 0.384314, 0.505882, 0.784314 )
+bg_color = Color( 0.490196, 0.584314, 0.788235, 0.270588 )
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -147,24 +148,22 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 15 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 4 )
 
 [node name="Panel" type="Panel" parent="."]
-margin_right = 250.0
+margin_right = 245.0
 margin_bottom = 229.0
 theme = SubResource( 10 )
 
 [node name="GUI" type="HBoxContainer" parent="."]
-margin_right = 249.0
+margin_right = 1024.0
 margin_bottom = 228.0
 mouse_filter = 2
 theme = ExtResource( 7 )
 alignment = 1
 
 [node name="Right" type="VBoxContainer" parent="GUI"]
-margin_left = 5.0
-margin_right = 244.0
+margin_right = 239.0
 margin_bottom = 228.0
 rect_min_size = Vector2( 200, 0 )
 mouse_filter = 2
-size_flags_horizontal = 4
 
 [node name="PlayerOptions" type="VBoxContainer" parent="GUI/Right"]
 margin_right = 239.0
@@ -341,6 +340,67 @@ margin_bottom = 27.0
 rect_min_size = Vector2( 75, 0 )
 text = "Cancel"
 
+[node name="Center" type="VBoxContainer" parent="GUI"]
+margin_left = 243.0
+margin_right = 1024.0
+margin_bottom = 228.0
+rect_min_size = Vector2( 300, 0 )
+mouse_filter = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Center"]
+margin_right = 781.0
+margin_bottom = 40.0
+mouse_filter = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="GUI/Center/HBoxContainer"]
+margin_left = 397.0
+margin_top = 8.0
+margin_right = 477.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 80, 0 )
+custom_colors/font_color = Color( 0.490196, 0.584314, 0.788235, 1 )
+text = "Mess"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="MessProgressBar" type="ProgressBar" parent="GUI/Center/HBoxContainer"]
+margin_left = 481.0
+margin_right = 781.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 300, 40 )
+mouse_filter = 2
+theme = ExtResource( 9 )
+rounded = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GUI/Center"]
+margin_top = 44.0
+margin_right = 781.0
+margin_bottom = 84.0
+mouse_filter = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="GUI/Center/HBoxContainer2"]
+margin_left = 397.0
+margin_right = 477.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 80, 40 )
+custom_colors/font_color = Color( 0.490196, 0.584314, 0.788235, 1 )
+text = "Hilarity"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="HilarityProgressBar" type="ProgressBar" parent="GUI/Center/HBoxContainer2"]
+margin_left = 481.0
+margin_right = 781.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 300, 40 )
+mouse_filter = 2
+theme = ExtResource( 9 )
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
 
@@ -351,6 +411,7 @@ shadow_enabled = true
 
 [node name="Map3Point5Baseline" parent="." instance=ExtResource( 4 )]
 
+[connection signal="tree_exiting" from="." to="." method="_on_Level4_tree_exiting"]
 [connection signal="pressed" from="GUI/Right/PlayerOptions/Read" to="." method="_on_Read_pressed"]
 [connection signal="pressed" from="GUI/Right/PlayerOptions/Walk" to="." method="_on_Walk_pressed"]
 [connection signal="pressed" from="GUI/Right/PlayerOptions/PickUp" to="." method="_on_PickUp_pressed"]

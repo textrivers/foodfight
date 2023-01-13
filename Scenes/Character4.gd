@@ -315,9 +315,17 @@ func _on_Area_body_exited(body):
 		else:
 			body.visible = false
 
+func _on_Area_area_entered(area):
+	if player && area.is_in_group("proximity"):
+		if area.get_parent().visible == false:
+			area.get_parent().show()
+
 func _on_Area_area_exited(area):
 	if player && area.is_in_group("proximity"):
-		area.get_parent().call_deferred("queue_free")
+		area.get_parent().hide()
 
 func _on_NavigationAgent_velocity_computed(safe_velocity):
 	velocity = safe_velocity
+
+
+

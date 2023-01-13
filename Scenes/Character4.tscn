@@ -98,6 +98,7 @@ shape = SubResource( 3 )
 [connection signal="mouse_entered" from="." to="." method="_on_Character3D_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Character3D_mouse_exited"]
 [connection signal="velocity_computed" from="NavigationAgent" to="." method="_on_NavigationAgent_velocity_computed"]
+[connection signal="area_entered" from="Area" to="." method="_on_Area_area_entered"]
 [connection signal="area_exited" from="Area" to="." method="_on_Area_area_exited"]
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
 [connection signal="body_exited" from="Area" to="." method="_on_Area_body_exited"]

@@ -1,23 +1,16 @@
 extends Sprite3D
 
+signal splat_disappear
+signal splat_appear
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
-	$Timer.wait_time = (randf() / 2) + 0.5
+	#$Timer.wait_time = (randf() / 2) + 0.5
 	for character in get_tree().get_nodes_in_group("character"):
 		if character.player == true:
 			if self.global_translation.distance_to(character.global_translation) < Global.character_proximity_radius:
-				$Timer.start()
+				self.show()
 			else: 
-				queue_free()
-	get_parent().connect("red_light", self, "on_red_light")
-	get_parent().connect("green_light", self, "on_green_light")
+				pass
 
-func _on_Timer_timeout():
-	self.show()
-
-func on_red_light():
-	$Timer.paused = true
-
-func on_green_light():
-	$Timer.paused = false

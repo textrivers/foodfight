@@ -38,6 +38,11 @@ var debug: bool = false
 var current_moment: int = 0
 var advancing: bool = true
 var screenshot_int: int = 1
+var mess_multiplier: float = 5.0
+var hilarity_multiplier: float = 3.0
+
+const FILE_NAME = "user://enough-of-a-mess-data.json"
+
 
 signal red_light
 signal green_light
@@ -147,10 +152,13 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("debug"):
 		debug = !debug
 		print("debug is " + str(debug))
+	if Input.is_action_just_pressed("ui_cancel"):
+		SceneManager.goto_scene(self, "res://Scenes/TitleScreen.tscn")
 	advance_time()
 	prompt_turns()
 	translate_cam_rig()
 	rotate_cam_rig()
+	update_progress_bars()
 
 func advance_time():
 	if advancing:
@@ -246,7 +254,7 @@ func translate_cam_rig():
 
 func rotate_cam_rig():
 	# clamp value so you can only look so high or low
-	cam_rig_rot_target.y = clamp(cam_rig_rot_target.y, -30, 40)
+	cam_rig_rot_target.y = clamp(cam_rig_rot_target.y, -45, 7)
 	if cam_rig.rotation_degrees.x != cam_rig_rot_target.y:
 		var new_rad_y = deg2rad(cam_rig_rot_target.y)
 		cam_rig.rotation.x = lerp_angle(cam_rig.rotation.x, new_rad_y, 0.1)
@@ -303,6 +311,7 @@ func _on_Read_pressed():
 	$GUI/Right/PlayerOptions.hide()
 	$GUI/Right/ReadOptions.show()
 	$Panel.hide()
+	$GUI/Center.hide()
 	$GUI/Right/ProceedCancel.show()
 	deactivate_read_button()
 	$You/PoemCamRig.global_translation = whose_turn.global_translation
@@ -411,6 +420,7 @@ func _on_Cancel_pressed():
 	$CameraRig/Camera.current = true
 	$PoemLabelContainer.hide()
 	$TurnMarker.show()
+	$GUI/Center.show()
 
 func _on_CheckButton_toggled(button_pressed):
 	if button_pressed == true:
@@ -427,9 +437,31 @@ func display_debug_path():
 		add_child(new_sphere)
 		new_sphere.global_translation = point
 
+func update_progress_bars():
+	if advancing:
+		var splats = get_tree().get_nodes_in_group("splat")
+		var visible_splat_count: int = 0
+		for splat in splats: 
+			if splat.visible:
+				visible_splat_count += 1
+		$GUI/Center/HBoxContainer/MessProgressBar.value = visible_splat_count * mess_multiplier
+		if $GUI/Center/HBoxContainer2/HilarityProgressBar.value > 0:
+			$GUI/Center/HBoxContainer2/HilarityProgressBar.value -= hilarity_multiplier
+
 func remove_debug_path():
 	for sphere in get_tree().get_nodes_in_group("debug"):
 		sphere.queue_free()
 
-
+func _on_Level4_tree_exiting(): ## for syncing state of Global to user save file
+	## using approach found here: https://gdscript.com/solutions/how-to-save-and-load-godot-game-data/
+	## get data from Global
+	var texts_for_save = []
+	for key in Global.poem_text_dict:
+		texts_for_save.append(Global.poem_text_dict[key])
+	## add to save data and write to user dir
+	var file = File.new()
+	file.open(FILE_NAME, File.WRITE)
+	file.store_var(to_json(texts_for_save))
+	file.close()
+	print("file saved")
 

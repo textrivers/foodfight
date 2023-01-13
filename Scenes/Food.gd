@@ -52,6 +52,8 @@ func _physics_process(delta):
 				new_floor_splat.translation.y = 0.07
 				new_floor_splat.translation.z += randf() - 0.5
 				new_floor_splat.rotation_degrees.y += randf() * 360
+				new_floor_splat.texture = load("res://Assets/splat_" + str(randi() % 8) + ".png")
+				new_floor_splat.visible = false
 				get_parent().add_child(new_floor_splat)
 			call_deferred("queue_free")
 
