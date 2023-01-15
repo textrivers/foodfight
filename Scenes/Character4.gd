@@ -278,7 +278,7 @@ func add_splatter(color):
 				break
 	current_splat_num += 1
 	current_splat_num = current_splat_num % 3
-	
+
 func start_knockback(new_vel):
 	#breakpoint
 	knockback = true
@@ -319,10 +319,14 @@ func _on_Area_area_entered(area):
 	if player && area.is_in_group("proximity"):
 		if area.get_parent().visible == false:
 			area.get_parent().show()
+			if area.get_parent().is_in_group("splat"):
+				Global.visible_splat_count += 1
 
 func _on_Area_area_exited(area):
 	if player && area.is_in_group("proximity"):
 		area.get_parent().hide()
+		if area.get_parent().is_in_group("splat") && Global.visible_splat_count >= 1:
+			Global.visible_splat_count -= 1
 
 func _on_NavigationAgent_velocity_computed(safe_velocity):
 	velocity = safe_velocity

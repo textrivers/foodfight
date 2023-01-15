@@ -19,6 +19,7 @@ func _process(_delta):
 	pass
 
 func do_fade(to_black):
+	$Control.show()
 	fade_to_black = to_black
 	if can_fade:
 		can_fade = false
@@ -43,3 +44,4 @@ func _on_Tween_tween_all_completed():
 		if square.scale != Vector2(1, 1):
 			square.rotation_degrees = 0
 	can_fade = true
+	$Control.hide()

@@ -1,9 +1,5 @@
 extends Node2D
 
-## TODO create a Texture Button script; use this to send a signal up to this script
-## signal handler initiates tween for the sprite scale and location to center of screen, 
-## also the modulate to darken all else
-## and stores the scale/location to tween back to on any input
 var revert_pos
 var revert_scale
 var viewing: bool = false
@@ -11,55 +7,26 @@ var tweening: bool = false
 var viewed_sprite 
 var tween
 var text_button_scene = preload("res://Scenes/TextButton0.tscn")
-var text_sprite_dict: Dictionary = {
-	0: "res://Assets/TextThumbs/text_0_450px.png",
-	1: "res://Assets/TextThumbs/text_1_450px.png", 
-	2: "res://Assets/TextThumbs/text_2_450px.png", 
-	3: "res://Assets/TextThumbs/text_3_450px.png",
-	4: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	5: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	6: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	7: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	8: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	9: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	10: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	11: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	12: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	13: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	14: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	15: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	16: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	17: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	18: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	19: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	20: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	21: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	22: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	23: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	24: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	25: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	26: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	27: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	28: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	29: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	30: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	31: "res://Assets/TextThumbs/text_placeholder_450px.png",
-	## etc
-}
+
+const FILE_NAME = "user://enough-of-a-mess-data.json"
 
 func _ready():
 	tween = $Tween
+	var any_found: bool = false
 	for text in Global.poem_text_dict:
 		var new_text_button = text_button_scene.instance()
 		$Control/VBoxContainer/GridContainer.add_child(new_text_button)
 		new_text_button.connect("pressed", new_text_button, "on_self_pressed")
 		new_text_button.connect("text_button_pressed", self, "tween_text")
 		if Global.poem_text_dict[text][3] == true:
+			any_found = true
 			new_text_button.get_node("Sprite").texture = load("res://Assets/TextThumbs/blank.png")
 			new_text_button.get_node("Sprite/Label").text = Global.poem_text_dict[text][0] + "\n\n\n" + Global.poem_text_dict[text][1]
 		else:
 			new_text_button.get_node("Sprite").texture = load("res://Assets/TextThumbs/questionmark.png")
 			new_text_button.get_node("Sprite/Label").text = ""
+	if any_found == false:
+		$Control/VBoxContainer/HBox/ResetTexts.disabled = true
 
 func _process(_delta):
 	if Input.is_action_just_pressed("left_click"):
@@ -91,7 +58,25 @@ func _on_Tween_tween_all_completed():
 	else:
 		for child in $Control/VBoxContainer/GridContainer.get_children():
 			child.disabled = false
-		viewed_sprite.z_index = 2
+		viewed_sprite.z_index = 0
 
 func _on_MainMenu_pressed():
 	SceneManager.goto_scene(self, "res://Scenes/TitleScreen.tscn")
+
+func _on_ResetTexts_pressed():
+	$AreYouSure.show()
+
+func _on_Proceed_pressed():
+	var texts_for_save = []
+	for i in Global.poem_text_dict:
+		Global.poem_text_dict[i][3] = false
+		texts_for_save.append(Global.poem_text_dict[i])
+	var file = File.new()
+	file.open(FILE_NAME, File.WRITE)
+	file.store_var(to_json(texts_for_save))
+	file.close()
+	$AreYouSure.hide()
+	SceneManager.goto_scene(self, "res://Scenes/TitleScreen.tscn")
+
+func _on_Cancel_pressed():
+	$AreYouSure.hide()

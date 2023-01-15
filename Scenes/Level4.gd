@@ -39,10 +39,9 @@ var current_moment: int = 0
 var advancing: bool = true
 var screenshot_int: int = 1
 var mess_multiplier: float = 5.0
-var hilarity_multiplier: float = 3.0
+var hilarity_multiplier: float = 0.25
 
 const FILE_NAME = "user://enough-of-a-mess-data.json"
-
 
 signal red_light
 signal green_light
@@ -99,9 +98,6 @@ func place_objects():
 		var food_child = new_food.instance()
 		add_child(food_child)
 		food_child.global_translation = all_tiles[j].global_translation
-	## TODO when placing ice cream, subscribe to their entered/exited signals
-	## use those signals to enable Read option in GUI
-	## read populates text on screen "somehow"
 	var ice_cream_count: int = 5
 	for k in ice_cream_count:
 		var ice_cream_tile = all_tiles[randi() % all_tiles.size()]
@@ -263,11 +259,12 @@ func rotate_cam_rig():
 		cam_rig.rotation.y = lerp_angle(cam_rig.rotation.y, new_rad_x, 0.1)
 
 func display_character_options(_player):
-	reset_character_options()
-	$Panel.show()
-	$GUI/Right.show()
-	$GUI/Right/PlayerOptions.show()
 	if _player == true: 
+		yield(VisualServer, "frame_post_draw")
+		reset_character_options()
+		$Panel.show()
+		$GUI/Right.show()
+		$GUI/Right/PlayerOptions.show()
 		$GUI/Right/PlayerOptions/Label.text = "It is your turn"
 		for button in $GUI/Right/PlayerOptions.get_children():
 			if button is Button && button.name != "Read":
@@ -279,10 +276,11 @@ func display_character_options(_player):
 		if whose_turn.food_contacts.size() == 0:
 			$GUI/Right/PlayerOptions/PickUp.disabled = true
 	else: 
-		$GUI/Right/PlayerOptions/Label.text = "It is " + whose_turn.name + "'s turn"
-		for button in $GUI/Right/PlayerOptions.get_children():
-			if button is Button:
-				button.disabled = true
+#		$GUI/Right/PlayerOptions/Label.text = "It is " + whose_turn.name + "'s turn"
+#		for button in $GUI/Right/PlayerOptions.get_children():
+#			if button is Button:
+#				button.disabled = true
+		pass
 
 func reset_character_options():
 	for child in $GUI/Right/PlayerOptions.get_children():
@@ -439,14 +437,10 @@ func display_debug_path():
 
 func update_progress_bars():
 	if advancing:
-		var splats = get_tree().get_nodes_in_group("splat")
-		var visible_splat_count: int = 0
-		for splat in splats: 
-			if splat.visible:
-				visible_splat_count += 1
-		$GUI/Center/HBoxContainer/MessProgressBar.value = visible_splat_count * mess_multiplier
-		if $GUI/Center/HBoxContainer2/HilarityProgressBar.value > 0:
-			$GUI/Center/HBoxContainer2/HilarityProgressBar.value -= hilarity_multiplier
+		$GUI/Center/HBoxContainer/MessProgressBar.value = Global.visible_splat_count * mess_multiplier
+		if Global.hilarity > 0:
+			Global.hilarity -= hilarity_multiplier
+		$GUI/Center/HBoxContainer2/HilarityProgressBar.value = Global.hilarity
 
 func remove_debug_path():
 	for sphere in get_tree().get_nodes_in_group("debug"):

@@ -42,6 +42,7 @@ shape = SubResource( 1 )
 
 [node name="Area" type="Area" parent="."]
 collision_mask = 2
+input_ray_pickable = false
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 shape = SubResource( 2 )

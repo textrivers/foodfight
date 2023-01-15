@@ -57,7 +57,7 @@ custom_colors/font_outline_modulate = Color( 0.831373, 0.239216, 0.262745, 1 )
 custom_constants/shadow_offset_x = 5
 custom_constants/shadow_offset_y = 5
 custom_fonts/font = SubResource( 3 )
-text = "Text Gallery (click to read)"
+text = "Texts found thus far (click to read)"
 align = 1
 valign = 1
 
@@ -73,18 +73,29 @@ custom_constants/hseparation = 14
 columns = 8
 
 [node name="HBox" type="HBoxContainer" parent="Control/VBoxContainer"]
-margin_left = 462.0
+margin_left = 395.0
 margin_top = 483.0
-margin_right = 562.0
+margin_right = 629.0
 margin_bottom = 533.0
 rect_min_size = Vector2( 0, 50 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
+custom_constants/separation = 20
 alignment = 1
 
-[node name="MainMenu" type="Button" parent="Control/VBoxContainer/HBox"]
+[node name="ResetTexts" type="Button" parent="Control/VBoxContainer/HBox"]
 margin_top = 11.0
-margin_right = 100.0
+margin_right = 114.0
+margin_bottom = 38.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource( 7 )
+text = "Reset all texts"
+
+[node name="MainMenu" type="Button" parent="Control/VBoxContainer/HBox"]
+margin_left = 134.0
+margin_top = 11.0
+margin_right = 234.0
 margin_bottom = 38.0
 rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 4
@@ -93,7 +104,44 @@ theme = ExtResource( 7 )
 text = "Main Menu"
 icon_align = 1
 
+[node name="AreYouSure" type="Control" parent="."]
+visible = false
+margin_right = 1024.0
+margin_bottom = 600.0
+theme = ExtResource( 7 )
+
+[node name="Panel" type="Panel" parent="AreYouSure"]
+modulate = Color( 0.262745, 0.0980392, 0.466667, 0.784314 )
+margin_right = 1024.0
+margin_bottom = 600.0
+
+[node name="Label" type="Label" parent="AreYouSure"]
+margin_left = 350.0
+margin_top = 157.0
+margin_right = 674.0
+margin_bottom = 240.0
+text = "If you proceed, you will be unable to read texts here until you find them elsewhere in the game."
+align = 1
+autowrap = true
+
+[node name="Proceed" type="Button" parent="AreYouSure"]
+margin_left = 350.0
+margin_top = 250.0
+margin_right = 501.0
+margin_bottom = 280.0
+text = "Proceed"
+
+[node name="Cancel" type="Button" parent="AreYouSure"]
+margin_left = 512.0
+margin_top = 250.0
+margin_right = 674.0
+margin_bottom = 280.0
+text = "Cancel"
+
 [node name="Tween" type="Tween" parent="."]
 
+[connection signal="pressed" from="Control/VBoxContainer/HBox/ResetTexts" to="." method="_on_ResetTexts_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/HBox/MainMenu" to="." method="_on_MainMenu_pressed"]
+[connection signal="pressed" from="AreYouSure/Proceed" to="." method="_on_Proceed_pressed"]
+[connection signal="pressed" from="AreYouSure/Cancel" to="." method="_on_Cancel_pressed"]
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]

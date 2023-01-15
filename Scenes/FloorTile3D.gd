@@ -23,8 +23,9 @@ func _process(_delta):
 		print("mat albedo not assigned correctly")
 
 func on_target_selecting():
+	selected = false
 	selecting = true
-	_on_StaticBody_mouse_exited()
+	material_override.albedo_color = Color(revert_color.r, revert_color.g, revert_color.b, material_override.albedo_color.a)
 
 func on_target_unselecting():
 	selecting = false
@@ -48,7 +49,7 @@ func _on_StaticBody_input_event(camera, event, position, normal, shape_idx):
 					else:
 						child.material_override.albedo_color = Color(child.revert_color.r, child.revert_color.g, child.revert_color.b, child.material_override.albedo_color.a)
 			selected = true
-			material_override.albedo_color = Color.crimson
+			material_override.albedo_color = Global.palette_dict["pink_2"]
 			emit_signal("give_on_select_info", global_translation, tile_description)
 
 func proximity_fade(_fade_in):

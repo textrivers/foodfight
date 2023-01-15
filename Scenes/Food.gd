@@ -44,6 +44,12 @@ func _physics_process(delta):
 			if coll.collider.is_in_group("character"):
 				coll.collider.add_splatter(splat_colors[randi() % splat_colors.size()])
 				coll.collider.start_knockback(Vector3(velocity.x, 0, velocity.z))
+				Global.hilarity += 40
+			elif coll.collider.is_in_group("throwable"): 
+				Global.hilarity += 10
+			else: 
+				Global.hilarity += 5
+			clamp(Global.hilarity, 0, 120)
 			for i in ((randi() % 3) + 1):
 				var new_floor_splat = floor_splat.instance()
 				new_floor_splat.modulate = splat_colors[randi() % splat_colors.size()]

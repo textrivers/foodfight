@@ -111,6 +111,8 @@ var poem_text_dict: Dictionary = { ## syntax: ID: ["text", "source", checked-out
 	31: ["That alphabet soup\npreserves the alphabet\nand the alphabet-eater?\nAnd who will\ntime tell [amber]", "from “The Amber in Ambrose”", false, false], 
 }
 
+var visible_splat_count: int = 0
+var hilarity: float = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

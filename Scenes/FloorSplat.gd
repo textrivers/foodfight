@@ -11,6 +11,7 @@ func _ready():
 		if character.player == true:
 			if self.global_translation.distance_to(character.global_translation) < Global.character_proximity_radius:
 				self.show()
+				Global.visible_splat_count += 1
 			else: 
 				pass
 
