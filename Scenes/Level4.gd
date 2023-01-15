@@ -208,8 +208,8 @@ func AI_action_select():
 					current_action[1] = action_target
 				else: ## if food doesn't exist
 					var tiles = get_tree().get_nodes_in_group("tile") ## walk to random tile
-					var dest_tile = tiles.pick_random()
-					current_action[1] = dest_tile
+					var dest_tile = tiles[randi() % tiles.size()]
+					current_action[1] = dest_tile.global_translation
 		## handle navigation for walking
 		if current_action[0] == "walk":
 			whose_turn.get_node("NavigationAgent").set_target_location(current_action[1])
