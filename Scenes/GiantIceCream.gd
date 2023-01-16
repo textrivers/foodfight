@@ -1,10 +1,6 @@
 extends Spatial
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+export var nextscene: String = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,3 +11,7 @@ func _process(delta):
 	if dist_to_player <= 10: 
 		$AnimatedSprite3D.frame = int(10 - dist_to_player)
 		scale = Vector3.ONE + (scale * ((10 - dist_to_player) / 10))
+
+func _on_Area_body_entered(body):
+	if body.player:
+		SceneManager.goto_scene(get_parent(), nextscene)

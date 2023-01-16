@@ -113,6 +113,9 @@ var poem_text_dict: Dictionary = { ## syntax: ID: ["text", "source", checked-out
 
 var visible_splat_count: int = 0
 var hilarity: float = 0
+
+var lvl_count: int = 4
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

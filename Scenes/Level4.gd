@@ -38,7 +38,7 @@ var debug: bool = false
 var current_moment: int = 0
 var advancing: bool = true
 var screenshot_int: int = 1
-var mess_multiplier: float = 5.0
+var mess_multiplier: float = 2.0
 var hilarity_multiplier: float = 0.25
 
 const FILE_NAME = "user://enough-of-a-mess-data.json"
@@ -79,6 +79,7 @@ func _ready():
 		new_mat.albedo_color.a = 0
 		new_tile.set_material_override(new_mat)
 		new_tile.revert_color = new_tile_color
+	Global.lvl_count += 1 ## make sure next level will be loaded
 
 func place_objects():
 	## place food

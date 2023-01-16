@@ -417,6 +417,7 @@ shadow_enabled = true
 
 [node name="GiantIceCream" parent="." instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -4 )
+nextscene = "res://Scenes/Level4.tscn"
 
 [connection signal="tree_exiting" from="." to="." method="_on_Level4_tree_exiting"]
 [connection signal="pressed" from="GUI/Right/PlayerOptions/Read" to="." method="_on_Read_pressed"]

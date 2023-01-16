@@ -192,9 +192,10 @@ func handle_action(action):
 			else:
 				my_food.name = "MyFood"
 			if player && my_food.has_node("Text"):
-				var text = my_food.get_node("Text")
-				text.readable = true
-				text.emit_signal("enable_read_action", text.poem_text)
+				var text_node = my_food.get_node("Text")
+				text_node.acquire_poem_text()
+				text_node.readable = true
+				text_node.emit_signal("enable_read_action", text_node.poem_text)
 	if action[0] == "throw":
 		walking = false
 		if self.has_node("MyFood"):
