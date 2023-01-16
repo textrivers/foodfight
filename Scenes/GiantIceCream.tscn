@@ -1,0 +1,37 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Assets/FoodSprites/giant_ice_cream/size_test.png" type="Texture" id=1]
+[ext_resource path="res://Assets/FoodSprites/giant_ice_cream/GIC_2.png" type="Texture" id=2]
+[ext_resource path="res://Assets/FoodSprites/giant_ice_cream/GIC_5.png" type="Texture" id=3]
+[ext_resource path="res://Assets/FoodSprites/giant_ice_cream/GIC_0.png" type="Texture" id=4]
+[ext_resource path="res://Assets/FoodSprites/giant_ice_cream/GIC_3.png" type="Texture" id=5]
+[ext_resource path="res://Assets/FoodSprites/giant_ice_cream/GIC_4.png" type="Texture" id=6]
+[ext_resource path="res://Assets/FoodSprites/giant_ice_cream/GIC_1.png" type="Texture" id=7]
+[ext_resource path="res://Assets/FoodSprites/giant_ice_cream/GIC_6.png" type="Texture" id=8]
+[ext_resource path="res://Assets/FoodSprites/giant_ice_cream/GIC_7.png" type="Texture" id=9]
+[ext_resource path="res://Assets/FoodSprites/giant_ice_cream/GIC_9.png" type="Texture" id=10]
+[ext_resource path="res://Assets/FoodSprites/giant_ice_cream/GIC_8.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/GiantIceCream.gd" type="Script" id=12]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 7 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 11 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "approach",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="GiantIceCream" type="Spatial"]
+script = ExtResource( 12 )
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+billboard = 2
+double_sided = false
+alpha_cut = 2
+frames = SubResource( 1 )
+animation = "approach"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scenes/PoemCamRig.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Level4.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Scenes/Character4.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Assets/Fonts/TCM_____.TTF" type="DynamicFontData" id=9]
 [ext_resource path="res://Assets/Fonts/ARCADE_I.TTF" type="DynamicFontData" id=10]
+[ext_resource path="res://Scenes/GiantIceCream.tscn" type="PackedScene" id=11]
 
 [sub_resource type="DynamicFont" id=16]
 size = 60
@@ -413,6 +414,9 @@ visible = false
 shadow_enabled = true
 
 [node name="MapDQ2" parent="." instance=ExtResource( 6 )]
+
+[node name="GiantIceCream" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -4 )
 
 [connection signal="tree_exiting" from="." to="." method="_on_Level4_tree_exiting"]
 [connection signal="pressed" from="GUI/Right/PlayerOptions/Read" to="." method="_on_Read_pressed"]
