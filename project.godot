@@ -22,7 +22,9 @@ _global_script_class_icons={
 
 config/name="Foodfight"
 run/main_scene="res://Scenes/Main.tscn"
-config/icon="res://icon.png"
+boot_splash/image="res://Assets/FoodSprites/betterbanana4.png"
+boot_splash/fullsize=false
+config/icon="res://Assets/FoodSprites/betterbanana3.png"
 
 [autoload]
 

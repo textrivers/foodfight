@@ -3,7 +3,7 @@
 [ext_resource path="res://Scenes/Level4.gd" type="Script" id=1]
 [ext_resource path="res://Assets/PanoramaSky/A_pano_FULL.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Character4.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Map3Point5Baseline.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Map3Point5RaisedRoom.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/TurnMarker.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Fonts/TCM_____.TTF" type="DynamicFontData" id=6]
 [ext_resource path="res://Themes/GUI_Default.tres" type="Theme" id=7]
@@ -143,7 +143,7 @@ transform = Transform( 1, 0, 0, 0, 0.939693, -0.34202, 0, 0.34202, 0.939693, 2, 
 far = 200.0
 
 [node name="Aloysius" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 15 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, 15 )
 
 [node name="Ignatius" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 4 )
@@ -410,10 +410,10 @@ transform = Transform( 0.824707, 0.300371, 0.479204, -0.534501, 0.690879, 0.4868
 visible = false
 shadow_enabled = true
 
-[node name="Map3Point5Baseline" parent="." instance=ExtResource( 4 )]
+[node name="Map3Point5RaisedRoom" parent="." instance=ExtResource( 4 )]
 
 [node name="GiantIceCream" parent="." instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 17 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 17 )
 nextscene = "res://Scenes/Level5.tscn"
 
 [connection signal="tree_exiting" from="." to="." method="_on_Level4_tree_exiting"]

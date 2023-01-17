@@ -144,7 +144,7 @@ func generate_unique_name(name_prefix):
 	return new_name
 
 func _physics_process(delta):
-	bullseye = Vector3(global_translation.x, 0.6, global_translation.z)
+	bullseye = Vector3(global_translation.x, global_translation.y + 0.6, global_translation.z)
 	var next_loc = $NavigationAgent.get_next_location()
 	if walking:
 		if !red_light:
@@ -219,15 +219,18 @@ func remove_from_food_contacts(floor_food):
 func throw_food(targ):
 	## using target translation, solve for velocity vector of thrown thing
 	## adapted from https://www.forrestthewoods.com/blog/solving_ballistic_trajectories/
-	var start_pos = translation
+	var start_pos = global_translation
 	var new_vel: Vector3 = targ - start_pos ## x and z are easy
 	start_pos.y += throw_start_height
 	var start_offset = new_vel
 	start_pos += start_offset.normalized() * throw_clearance
 	new_vel = targ - start_pos
 	var diffXZ: Vector3 = Vector3(new_vel.x, 0, new_vel.z)
+	var diffY: float = new_vel.y
+	if diffY < 0:
+		diffY = 0
 	## set throw_apex higher for longer throws
-	throw_apex = throw_start_height + (diffXZ.length() * 0.1)
+	throw_apex = throw_start_height + (diffXZ.length() * 0.1) + diffY 
 	var t = diffXZ.length() / throw_speed
 	t = t / 60 ## adjust this so it's in seconds, not frames
 	new_vel = diffXZ.normalized() * throw_speed * 60
@@ -260,7 +263,7 @@ func _on_Character3D_input_event(camera, event, position, normal, shape_idx):
 		if Input.is_action_just_pressed("left_click"):
 			if !player:
 				$Viewport/CharacterSprite/Sprite.modulate = Color.crimson
-				emit_signal("give_on_select_info", to_global($TargetPosition.translation), char_description)
+				emit_signal("give_on_select_info", $TargetPosition.global_translation, char_description)
 
 func _on_Character3D_mouse_entered():
 	if selecting == true && selected == false:

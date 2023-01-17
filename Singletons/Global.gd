@@ -34,6 +34,7 @@ var palette_dict: Dictionary = {
 	"pink_1": Color("#d43d43"), 
 	"pink_2": Color("#921921")
 }
+
 var character_sprite = "res://Assets/CharacterSprites/Wid_Vanilla.png"
 var character_modulate = Color.white
 var character_light_mask = "res://Assets/CharacterSprites/Wid_Mask.png"

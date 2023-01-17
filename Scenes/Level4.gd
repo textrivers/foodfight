@@ -15,6 +15,19 @@ var food_palettes: Dictionary = {
 		load("res://Scenes/ClusterTomato.tscn")
 		]
 }
+var checkerboard_palette: Array = [
+	"teal_2", 
+	"teal_3",
+	"seafoam_1",
+	"seafoam_2",
+	"seafoam_3",
+	"babyblue_1",
+	"babyblue_2", 
+	"babyblue_3",
+	"white_2",
+	"white_3",
+	"purple_2",
+]
 var characters: Array = []
 var turn_tracker: Dictionary = {}
 var whose_turn = null
@@ -61,6 +74,9 @@ func _ready():
 		register_character(character)
 	current_action.resize(3)
 	## connect tile signals and checkerboard tiles
+	var check_index = randi() % checkerboard_palette.size()
+	var tile_color_a = Global.palette_dict[checkerboard_palette[check_index]]
+	var tile_color_b = Global.palette_dict[checkerboard_palette[((check_index + randi() % (checkerboard_palette.size() - 1)) % checkerboard_palette.size())]]
 	for new_tile in get_tree().get_nodes_in_group("tile"):
 		new_tile.connect("give_on_select_info", self, "on_action_target_selected")
 # warning-ignore:return_value_discarded
@@ -70,10 +86,10 @@ func _ready():
 		self.connect("done_selecting_action_target", new_tile, "on_target_unselecting")
 		var new_mat = SpatialMaterial.new()
 		var new_tile_color: Color
-		if (int(new_tile.global_translation.x) + int(new_tile.global_translation.z)) % 2 == 0:
-			new_tile_color = Color("#d1d1d1")
+		if (int(round(new_tile.global_translation.x)) + int(round(new_tile.global_translation.z))) % 2 == 0:
+			new_tile_color = tile_color_a #Color("#d1d1d1")
 		else: 
-			new_tile_color = Color("#719dff")
+			new_tile_color = tile_color_b #Color("#719dff")
 		new_mat.albedo_color = new_tile_color
 		new_mat.flags_transparent = true
 		new_mat.albedo_color.a = 0

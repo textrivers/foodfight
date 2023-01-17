@@ -33,7 +33,7 @@ radius = 1.05
 script = ExtResource( 12 )
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
-billboard = 2
+billboard = 1
 double_sided = false
 alpha_cut = 2
 frames = SubResource( 1 )
