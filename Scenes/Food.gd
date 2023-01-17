@@ -50,17 +50,23 @@ func _physics_process(delta):
 			else: 
 				Global.hilarity += 5
 			clamp(Global.hilarity, 0, 120)
-			for i in ((randi() % 3) + 1):
-				var new_floor_splat = floor_splat.instance()
-				new_floor_splat.modulate = splat_colors[randi() % splat_colors.size()]
-				new_floor_splat.translation = coll.position
-				new_floor_splat.translation.x += randf() - 0.5
-				new_floor_splat.translation.y = 0.07
-				new_floor_splat.translation.z += randf() - 0.5
-				new_floor_splat.rotation_degrees.y += randf() * 360
-				new_floor_splat.texture = load("res://Assets/splat_" + str(randi() % 8) + ".png")
-				new_floor_splat.visible = false
-				get_parent().add_child(new_floor_splat)
+			if $RayCast.is_colliding():
+				if $RayCast.get_collider().get_parent().is_in_group("tile"):
+					var splat_height = $RayCast.get_collision_point().y 
+					var rng = RandomNumberGenerator.new()
+					for i in ((randi() % 3) + 1):
+						var new_floor_splat = floor_splat.instance()
+						new_floor_splat.modulate = splat_colors[randi() % splat_colors.size()]
+						new_floor_splat.translation = coll.position
+						new_floor_splat.translation.x += randf() - 0.5
+						new_floor_splat.translation.y = splat_height + rng.randf_range(0.01, 0.05)
+						new_floor_splat.translation.z += randf() - 0.5
+						new_floor_splat.rotation_degrees.y += randf() * 360
+						new_floor_splat.texture = load("res://Assets/splat_" + str(randi() % 8) + ".png")
+						new_floor_splat.visible = false
+						get_parent().add_child(new_floor_splat)
+				else:
+					print($RayCast.get_collider().name)
 			call_deferred("queue_free")
 
 func spawn_splatter_particles(pos, col):

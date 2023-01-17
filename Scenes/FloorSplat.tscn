@@ -7,10 +7,9 @@
 radius = 0.15
 
 [node name="FloorSplat" type="Sprite3D" groups=["splat"]]
-visible = false
 axis = 1
 double_sided = false
-render_priority = 1
+alpha_cut = 2
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 

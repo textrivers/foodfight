@@ -228,7 +228,7 @@ func throw_food(targ):
 	var diffXZ: Vector3 = Vector3(new_vel.x, 0, new_vel.z)
 	var diffY: float = abs(new_vel.y)
 	## set throw_apex higher for longer throws, lower for throws with height difference
-	throw_apex = throw_start_height + (diffXZ.length() * 0.1) + max(start_pos.y, targ.y) - (diffY * 0.1)
+	throw_apex = throw_start_height + (diffXZ.length() * 0.1) + max(start_pos.y, targ.y) - (diffY * 0.5)
 	var t = diffXZ.length() / throw_speed
 	t = t / 60 ## adjust this so it's in seconds, not frames
 	new_vel = diffXZ.normalized() * throw_speed * 60
@@ -245,6 +245,7 @@ func throw_food(targ):
 	new_food.get_node("CollisionShape").disabled = false
 	new_food.set_collision_mask_bit(3, true)
 	new_food.set_collision_mask_bit(1, true)
+	new_food.get_node("RayCast").enabled = true
 	get_parent().add_child(new_food)
 
 
