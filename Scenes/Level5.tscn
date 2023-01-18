@@ -163,27 +163,28 @@ theme = ExtResource( 3 )
 alignment = 1
 
 [node name="Right" type="VBoxContainer" parent="GUI"]
-margin_right = 239.0
+margin_right = 240.0
 margin_bottom = 228.0
-rect_min_size = Vector2( 200, 0 )
+rect_min_size = Vector2( 240, 0 )
 mouse_filter = 2
 
 [node name="PlayerOptions" type="VBoxContainer" parent="GUI/Right"]
-margin_right = 239.0
-margin_bottom = 218.0
+margin_left = 18.0
+margin_right = 221.0
+margin_bottom = 214.0
 size_flags_horizontal = 4
 alignment = 1
 
 [node name="Label" type="Label" parent="GUI/Right/PlayerOptions"]
-margin_right = 239.0
+margin_right = 203.0
 margin_bottom = 23.0
 text = "It is Derp's turn"
 align = 1
 
 [node name="Read" type="Button" parent="GUI/Right/PlayerOptions"]
-margin_left = 82.0
+margin_left = 64.0
 margin_top = 27.0
-margin_right = 157.0
+margin_right = 139.0
 margin_bottom = 54.0
 rect_min_size = Vector2( 75, 0 )
 size_flags_horizontal = 4
@@ -191,18 +192,18 @@ disabled = true
 text = "Read"
 
 [node name="Walk" type="Button" parent="GUI/Right/PlayerOptions"]
-margin_left = 82.0
+margin_left = 64.0
 margin_top = 58.0
-margin_right = 157.0
+margin_right = 139.0
 margin_bottom = 85.0
 rect_min_size = Vector2( 75, 0 )
 size_flags_horizontal = 4
 text = "Move"
 
 [node name="PickUp" type="Button" parent="GUI/Right/PlayerOptions"]
-margin_left = 82.0
+margin_left = 64.0
 margin_top = 89.0
-margin_right = 157.0
+margin_right = 139.0
 margin_bottom = 116.0
 rect_min_size = Vector2( 75, 0 )
 size_flags_horizontal = 4
@@ -210,18 +211,18 @@ disabled = true
 text = "Pick Up"
 
 [node name="Throw" type="Button" parent="GUI/Right/PlayerOptions"]
-margin_left = 82.0
+margin_left = 64.0
 margin_top = 120.0
-margin_right = 157.0
+margin_right = 139.0
 margin_bottom = 147.0
 rect_min_size = Vector2( 75, 0 )
 size_flags_horizontal = 4
 text = "Throw"
 
 [node name="Wait" type="Button" parent="GUI/Right/PlayerOptions"]
-margin_left = 82.0
+margin_left = 64.0
 margin_top = 151.0
-margin_right = 157.0
+margin_right = 139.0
 margin_bottom = 178.0
 rect_min_size = Vector2( 75, 0 )
 size_flags_horizontal = 4
@@ -229,8 +230,8 @@ text = "Wait"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/Right/PlayerOptions"]
 margin_top = 182.0
-margin_right = 239.0
-margin_bottom = 218.0
+margin_right = 203.0
+margin_bottom = 214.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 4
 alignment = 1
@@ -245,8 +246,8 @@ custom_fonts/font = SubResource( 15 )
 text = "Pause during all turns "
 
 [node name="CheckButton" type="CheckButton" parent="GUI/Right/PlayerOptions/HBoxContainer"]
-margin_right = 239.0
-margin_bottom = 36.0
+margin_right = 203.0
+margin_bottom = 32.0
 size_flags_horizontal = 7
 text = "Pause during all turns"
 
@@ -344,7 +345,7 @@ rect_min_size = Vector2( 75, 0 )
 text = "Cancel"
 
 [node name="Center" type="VBoxContainer" parent="GUI"]
-margin_left = 243.0
+margin_left = 244.0
 margin_right = 1024.0
 margin_bottom = 228.0
 rect_min_size = Vector2( 300, 0 )
@@ -352,15 +353,15 @@ mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/Center"]
-margin_right = 781.0
+margin_right = 780.0
 margin_bottom = 40.0
 mouse_filter = 2
 alignment = 2
 
 [node name="Label" type="Label" parent="GUI/Center/HBoxContainer"]
-margin_left = 397.0
+margin_left = 396.0
 margin_top = 8.0
-margin_right = 477.0
+margin_right = 476.0
 margin_bottom = 31.0
 rect_min_size = Vector2( 80, 0 )
 custom_colors/font_color = Color( 0.490196, 0.584314, 0.788235, 1 )
@@ -370,8 +371,8 @@ valign = 1
 uppercase = true
 
 [node name="MessProgressBar" type="ProgressBar" parent="GUI/Center/HBoxContainer"]
-margin_left = 481.0
-margin_right = 781.0
+margin_left = 480.0
+margin_right = 780.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 300, 40 )
 mouse_filter = 2
@@ -380,14 +381,14 @@ rounded = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="GUI/Center"]
 margin_top = 44.0
-margin_right = 781.0
+margin_right = 780.0
 margin_bottom = 84.0
 mouse_filter = 2
 alignment = 2
 
 [node name="Label" type="Label" parent="GUI/Center/HBoxContainer2"]
-margin_left = 397.0
-margin_right = 477.0
+margin_left = 396.0
+margin_right = 476.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 80, 40 )
 custom_colors/font_color = Color( 0.490196, 0.584314, 0.788235, 1 )
@@ -397,8 +398,8 @@ valign = 1
 uppercase = true
 
 [node name="HilarityProgressBar" type="ProgressBar" parent="GUI/Center/HBoxContainer2"]
-margin_left = 481.0
-margin_right = 781.0
+margin_left = 480.0
+margin_right = 780.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 300, 40 )
 mouse_filter = 2

@@ -12,8 +12,8 @@ func _ready():
 func acquire_poem_text():
 	var bar_total = (Global.visible_splat_count * 2) + Global.hilarity
 	var text_index: int = int(round(bar_total / 6.45)) ## reduces a number between 0 - 200 to a number between 0 - 31
-	var mod = (randi() % 11) - 5 ## rand int from -5 to 5
-	text_index += mod
+	#var mod = (randi() % 11) - 5 ## rand int from -5 to 5
+	#text_index += mod
 	text_index = int(clamp(text_index, 0, 31))
 	poem_text.append(text_index)
 	poem_text.append(Global.poem_text_dict[text_index][0])

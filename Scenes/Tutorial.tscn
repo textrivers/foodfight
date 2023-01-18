@@ -1,16 +1,16 @@
 [gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://Scenes/Level4.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/PoemCamRig.gd" type="Script" id=1]
 [ext_resource path="res://Assets/PanoramaSky/A_pano_FULL.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/Character4.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Map3Point5RaisedRoom.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/TurnMarker.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Assets/Fonts/TCM_____.TTF" type="DynamicFontData" id=6]
-[ext_resource path="res://Themes/GUI_Default.tres" type="Theme" id=7]
-[ext_resource path="res://Scenes/PoemCamRig.gd" type="Script" id=8]
-[ext_resource path="res://Themes/ProgressBar.tres" type="Theme" id=9]
-[ext_resource path="res://Assets/Fonts/ARCADE_I.TTF" type="DynamicFontData" id=10]
-[ext_resource path="res://Scenes/GiantIceCream.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Level4.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/MapTutorial.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Character4.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/TurnMarker.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/GiantIceCream.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Fonts/TCM_____.TTF" type="DynamicFontData" id=8]
+[ext_resource path="res://Assets/Fonts/ARCADE_I.TTF" type="DynamicFontData" id=9]
+[ext_resource path="res://Themes/ProgressBar.tres" type="Theme" id=10]
+[ext_resource path="res://Themes/GUI_Default.tres" type="Theme" id=11]
 
 [sub_resource type="DynamicFont" id=16]
 size = 60
@@ -19,7 +19,7 @@ use_filter = true
 extra_spacing_top = 16
 extra_spacing_bottom = 16
 extra_spacing_space = -18
-font_data = ExtResource( 10 )
+font_data = ExtResource( 9 )
 
 [sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0.490196, 0.584314, 0.788235, 0.270588 )
@@ -38,7 +38,7 @@ Panel/styles/panel = SubResource( 9 )
 
 [sub_resource type="DynamicFont" id=15]
 size = 17
-font_data = ExtResource( 6 )
+font_data = ExtResource( 8 )
 
 [sub_resource type="PanoramaSky" id=2]
 panorama = ExtResource( 2 )
@@ -52,23 +52,22 @@ ambient_light_sky_contribution = 0.0
 glow_enabled = true
 adjustment_saturation = 2.13
 
-[node name="Level4" type="Spatial"]
-script = ExtResource( 1 )
+[node name="Tutorial" type="Spatial"]
+script = ExtResource( 3 )
 board_size = Vector2( 10, 10 )
 mouse_sensitivity = 0.2
 
 [node name="CameraRig" type="Position3D" parent="."]
-transform = Transform( -0.573577, 0.212012, -0.79124, 0, 0.965926, 0.258819, 0.819152, 0.148453, -0.554033, 0, 0, 0 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 0, 0 )
 
 [node name="Camera" type="Camera" parent="CameraRig"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4 )
 current = true
 size = 10.0
 
-[node name="TurnMarker" parent="." instance=ExtResource( 5 )]
+[node name="TurnMarker" parent="." instance=ExtResource( 6 )]
 
 [node name="PoemLabelContainer" type="Spatial" parent="."]
-visible = false
 
 [node name="Label3D" type="Label3D" parent="PoemLabelContainer"]
 transform = Transform( 1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 30, -80 )
@@ -101,15 +100,13 @@ autowrap = true
 width = 2400.0
 
 [node name="Label3D3" type="Label3D" parent="PoemLabelContainer"]
-transform = Transform( -4.37114e-08, 0.173648, 0.984808, 0, 0.984808, -0.173648, -1, -7.59041e-09, -4.30473e-08, -80, 30, 0 )
+transform = Transform( -4.37114e-08, 0.173648, 0.984808, 0, 0.984808, -0.173648, -1, -7.59041e-09, -4.30473e-08, -80, 30, -21 )
 pixel_size = 0.1
 offset = Vector2( -750, 0 )
 modulate = Color( 0.0823529, 0.0627451, 0.109804, 1 )
 outline_modulate = Color( 0.443137, 0.615686, 1, 1 )
-text = "Dealer deals eleven cards each.
-Ghosts (dealer and dealer’s opposite)
-hold their cards face out,
-can gain no knowledge, and do not play."
+text = "Right-click and drag
+to look around"
 font = SubResource( 16 )
 horizontal_alignment = 0
 autowrap = true
@@ -130,22 +127,17 @@ horizontal_alignment = 0
 autowrap = true
 width = 2400.0
 
-[node name="You" parent="." instance=ExtResource( 3 )]
+[node name="You" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0 )
 visible = true
 player = true
 
 [node name="PoemCamRig" type="Position3D" parent="You"]
-script = ExtResource( 8 )
+script = ExtResource( 1 )
 
 [node name="PoemCam" type="Camera" parent="You/PoemCamRig"]
 transform = Transform( 1, 0, 0, 0, 0.939693, -0.34202, 0, 0.34202, 0.939693, 2, 0.5, 3 )
 far = 200.0
-
-[node name="Aloysius" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, 15 )
-
-[node name="Ignatius" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 4 )
 
 [node name="Panel" type="Panel" parent="."]
 margin_right = 245.0
@@ -156,7 +148,7 @@ theme = SubResource( 10 )
 margin_right = 1024.0
 margin_bottom = 228.0
 mouse_filter = 2
-theme = ExtResource( 7 )
+theme = ExtResource( 11 )
 alignment = 1
 
 [node name="Right" type="VBoxContainer" parent="GUI"]
@@ -373,7 +365,7 @@ margin_right = 780.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 300, 40 )
 mouse_filter = 2
-theme = ExtResource( 9 )
+theme = ExtResource( 10 )
 rounded = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="GUI/Center"]
@@ -400,7 +392,7 @@ margin_right = 780.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 300, 40 )
 mouse_filter = 2
-theme = ExtResource( 9 )
+theme = ExtResource( 10 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
@@ -410,11 +402,11 @@ transform = Transform( 0.824707, 0.300371, 0.479204, -0.534501, 0.690879, 0.4868
 visible = false
 shadow_enabled = true
 
-[node name="Map3Point5RaisedRoom" parent="." instance=ExtResource( 4 )]
-
-[node name="GiantIceCream" parent="." instance=ExtResource( 11 )]
+[node name="GiantIceCream" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 17 )
 nextscene = "res://Scenes/Level5.tscn"
+
+[node name="MapTutorial" parent="." instance=ExtResource( 4 )]
 
 [connection signal="tree_exiting" from="." to="." method="_on_Level4_tree_exiting"]
 [connection signal="pressed" from="GUI/Right/PlayerOptions/Read" to="." method="_on_Read_pressed"]
