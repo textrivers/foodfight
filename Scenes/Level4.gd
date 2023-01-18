@@ -355,7 +355,7 @@ func _on_Screenshot_pressed():
 	var f = File.new()
 	f.open("user://" + "%04d" % screenshot_int + ".png", File.READ)
 	var buf = f.get_buffer(f.get_len())
-	JavaScript.download_buffer(buf, "%04d" % screenshot_int + ".png")
+	JavaScript.download_buffer(buf, "%04d" % screenshot_int + ".png", "image/png")
 	screenshot_int += 1
 	$GUI/Right/ReadOptions.show()
 	$GUI/Right/ProceedCancel/Cancel.show()
