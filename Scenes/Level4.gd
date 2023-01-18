@@ -24,8 +24,8 @@ var checkerboard_palette: Array = [
 	"babyblue_1",
 	"babyblue_2", 
 	"babyblue_3",
+	"white_1",
 	"white_2",
-	"white_3",
 	"purple_2",
 ]
 var characters: Array = []
@@ -63,6 +63,9 @@ signal selecting_action_target
 signal done_selecting_action_target
 
 func _ready():
+	if OS.get_name() == "Windows":
+		print("adjusting background energy")
+		$WorldEnvironment.get_environment().background_energy = 4.0
 	randomize()
 	cam_rig = $CameraRig
 	GUI = $GUI
@@ -76,7 +79,7 @@ func _ready():
 	## connect tile signals and checkerboard tiles
 	var check_index = randi() % checkerboard_palette.size()
 	var tile_color_a = Global.palette_dict[checkerboard_palette[check_index]]
-	var tile_color_b = Global.palette_dict[checkerboard_palette[((check_index + randi() % (checkerboard_palette.size() - 1)) % checkerboard_palette.size())]]
+	var tile_color_b = Global.palette_dict[checkerboard_palette[((check_index + randi() % (checkerboard_palette.size() - 2)) % checkerboard_palette.size())]]
 	for new_tile in get_tree().get_nodes_in_group("tile"):
 		new_tile.connect("give_on_select_info", self, "on_action_target_selected")
 # warning-ignore:return_value_discarded
@@ -345,19 +348,20 @@ func _on_Read_pressed():
 #	_on_Proceed_pressed()
 
 func _on_Screenshot_pressed():
-	## from here: https://godotengine.org/qa/104093/how-can-i-save-an-image-to-the-users-filesystem-in-a-web-export
-	$GUI/Right/ReadOptions.hide()
-	$GUI/Right/ProceedCancel/Cancel.hide()
-	yield(VisualServer, "frame_post_draw")
-	var new_screen = get_viewport().get_texture().get_data()
-	new_screen.flip_y()
+	## this section not needed, keeping for later use and then deletion
 #	new_screen.save_png("user://" + "%04d" % screenshot_int + ".png")
 #	var f = File.new()
 #	f.open("user://" + "%04d" % screenshot_int + ".png", File.READ)
 #	var buf = f.get_buffer(f.get_len())
+	$GUI/Right/ReadOptions.hide()
+	$GUI/Right/ProceedCancel/Cancel.hide()
+	yield(VisualServer, "frame_post_draw")
+	## from here: https://godotengine.org/qa/104093/how-can-i-save-an-image-to-the-users-filesystem-in-a-web-export
+	var new_screen = get_viewport().get_texture().get_data()
+	new_screen.flip_y()
 	var buf: PoolByteArray = new_screen.save_png_to_buffer()
 	JavaScript.download_buffer(buf, "screenshot.png", "image/png")
-#	screenshot_int += 1
+	## another approach here: https://godotengine.org/qa/111084/can-i-download-an-image-created-in-a-web-game
 	$GUI/Right/ReadOptions.show()
 	$GUI/Right/ProceedCancel/Cancel.show()
 
