@@ -32,6 +32,7 @@ animations = [ {
 } ]
 
 [node name="Food" type="KinematicBody" groups=["proximity", "throwable"]]
+visible = false
 collision_layer = 24
 script = ExtResource( 2 )
 splat_colors = [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ) ]

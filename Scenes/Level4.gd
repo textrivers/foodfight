@@ -351,12 +351,13 @@ func _on_Screenshot_pressed():
 	yield(VisualServer, "frame_post_draw")
 	var new_screen = get_viewport().get_texture().get_data()
 	new_screen.flip_y()
-	new_screen.save_png("user://" + "%04d" % screenshot_int + ".png")
-	var f = File.new()
-	f.open("user://" + "%04d" % screenshot_int + ".png", File.READ)
-	var buf = f.get_buffer(f.get_len())
-	JavaScript.download_buffer(buf, "%04d" % screenshot_int + ".png", "image/png")
-	screenshot_int += 1
+#	new_screen.save_png("user://" + "%04d" % screenshot_int + ".png")
+#	var f = File.new()
+#	f.open("user://" + "%04d" % screenshot_int + ".png", File.READ)
+#	var buf = f.get_buffer(f.get_len())
+	var buf: PoolByteArray = new_screen.save_png_to_buffer()
+	JavaScript.download_buffer(buf, "screenshot.png", "image/png")
+#	screenshot_int += 1
 	$GUI/Right/ReadOptions.show()
 	$GUI/Right/ProceedCancel/Cancel.show()
 
