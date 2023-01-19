@@ -1,5 +1,6 @@
 extends Area
 
+# warning-ignore:unused_signal
 signal enable_read_action
 signal disable_read_action
 var readable: bool = false
@@ -19,6 +20,7 @@ func acquire_poem_text():
 	poem_text.append(Global.poem_text_dict[text_index][0])
 	Global.poem_text_dict[text_index][2] = true
 
+# warning-ignore:unused_argument
 func _on_Text_body_entered(body):
 	pass
 

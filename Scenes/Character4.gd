@@ -143,7 +143,7 @@ func generate_unique_name(name_prefix):
 		new_name = generate_unique_name(name_prefix)
 	return new_name
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	bullseye = Vector3(global_translation.x, global_translation.y + 0.6, global_translation.z)
 	var next_loc = $NavigationAgent.get_next_location()
 	if walking:
@@ -152,6 +152,7 @@ func _physics_process(delta):
 			if knockback:
 				velocity = global_translation.direction_to(next_loc) * knockback_speed
 				knockback_speed -= knockback_speed * knockback_speed_attrition
+# warning-ignore:return_value_discarded
 			move_and_slide(velocity)
 			if hunting: 
 				hunting = !acquire_target()
@@ -257,6 +258,11 @@ func on_target_selecting():
 func on_target_unselecting():
 	selecting = false
 
+# warning-ignore:unused_argument
+# warning-ignore:unused_argument
+# warning-ignore:unused_argument
+# warning-ignore:unused_argument
+# warning-ignore:unused_argument
 func _on_Character3D_input_event(camera, event, position, normal, shape_idx):
 	if selecting:
 		if Input.is_action_just_pressed("left_click"):

@@ -9,6 +9,7 @@ var poem_rot_multiplier: float = 1.0
 func _ready():
 	pass # Replace with function body.
 
+# warning-ignore:unused_argument
 func _process(delta):
 	if $PoemCam.current:
 		if direction == false:

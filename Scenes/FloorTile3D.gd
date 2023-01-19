@@ -38,7 +38,7 @@ func _on_StaticBody_mouse_exited():
 	if selecting == true && selected == false:
 		material_override.albedo_color = Color(revert_color.r, revert_color.g, revert_color.b, material_override.albedo_color.a)
 
-func _on_StaticBody_input_event(camera, event, position, normal, shape_idx):
+func _on_StaticBody_input_event(_camera, _event, _position, _normal, _shape_idx):
 	if selecting:
 		if Input.is_action_just_pressed("left_click"):
 			for child in get_tree().get_nodes_in_group("selectable"):

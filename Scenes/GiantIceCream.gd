@@ -6,6 +6,7 @@ export var nextscene: String = ""
 func _ready():
 	$AnimatedSprite3D.animation = "approach"
 
+# warning-ignore:unused_argument
 func _process(delta):
 	var dist_to_player = self.global_translation.distance_to(Global.player_node.global_translation)
 	if dist_to_player <= 10: 

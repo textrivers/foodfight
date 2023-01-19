@@ -20,10 +20,13 @@ var particle_mesh_array = [
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
+# warning-ignore:return_value_discarded
 	get_parent().connect("red_light", self, "_on_red_light")
+# warning-ignore:return_value_discarded
 	get_parent().connect("green_light", self, "_on_green_light")
 	material_override = material_override.duplicate()
 	draw_pass_1 = particle_mesh_array[randi() % particle_mesh_array.size()]
+	
 
 func _on_red_light():
 	speed_scale = 0

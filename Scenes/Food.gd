@@ -14,7 +14,9 @@ func _ready():
 	$Sprite3D.material_override = $Sprite3D.material_override.duplicate(true)
 	$Sprite3D.texture = $Viewport.get_texture()
 	$Sprite3D.material_override.albedo_texture = $Viewport.get_texture()
+# warning-ignore:return_value_discarded
 	get_parent().get_parent().connect("red_light", self, "on_red_light")
+# warning-ignore:return_value_discarded
 	get_parent().get_parent().connect("green_light", self, "on_green_light")
 	var play_dir = bool(randi() % 2)
 	$Viewport/FoodSprite/AnimatedSprite.play("default", play_dir)
@@ -49,7 +51,7 @@ func _physics_process(delta):
 				Global.hilarity += 10
 			else: 
 				Global.hilarity += 5
-			clamp(Global.hilarity, 0, 120)
+			Global.hilarity = clamp(Global.hilarity, 0, 120)
 			if $RayCast.is_colliding():
 				if $RayCast.get_collider().get_parent().is_in_group("tile"):
 					var splat_height = $RayCast.get_collision_point().y 
