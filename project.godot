@@ -32,6 +32,10 @@ Global="*res://Singletons/Global.gd"
 ParticlesCache="*res://Singletons/ParticlesCache.gd"
 SceneManager="*res://Singletons/SceneManager.gd"
 
+[debug]
+
+settings/stdout/verbose_stdout=true
+
 [display]
 
 window/stretch/mode="viewport"
