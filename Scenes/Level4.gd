@@ -332,20 +332,13 @@ func _on_Read_pressed():
 	$GUI/Center.hide()
 	$GUI/Right/ProceedCancel.show()
 	deactivate_read_button()
+	for child in $PoemLabelContainer.get_children():
+		child.text = available_text[1]
+	$PoemLabelContainer.show()
 	$You/PoemCamRig.global_translation = whose_turn.global_translation
 	$You/PoemCamRig.direction = !$You/PoemCamRig.direction
 	$You/PoemCamRig/PoemCam.current = true
-	$PoemLabelContainer.show()
-	for child in $PoemLabelContainer.get_children():
-		child.text = available_text[1]
-	## TODO evaluate how many splat particles are in the air at that moment
-	## and choose text based on that? 
-	## ALSO TODO make the splat stuff commented out below happen before the reading/screenshot above
-#	current_action[0] = "throw"
-#	current_action[1] = whose_turn.global_translation
-#	action_target = whose_turn.global_translation
-#	current_action[2] = 25
-#	_on_Proceed_pressed()
+	## TODO level up here? or when canceling out? 
 
 func _on_Screenshot_pressed():
 	## this section not needed, keeping for later use and then deletion
@@ -362,6 +355,12 @@ func _on_Screenshot_pressed():
 	var buf: PoolByteArray = new_screen.save_png_to_buffer()
 	JavaScript.download_buffer(buf, "screenshot.png", "image/png")
 	## another approach here: https://godotengine.org/qa/111084/can-i-download-an-image-created-in-a-web-game
+	## and similar approach from gotm.io on twitter, thank you
+#	JavaScript.eval("
+#const canvas = document.getElementById('canvas');
+#const dataURL = canvas.toDataURL();
+#http://window.open(dataURL)
+#")
 	$GUI/Right/ReadOptions.show()
 	$GUI/Right/ProceedCancel/Cancel.show()
 
