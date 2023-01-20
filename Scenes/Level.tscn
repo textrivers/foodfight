@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scenes/PoemCamRig.gd" type="Script" id=1]
 [ext_resource path="res://Assets/PanoramaSky/A_pano_FULL.png" type="Texture" id=2]
@@ -39,6 +39,22 @@ Panel/styles/panel = SubResource( 9 )
 [sub_resource type="DynamicFont" id=15]
 size = 17
 font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=17]
+size = 20
+font_data = ExtResource( 8 )
+
+[sub_resource type="CanvasItemMaterial" id=18]
+
+[sub_resource type="Gradient" id=19]
+colors = PoolColorArray( 0.507813, 0.507813, 0.507813, 1, 0, 0, 0, 0.313726 )
+
+[sub_resource type="GradientTexture2D" id=20]
+gradient = SubResource( 19 )
+width = 1024
+height = 600
+fill = 1
+fill_from = Vector2( 0.5, 0.6 )
 
 [sub_resource type="PanoramaSky" id=2]
 panorama = ExtResource( 2 )
@@ -351,15 +367,16 @@ size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/Center"]
 margin_right = 780.0
-margin_bottom = 40.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 0, 30 )
 mouse_filter = 2
 alignment = 2
 
 [node name="Label" type="Label" parent="GUI/Center/HBoxContainer"]
 margin_left = 396.0
-margin_top = 8.0
+margin_top = 6.0
 margin_right = 476.0
-margin_bottom = 31.0
+margin_bottom = 29.0
 rect_min_size = Vector2( 80, 0 )
 custom_colors/font_color = Color( 0.490196, 0.584314, 0.788235, 1 )
 text = "Mess"
@@ -370,24 +387,26 @@ uppercase = true
 [node name="MessProgressBar" type="ProgressBar" parent="GUI/Center/HBoxContainer"]
 margin_left = 480.0
 margin_right = 780.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 300, 40 )
+margin_bottom = 35.0
+rect_min_size = Vector2( 300, 30 )
 mouse_filter = 2
 theme = ExtResource( 10 )
 rounded = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="GUI/Center"]
-margin_top = 44.0
+margin_top = 39.0
 margin_right = 780.0
-margin_bottom = 84.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 0, 30 )
 mouse_filter = 2
 alignment = 2
 
 [node name="Label" type="Label" parent="GUI/Center/HBoxContainer2"]
 margin_left = 396.0
+margin_top = 2.0
 margin_right = 476.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 80, 40 )
+margin_bottom = 32.0
+rect_min_size = Vector2( 80, 30 )
 custom_colors/font_color = Color( 0.490196, 0.584314, 0.788235, 1 )
 text = "Hilarity"
 align = 1
@@ -397,10 +416,72 @@ uppercase = true
 [node name="HilarityProgressBar" type="ProgressBar" parent="GUI/Center/HBoxContainer2"]
 margin_left = 480.0
 margin_right = 780.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 300, 40 )
+margin_bottom = 35.0
+rect_min_size = Vector2( 300, 30 )
 mouse_filter = 2
 theme = ExtResource( 10 )
+
+[node name="Control" type="Control" parent="GUI/Center"]
+visible = false
+margin_top = 78.0
+margin_right = 780.0
+margin_bottom = 88.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="GUI/Center"]
+margin_top = 78.0
+margin_right = 780.0
+margin_bottom = 113.0
+mouse_filter = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="GUI/Center/HBoxContainer3"]
+margin_left = 308.0
+margin_top = 6.0
+margin_right = 476.0
+margin_bottom = 29.0
+custom_colors/font_color = Color( 0.490196, 0.584314, 0.788235, 1 )
+custom_fonts/font = SubResource( 17 )
+text = "Level Up Progress"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="LevelUpProgressBar" type="ProgressBar" parent="GUI/Center/HBoxContainer3"]
+margin_left = 480.0
+margin_right = 780.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 300, 30 )
+mouse_filter = 2
+theme = ExtResource( 10 )
+allow_greater = true
+
+[node name="LevelUpOptions" type="Sprite" parent="."]
+visible = false
+material = SubResource( 18 )
+texture = SubResource( 20 )
+centered = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelUpOptions"]
+margin_left = 279.0
+margin_top = 235.0
+margin_right = 720.0
+margin_bottom = 482.0
+theme = ExtResource( 11 )
+alignment = 1
+
+[node name="Label" type="Label" parent="LevelUpOptions/VBoxContainer"]
+margin_top = 96.0
+margin_right = 441.0
+margin_bottom = 119.0
+text = "You have leveled up"
+align = 1
+
+[node name="LevelUpOkay" type="Button" parent="LevelUpOptions/VBoxContainer"]
+margin_top = 123.0
+margin_right = 441.0
+margin_bottom = 150.0
+text = "okay"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
@@ -426,3 +507,4 @@ nextscene = "res://Scenes/Level5.tscn"
 [connection signal="pressed" from="GUI/Right/ReadOptions/Screenshot" to="." method="_on_Screenshot_pressed"]
 [connection signal="pressed" from="GUI/Right/ProceedCancel/Proceed" to="." method="_on_Proceed_pressed"]
 [connection signal="pressed" from="GUI/Right/ProceedCancel/Cancel" to="." method="_on_Cancel_pressed"]
+[connection signal="pressed" from="LevelUpOptions/VBoxContainer/LevelUpOkay" to="." method="_on_LevelUpOkay_pressed"]

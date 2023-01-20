@@ -7,6 +7,7 @@ var gravity
 var splat = preload("res://Scenes/SplatParticles.tscn")
 var floor_splat = preload("res://Scenes/FloorSplat.tscn")
 export var splat_colors: Array
+var thrown_by_player: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -51,11 +52,17 @@ func _physics_process(delta):
 					get_parent().spawn_ice_cream(Vector3(coll.position.x, 0, coll.position.z))
 				else:
 					coll.collider.start_knockback(Vector3(velocity.x, 0, velocity.z))
+					if thrown_by_player:
+						Global.level_up_tracker += 10
 				Global.hilarity += 40
 			elif coll.collider.is_in_group("throwable"): 
 				Global.hilarity += 10
+				if thrown_by_player:
+					Global.level_up_tracker += 5
 			else: 
 				Global.hilarity += 5
+				if thrown_by_player:
+					Global.level_up_tracker += 3
 			Global.hilarity = clamp(Global.hilarity, 0, 120)
 			if $RayCast.is_colliding():
 				if $RayCast.get_collider().get_parent().is_in_group("tile"):

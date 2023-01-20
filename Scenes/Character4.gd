@@ -95,7 +95,7 @@ var throw_clearance = 0.3 #avoid collision with parent
 var current_splat_num: int = 0
 var parent
 var bullseye: Vector3
-
+var aim_divisor: int = 1
 var selecting: bool = false
 var selected: bool = false
 
@@ -243,6 +243,8 @@ func throw_food(targ):
 	new_food.gravity = grav
 	new_food.translation = start_pos
 	new_food.thrown = true
+	if player:
+		new_food.thrown_by_player = true
 	new_food.get_node("CollisionShape").disabled = false
 	new_food.set_collision_mask_bit(3, true)
 	new_food.set_collision_mask_bit(1, true)

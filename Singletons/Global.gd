@@ -117,6 +117,9 @@ var hilarity: float = 0
 
 var lvl_count: int = 4
 
+var level_up_tracker: float = 0
+var level_up_threshold: float = 10
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

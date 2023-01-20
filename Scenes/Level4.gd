@@ -79,7 +79,7 @@ func _ready():
 	## connect tile signals and checkerboard tiles
 	var check_index = randi() % checkerboard_palette.size()
 	var tile_color_a = Global.palette_dict[checkerboard_palette[check_index]]
-	var tile_color_b = Global.palette_dict[checkerboard_palette[((check_index + randi() % (checkerboard_palette.size() - 2)) % checkerboard_palette.size())]]
+	var tile_color_b = Global.palette_dict[checkerboard_palette[((check_index + randi() % int(checkerboard_palette.size() / 2)) % checkerboard_palette.size())]]
 	for new_tile in get_tree().get_nodes_in_group("tile"):
 		new_tile.connect("give_on_select_info", self, "on_action_target_selected")
 # warning-ignore:return_value_discarded
@@ -295,6 +295,9 @@ func display_character_options(_player):
 			$GUI/Right/PlayerOptions/Throw.disabled = true
 		if whose_turn.food_contacts.size() == 0:
 			$GUI/Right/PlayerOptions/PickUp.disabled = true
+		if Global.level_up_tracker > Global.level_up_threshold:
+			$LevelUpOptions.show()
+			
 	else: 
 #		$GUI/Right/PlayerOptions/Label.text = "It is " + whose_turn.name + "'s turn"
 #		for button in $GUI/Right/PlayerOptions.get_children():
@@ -338,7 +341,7 @@ func _on_Read_pressed():
 	$You/PoemCamRig.global_translation = whose_turn.global_translation
 	$You/PoemCamRig.direction = !$You/PoemCamRig.direction
 	$You/PoemCamRig/PoemCam.current = true
-	## TODO level up here? or when canceling out? 
+	Global.level_up_tracker += 15
 
 func _on_Screenshot_pressed():
 	## this section not needed, keeping for later use and then deletion
@@ -363,6 +366,7 @@ func _on_Screenshot_pressed():
 #")
 	$GUI/Right/ReadOptions.show()
 	$GUI/Right/ProceedCancel/Cancel.show()
+	Global.level_up_tracker += 25
 
 func _on_PickUp_pressed():
 	current_action[0] = "pick_up"
@@ -416,7 +420,12 @@ func _on_Proceed_pressed():
 		else: 
 			current_action[2] = (randi() % 101) + 25
 	if current_action[0] == "throw":
-		current_action[1] = action_target
+		var throw_mod = Vector3(randf()/whose_turn.aim_divisor, randf()/whose_turn.aim_divisor, randf()/whose_turn.aim_divisor)
+		throw_mod *= 2 
+		throw_mod -= Vector3.ONE 
+		current_action[1] = action_target + throw_mod
+		if whose_turn.player:
+			Global.level_up_tracker += 2
 	if current_action[0] == "walk": 
 		current_action[1] = action_target
 		var nav_agent = whose_turn.get_node("NavigationAgent")
@@ -462,6 +471,7 @@ func update_progress_bars():
 		if Global.hilarity > 0:
 			Global.hilarity -= hilarity_multiplier
 		$GUI/Center/HBoxContainer2/HilarityProgressBar.value = Global.hilarity
+	$GUI/Center/HBoxContainer3/LevelUpProgressBar.value = (Global.level_up_tracker / Global.level_up_threshold) * 100
 
 func remove_debug_path():
 	for sphere in get_tree().get_nodes_in_group("debug"):
@@ -480,3 +490,8 @@ func _on_Level4_tree_exiting(): ## for syncing state of Global to user save file
 	file.close()
 	print("file saved")
 
+func _on_LevelUpOkay_pressed():
+	$LevelUpOptions.hide()
+	Global.level_up_tracker = Global.level_up_tracker - Global.level_up_threshold
+	Global.level_up_threshold *= 1.25
+	display_character_options(true)
