@@ -125,10 +125,10 @@ func get_appearance_from_global():
 
 func generate_unique_appearance():
 	## rand base color for char sprite
-	var my_key = Global.palette_dict.keys()[randi() % Global.palette_dict.size()]
+	var my_key = Global.palette_dict.keys()[randi() % (Global.palette_dict.size() - 5)] # no black no pink
 	$Viewport/CharacterSprite/Sprite.modulate = Global.palette_dict[my_key]
-	if $Viewport/CharacterSprite/Sprite.modulate == Color.black:
-		$Viewport/CharacterSprite/Sprite.modulate = Global.palette_dict["black_2"]
+#	if $Viewport/CharacterSprite/Sprite.modulate == Color.black:
+#		$Viewport/CharacterSprite/Sprite.modulate = Global.palette_dict["black_1"]
 	var my_config = character_config[randi() % character_config.size()]
 	self.name = generate_unique_name(my_config[0])
 	$Viewport/CharacterSprite/Sprite.texture = load(my_config[1])

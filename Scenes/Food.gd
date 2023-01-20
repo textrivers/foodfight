@@ -45,7 +45,12 @@ func _physics_process(delta):
 					spawn_splatter_particles(coll.position, splat_col)
 			if coll.collider.is_in_group("character"):
 				coll.collider.add_splatter(splat_colors[randi() % splat_colors.size()])
-				coll.collider.start_knockback(Vector3(velocity.x, 0, velocity.z))
+				if coll.collider.is_in_group("dummy"):
+					coll.collider.call_deferred("queue_free")
+					get_parent().state += 1 ## Tutorial state increments to 4
+					get_parent().spawn_ice_cream(Vector3(coll.position.x, 0, coll.position.z))
+				else:
+					coll.collider.start_knockback(Vector3(velocity.x, 0, velocity.z))
 				Global.hilarity += 40
 			elif coll.collider.is_in_group("throwable"): 
 				Global.hilarity += 10
