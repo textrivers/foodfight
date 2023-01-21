@@ -114,8 +114,7 @@ var poem_text_dict: Dictionary = { ## syntax: ID: ["text", "source", checked-out
 
 var visible_splat_count: int = 0
 var hilarity: float = 0
-
-var lvl_count: int = 4
+var floor_splat_mod: int = 1
 
 var level_up_tracker: float = 0
 var level_up_threshold: float = 10
@@ -124,5 +123,8 @@ var level_up_threshold: float = 10
 func _ready():
 	pass # Replace with function body.
 
-func get_random_palette_color():
-	pass
+func get_random_palette_color(): ## okay I thought I didn't remember writing this, because apparently I didn't
+	var color_keys = palette_dict.keys()
+	var rand_key = color_keys[randi() % color_keys.size()]
+	var your_color = palette_dict[rand_key]
+	return your_color

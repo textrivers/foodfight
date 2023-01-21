@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scenes/PoemCamRig.gd" type="Script" id=1]
 [ext_resource path="res://Assets/PanoramaSky/A_pano_FULL.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Assets/Fonts/ARCADE_I.TTF" type="DynamicFontData" id=9]
 [ext_resource path="res://Themes/ProgressBar.tres" type="Theme" id=10]
 [ext_resource path="res://Themes/GUI_Default.tres" type="Theme" id=11]
+[ext_resource path="res://Scenes/PowerUp.gd" type="Script" id=12]
 
 [sub_resource type="DynamicFont" id=16]
 size = 60
@@ -456,11 +457,11 @@ mouse_filter = 2
 theme = ExtResource( 10 )
 allow_greater = true
 
-[node name="LevelUpOptions" type="Sprite" parent="."]
+[node name="LevelUpOptions" type="TextureRect" parent="."]
 visible = false
 material = SubResource( 18 )
+mouse_filter = 0
 texture = SubResource( 20 )
-centered = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LevelUpOptions"]
 margin_left = 200.0
@@ -492,27 +493,30 @@ margin_bottom = 124.0
 custom_constants/separation = 12
 alignment = 1
 
-[node name="Button1" type="Button" parent="LevelUpOptions/VBoxContainer/HBoxContainer"]
+[node name="PowerUp1" type="Button" parent="LevelUpOptions/VBoxContainer/HBoxContainer"]
 margin_left = 30.0
 margin_right = 210.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 180, 40 )
 text = "Move Speed +"
 expand_icon = true
+script = ExtResource( 12 )
 
-[node name="Button2" type="Button" parent="LevelUpOptions/VBoxContainer/HBoxContainer"]
+[node name="PowerUp2" type="Button" parent="LevelUpOptions/VBoxContainer/HBoxContainer"]
 margin_left = 222.0
 margin_right = 402.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 180, 40 )
 expand_icon = true
+script = ExtResource( 12 )
 
-[node name="Button3" type="Button" parent="LevelUpOptions/VBoxContainer/HBoxContainer"]
+[node name="PowerUp3" type="Button" parent="LevelUpOptions/VBoxContainer/HBoxContainer"]
 margin_left = 414.0
 margin_right = 594.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 180, 40 )
 expand_icon = true
+script = ExtResource( 12 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
@@ -526,6 +530,7 @@ shadow_enabled = true
 
 [node name="GiantIceCream" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 17 )
+visible = false
 nextscene = "res://Scenes/Level5.tscn"
 
 [connection signal="tree_exiting" from="." to="." method="_on_Level4_tree_exiting"]
@@ -539,3 +544,6 @@ nextscene = "res://Scenes/Level5.tscn"
 [connection signal="pressed" from="GUI/Right/ProceedCancel/Proceed" to="." method="_on_Proceed_pressed"]
 [connection signal="pressed" from="GUI/Right/ProceedCancel/Cancel" to="." method="_on_Cancel_pressed"]
 [connection signal="pressed" from="LevelUpOptions/VBoxContainer/LevelUpOkay" to="." method="_on_LevelUpOkay_pressed"]
+[connection signal="pressed" from="LevelUpOptions/VBoxContainer/HBoxContainer/PowerUp1" to="LevelUpOptions/VBoxContainer/HBoxContainer/PowerUp1" method="_on_PowerUp_pressed"]
+[connection signal="pressed" from="LevelUpOptions/VBoxContainer/HBoxContainer/PowerUp2" to="LevelUpOptions/VBoxContainer/HBoxContainer/PowerUp2" method="_on_PowerUp_pressed"]
+[connection signal="pressed" from="LevelUpOptions/VBoxContainer/HBoxContainer/PowerUp3" to="LevelUpOptions/VBoxContainer/HBoxContainer/PowerUp3" method="_on_PowerUp_pressed"]

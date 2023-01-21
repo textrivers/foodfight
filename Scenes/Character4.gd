@@ -95,7 +95,7 @@ var throw_clearance = 0.3 #avoid collision with parent
 var current_splat_num: int = 0
 var parent
 var bullseye: Vector3
-var aim_divisor: int = 1
+var aim_divisor: float = 1
 var selecting: bool = false
 var selected: bool = false
 

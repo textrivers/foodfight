@@ -6,6 +6,7 @@ var thrown: bool = false
 var gravity
 var splat = preload("res://Scenes/SplatParticles.tscn")
 var floor_splat = preload("res://Scenes/FloorSplat.tscn")
+var floor_splat_mod: int = 1
 export var splat_colors: Array
 var thrown_by_player: bool = false
 
@@ -54,11 +55,13 @@ func _physics_process(delta):
 					coll.collider.start_knockback(Vector3(velocity.x, 0, velocity.z))
 					if thrown_by_player:
 						Global.level_up_tracker += 10
+						spawn_ice_cream(coll.collider.global_translation)
 				Global.hilarity += 40
 			elif coll.collider.is_in_group("throwable"): 
 				Global.hilarity += 10
 				if thrown_by_player:
 					Global.level_up_tracker += 5
+					
 			else: 
 				Global.hilarity += 5
 				if thrown_by_player:
@@ -68,7 +71,7 @@ func _physics_process(delta):
 				if $RayCast.get_collider().get_parent().is_in_group("tile"):
 					var splat_height = $RayCast.get_collision_point().y 
 					var rng = RandomNumberGenerator.new()
-					for i in ((randi() % 3) + 1):
+					for i in ((randi() % 3) + Global.floor_splat_mod):
 						var new_floor_splat = floor_splat.instance()
 						new_floor_splat.modulate = splat_colors[randi() % splat_colors.size()]
 						new_floor_splat.translation = coll.position
@@ -95,6 +98,14 @@ func spawn_splatter_particles(pos, col):
 #	new_splat.get_node("Viewport/PartSprite/Label").add_color_override("font_color", splat_colors[randi() % 3])
 #	new_splat.get_node("Viewport/PartSprite/Label").add_color_override("font_outline_modulate", splat_colors[randi() % 3])
 	get_parent().add_child(new_splat)
+
+func spawn_ice_cream(pos):
+	var new_ice_cream = load("res://Scenes/ClusterIceCream.tscn").instance()
+	get_parent().add_child(new_ice_cream)
+	new_ice_cream.global_translation = pos
+	var ice_cream_text = new_ice_cream.get_node("GoodIceCream/Text")
+	ice_cream_text.connect("enable_read_action", get_parent(), "activate_read_button")
+	ice_cream_text.connect("disable_read_action", get_parent(), "deactivate_read_button")
 
 func on_red_light():
 	if thrown:

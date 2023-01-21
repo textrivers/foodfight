@@ -54,6 +54,89 @@ var screenshot_int: int = 1
 var mess_multiplier: float = 2.0
 var hilarity_multiplier: float = 0.25
 
+var power_up_dict: Dictionary = {
+	0: ["Pristine Pinions", "Increased move speed"], 
+	1: ["Barbed Wire Map", "Decreased opponent move speed"], 
+	2: ["Uriel's Eye", "Increased vision range"], 
+	3: ["Hydraulic Shoulder", "Increased throw speed"], 
+	4: ["Demon Refractor", "Reveal level exit (the big ice cream that eats you)"], 
+	5: ["Disperser Compound", "Food makes more mess"], ## food script needs a var for this
+	6: ["Laughing Gas", "Hilarity drains more slowly"],
+	7: ["The Robert Hass Special", "Spawn more blackberries"],
+	8: ["Janice's Testimony", "Spawn an extra opponent"],
+	9: ["Early Retirement", "Despawn one opponent (if at least one exists)"],
+	10: ["Banana Bonanza", "Spawn more bananas"], 
+	11: ["Ballistics Textbook", "Better aim"],
+	12: ["Two More Chrysanthemums", "Worse aim"],
+	13: ["Guava Moonshine", "Everyone has worse aim"],
+#	14: ["Unwilling Disguise", "One opponent will only target opponents"], ## might be a huge pain in the ass
+	15: ["Dilettante's Diploma", "Spawn more ice cream cones"],
+	16: ["Thaumaturge's Greeting Card", "Randomly teleport once"],
+	17: ["Coriolis Scrubber", "Remove 1/2 of the floor splatters"],
+	18: ["Laser Face Level", "Set Hilarity to zero"],
+	19: ["Banana Times", "Spawn more bananas"], 
+	20: ["Banana Bonanza", "Spawn more bananas"],
+	21: ["Licorice Lovebird", "Decreased vision range"],
+	## dupes, stack multiple times
+	22: ["Licorice Lovebird", "Decreased vision range"],
+	23: ["Licorice Lovebird", "Decreased vision range"],
+	24: ["Banana Bonanza", "Spawn more bananas"],
+	25: ["Banana Bonanza", "Spawn more bananas"],
+	26: ["Banana Bonanza", "Spawn more bananas"],
+	27: ["Ballistics Textbook", "Better aim"],
+	28: ["Ballistics Textbook", "Better aim"],
+	29: ["Ballistics Textbook", "Better aim"],
+	30: ["Banana Times", "Spawn more bananas"], 
+	31: ["Banana Times", "Spawn more bananas"], 
+	32: ["Demon Refractor", "Reveal level exit (the big ice cream that eats you)"], 
+	33: ["Demon Refractor", "Reveal level exit (the big ice cream that eats you)"], 
+	34: ["Demon Refractor", "Reveal level exit (the big ice cream that eats you)"], 
+	35: ["Demon Refractor", "Reveal level exit (the big ice cream that eats you)"], 
+	36: ["Demon Refractor", "Reveal level exit (the big ice cream that eats you)"], 
+	37: ["Pristine Pinions", "Increased move speed"],
+	38: ["Pristine Pinions", "Increased move speed"],
+	39: ["Pristine Pinions", "Increased move speed"],
+	40: ["Barbed Wire Map", "Decreased opponent move speed"], 
+	41: ["Barbed Wire Map", "Decreased opponent move speed"], 
+	42: ["Barbed Wire Map", "Decreased opponent move speed"], 
+	43: ["Uriel's Eye", "Increased vision range"], 
+	44: ["Uriel's Eye", "Increased vision range"], 
+	45: ["Uriel's Eye", "Increased vision range"], 
+	46: ["Hydraulic Shoulder", "Increased throw speed"], 
+	47: ["Hydraulic Shoulder", "Increased throw speed"], 
+	48: ["Hydraulic Shoulder", "Increased throw speed"], 
+	49: ["Disperser Compound", "Food makes more mess"],
+	50: ["Disperser Compound", "Food makes more mess"],
+	51: ["Laughing Gas", "Hilarity drains more slowly"],
+	52: ["Laughing Gas", "Hilarity drains more slowly"],
+	53: ["The Robert Hass Special", "Spawn more blackberries"],
+	54: ["The Robert Hass Special", "Spawn more blackberries"],
+	55: ["Janice's Testimony", "Spawn an extra opponent"],
+	56: ["Janice's Testimony", "Spawn an extra opponent"],
+	57: ["Early Retirement", "Despawn one opponent (if at least one exists)"],
+	58: ["Early Retirement", "Despawn one opponent (if at least one exists)"],
+	59: ["Ballistics Textbook", "Better aim"],
+	60: ["Ballistics Textbook", "Better aim"],
+	61: ["Ballistics Textbook", "Better aim"],
+	62: ["Two More Chrysanthemums", "Worse aim"],
+	63: ["Two More Chrysanthemums", "Worse aim"],
+	64: ["Two More Chrysanthemums", "Worse aim"],
+	65: ["Guava Moonshine", "Everyone has worse aim"],
+	66: ["Guava Moonshine", "Everyone has worse aim"],
+	67: ["Guava Moonshine", "Everyone has worse aim"],
+	68: ["Dilettante's Diploma", "Spawn more ice cream cones"],
+	69: ["Dilettante's Diploma", "Spawn more ice cream cones"],
+	70: ["Dilettante's Diploma", "Spawn more ice cream cones"],
+	71: ["Thaumaturge's Greeting Card", "Randomly teleport once"],
+	72: ["Thaumaturge's Greeting Card", "Randomly teleport once"],
+	73: ["Thaumaturge's Greeting Card", "Randomly teleport once"],
+	74: ["Coriolis Scrubber", "Remove 1/2 of the floor splatters"],
+	75: ["Coriolis Scrubber", "Remove 1/2 of the floor splatters"],
+	76: ["Laser Face Level", "Set Hilarity to zero"],
+	77: ["Laser Face Level", "Set Hilarity to zero"],
+}
+var unique_power_int: int = 100
+
 const FILE_NAME = "user://enough-of-a-mess-data.json"
 
 signal red_light
@@ -79,7 +162,7 @@ func _ready():
 	## connect tile signals and checkerboard tiles
 	var check_index = randi() % checkerboard_palette.size()
 	var tile_color_a = Global.palette_dict[checkerboard_palette[check_index]]
-	var tile_color_b = Global.palette_dict[checkerboard_palette[((check_index + randi() % int(checkerboard_palette.size() / 2)) % checkerboard_palette.size())]]
+	var tile_color_b = Global.palette_dict[checkerboard_palette[(check_index + 1) % checkerboard_palette.size()]]
 	for new_tile in get_tree().get_nodes_in_group("tile"):
 		new_tile.connect("give_on_select_info", self, "on_action_target_selected")
 # warning-ignore:return_value_discarded
@@ -98,7 +181,9 @@ func _ready():
 		new_mat.albedo_color.a = 0
 		new_tile.set_material_override(new_mat)
 		new_tile.revert_color = new_tile_color
-	Global.lvl_count += 1 ## make sure next level will be loaded
+		## subscribe to powerup button signals and handle them
+	for child in $LevelUpOptions/VBoxContainer/HBoxContainer.get_children():
+		child.connect("power_up_chosen", self, "handle_power_up")
 
 func place_objects():
 	## place food
@@ -118,15 +203,15 @@ func place_objects():
 		var food_child = new_food.instance()
 		add_child(food_child)
 		food_child.global_translation = all_tiles[j].global_translation
-	var ice_cream_count: int = 5
-	for k in ice_cream_count:
-		var ice_cream_tile = all_tiles[randi() % all_tiles.size()]
-		var new_ice_cream = load("res://Scenes/ClusterIceCream.tscn").instance()
-		add_child(new_ice_cream)
-		new_ice_cream.global_translation = ice_cream_tile.global_translation
-		var ice_cream_text = new_ice_cream.get_node("GoodIceCream/Text")
-		ice_cream_text.connect("enable_read_action", self, "activate_read_button")
-		ice_cream_text.connect("disable_read_action", self, "deactivate_read_button")
+#	var ice_cream_count: int = 5
+#	for k in ice_cream_count:
+#		var ice_cream_tile = all_tiles[randi() % all_tiles.size()]
+#		var new_ice_cream = load("res://Scenes/ClusterIceCream.tscn").instance()
+#		add_child(new_ice_cream)
+#		new_ice_cream.global_translation = ice_cream_tile.global_translation
+#		var ice_cream_text = new_ice_cream.get_node("GoodIceCream/Text")
+#		ice_cream_text.connect("enable_read_action", self, "activate_read_button")
+#		ice_cream_text.connect("disable_read_action", self, "deactivate_read_button")
 
 func register_character(_char):
 	turn_tracker[_char] = 0
@@ -213,7 +298,10 @@ func AI_action_select():
 		if whose_turn.has_node("MyFood"): ## if holding food
 			if whose_turn.acquire_target(): ## if can see player
 				current_action = AI_actions[2].duplicate(false) ## throw
-				current_action[1] = Global.player_node.bullseye
+				action_target = Global.player_node.bullseye
+				var throw_mod = Vector3((randf() - 0.5)/whose_turn.aim_divisor, (randf() - 0.5)/whose_turn.aim_divisor, (randf() - 0.5)/whose_turn.aim_divisor)
+				#throw_mod *= 2 ## up to 1 square off by default
+				current_action[1] = action_target + throw_mod
 			else: ## can't see player
 				current_action = AI_actions[3].duplicate(false) ## walk to player
 				current_action[1] = Global.player_node.global_translation
@@ -297,7 +385,17 @@ func display_character_options(_player):
 			$GUI/Right/PlayerOptions/PickUp.disabled = true
 		if Global.level_up_tracker > Global.level_up_threshold:
 			$LevelUpOptions.show()
-			
+			for button in $LevelUpOptions/VBoxContainer/HBoxContainer.get_children():
+				var power = []
+				## get random key which hasn't been checked out yet
+				var checkout_key = power_up_dict.keys()[randi() % power_up_dict.size()] 
+				power.append(checkout_key)
+				power.append(power_up_dict[checkout_key][0])
+				power.append(power_up_dict[checkout_key][1])
+				power_up_dict.erase(checkout_key) #erase from dict so no duplicate options
+				button.power_up_index = power[0]
+				button.text = power[1]
+				button.hint_tooltip = power[2]
 	else: 
 #		$GUI/Right/PlayerOptions/Label.text = "It is " + whose_turn.name + "'s turn"
 #		for button in $GUI/Right/PlayerOptions.get_children():
@@ -420,9 +518,8 @@ func _on_Proceed_pressed():
 		else: 
 			current_action[2] = (randi() % 101) + 25
 	if current_action[0] == "throw":
-		var throw_mod = Vector3(randf()/whose_turn.aim_divisor, randf()/whose_turn.aim_divisor, randf()/whose_turn.aim_divisor)
-		throw_mod *= 2 
-		throw_mod -= Vector3.ONE 
+		var throw_mod = Vector3((randf() - 0.5)/whose_turn.aim_divisor, (randf() - 0.5)/whose_turn.aim_divisor, (randf() - 0.5)/whose_turn.aim_divisor)
+		#throw_mod *= 2 ## up to 1 square off by default
 		current_action[1] = action_target + throw_mod
 		if whose_turn.player:
 			Global.level_up_tracker += 2
@@ -488,9 +585,124 @@ func _on_Level4_tree_exiting(): ## for syncing state of Global to user save file
 	file.open(FILE_NAME, File.WRITE)
 	file.store_var(to_json(texts_for_save))
 	file.close()
-	print("file saved")
 
-func _on_LevelUpOkay_pressed():
+func handle_power_up(_index):
+	for child in $LevelUpOptions/VBoxContainer/HBoxContainer.get_children():
+		if child.power_up_index == _index: 
+			match _index:
+				0, 37, 38, 39: ## increase move speed
+					Global.player_node.walk_speed += 2.0 
+				1, 40, 41, 42: ## decrease opponent move speed
+					for character in get_tree().get_nodes_in_group("character"):
+						if character != Global.player_node:
+							character.walk_speed *= 0.66 
+				2, 43, 44, 45: ## more vision
+					Global.player_node.get_node("Area/CollisionShape").get_shape().radius += 2.0
+					Global.character_proximity_radius += 2.0
+				3, 46, 47, 48: # more throw speed
+					Global.player_node.throw_speed += 0.1
+				4, 32, 33, 34, 35, 36: ## reveal ice cream
+					$GiantIceCream.show()
+					## erase all other keys that have this same power
+					var erase_array = []
+					for k in power_up_dict: 
+						if power_up_dict[k][0] == "Demon Refractor":
+							erase_array.append(k)
+					for i in erase_array:
+						power_up_dict.erase(i)
+				5, 49, 50: ## messier food
+					Global.floor_splat_mod += 2
+				6, 51, 52: ## hilarity drains more slowly
+					hilarity_multiplier *= 0.66
+				7, 53, 54: ## spawn blackberries
+					var tiles = get_tree().get_nodes_in_group("tile").duplicate()
+					var random_tiles = []
+					for i in 5: 
+						var r = randi() % tiles.size()
+						random_tiles.append(tiles[r])
+						tiles.remove(r)
+					for tile in random_tiles: 
+						var new_blackberry = load("res://Scenes/ClusterBlackberry.tscn").instance()
+						add_child(new_blackberry)
+						new_blackberry.global_translation = tile.global_translation
+				8, 55, 56: ## spawn new opponent
+					var tiles = get_tree().get_nodes_in_group("tile").duplicate()
+					var r = randi() % tiles.size()
+					var random_tile = tiles[r]
+					var new_char = load("res://Scenes/Character4.tscn").instance()
+					add_child(new_char)
+					register_character(new_char)
+					new_char.global_translation = random_tile.global_translation
+				9, 57, 58: ## erase one opponent
+					var characters = get_tree().get_nodes_in_group("character").duplicate()
+					characters.erase(Global.player_node)
+					var r = randi() % characters.size()
+					characters[r].call_deferred("queue_free")
+					turn_tracker.erase(characters[r])
+				10, 19, 20, 24, 25, 26, 30, 31: ## more bananas
+					var tiles = get_tree().get_nodes_in_group("tile").duplicate()
+					var random_tiles = []
+					for i in 5: 
+						var r = randi() % tiles.size()
+						random_tiles.append(tiles[r])
+						tiles.remove(r)
+					for tile in random_tiles: 
+						var new_banana = load("res://Scenes/ClusterBanana.tscn").instance()
+						add_child(new_banana)
+						new_banana.global_translation = tile.global_translation
+				11, 27, 28, 29, 59, 60, 61: ## better aim
+					Global.player_node.aim_divisor *= 1.5
+				12, 62, 63, 64: ## worse aim
+					Global.player_node.aim_divisor *= 0.666
+				13, 65, 66, 67: ## everybody worse aim
+					for _char in get_tree().get_nodes_in_group("character"):
+						_char.aim_divisor *= 0.666
+#				14: pass ## opponent aims at other opponent
+				15, 68, 69, 70: ## spawn ice cream
+					var tiles = get_tree().get_nodes_in_group("tile").duplicate()
+					var random_tiles = []
+					for i in 5: 
+						var r = randi() % tiles.size()
+						random_tiles.append(tiles[r])
+						tiles.remove(r)
+					for tile in random_tiles: 
+						var new_ic = load("res://Scenes/ClusterIceCream.tscn").instance()
+						add_child(new_ic)
+						new_ic.global_translation = tile.global_translation
+						var ice_cream_text = new_ic.get_node("GoodIceCream/Text")
+						ice_cream_text.connect("enable_read_action", self, "activate_read_button")
+						ice_cream_text.connect("disable_read_action", self, "deactivate_read_button")
+				16, 71, 72, 73: #randomly teleport
+					var tiles = get_tree().get_nodes_in_group("tile").duplicate()
+					var r = randi() % tiles.size()
+					var random_tile = tiles[r]
+					Global.player_node.global_translation = random_tile.global_translation
+					turn_marker.translation.x = Global.player_node.translation.x
+					turn_marker.translation.y = Global.player_node.translation.y + 0.6
+					turn_marker.translation.z = Global.player_node.translation.z
+				17, 74, 75: ## remove some floor splatter
+					var splats = get_tree().get_nodes_in_group("splat")
+					var remove_count: int = splats.size() / 2
+					for i in remove_count:
+						var j = randi() % splats.size()
+						splats[j].call_deferred("queue_free")
+					$GUI/Center/HBoxContainer/MessProgressBar.value = Global.visible_splat_count * mess_multiplier
+				18, 76, 77: ## set hilarity to zero
+					Global.hilarity = 0
+					$GUI/Center/HBoxContainer2/HilarityProgressBar.value = Global.hilarity
+				21, 22, 23: 
+					Global.player_node.get_node("Area/CollisionShape").get_shape().radius -= 2.0
+					Global.character_proximity_radius -= 2.0
+				_: ## default, change player color
+					Global.player_node.get_node("Viewport/CharacterSprite/Sprite").modulate = Global.get_random_palette_color() 
+				
+		else: 
+			power_up_dict[child.power_up_index] = [child.text, child.hint_tooltip]
+	## default entry added back into power_up_dict so there will always be 3
+	## needs to be guaranteed unique int
+	while power_up_dict.size() < 3: 
+		power_up_dict[unique_power_int] = ["Colored Glasses", "Change character color"]
+		unique_power_int += 1
 	$LevelUpOptions.hide()
 	Global.level_up_tracker = Global.level_up_tracker - Global.level_up_threshold
 	Global.level_up_threshold *= 1.25
