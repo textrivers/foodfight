@@ -1,6 +1,6 @@
 extends Node
 
-var AI_turn_delay: float = 0.01
+var AI_turn_delay: float = 0.001
 var splat_count: int = 0
 var splat_threshold: int = 6
 var palette_dict: Dictionary = {

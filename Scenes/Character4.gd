@@ -197,6 +197,7 @@ func handle_action(action):
 				text_node.acquire_poem_text()
 				text_node.readable = true
 				text_node.emit_signal("enable_read_action", text_node.poem_text)
+				print("ice cream text enabled")
 	if action[0] == "throw":
 		walking = false
 		if self.has_node("MyFood"):

@@ -35,7 +35,7 @@ func _ready():
 		$Viewport/FoodSprite/AnimatedSprite2.playing = false
 
 func _physics_process(delta):
-	if translation.y < 0: 
+	if translation.y < -40: 
 		#spawn_splatter_particles(translation)
 		call_deferred("queue_free")
 	if moving:
@@ -79,6 +79,8 @@ func _physics_process(delta):
 						new_floor_splat.translation.y = splat_height + rng.randf_range(0.01, 0.05)
 						new_floor_splat.translation.z += randf() - 0.5
 						new_floor_splat.rotation_degrees.y += randf() * 360
+						new_floor_splat.rotation_degrees.x += rng.randf_range(0.0, 0.1) - 0.05
+						new_floor_splat.rotation_degrees.z += rng.randf_range(0.0, 0.1) - 0.05
 						new_floor_splat.texture = load("res://Assets/splat_" + str(randi() % 8) + ".png")
 						new_floor_splat.visible = false
 						get_parent().add_child(new_floor_splat)
@@ -102,7 +104,7 @@ func spawn_splatter_particles(pos, col):
 func spawn_ice_cream(pos):
 	var new_ice_cream = load("res://Scenes/ClusterIceCream.tscn").instance()
 	get_parent().add_child(new_ice_cream)
-	new_ice_cream.global_translation = pos
+	new_ice_cream.global_translation = Vector3(round(pos.x), pos.y, round(pos.z))
 	var ice_cream_text = new_ice_cream.get_node("GoodIceCream/Text")
 	ice_cream_text.connect("enable_read_action", get_parent(), "activate_read_button")
 	ice_cream_text.connect("disable_read_action", get_parent(), "deactivate_read_button")

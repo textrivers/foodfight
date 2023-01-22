@@ -55,7 +55,7 @@ var mess_multiplier: float = 2.0
 var hilarity_multiplier: float = 0.25
 
 var power_up_dict: Dictionary = {
-	0: ["Pristine Pinions", "Increased move speed"], 
+	0: ["Quickling's Quill", "Increased move speed"], 
 	1: ["Barbed Wire Map", "Decreased opponent move speed"], 
 	2: ["Uriel's Eye", "Increased vision range"], 
 	3: ["Hydraulic Shoulder", "Increased throw speed"], 
@@ -68,12 +68,12 @@ var power_up_dict: Dictionary = {
 	10: ["Banana Bonanza", "Spawn more bananas"], 
 	11: ["Ballistics Textbook", "Better aim"],
 	12: ["Two More Chrysanthemums", "Worse aim"],
-	13: ["Guava Moonshine", "Everyone has worse aim"],
+	13: ["Guava Moonshine", "Everyone gets worse aim"],
 #	14: ["Unwilling Disguise", "One opponent will only target opponents"], ## might be a huge pain in the ass
 	15: ["Dilettante's Diploma", "Spawn more ice cream cones"],
 	16: ["Thaumaturge's Greeting Card", "Randomly teleport once"],
 	17: ["Coriolis Scrubber", "Remove 1/2 of the floor splatters"],
-	18: ["Laser Face Level", "Set Hilarity to zero"],
+	18: ["Laser Unsmile Assist", "Set Hilarity to zero"],
 	19: ["Banana Times", "Spawn more bananas"], 
 	20: ["Banana Bonanza", "Spawn more bananas"],
 	21: ["Licorice Lovebird", "Decreased vision range"],
@@ -93,9 +93,9 @@ var power_up_dict: Dictionary = {
 	34: ["Demon Refractor", "Reveal level exit (the big ice cream that eats you)"], 
 	35: ["Demon Refractor", "Reveal level exit (the big ice cream that eats you)"], 
 	36: ["Demon Refractor", "Reveal level exit (the big ice cream that eats you)"], 
-	37: ["Pristine Pinions", "Increased move speed"],
-	38: ["Pristine Pinions", "Increased move speed"],
-	39: ["Pristine Pinions", "Increased move speed"],
+	37: ["Quickling's Quill", "Increased move speed"],
+	38: ["Quickling's Quill", "Increased move speed"],
+	39: ["Quickling's Quill", "Increased move speed"],
 	40: ["Barbed Wire Map", "Decreased opponent move speed"], 
 	41: ["Barbed Wire Map", "Decreased opponent move speed"], 
 	42: ["Barbed Wire Map", "Decreased opponent move speed"], 
@@ -121,9 +121,9 @@ var power_up_dict: Dictionary = {
 	62: ["Two More Chrysanthemums", "Worse aim"],
 	63: ["Two More Chrysanthemums", "Worse aim"],
 	64: ["Two More Chrysanthemums", "Worse aim"],
-	65: ["Guava Moonshine", "Everyone has worse aim"],
-	66: ["Guava Moonshine", "Everyone has worse aim"],
-	67: ["Guava Moonshine", "Everyone has worse aim"],
+	65: ["Guava Moonshine", "Everyone gets worse aim"],
+	66: ["Guava Moonshine", "Everyone gets worse aim"],
+	67: ["Guava Moonshine", "Everyone gets worse aim"],
 	68: ["Dilettante's Diploma", "Spawn more ice cream cones"],
 	69: ["Dilettante's Diploma", "Spawn more ice cream cones"],
 	70: ["Dilettante's Diploma", "Spawn more ice cream cones"],
@@ -132,8 +132,8 @@ var power_up_dict: Dictionary = {
 	73: ["Thaumaturge's Greeting Card", "Randomly teleport once"],
 	74: ["Coriolis Scrubber", "Remove 1/2 of the floor splatters"],
 	75: ["Coriolis Scrubber", "Remove 1/2 of the floor splatters"],
-	76: ["Laser Face Level", "Set Hilarity to zero"],
-	77: ["Laser Face Level", "Set Hilarity to zero"],
+	76: ["Laser Unsmile Assist", "Set Hilarity to zero"],
+	77: ["Laser Unsmile Assist", "Set Hilarity to zero"],
 }
 var unique_power_int: int = 100
 
@@ -289,7 +289,8 @@ func prompt_turns():
 				resolve_turn()
 
 func AI_action_select():
-	yield(get_tree().create_timer(Global.AI_turn_delay), "timeout")
+	if Global.AI_turn_delay > 0: 
+		yield(get_tree().create_timer(Global.AI_turn_delay), "timeout")
 	## decide action
 	var AI_rand = randi() % 4
 	if AI_rand == 0: ## 1 in 4 chance to just stand there doing nothing
@@ -302,22 +303,29 @@ func AI_action_select():
 				var throw_mod = Vector3((randf() - 0.5)/whose_turn.aim_divisor, (randf() - 0.5)/whose_turn.aim_divisor, (randf() - 0.5)/whose_turn.aim_divisor)
 				#throw_mod *= 2 ## up to 1 square off by default
 				current_action[1] = action_target + throw_mod
-			else: ## can't see player
+			elif !whose_turn.is_in_group("stationary"): ## can't see player
 				current_action = AI_actions[3].duplicate(false) ## walk to player
 				current_action[1] = Global.player_node.global_translation
 				whose_turn.hunting = true
+			else: ## stationary; wait 100
+				current_action = AI_actions[0].duplicate(false)
+				current_action[2] = 100
 		else: ## not holding food
 			if whose_turn.food_contacts.size() > 0: ## if standing on food
 				current_action = AI_actions[1].duplicate(false) ## pick up food
 			else: ## if not standing on food
-				current_action = AI_actions[3].duplicate(false) ## walk 
-				if get_tree().get_nodes_in_group("throwable").size() > 0: ## if food exists
-					action_target = find_closest_food() ## walk to closest food
-					current_action[1] = action_target
-				else: ## if food doesn't exist
-					var tiles = get_tree().get_nodes_in_group("tile") ## walk to random tile
-					var dest_tile = tiles[randi() % tiles.size()]
-					current_action[1] = dest_tile.global_translation
+				if whose_turn.is_in_group("stationary"): ## stationary opponents just wait
+					current_action = AI_actions[0].duplicate(false)
+					current_action[2] = 100
+				else: ## not stationary
+					current_action = AI_actions[3].duplicate(false) ## walk 
+					if get_tree().get_nodes_in_group("throwable").size() > 0: ## if food exists
+						action_target = find_closest_food() ## walk to closest food
+						current_action[1] = action_target
+					else: ## if food doesn't exist
+						var tiles = get_tree().get_nodes_in_group("tile") ## walk to random tile
+						var dest_tile = tiles[randi() % tiles.size()]
+						current_action[1] = dest_tile.global_translation
 		## handle navigation for walking
 		if current_action[0] == "walk":
 			whose_turn.get_node("NavigationAgent").set_target_location(current_action[1])
@@ -603,12 +611,14 @@ func handle_power_up(_index):
 					Global.player_node.throw_speed += 0.1
 				4, 32, 33, 34, 35, 36: ## reveal ice cream
 					$GiantIceCream.show()
+					$GiantIceCream/Area.monitoring = true
 					## erase all other keys that have this same power
 					var erase_array = []
 					for k in power_up_dict: 
 						if power_up_dict[k][0] == "Demon Refractor":
 							erase_array.append(k)
 					for i in erase_array:
+# warning-ignore:return_value_discarded
 						power_up_dict.erase(i)
 				5, 49, 50: ## messier food
 					Global.floor_splat_mod += 2
@@ -621,10 +631,10 @@ func handle_power_up(_index):
 						var r = randi() % tiles.size()
 						random_tiles.append(tiles[r])
 						tiles.remove(r)
-					for tile in random_tiles: 
+					for _tile in random_tiles: 
 						var new_blackberry = load("res://Scenes/ClusterBlackberry.tscn").instance()
 						add_child(new_blackberry)
-						new_blackberry.global_translation = tile.global_translation
+						new_blackberry.global_translation = _tile.global_translation
 				8, 55, 56: ## spawn new opponent
 					var tiles = get_tree().get_nodes_in_group("tile").duplicate()
 					var r = randi() % tiles.size()
@@ -634,11 +644,12 @@ func handle_power_up(_index):
 					register_character(new_char)
 					new_char.global_translation = random_tile.global_translation
 				9, 57, 58: ## erase one opponent
-					var characters = get_tree().get_nodes_in_group("character").duplicate()
-					characters.erase(Global.player_node)
-					var r = randi() % characters.size()
-					characters[r].call_deferred("queue_free")
-					turn_tracker.erase(characters[r])
+					var _characters = get_tree().get_nodes_in_group("character").duplicate()
+					_characters.erase(Global.player_node)
+					var r = randi() % _characters.size()
+					_characters[r].call_deferred("queue_free")
+# warning-ignore:return_value_discarded
+					turn_tracker.erase(_characters[r])
 				10, 19, 20, 24, 25, 26, 30, 31: ## more bananas
 					var tiles = get_tree().get_nodes_in_group("tile").duplicate()
 					var random_tiles = []
@@ -646,10 +657,10 @@ func handle_power_up(_index):
 						var r = randi() % tiles.size()
 						random_tiles.append(tiles[r])
 						tiles.remove(r)
-					for tile in random_tiles: 
+					for _tile in random_tiles: 
 						var new_banana = load("res://Scenes/ClusterBanana.tscn").instance()
 						add_child(new_banana)
-						new_banana.global_translation = tile.global_translation
+						new_banana.global_translation = _tile.global_translation
 				11, 27, 28, 29, 59, 60, 61: ## better aim
 					Global.player_node.aim_divisor *= 1.5
 				12, 62, 63, 64: ## worse aim
@@ -665,12 +676,13 @@ func handle_power_up(_index):
 						var r = randi() % tiles.size()
 						random_tiles.append(tiles[r])
 						tiles.remove(r)
-					for tile in random_tiles: 
+					for _tile in random_tiles: 
 						var new_ic = load("res://Scenes/ClusterIceCream.tscn").instance()
 						add_child(new_ic)
-						new_ic.global_translation = tile.global_translation
+						new_ic.global_translation = _tile.global_translation
 						var ice_cream_text = new_ic.get_node("GoodIceCream/Text")
-						ice_cream_text.connect("enable_read_action", self, "activate_read_button")
+						var err = ice_cream_text.connect("enable_read_action", self, "activate_read_button") 
+						print(err)
 						ice_cream_text.connect("disable_read_action", self, "deactivate_read_button")
 				16, 71, 72, 73: #randomly teleport
 					var tiles = get_tree().get_nodes_in_group("tile").duplicate()

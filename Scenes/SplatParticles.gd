@@ -38,3 +38,4 @@ func _on_green_light():
 
 func _on_Timer_timeout():
 	call_deferred("queue_free")
+

@@ -1,17 +1,19 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=34 format=2]
 
-[ext_resource path="res://Scenes/PoemCamRig.gd" type="Script" id=1]
-[ext_resource path="res://Assets/PanoramaSky/A_pano_FULL.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/Level4.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/TurnMarker.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Map3Point5RaisedRoom.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/GiantIceCream.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/toggle_splat.png" type="Texture" id=1]
+[ext_resource path="res://Assets/toggle_sq.png" type="Texture" id=2]
+[ext_resource path="res://Assets/PanoramaSky/A_pano_FULL.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Level4.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/PowerUp.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/PoemCamRig.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/Character4.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Assets/Fonts/TCM_____.TTF" type="DynamicFontData" id=8]
-[ext_resource path="res://Assets/Fonts/ARCADE_I.TTF" type="DynamicFontData" id=9]
-[ext_resource path="res://Themes/ProgressBar.tres" type="Theme" id=10]
-[ext_resource path="res://Themes/GUI_Default.tres" type="Theme" id=11]
-[ext_resource path="res://Scenes/PowerUp.gd" type="Script" id=12]
+[ext_resource path="res://Scenes/TurnMarker.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/GiantIceCream.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/MapDQ2.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/ClusterTomato.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Assets/Fonts/ARCADE_I.TTF" type="DynamicFontData" id=12]
+[ext_resource path="res://Assets/Fonts/TCM_____.TTF" type="DynamicFontData" id=13]
+[ext_resource path="res://Themes/ProgressBar.tres" type="Theme" id=14]
 
 [sub_resource type="DynamicFont" id=16]
 size = 60
@@ -20,7 +22,7 @@ use_filter = true
 extra_spacing_top = 16
 extra_spacing_bottom = 16
 extra_spacing_space = -18
-font_data = ExtResource( 9 )
+font_data = ExtResource( 12 )
 
 [sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0.490196, 0.584314, 0.788235, 0.270588 )
@@ -37,13 +39,115 @@ corner_radius_bottom_left = 5
 [sub_resource type="Theme" id=10]
 Panel/styles/panel = SubResource( 9 )
 
+[sub_resource type="DynamicFont" id=8]
+size = 20
+font_data = ExtResource( 13 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+content_margin_right = 0.0
+bg_color = Color( 0.458824, 0.458824, 0.458824, 1 )
+border_width_left = 2
+border_width_top = 2
+border_color = Color( 0.819608, 0.819608, 0.819608, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 2
+shadow_offset = Vector2( 2, 2 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.556863, 0.815686, 0.878431, 1 )
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.0509804, 0.392157, 0.482353, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0784314, 0.270588, 0.321569, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+shadow_size = 2
+shadow_offset = Vector2( 2, 2 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.192157, 0.133333, 0.266667, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.262745, 0.0980392, 0.466667, 1 )
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+shadow_size = 2
+shadow_offset = Vector2( 2, 2 )
+
+[sub_resource type="Image" id=23]
+data = {
+"data": PoolByteArray( 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42 ),
+"format": "RGB8",
+"height": 8,
+"mipmaps": false,
+"width": 8
+}
+
+[sub_resource type="ImageTexture" id=12]
+flags = 4
+flags = 4
+image = SubResource( 23 )
+size = Vector2( 8, 8 )
+
+[sub_resource type="StyleBoxTexture" id=13]
+texture = SubResource( 12 )
+region_rect = Rect2( 0, 0, 8, 8 )
+
+[sub_resource type="Theme" id=22]
+resource_local_to_scene = true
+default_font = SubResource( 8 )
+Button/colors/font_color = Color( 0.788235, 0.694118, 0.0666667, 1 )
+Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+Button/colors/font_color_focus = Color( 1, 0.878431, 0.054902, 1 )
+Button/colors/font_color_hover = Color( 1, 0.878431, 0.054902, 1 )
+Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+Button/constants/hseparation = 0
+Button/fonts/font = SubResource( 8 )
+Button/styles/disabled = SubResource( 4 )
+Button/styles/focus = SubResource( 7 )
+Button/styles/hover = SubResource( 5 )
+Button/styles/normal = SubResource( 6 )
+Button/styles/pressed = SubResource( 7 )
+CheckBox/icons/checked = ExtResource( 1 )
+CheckBox/icons/unchecked = ExtResource( 2 )
+CheckButton/icons/off = ExtResource( 2 )
+CheckButton/icons/on = ExtResource( 1 )
+Panel/styles/panel = SubResource( 13 )
+
 [sub_resource type="DynamicFont" id=15]
 size = 17
-font_data = ExtResource( 8 )
+font_data = ExtResource( 13 )
 
 [sub_resource type="DynamicFont" id=17]
 size = 20
-font_data = ExtResource( 8 )
+font_data = ExtResource( 13 )
 
 [sub_resource type="CanvasItemMaterial" id=18]
 
@@ -58,7 +162,7 @@ fill = 1
 fill_from = Vector2( 0.5, 0.6 )
 
 [sub_resource type="PanoramaSky" id=2]
-panorama = ExtResource( 2 )
+panorama = ExtResource( 3 )
 
 [sub_resource type="Environment" id=1]
 background_mode = 2
@@ -69,20 +173,20 @@ ambient_light_sky_contribution = 0.0
 glow_enabled = true
 adjustment_saturation = 2.13
 
-[node name="Level" type="Spatial"]
-script = ExtResource( 3 )
+[node name="Level_2" type="Spatial"]
+script = ExtResource( 4 )
 board_size = Vector2( 10, 10 )
 mouse_sensitivity = 0.2
 
 [node name="CameraRig" type="Position3D" parent="."]
-transform = Transform( -0.573577, 0.212012, -0.79124, 0, 0.965926, 0.258819, 0.819152, 0.148453, -0.554033, 0, 0, 0 )
+transform = Transform( 0.819152, 0.0499905, -0.571394, 0, 0.996195, 0.0871558, 0.573577, -0.0713938, 0.816035, 0, 0, 0 )
 
 [node name="Camera" type="Camera" parent="CameraRig"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4 )
 current = true
 size = 10.0
 
-[node name="TurnMarker" parent="." instance=ExtResource( 4 )]
+[node name="TurnMarker" parent="." instance=ExtResource( 8 )]
 
 [node name="PoemLabelContainer" type="Spatial" parent="."]
 visible = false
@@ -148,21 +252,34 @@ autowrap = true
 width = 2400.0
 
 [node name="You" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 19 )
 visible = true
 player = true
 
 [node name="PoemCamRig" type="Position3D" parent="You"]
-script = ExtResource( 1 )
+script = ExtResource( 6 )
 
 [node name="PoemCam" type="Camera" parent="You/PoemCamRig"]
 transform = Transform( 1, 0, 0, 0, 0.939693, -0.34202, 0, 0.34202, 0.939693, 2, 0.5, 3 )
 far = 200.0
 
 [node name="Aloysius" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, 15 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 8 )
 
 [node name="Ignatius" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 4 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 4 )
+
+[node name="Ignatius2" parent="." groups=["stationary"] instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 3 )
+
+[node name="Ignatius3" parent="." groups=["stationary"] instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0 )
+
+[node name="Ignatius4" parent="." groups=["stationary"] instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 2, -5 )
+
+[node name="Ignatius5" parent="." groups=["stationary"] instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 2, -11 )
 
 [node name="Panel" type="Panel" parent="."]
 margin_right = 245.0
@@ -173,7 +290,7 @@ theme = SubResource( 10 )
 margin_right = 1024.0
 margin_bottom = 228.0
 mouse_filter = 2
-theme = ExtResource( 11 )
+theme = SubResource( 22 )
 alignment = 1
 
 [node name="Right" type="VBoxContainer" parent="GUI"]
@@ -391,7 +508,7 @@ margin_right = 780.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 300, 30 )
 mouse_filter = 2
-theme = ExtResource( 10 )
+theme = ExtResource( 14 )
 rounded = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="GUI/Center"]
@@ -420,7 +537,7 @@ margin_right = 780.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 300, 30 )
 mouse_filter = 2
-theme = ExtResource( 10 )
+theme = ExtResource( 14 )
 
 [node name="Control" type="Control" parent="GUI/Center"]
 visible = false
@@ -454,7 +571,7 @@ margin_right = 780.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 300, 30 )
 mouse_filter = 2
-theme = ExtResource( 10 )
+theme = ExtResource( 14 )
 allow_greater = true
 
 [node name="LevelUpOptions" type="TextureRect" parent="."]
@@ -468,7 +585,7 @@ margin_left = 200.0
 margin_top = 235.0
 margin_right = 824.0
 margin_bottom = 400.0
-theme = ExtResource( 11 )
+theme = SubResource( 22 )
 alignment = 1
 
 [node name="Label" type="Label" parent="LevelUpOptions/VBoxContainer"]
@@ -493,7 +610,7 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 180, 40 )
 text = "Move Speed +"
 expand_icon = true
-script = ExtResource( 12 )
+script = ExtResource( 5 )
 
 [node name="PowerUp2" type="Button" parent="LevelUpOptions/VBoxContainer/HBoxContainer"]
 margin_left = 222.0
@@ -501,7 +618,7 @@ margin_right = 402.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 180, 40 )
 expand_icon = true
-script = ExtResource( 12 )
+script = ExtResource( 5 )
 
 [node name="PowerUp3" type="Button" parent="LevelUpOptions/VBoxContainer/HBoxContainer"]
 margin_left = 414.0
@@ -509,7 +626,7 @@ margin_right = 594.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 180, 40 )
 expand_icon = true
-script = ExtResource( 12 )
+script = ExtResource( 5 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
@@ -519,12 +636,27 @@ transform = Transform( 0.824707, 0.300371, 0.479204, -0.534501, 0.690879, 0.4868
 visible = false
 shadow_enabled = true
 
-[node name="Map3Point5RaisedRoom" parent="." instance=ExtResource( 5 )]
-
-[node name="GiantIceCream" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 17 )
+[node name="GiantIceCream" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0.5, -15 )
 visible = false
-nextscene = "res://Scenes/Level5.tscn"
+nextscene = "res://Scenes/Level_3.tscn"
+
+[node name="MapDQ2" parent="." instance=ExtResource( 10 )]
+
+[node name="ClusterTomato2" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 3 )
+
+[node name="ClusterTomato4" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0 )
+
+[node name="ClusterTomato5" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 2, -5 )
+
+[node name="ClusterTomato6" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 2, -11 )
+
+[node name="ClusterTomato3" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 8 )
 
 [connection signal="tree_exiting" from="." to="." method="_on_Level4_tree_exiting"]
 [connection signal="pressed" from="GUI/Right/PlayerOptions/Read" to="." method="_on_Read_pressed"]
