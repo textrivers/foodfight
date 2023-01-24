@@ -477,7 +477,7 @@ margin_top = 40.0
 margin_right = 624.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 0, 40 )
-text = "Choose your power-up!"
+text = "Choose your power-up item!"
 align = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="LevelUpOptions/VBoxContainer"]

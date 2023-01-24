@@ -51,8 +51,9 @@ var debug: bool = false
 var current_moment: int = 0
 var advancing: bool = true
 var screenshot_int: int = 1
+var screenshot_acquired: bool = false
 var mess_multiplier: float = 2.0
-var hilarity_multiplier: float = 0.25
+var hilarity_multiplier: float = 0.4
 
 var power_up_dict: Dictionary = {
 	0: ["Quickling's Quill", "Increased move speed"], 
@@ -74,20 +75,19 @@ var power_up_dict: Dictionary = {
 	16: ["Thaumaturge's Greeting Card", "Randomly teleport once"],
 	17: ["Coriolis Scrubber", "Remove 1/2 of the floor splatters"],
 	18: ["Laser Unsmile Assist", "Set Hilarity to zero"],
-	19: ["Banana Times", "Spawn more bananas"], 
+	19: ["Pocket Quasar", "Level up while waiting"], 
 	20: ["Banana Bonanza", "Spawn more bananas"],
 	21: ["Licorice Lovebird", "Decreased vision range"],
-	## dupes, stack multiple times
-	22: ["Licorice Lovebird", "Decreased vision range"],
-	23: ["Licorice Lovebird", "Decreased vision range"],
+	22: ["Surrogate Scissor", "Take control of one opponent"],
+	23: ["Surrogate Scissor", "Take control of one opponent"],
 	24: ["Banana Bonanza", "Spawn more bananas"],
 	25: ["Banana Bonanza", "Spawn more bananas"],
 	26: ["Banana Bonanza", "Spawn more bananas"],
 	27: ["Ballistics Textbook", "Better aim"],
 	28: ["Ballistics Textbook", "Better aim"],
 	29: ["Ballistics Textbook", "Better aim"],
-	30: ["Banana Times", "Spawn more bananas"], 
-	31: ["Banana Times", "Spawn more bananas"], 
+	30: ["Pocket Quasar", "Level up while waiting"], 
+	31: ["Pocket Quasar", "Level up while waiting"], 
 	32: ["Demon Refractor", "Reveal level exit (the big ice cream that eats you)"], 
 	33: ["Demon Refractor", "Reveal level exit (the big ice cream that eats you)"], 
 	34: ["Demon Refractor", "Reveal level exit (the big ice cream that eats you)"], 
@@ -134,6 +134,8 @@ var power_up_dict: Dictionary = {
 	75: ["Coriolis Scrubber", "Remove 1/2 of the floor splatters"],
 	76: ["Laser Unsmile Assist", "Set Hilarity to zero"],
 	77: ["Laser Unsmile Assist", "Set Hilarity to zero"],
+	78: ["Licorice Lovebird", "Decreased vision range"],
+	79: ["Licorice Lovebird", "Decreased vision range"],
 }
 var unique_power_int: int = 100
 
@@ -150,6 +152,8 @@ func _ready():
 		print("adjusting background energy")
 		$WorldEnvironment.get_environment().background_energy = 4.0
 	randomize()
+	Global.level_up_tracker = 0
+	Global.level_up_threshold = 10
 	cam_rig = $CameraRig
 	GUI = $GUI
 	turn_marker = $TurnMarker
@@ -450,29 +454,24 @@ func _on_Read_pressed():
 	Global.level_up_tracker += 15
 
 func _on_Screenshot_pressed():
-	## this section not needed, keeping for later use and then deletion
-#	new_screen.save_png("user://" + "%04d" % screenshot_int + ".png")
-#	var f = File.new()
-#	f.open("user://" + "%04d" % screenshot_int + ".png", File.READ)
-#	var buf = f.get_buffer(f.get_len())
 	$GUI/Right/ReadOptions.hide()
 	$GUI/Right/ProceedCancel/Cancel.hide()
 	yield(VisualServer, "frame_post_draw")
-	## from here: https://godotengine.org/qa/104093/how-can-i-save-an-image-to-the-users-filesystem-in-a-web-export
 	var new_screen = get_viewport().get_texture().get_data()
 	new_screen.flip_y()
-	var buf: PoolByteArray = new_screen.save_png_to_buffer()
-	JavaScript.download_buffer(buf, "screenshot.png", "image/png")
-	## another approach here: https://godotengine.org/qa/111084/can-i-download-an-image-created-in-a-web-game
-	## and similar approach from gotm.io on twitter, thank you
-#	JavaScript.eval("
-#const canvas = document.getElementById('canvas');
-#const dataURL = canvas.toDataURL();
-#http://window.open(dataURL)
-#")
+	if OS.get_name() == "HTML5":
+		## from here: https://godotengine.org/qa/104093/how-can-i-save-an-image-to-the-users-filesystem-in-a-web-export
+		var buf: PoolByteArray = new_screen.save_png_to_buffer()
+		JavaScript.download_buffer(buf, "screenshot" + str(screenshot_int) + ".png", "image/png")
+	elif OS.get_name() == "Windows": 
+		new_screen.save_png("res://" + "screenshot" + str(screenshot_int) + ".png")
+		OS.shell_open(ProjectSettings.globalize_path("res://"))
 	$GUI/Right/ReadOptions.show()
 	$GUI/Right/ProceedCancel/Cancel.show()
-	Global.level_up_tracker += 25
+	screenshot_int += 1
+	if screenshot_acquired == false:
+		Global.level_up_tracker += 25
+		screenshot_acquired = true
 
 func _on_PickUp_pressed():
 	current_action[0] = "pick_up"
@@ -554,6 +553,7 @@ func _on_Cancel_pressed():
 	$PoemLabelContainer.hide()
 	$TurnMarker.show()
 	$GUI/Center.show()
+	screenshot_acquired = false
 
 func _on_CheckButton_toggled(button_pressed):
 	if button_pressed == true:
@@ -575,6 +575,8 @@ func update_progress_bars():
 		$GUI/Center/HBoxContainer/MessProgressBar.value = Global.visible_splat_count * mess_multiplier
 		if Global.hilarity > 0:
 			Global.hilarity -= hilarity_multiplier
+			if Global.hilarity > 100:
+				Global.hilarity = 100
 		$GUI/Center/HBoxContainer2/HilarityProgressBar.value = Global.hilarity
 	$GUI/Center/HBoxContainer3/LevelUpProgressBar.value = (Global.level_up_tracker / Global.level_up_threshold) * 100
 
@@ -650,7 +652,7 @@ func handle_power_up(_index):
 					_characters[r].call_deferred("queue_free")
 # warning-ignore:return_value_discarded
 					turn_tracker.erase(_characters[r])
-				10, 19, 20, 24, 25, 26, 30, 31: ## more bananas
+				10, 20, 24, 25, 26: ## more bananas
 					var tiles = get_tree().get_nodes_in_group("tile").duplicate()
 					var random_tiles = []
 					for i in 5: 
@@ -702,20 +704,30 @@ func handle_power_up(_index):
 				18, 76, 77: ## set hilarity to zero
 					Global.hilarity = 0
 					$GUI/Center/HBoxContainer2/HilarityProgressBar.value = Global.hilarity
-				21, 22, 23: 
+				19, 30, 31: ## waiting earns you exp
+					Global.player_node.wait_modifier += 0.5
+				21, 78, 79: ## reduced vision
 					Global.player_node.get_node("Area/CollisionShape").get_shape().radius -= 2.0
 					Global.character_proximity_radius -= 2.0
+				22, 23: ## take control of another character
+					var all_chars = get_tree().get_nodes_in_group("character")
+					for _char in all_chars:
+						if _char.player == true:
+							all_chars.erase(_char)
+					var rand_char = all_chars[randi() % all_chars.size()]
+					rand_char.player = true
 				_: ## default, change player color
 					Global.player_node.get_node("Viewport/CharacterSprite/Sprite").modulate = Global.get_random_palette_color() 
-				
 		else: 
 			power_up_dict[child.power_up_index] = [child.text, child.hint_tooltip]
 	## default entry added back into power_up_dict so there will always be 3
 	## needs to be guaranteed unique int
 	while power_up_dict.size() < 3: 
-		power_up_dict[unique_power_int] = ["Colored Glasses", "Change character color"]
+		power_up_dict[unique_power_int] = ["Ungreen Goggles", "That the “that\nit was what\nit was” is\nwhat mattered is\nlike an oversimplification?"]
 		unique_power_int += 1
 	$LevelUpOptions.hide()
 	Global.level_up_tracker = Global.level_up_tracker - Global.level_up_threshold
+	if Global.level_up_tracker < 0: 
+		Global.level_up_tracker = 0
 	Global.level_up_threshold *= 1.25
 	display_character_options(true)

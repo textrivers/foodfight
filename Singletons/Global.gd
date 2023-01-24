@@ -108,8 +108,9 @@ var poem_text_dict: Dictionary = { ## syntax: ID: ["text", "source", checked-out
 	27: ["That penning “purple\nstrides of warlike\nsunset” reflects purple\nvisionlessness accurately imparts\ncolorless vision partially?", "[“Ambrose” outtake]", false, false],
 	28: ["That “is consciousness\nas vegetarian as\nartichokes” is their\nin-joke, published by\ntheir food’s calories?", "[“Ambrose” outtake]", false, false],
 	29: ["To make him tooth\nContinuous with you,\nWhat of his food?\nNo food would suit.", "[unpublished]", false, false], 
-	30: ["That the “that\nit was what\nit was” is\nwhat mattered is\nlike an oversimplification?", "from “The Amber in Ambrose”", false, false], 
-	31: ["That alphabet soup\npreserves the alphabet\nand the alphabet-eater?\nAnd who will\ntime tell [amber]", "from “The Amber in Ambrose”", false, false], 
+	30: ["That alphabet soup\npreserves the alphabet\nand the alphabet-eater?\nAnd who will\ntime tell [amber]", "from “The Amber in Ambrose”", false, false], 
+	31: ["That the “that\nit was what\nit was” is\nwhat mattered is\nlike an oversimplification?", "from “The Amber in Ambrose”", false, false], 
+	
 }
 
 var visible_splat_count: int = 0

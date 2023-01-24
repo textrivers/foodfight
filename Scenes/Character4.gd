@@ -98,7 +98,8 @@ var bullseye: Vector3
 var aim_divisor: float = 1
 var selecting: bool = false
 var selected: bool = false
-
+var waiting: bool = false
+var wait_modifier: float = 0.0
 var revert_color: Color
 
 signal give_on_select_info
@@ -146,6 +147,8 @@ func generate_unique_name(name_prefix):
 func _physics_process(_delta):
 	bullseye = Vector3(global_translation.x, global_translation.y + 0.6, global_translation.z)
 	var next_loc = $NavigationAgent.get_next_location()
+	if waiting && !red_light:
+		Global.level_up_tracker += wait_modifier
 	if walking:
 		if !red_light:
 			velocity = global_translation.direction_to(next_loc) * walk_speed
@@ -179,9 +182,10 @@ func acquire_target():
 func handle_action(action):
 	if action[0] == "wait":
 		walking = false
-		pass
+		waiting = true
 	if action[0] == "pick_up":
 		walking = false
+		waiting = false
 		if food_contacts.size() > 0 && !self.has_node("MyFood"):
 			var my_food = food_contacts.pop_back()
 			var food_par = my_food.get_parent()
@@ -200,19 +204,24 @@ func handle_action(action):
 				print("ice cream text enabled")
 	if action[0] == "throw":
 		walking = false
+		waiting = false
 		if self.has_node("MyFood"):
 			throw_food(action[1])
 		else:
 			pass
 	if action[0] == "walk":
 		walking = true
+		waiting = false
 #		if $NavigationAgent.get_target_location() != action[1]:
 #			$NavigationAgent.set_target_location(action[1])
 		$NavigationAgent.set_target_location(action[1])
 
 func add_to_food_contacts(floor_food):
 	if !food_contacts.has(floor_food):
-		food_contacts.append(floor_food)
+		if floor_food.is_in_group("icecream"): ## ensure ice cream is picked up preferentially
+			food_contacts.append(floor_food)
+		else:
+			food_contacts.push_front(floor_food)
 
 func remove_from_food_contacts(floor_food):
 	if food_contacts.has(floor_food):
