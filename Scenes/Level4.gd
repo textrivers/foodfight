@@ -53,7 +53,7 @@ var advancing: bool = true
 var screenshot_int: int = 1
 var screenshot_acquired: bool = false
 var mess_multiplier: float = 2.0
-var hilarity_multiplier: float = 0.4
+var hilarity_multiplier: float = 0.25
 
 var power_up_dict: Dictionary = {
 	0: ["Quickling's Quill", "Increased move speed"], 
@@ -207,6 +207,8 @@ func place_objects():
 		var food_child = new_food.instance()
 		add_child(food_child)
 		food_child.global_translation = all_tiles[j].global_translation
+		for child in food_child.get_children():
+			child.connect("player_hit", self, "on_player_hit")
 #	var ice_cream_count: int = 5
 #	for k in ice_cream_count:
 #		var ice_cream_tile = all_tiles[randi() % all_tiles.size()]
@@ -288,6 +290,8 @@ func prompt_turns():
 				if !turn.player:
 					AI_action_select()
 				else:
+					#TODO center camera on player character(s)
+					cam_rig_trans_target = turn.get_node("TargetPosition")
 					display_character_options(turn.player)
 				yield(self, "GUI_action_taken")
 				resolve_turn()
@@ -580,6 +584,14 @@ func update_progress_bars():
 		$GUI/Center/HBoxContainer2/HilarityProgressBar.value = Global.hilarity
 	$GUI/Center/HBoxContainer3/LevelUpProgressBar.value = (Global.level_up_tracker / Global.level_up_threshold) * 100
 
+func on_player_hit(splat_col):
+	var sprite = $GUI/Center/HBoxContainer4/GridContainer.get_children()[Global.game_hit_count - 1].get_node("Sprite")
+	sprite.self_modulate = splat_col
+	sprite.rotation_degrees = randf() * 360
+	sprite.show()
+	if Global.game_hit_count == 10:
+		do_game_over()
+
 func remove_debug_path():
 	for sphere in get_tree().get_nodes_in_group("debug"):
 		sphere.queue_free()
@@ -682,6 +694,7 @@ func handle_power_up(_index):
 						var new_ic = load("res://Scenes/ClusterIceCream.tscn").instance()
 						add_child(new_ic)
 						new_ic.global_translation = _tile.global_translation
+						new_ic.get_node("GoodIceCream").connect("player_hit", self, "on_player_hit")
 						var ice_cream_text = new_ic.get_node("GoodIceCream/Text")
 						var err = ice_cream_text.connect("enable_read_action", self, "activate_read_button") 
 						print(err)
@@ -731,3 +744,6 @@ func handle_power_up(_index):
 		Global.level_up_tracker = 0
 	Global.level_up_threshold *= 1.25
 	display_character_options(true)
+
+func do_game_over():
+	print("your sucks at this game")

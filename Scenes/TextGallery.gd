@@ -13,6 +13,11 @@ const FILE_NAME = "user://enough-of-a-mess-data.json"
 func _ready():
 	tween = $Tween
 	var any_found: bool = false
+	if Global.poem_text_dict.size() > 32: 
+		var keys = Global.poem_text_dict.keys()
+		for i in keys.size():
+			if i >= 32:
+				Global.poem_text_dict.erase(i)
 	for text in Global.poem_text_dict:
 		var new_text_button = text_button_scene.instance()
 		$Control/VBoxContainer/GridContainer.add_child(new_text_button)
@@ -27,6 +32,7 @@ func _ready():
 			new_text_button.get_node("Sprite/Label").text = ""
 	if any_found == false:
 		$Control/VBoxContainer/HBox/ResetTexts.disabled = true
+		
 
 func _process(_delta):
 	if Input.is_action_just_pressed("left_click"):

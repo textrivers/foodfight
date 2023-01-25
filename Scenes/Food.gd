@@ -10,6 +10,8 @@ var floor_splat_mod: int = 1
 export var splat_colors: Array
 var thrown_by_player: bool = false
 
+signal player_hit
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
@@ -56,6 +58,9 @@ func _physics_process(delta):
 					if thrown_by_player:
 						Global.level_up_tracker += 10
 						spawn_ice_cream(coll.collider.global_translation)
+				if coll.collider == Global.player_node:
+					Global.game_hit_count += 1
+					emit_signal("player_hit", Color(splat_colors[randi() % splat_colors.size()]))
 				Global.hilarity += 40
 			elif coll.collider.is_in_group("throwable"): 
 				Global.hilarity += 10

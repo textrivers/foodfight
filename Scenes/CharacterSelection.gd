@@ -66,4 +66,6 @@ func on_color_changed(new_color):
 	Global.character_modulate = new_color
 	
 func _on_DoneButton_pressed():
+	Global.game_hit_count = 0
+	Global.game_text_count = 0
 	SceneManager.goto_scene(self, next_scene)
