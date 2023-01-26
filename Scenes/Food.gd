@@ -35,6 +35,7 @@ func _ready():
 		$Viewport/FoodSprite/AnimatedSprite2.play("default", play_dir)
 		$Viewport/FoodSprite/AnimatedSprite2.set_frame(0)
 		$Viewport/FoodSprite/AnimatedSprite2.playing = false
+	self.connect("player_hit", get_parent().get_parent(), "on_player_hit")
 
 func _physics_process(delta):
 	if translation.y < -40: 
@@ -58,7 +59,7 @@ func _physics_process(delta):
 					if thrown_by_player:
 						Global.level_up_tracker += 10
 						spawn_ice_cream(coll.collider.global_translation)
-				if coll.collider == Global.player_node:
+				if coll.collider.player:
 					Global.game_hit_count += 1
 					emit_signal("player_hit", Color(splat_colors[randi() % splat_colors.size()]))
 				Global.hilarity += 40

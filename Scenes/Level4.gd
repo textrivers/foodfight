@@ -185,9 +185,21 @@ func _ready():
 		new_mat.albedo_color.a = 0
 		new_tile.set_material_override(new_mat)
 		new_tile.revert_color = new_tile_color
-		## subscribe to powerup button signals and handle them
+	## subscribe to powerup button signals and handle them
 	for child in $LevelUpOptions/VBoxContainer/HBoxContainer.get_children():
 		child.connect("power_up_chosen", self, "handle_power_up")
+	## populate the HPContainer
+	if Global.hit_maximum <= 10:
+		for i in Global.hit_maximum:
+			var new_hprect = load("res://Scenes/HPRect.tscn").instance()
+			$GUI/Center/HPContainer/GridContainer.add_child(new_hprect)
+	if Global.game_hit_count > 0:
+		for i in Global.game_hit_count:
+			var hitboxes = $GUI/Center/HPContainer/GridContainer.get_children()
+			hitboxes[i].get_node("Sprite").self_modulate = Global.hit_splat_array[i]
+			hitboxes[i].get_node("Sprite").rotation_degrees = randf() * 360
+			hitboxes[i].get_node("Sprite").show()
+		Global.hit_splat_array = []
 
 func place_objects():
 	## place food
@@ -207,8 +219,7 @@ func place_objects():
 		var food_child = new_food.instance()
 		add_child(food_child)
 		food_child.global_translation = all_tiles[j].global_translation
-		for child in food_child.get_children():
-			child.connect("player_hit", self, "on_player_hit")
+		
 #	var ice_cream_count: int = 5
 #	for k in ice_cream_count:
 #		var ice_cream_tile = all_tiles[randi() % all_tiles.size()]
@@ -469,6 +480,7 @@ func _on_Screenshot_pressed():
 		JavaScript.download_buffer(buf, "screenshot" + str(screenshot_int) + ".png", "image/png")
 	elif OS.get_name() == "Windows": 
 		new_screen.save_png("res://" + "screenshot" + str(screenshot_int) + ".png")
+# warning-ignore:return_value_discarded
 		OS.shell_open(ProjectSettings.globalize_path("res://"))
 	$GUI/Right/ReadOptions.show()
 	$GUI/Right/ProceedCancel/Cancel.show()
@@ -585,11 +597,12 @@ func update_progress_bars():
 	$GUI/Center/HBoxContainer3/LevelUpProgressBar.value = (Global.level_up_tracker / Global.level_up_threshold) * 100
 
 func on_player_hit(splat_col):
-	var sprite = $GUI/Center/HBoxContainer4/GridContainer.get_children()[Global.game_hit_count - 1].get_node("Sprite")
-	sprite.self_modulate = splat_col
-	sprite.rotation_degrees = randf() * 360
-	sprite.show()
-	if Global.game_hit_count == 10:
+	if Global.game_hit_count <= $GUI/Center/HPContainer/GridContainer.get_child_count(): ## error check
+		var sprite = $GUI/Center/HPContainer/GridContainer.get_children()[Global.game_hit_count - 1].get_node("Sprite")
+		sprite.self_modulate = splat_col
+		sprite.rotation_degrees = randf() * 360
+		sprite.show()
+	if Global.game_hit_count >= Global.hit_maximum:
 		do_game_over()
 
 func remove_debug_path():
@@ -607,6 +620,9 @@ func _on_Level4_tree_exiting(): ## for syncing state of Global to user save file
 	file.open(FILE_NAME, File.WRITE)
 	file.store_var(to_json(texts_for_save))
 	file.close()
+	## also for storing hit info
+	for hit_child in $GUI/Center/HPContainer/GridContainer.get_children():
+		Global.hit_splat_array.append(hit_child.get_node("Sprite").self_modulate)
 
 func handle_power_up(_index):
 	for child in $LevelUpOptions/VBoxContainer/HBoxContainer.get_children():
@@ -694,7 +710,6 @@ func handle_power_up(_index):
 						var new_ic = load("res://Scenes/ClusterIceCream.tscn").instance()
 						add_child(new_ic)
 						new_ic.global_translation = _tile.global_translation
-						new_ic.get_node("GoodIceCream").connect("player_hit", self, "on_player_hit")
 						var ice_cream_text = new_ic.get_node("GoodIceCream/Text")
 						var err = ice_cream_text.connect("enable_read_action", self, "activate_read_button") 
 						print(err)
@@ -747,3 +762,4 @@ func handle_power_up(_index):
 
 func do_game_over():
 	print("your sucks at this game")
+	SceneManager.goto_scene(self, "res://Scenes/TitleScreen.tscn")

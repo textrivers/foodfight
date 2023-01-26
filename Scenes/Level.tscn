@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scenes/PoemCamRig.gd" type="Script" id=1]
 [ext_resource path="res://Assets/PanoramaSky/A_pano_FULL.png" type="Texture" id=2]
@@ -12,8 +12,7 @@
 [ext_resource path="res://Themes/ProgressBar.tres" type="Theme" id=10]
 [ext_resource path="res://Themes/GUI_Default.tres" type="Theme" id=11]
 [ext_resource path="res://Scenes/PowerUp.gd" type="Script" id=12]
-[ext_resource path="res://Assets/hitbox24.png" type="Texture" id=13]
-[ext_resource path="res://Assets/splat_3.png" type="Texture" id=14]
+[ext_resource path="res://Scenes/HPContainer.tscn" type="PackedScene" id=13]
 
 [sub_resource type="DynamicFont" id=16]
 size = 60
@@ -459,145 +458,10 @@ mouse_filter = 2
 theme = ExtResource( 10 )
 allow_greater = true
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="GUI/Center"]
-margin_top = 117.0
-margin_right = 780.0
-margin_bottom = 152.0
-alignment = 2
+[node name="HPContainer" parent="GUI/Center" instance=ExtResource( 13 )]
 
-[node name="Label" type="Label" parent="GUI/Center/HBoxContainer4"]
-margin_left = 478.0
-margin_right = 500.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 0, 35 )
-custom_colors/font_color = Color( 0.490196, 0.584314, 0.788235, 1 )
-text = "HP"
-
-[node name="GridContainer" type="GridContainer" parent="GUI/Center/HBoxContainer4"]
-margin_left = 504.0
-margin_right = 780.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 0, 35 )
-columns = 10
-
-[node name="TextureRect" type="TextureRect" parent="GUI/Center/HBoxContainer4/GridContainer"]
-margin_right = 24.0
-margin_bottom = 24.0
-texture = ExtResource( 13 )
-
-[node name="Sprite" type="Sprite" parent="GUI/Center/HBoxContainer4/GridContainer/TextureRect"]
-visible = false
-position = Vector2( 12, 12 )
-scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 14 )
-
-[node name="TextureRect2" type="TextureRect" parent="GUI/Center/HBoxContainer4/GridContainer"]
-margin_left = 28.0
-margin_right = 52.0
-margin_bottom = 24.0
-texture = ExtResource( 13 )
-
-[node name="Sprite" type="Sprite" parent="GUI/Center/HBoxContainer4/GridContainer/TextureRect2"]
-visible = false
-position = Vector2( 12, 12 )
-scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 14 )
-
-[node name="TextureRect3" type="TextureRect" parent="GUI/Center/HBoxContainer4/GridContainer"]
-margin_left = 56.0
-margin_right = 80.0
-margin_bottom = 24.0
-texture = ExtResource( 13 )
-
-[node name="Sprite" type="Sprite" parent="GUI/Center/HBoxContainer4/GridContainer/TextureRect3"]
-visible = false
-position = Vector2( 12, 12 )
-scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 14 )
-
-[node name="TextureRect4" type="TextureRect" parent="GUI/Center/HBoxContainer4/GridContainer"]
-margin_left = 84.0
-margin_right = 108.0
-margin_bottom = 24.0
-texture = ExtResource( 13 )
-
-[node name="Sprite" type="Sprite" parent="GUI/Center/HBoxContainer4/GridContainer/TextureRect4"]
-visible = false
-position = Vector2( 12, 12 )
-scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 14 )
-
-[node name="TextureRect5" type="TextureRect" parent="GUI/Center/HBoxContainer4/GridContainer"]
-margin_left = 112.0
-margin_right = 136.0
-margin_bottom = 24.0
-texture = ExtResource( 13 )
-
-[node name="Sprite" type="Sprite" parent="GUI/Center/HBoxContainer4/GridContainer/TextureRect5"]
-visible = false
-position = Vector2( 12, 12 )
-scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 14 )
-
-[node name="TextureRect6" type="TextureRect" parent="GUI/Center/HBoxContainer4/GridContainer"]
-margin_left = 140.0
-margin_right = 164.0
-margin_bottom = 24.0
-texture = ExtResource( 13 )
-
-[node name="Sprite" type="Sprite" parent="GUI/Center/HBoxContainer4/GridContainer/TextureRect6"]
-visible = false
-position = Vector2( 12, 12 )
-scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 14 )
-
-[node name="TextureRect7" type="TextureRect" parent="GUI/Center/HBoxContainer4/GridContainer"]
-margin_left = 168.0
-margin_right = 192.0
-margin_bottom = 24.0
-texture = ExtResource( 13 )
-
-[node name="Sprite" type="Sprite" parent="GUI/Center/HBoxContainer4/GridContainer/TextureRect7"]
-visible = false
-position = Vector2( 12, 12 )
-scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 14 )
-
-[node name="TextureRect8" type="TextureRect" parent="GUI/Center/HBoxContainer4/GridContainer"]
-margin_left = 196.0
-margin_right = 220.0
-margin_bottom = 24.0
-texture = ExtResource( 13 )
-
-[node name="Sprite" type="Sprite" parent="GUI/Center/HBoxContainer4/GridContainer/TextureRect8"]
-visible = false
-position = Vector2( 12, 12 )
-scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 14 )
-
-[node name="TextureRect9" type="TextureRect" parent="GUI/Center/HBoxContainer4/GridContainer"]
-margin_left = 224.0
-margin_right = 248.0
-margin_bottom = 24.0
-texture = ExtResource( 13 )
-
-[node name="Sprite" type="Sprite" parent="GUI/Center/HBoxContainer4/GridContainer/TextureRect9"]
-visible = false
-position = Vector2( 12, 12 )
-scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 14 )
-
-[node name="TextureRect10" type="TextureRect" parent="GUI/Center/HBoxContainer4/GridContainer"]
-margin_left = 252.0
-margin_right = 276.0
-margin_bottom = 24.0
-texture = ExtResource( 13 )
-
-[node name="Sprite" type="Sprite" parent="GUI/Center/HBoxContainer4/GridContainer/TextureRect10"]
-visible = false
-position = Vector2( 12, 12 )
-scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 14 )
+[node name="Label" parent="GUI/Center/HPContainer" index="0"]
+margin_left = 681.0
 
 [node name="LevelUpOptions" type="TextureRect" parent="."]
 visible = false
@@ -681,3 +545,5 @@ nextscene = "res://Scenes/Level5.tscn"
 [connection signal="pressed" from="LevelUpOptions/VBoxContainer/HBoxContainer/PowerUp1" to="LevelUpOptions/VBoxContainer/HBoxContainer/PowerUp1" method="_on_PowerUp_pressed"]
 [connection signal="pressed" from="LevelUpOptions/VBoxContainer/HBoxContainer/PowerUp2" to="LevelUpOptions/VBoxContainer/HBoxContainer/PowerUp2" method="_on_PowerUp_pressed"]
 [connection signal="pressed" from="LevelUpOptions/VBoxContainer/HBoxContainer/PowerUp3" to="LevelUpOptions/VBoxContainer/HBoxContainer/PowerUp3" method="_on_PowerUp_pressed"]
+
+[editable path="GUI/Center/HPContainer"]

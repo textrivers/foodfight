@@ -270,17 +270,12 @@ func on_target_selecting():
 func on_target_unselecting():
 	selecting = false
 
-# warning-ignore:unused_argument
-# warning-ignore:unused_argument
-# warning-ignore:unused_argument
-# warning-ignore:unused_argument
-# warning-ignore:unused_argument
 func _on_Character3D_input_event(camera, event, position, normal, shape_idx):
 	if selecting:
 		if Input.is_action_just_pressed("left_click"):
-			if !player:
-				$Viewport/CharacterSprite/Sprite.modulate = Color.crimson
-				emit_signal("give_on_select_info", $TargetPosition.global_translation, char_description)
+			#if !player: 
+			$Viewport/CharacterSprite/Sprite.modulate = Color.crimson
+			emit_signal("give_on_select_info", $TargetPosition.global_translation, char_description)
 
 func _on_Character3D_mouse_entered():
 	if selecting == true && selected == false:

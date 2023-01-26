@@ -65,7 +65,30 @@ func on_color_changed(new_color):
 	$CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/HBoxContainer2/PhotoEtc/TextureRect.self_modulate = new_color
 	Global.character_modulate = new_color
 	
+func _on_DifficultySlider_value_changed(value):
+	var update_text: String
+	var int_value = int(value)
+	match int_value:
+		0: 
+			update_text = "Easy"
+			Global.hit_maximum = 999999
+		1:
+			update_text = "Medium"
+			Global.hit_maximum = 10
+		2:
+			update_text = "Hard"
+			Global.hit_maximum = 5
+		3:
+			update_text = "Impossible"
+			Global.hit_maximum = 1
+		_: 
+			update_text = "HAHAHAHAHAHA"
+			Global.hit_maximum = 1
+	print(update_text)
+	$CharGUI/VBoxContainer/RandomOrDone/VBoxContainer/Label.text = "Difficulty: " + update_text
+	
 func _on_DoneButton_pressed():
 	Global.game_hit_count = 0
 	Global.game_text_count = 0
+	Global.hit_splat_array = []
 	SceneManager.goto_scene(self, next_scene)

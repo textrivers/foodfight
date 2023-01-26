@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Assets/CharacterSprites/Wid2_Vanilla.png" type="Texture" id=1]
 [ext_resource path="res://Assets/CharacterSprites/Uni_Vanilla.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Scenes/ColorButton.gd" type="Script" id=6]
 [ext_resource path="res://Assets/CharacterSprites/Ort_Vanilla.png" type="Texture" id=7]
 [ext_resource path="res://Assets/CharacterSprites/Nor_Vanilla.png" type="Texture" id=8]
+[ext_resource path="res://Assets/FoodSprites/bettericecreamcone/together_48px.PNG" type="Texture" id=9]
 [ext_resource path="res://Assets/CharacterSprites/Mer_Vanilla.png" type="Texture" id=10]
 [ext_resource path="res://Assets/CharacterSprites/Cho_Vanilla.png" type="Texture" id=11]
 [ext_resource path="res://Themes/GUI_Default.tres" type="Theme" id=12]
@@ -758,27 +759,54 @@ text = "Poetry Integration? "
 [node name="Spacer" type="MarginContainer" parent="CharGUI/VBoxContainer"]
 margin_top = 492.0
 margin_right = 1024.0
-margin_bottom = 508.0
-rect_min_size = Vector2( 0, 16 )
+margin_bottom = 504.0
+rect_min_size = Vector2( 0, 12 )
 
 [node name="RandomOrDone" type="HBoxContainer" parent="CharGUI/VBoxContainer"]
-margin_top = 512.0
+margin_top = 508.0
 margin_right = 1024.0
-margin_bottom = 546.0
+margin_bottom = 583.0
+custom_constants/separation = 14
 alignment = 1
 
+[node name="VBoxContainer" type="VBoxContainer" parent="CharGUI/VBoxContainer/RandomOrDone"]
+margin_left = 355.0
+margin_right = 535.0
+margin_bottom = 75.0
+
+[node name="DifficultySlider" type="HSlider" parent="CharGUI/VBoxContainer/RandomOrDone/VBoxContainer"]
+margin_right = 180.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 180, 0 )
+custom_icons/grabber_disabled = ExtResource( 9 )
+custom_icons/grabber_highlight = ExtResource( 9 )
+custom_icons/grabber = ExtResource( 9 )
+max_value = 3.0
+rounded = true
+scrollable = false
+tick_count = 4
+ticks_on_borders = true
+
+[node name="Label" type="Label" parent="CharGUI/VBoxContainer/RandomOrDone/VBoxContainer"]
+margin_top = 52.0
+margin_right = 180.0
+margin_bottom = 75.0
+text = "Difficulty: Easy"
+align = 1
+
 [node name="DoneButton" type="Button" parent="CharGUI/VBoxContainer/RandomOrDone"]
-margin_left = 452.0
-margin_right = 572.0
-margin_bottom = 34.0
+margin_left = 549.0
+margin_right = 669.0
+margin_bottom = 75.0
 rect_min_size = Vector2( 120, 0 )
 custom_fonts/font = SubResource( 13 )
 text = "Play Now"
 
 [node name="Spacer2" type="Label" parent="CharGUI/VBoxContainer"]
-margin_top = 550.0
+visible = false
+margin_top = 591.0
 margin_right = 1024.0
-margin_bottom = 596.0
+margin_bottom = 637.0
 rect_min_size = Vector2( 0, 46 )
 custom_colors/font_color = Color( 0.470588, 0.635294, 0.67451, 1 )
 custom_colors/font_outline_modulate = Color( 0.192157, 0.133333, 0.266667, 1 )
@@ -853,4 +881,5 @@ valign = 1
 [connection signal="pressed" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/HBoxContainer2/CenterContainer/GridContainer/Button24" to="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/HBoxContainer2/CenterContainer/GridContainer/Button24" method="_on_Button_pressed"]
 [connection signal="toggled" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/HBoxContainer/HaloCheck" to="." method="on_halo_or_horns"]
 [connection signal="toggled" from="CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/HBoxContainer/HornsCheck" to="." method="on_halo_or_horns"]
+[connection signal="value_changed" from="CharGUI/VBoxContainer/RandomOrDone/VBoxContainer/DifficultySlider" to="." method="_on_DifficultySlider_value_changed"]
 [connection signal="pressed" from="CharGUI/VBoxContainer/RandomOrDone/DoneButton" to="." method="_on_DoneButton_pressed"]

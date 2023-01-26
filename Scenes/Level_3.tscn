@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Assets/PanoramaSky/A_pano_FULL.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Level4.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Assets/Fonts/TCM_____.TTF" type="DynamicFontData" id=10]
 [ext_resource path="res://Themes/ProgressBar.tres" type="Theme" id=11]
 [ext_resource path="res://Themes/GUI_Default.tres" type="Theme" id=12]
+[ext_resource path="res://Scenes/HPContainer.tscn" type="PackedScene" id=13]
 
 [sub_resource type="DynamicFont" id=16]
 size = 60
@@ -457,6 +458,8 @@ rect_min_size = Vector2( 300, 30 )
 mouse_filter = 2
 theme = ExtResource( 11 )
 allow_greater = true
+
+[node name="HPContainer" parent="GUI/Center" instance=ExtResource( 13 )]
 
 [node name="LevelUpOptions" type="TextureRect" parent="."]
 visible = false
