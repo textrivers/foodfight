@@ -526,7 +526,7 @@ shadow_enabled = true
 [node name="GiantIceCream" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3, 20 )
 visible = false
-nextscene = "res://Scenes/TextGallery.tscn"
+nextscene = "res://Scenes/GameSummary.tscn"
 
 [node name="Map3Point5RaisedRoom" parent="." instance=ExtResource( 8 )]
 
