@@ -85,7 +85,7 @@ theme = ExtResource( 1 )
 custom_colors/font_color = Color( 0.572549, 0.0980392, 0.129412, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 3 )
-text = "You lost, because you were hit too many times. "
+text = "Well... that could have gone better."
 align = 1
 valign = 1
 
@@ -201,9 +201,9 @@ custom_fonts/font = SubResource( 4 )
 text = "10"
 
 [node name="VictoryText" type="Label" parent="VBoxContainer"]
-margin_left = 176.0
+margin_left = 188.0
 margin_top = 317.0
-margin_right = 848.0
+margin_right = 836.0
 margin_bottom = 482.0
 rect_min_size = Vector2( 0, 165 )
 size_flags_horizontal = 4
@@ -212,11 +212,11 @@ custom_colors/font_color = Color( 0.572549, 0.0980392, 0.129412, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 5 )
 text = "
-\"That the “that
+That the “that
 it was what
 it was” is
 what mattered is
-like an oversimplification?\""
+like an oversimplification?"
 valign = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]

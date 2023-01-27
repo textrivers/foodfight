@@ -19,6 +19,7 @@ var loss_messages: Array = [
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	randomize()
 	if Global.game_hit_count >= Global.hit_maximum:
 		$VBoxContainer/SummaryMessage.text = loss_messages[randi() % loss_messages.size()]
 		$VBoxContainer/VictoryText.text = ""
