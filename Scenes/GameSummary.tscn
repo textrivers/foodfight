@@ -1,0 +1,265 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Themes/GUI_Default.tres" type="Theme" id=1]
+[ext_resource path="res://Assets/PanoramaSky/A_pano_1.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/GameSummary.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Fonts/TCM_____.TTF" type="DynamicFontData" id=4]
+[ext_resource path="res://Assets/Fonts/ARCADE_I.TTF" type="DynamicFontData" id=5]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 0.572549, 0.0980392, 0.129412, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture2D" id=2]
+gradient = SubResource( 1 )
+width = 1024
+height = 600
+fill = 1
+fill_from = Vector2( 0.5, 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 48
+outline_size = 4
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 25
+outline_size = 2
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 24
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.831373, 0.239216, 0.262745, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.572549, 0.0980392, 0.129412, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 2
+shadow_offset = Vector2( 2, 2 )
+
+[node name="GameSummary" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+light_mask = 2
+texture = SubResource( 2 )
+centered = false
+
+[node name="ScrollingBackground" type="Node2D" parent="."]
+
+[node name="Light2D" type="Light2D" parent="ScrollingBackground"]
+light_mask = 2
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+offset = Vector2( 1024, 300 )
+energy = 3.55
+range_item_cull_mask = 2
+
+[node name="Light2D2" type="Light2D" parent="ScrollingBackground"]
+light_mask = 2
+position = Vector2( 0, 1024 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+offset = Vector2( 1024, 300 )
+energy = 3.55
+range_item_cull_mask = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 1024, 600 )
+custom_constants/separation = 11
+
+[node name="SummaryMessage" type="Label" parent="VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 0, 150 )
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0.572549, 0.0980392, 0.129412, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "You lost, because you were hit too many times. "
+align = 1
+valign = 1
+
+[node name="DifficultyContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 161.0
+margin_right = 1024.0
+margin_bottom = 189.0
+theme = ExtResource( 1 )
+alignment = 1
+
+[node name="DifficultyLabel" type="Label" parent="VBoxContainer/DifficultyContainer"]
+margin_left = 431.0
+margin_right = 589.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 120, 0 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0.572549, 0.0980392, 0.129412, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Difficulty Level: "
+align = 1
+valign = 1
+
+[node name="DifficultyValue" type="Label" parent="VBoxContainer/DifficultyContainer"]
+margin_left = 593.0
+margin_right = 593.0
+margin_bottom = 28.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0.572549, 0.0980392, 0.129412, 1 )
+custom_fonts/font = SubResource( 4 )
+
+[node name="HitsContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 200.0
+margin_right = 1024.0
+margin_bottom = 228.0
+theme = ExtResource( 1 )
+alignment = 1
+
+[node name="HitsLabel" type="Label" parent="VBoxContainer/HitsContainer"]
+margin_left = 320.0
+margin_right = 672.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 120, 0 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0.572549, 0.0980392, 0.129412, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Times you hit opponents with food: "
+align = 1
+valign = 1
+
+[node name="HitsValue" type="Label" parent="VBoxContainer/HitsContainer"]
+margin_left = 676.0
+margin_right = 704.0
+margin_bottom = 28.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0.572549, 0.0980392, 0.129412, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "10"
+
+[node name="OpponentHitsContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 239.0
+margin_right = 1024.0
+margin_bottom = 267.0
+theme = ExtResource( 1 )
+alignment = 1
+
+[node name="OpponentHitsLabel" type="Label" parent="VBoxContainer/OpponentHitsContainer"]
+margin_left = 320.0
+margin_right = 672.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 120, 0 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0.572549, 0.0980392, 0.129412, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Times opponents hit you with food: "
+align = 1
+valign = 1
+
+[node name="OpponentHitsValue" type="Label" parent="VBoxContainer/OpponentHitsContainer"]
+margin_left = 676.0
+margin_right = 704.0
+margin_bottom = 28.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0.572549, 0.0980392, 0.129412, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "10"
+
+[node name="TextsFoundContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 278.0
+margin_right = 1024.0
+margin_bottom = 306.0
+theme = ExtResource( 1 )
+alignment = 1
+
+[node name="TextsFoundLabel" type="Label" parent="VBoxContainer/TextsFoundContainer"]
+margin_left = 347.0
+margin_right = 645.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 120, 0 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0.572549, 0.0980392, 0.129412, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Texts found during this game: "
+align = 1
+valign = 1
+
+[node name="TextsFoundValue" type="Label" parent="VBoxContainer/TextsFoundContainer"]
+margin_left = 649.0
+margin_right = 677.0
+margin_bottom = 28.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0.572549, 0.0980392, 0.129412, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "10"
+
+[node name="VictoryText" type="Label" parent="VBoxContainer"]
+margin_left = 176.0
+margin_top = 317.0
+margin_right = 848.0
+margin_bottom = 482.0
+rect_min_size = Vector2( 0, 165 )
+size_flags_horizontal = 4
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0.572549, 0.0980392, 0.129412, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "
+\"That the “that
+it was what
+it was” is
+what mattered is
+like an oversimplification?\""
+valign = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 493.0
+margin_right = 1024.0
+margin_bottom = 553.0
+rect_min_size = Vector2( 0, 60 )
+custom_constants/separation = 20
+alignment = 1
+
+[node name="TextGallery" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 382.0
+margin_top = 33.0
+margin_right = 502.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_vertical = 8
+theme = ExtResource( 1 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color_focus = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_constants/hseparation = 2
+custom_styles/normal = SubResource( 6 )
+text = "Text Gallery"
+
+[node name="MainMenu" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 522.0
+margin_top = 33.0
+margin_right = 642.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_vertical = 8
+theme = ExtResource( 1 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color_focus = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_constants/hseparation = 2
+custom_styles/normal = SubResource( 6 )
+text = "Main Menu"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/TextGallery" to="." method="_on_TextGallery_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/MainMenu" to="." method="_on_MainMenu_pressed"]

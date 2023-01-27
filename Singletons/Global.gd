@@ -121,6 +121,7 @@ var level_up_tracker: float = 0
 var level_up_threshold: float = 10
 
 var game_hit_count: int = 0
+var game_enemy_hit_count: int = 0
 var hit_maximum: int = 999999
 var hit_splat_array: Array = []
 var game_text_count: int = 0

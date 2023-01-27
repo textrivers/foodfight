@@ -58,6 +58,7 @@ func _physics_process(delta):
 					coll.collider.start_knockback(Vector3(velocity.x, 0, velocity.z))
 					if thrown_by_player:
 						Global.level_up_tracker += 10
+						Global.game_enemy_hit_count += 1
 						spawn_ice_cream(coll.collider.global_translation)
 				if coll.collider.player:
 					Global.game_hit_count += 1

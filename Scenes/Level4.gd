@@ -193,13 +193,13 @@ func _ready():
 		for i in Global.hit_maximum:
 			var new_hprect = load("res://Scenes/HPRect.tscn").instance()
 			$GUI/Center/HPContainer/GridContainer.add_child(new_hprect)
-	if Global.game_hit_count > 0:
-		for i in Global.game_hit_count:
+		if Global.game_hit_count > 0:
 			var hitboxes = $GUI/Center/HPContainer/GridContainer.get_children()
-			hitboxes[i].get_node("Sprite").self_modulate = Global.hit_splat_array[i]
-			hitboxes[i].get_node("Sprite").rotation_degrees = randf() * 360
-			hitboxes[i].get_node("Sprite").show()
-		Global.hit_splat_array = []
+			for i in Global.game_hit_count:
+				hitboxes[i].get_node("Sprite").self_modulate = Global.hit_splat_array[i]
+				hitboxes[i].get_node("Sprite").rotation_degrees = randf() * 360
+				hitboxes[i].get_node("Sprite").show()
+			Global.hit_splat_array = []
 
 func place_objects():
 	## place food
@@ -444,15 +444,21 @@ func hide_character_options():
 	$Panel.hide()
 	$GUI/Right.hide()
 
-func activate_read_button(text):
+func activate_read_button():
 	$GUI/Right/PlayerOptions/Read.disabled = false
-	available_text = text
 
 func deactivate_read_button():
 	$GUI/Right/PlayerOptions/Read.disabled = true
 
 func _on_Read_pressed():
-	Global.poem_text_dict[available_text[0]][3] = true
+	## acquire text at this moment
+	var text_node = whose_turn.get_node("MyFood/Text")
+	text_node.acquire_poem_text()
+	text_node.readable = true
+	available_text = text_node.poem_text
+	if Global.poem_text_dict[available_text[0]][3] == false:
+		Global.game_text_count += 1 
+		Global.poem_text_dict[available_text[0]][3] = true
 	$TurnMarker.hide()
 	$GUI/Right/PlayerOptions.hide()
 	$GUI/Right/ReadOptions.show()
@@ -593,7 +599,7 @@ func update_progress_bars():
 			Global.hilarity -= hilarity_multiplier
 			if Global.hilarity > 100:
 				Global.hilarity = 100
-		$GUI/Center/HBoxContainer2/HilarityProgressBar.value = Global.hilarity
+		$GUI/Center/HBoxContainer2/HilarityProgressBar.value = round(Global.hilarity)
 	$GUI/Center/HBoxContainer3/LevelUpProgressBar.value = (Global.level_up_tracker / Global.level_up_threshold) * 100
 
 func on_player_hit(splat_col):
@@ -761,5 +767,4 @@ func handle_power_up(_index):
 	display_character_options(true)
 
 func do_game_over():
-	print("your sucks at this game")
-	SceneManager.goto_scene(self, "res://Scenes/TitleScreen.tscn")
+	SceneManager.goto_scene(self, "res://Scenes/GameSummary.tscn")
