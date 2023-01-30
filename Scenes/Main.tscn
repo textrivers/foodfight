@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/TransitionSquares.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/LevityWellSplash.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/TitleScreen.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/FoodSprites/betterbanana7.png" type="Texture" id=3]
 [ext_resource path="res://Assets/FoodSprites/betterbanana0.png" type="Texture" id=4]
 [ext_resource path="res://Assets/FoodSprites/betterbanana2.png" type="Texture" id=5]
@@ -27,6 +27,6 @@ animations = [ {
 [node name="AnimatedSprite" parent="TransitionSquares/SquaresContainer/Sprite28" index="0"]
 frames = SubResource( 1 )
 
-[node name="LevityWellSplash" parent="." instance=ExtResource( 2 )]
+[node name="TitleScreen" parent="." instance=ExtResource( 2 )]
 
 [editable path="TransitionSquares"]
