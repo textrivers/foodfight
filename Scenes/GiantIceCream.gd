@@ -1,10 +1,14 @@
 extends Spatial
 
 export var nextscene: String = ""
-
+export var locations_array: Array = [
+	
+]
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	randomize()
 	$AnimatedSprite3D.animation = "approach"
+	translation = locations_array[randi() % locations_array.size()]
 
 # warning-ignore:unused_argument
 func _process(delta):
