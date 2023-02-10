@@ -49,6 +49,7 @@ shape = SubResource( 2 )
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 material_override = SubResource( 4 )
+modulate = Color( 1.2, 1.2, 1.2, 1 )
 pixel_size = 0.005
 billboard = 1
 double_sided = false

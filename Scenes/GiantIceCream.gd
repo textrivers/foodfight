@@ -2,7 +2,7 @@ extends Spatial
 
 export var nextscene: String = ""
 export var locations_array: Array = [
-	
+	Vector3(2, 1.5, 17)
 ]
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -20,6 +20,7 @@ script = ExtResource( 2 )
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0 )
 material_override = SubResource( 2 )
+modulate = Color( 1.2, 1.2, 1.2, 1 )
 pixel_size = 0.005
 billboard = 1
 double_sided = false

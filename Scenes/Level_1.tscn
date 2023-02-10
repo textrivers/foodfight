@@ -117,3 +117,5 @@ theme = SubResource( 15 )
 
 [node name="GiantIceCream" parent="." index="12"]
 nextscene = "res://Scenes/Level_2.tscn"
+
+[editable path="GUI/Center/HPContainer"]
