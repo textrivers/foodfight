@@ -102,6 +102,18 @@ var waiting: bool = false
 var wait_modifier: float = 0.0
 var revert_color: Color
 
+var walk_sound_array: Array = [
+	preload("res://Assets/Audio/walk_01.wav"), 
+	preload("res://Assets/Audio/walk_02.wav"), 
+	preload("res://Assets/Audio/walk_03.wav"), 
+	preload("res://Assets/Audio/walk_04.wav"), 
+	preload("res://Assets/Audio/walk_05.wav"), 
+	preload("res://Assets/Audio/walk_06.wav"), 
+	preload("res://Assets/Audio/walk_07.wav"), 
+	preload("res://Assets/Audio/walk_08.wav"), 
+	preload("res://Assets/Audio/walk_09.wav")
+]
+
 signal give_on_select_info
 
 func _ready():
@@ -112,6 +124,7 @@ func _ready():
 		visible = true
 		$Area.monitoring = true
 		Global.player_node = self
+		$Listener.make_current()
 	else:
 		generate_unique_appearance()
 	revert_color = $Viewport/CharacterSprite/Sprite.modulate
@@ -165,11 +178,13 @@ func _physics_process(_delta):
 
 func on_red_light():
 	set_deferred("red_light", true)
+	$CharacterSound.stream_paused = true
 
 func on_green_light():
 	set_deferred("red_light", false)
 	selecting = false
 	$Viewport/CharacterSprite/Sprite.modulate = revert_color
+	$CharacterSound.stream_paused = false
 
 func acquire_target():
 	$RayCast.cast_to = (Global.player_node.bullseye - $RayCast.global_translation).normalized() * Global.character_proximity_radius
@@ -212,6 +227,8 @@ func handle_action(action):
 #		if $NavigationAgent.get_target_location() != action[1]:
 #			$NavigationAgent.set_target_location(action[1])
 		$NavigationAgent.set_target_location(action[1])
+#		$CharacterSound.stream = walk_sound_array[randi() % walk_sound_array.size()]
+#		$CharacterSound.play()
 
 func add_to_food_contacts(floor_food):
 	if !food_contacts.has(floor_food):
@@ -257,7 +274,6 @@ func throw_food(targ):
 	new_food.set_collision_mask_bit(1, true)
 	new_food.get_node("RayCast").enabled = true
 	get_parent().add_child(new_food)
-
 
 ## selectability
 func on_target_selecting():

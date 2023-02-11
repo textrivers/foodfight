@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/done_01.wav-e18d42f7b5bd9dca111835b829e3e195.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/done_01.wav"
+dest_files=[ "res://.import/done_01.wav-e18d42f7b5bd9dca111835b829e3e195.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

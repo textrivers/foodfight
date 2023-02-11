@@ -10,6 +10,27 @@ var floor_splat_mod: int = 1
 export var splat_colors: Array
 var thrown_by_player: bool = false
 
+var sound_array = [
+	preload("res://Assets/Audio/impact_01.wav"),
+	preload("res://Assets/Audio/impact_02.wav"),
+	preload("res://Assets/Audio/impact_03.wav"),
+	preload("res://Assets/Audio/impact_04.wav"),
+	preload("res://Assets/Audio/impact_05.wav"),
+	preload("res://Assets/Audio/impact_06.wav"),
+	preload("res://Assets/Audio/impact_07.wav"),
+	preload("res://Assets/Audio/impact_08.wav"),
+	preload("res://Assets/Audio/impact_09.wav"),
+	preload("res://Assets/Audio/impact_10.wav"),
+	preload("res://Assets/Audio/impact_11.wav"),
+	preload("res://Assets/Audio/impact_12.wav"),
+	preload("res://Assets/Audio/impact_13.wav"),
+	preload("res://Assets/Audio/impact_14.wav"),
+	preload("res://Assets/Audio/impact_15.wav"),
+	preload("res://Assets/Audio/impact_16.wav"),
+	preload("res://Assets/Audio/impact_17.wav"),
+	preload("res://Assets/Audio/impact_18.wav")
+]
+
 signal player_hit
 
 # Called when the node enters the scene tree for the first time.
@@ -36,6 +57,7 @@ func _ready():
 		$Viewport/FoodSprite/AnimatedSprite2.set_frame(0)
 		$Viewport/FoodSprite/AnimatedSprite2.playing = false
 	self.connect("player_hit", get_parent().get_parent(), "on_player_hit")
+	$ImpactSound.stream = sound_array[randi() % sound_array.size()]
 
 func _physics_process(delta):
 	if translation.y < -40: 
@@ -93,19 +115,16 @@ func _physics_process(delta):
 						get_parent().add_child(new_floor_splat)
 				else:
 					print($RayCast.get_collider().name)
-			call_deferred("queue_free")
+			$CollisionShape.disabled = true
+			$Sprite3D.hide()
+			$ImpactSound.play()
+			print(str($ImpactSound.stream.resource_name))
 
 func spawn_splatter_particles(pos, col):
 	var new_splat = splat.instance()
 	new_splat.translation = pos
 	new_splat.emitting = true
-	#new_splat.material_override.albedo_texture = new_splat.get_node("Viewport").get_texture()
 	new_splat.material_override.albedo_color = col
-#	new_splat.get_node("Viewport/PartSprite/Sprite").modulate = col
-#	new_splat.get_node("Viewport/PartSprite/Sprite2").modulate = splat_colors[randi() % 3]
-#	new_splat.get_node("Viewport/PartSprite/Sprite3").modulate = splat_colors[randi() % 3]
-#	new_splat.get_node("Viewport/PartSprite/Label").add_color_override("font_color", splat_colors[randi() % 3])
-#	new_splat.get_node("Viewport/PartSprite/Label").add_color_override("font_outline_modulate", splat_colors[randi() % 3])
 	get_parent().add_child(new_splat)
 
 func spawn_ice_cream(pos):
@@ -122,6 +141,7 @@ func on_red_light():
 		$Viewport/FoodSprite/AnimatedSprite.playing = false
 		if self.is_in_group("icecream"):
 			$Viewport/FoodSprite/AnimatedSprite2.playing = false
+		#$ImpactSound.stream_paused = true
 
 func on_green_light():
 	if thrown:
@@ -129,6 +149,7 @@ func on_green_light():
 		$Viewport/FoodSprite/AnimatedSprite.playing = true
 		if self.is_in_group("icecream"):
 			$Viewport/FoodSprite/AnimatedSprite2.playing = true
+		#$ImpactSound.stream_paused = false
 
 func _on_Area_body_entered(body):
 	if !thrown:
@@ -139,3 +160,6 @@ func _on_Area_body_exited(body):
 	if !thrown:
 		if body.is_in_group("character"):
 			body.remove_from_food_contacts(self)
+
+func _on_ImpactSound_finished():
+	call_deferred("queue_free")

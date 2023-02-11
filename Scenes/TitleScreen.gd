@@ -2,17 +2,13 @@ extends Node2D
 
 var next_scene
 var game_start: bool = false
-var back1
-var back2
 var scroll_rate: float = 0.5
 
 const FILE_NAME = "user://enough-of-a-mess-data.json"
 
 func _ready():
-	back1 = $ScrollingBackground/Sprite
-	back2 = $ScrollingBackground/Sprite2
 	$AnimationPlayer.play("default")
-	## TODO load user save file and sync to Global
+	## load user save file and sync to Global
 	var file = File.new()
 	if file.file_exists(FILE_NAME):
 		file.open(FILE_NAME, File.READ)
@@ -35,17 +31,12 @@ func _ready():
 	file.store_var(to_json(texts_for_save))
 	file.close()
 
+# warning-ignore:unused_argument
 func _process(delta):
 	for child in $ScrollingBackground.get_children():
 		child.position.x -= scroll_rate
 		if child.position.x <= -1024:
 			child.position.x = 1024
-
-#func _input(event):
-#	if game_start == false:
-#		if event is InputEventMouseButton || event is InputEventKey:
-#			game_start = true
-#			SceneManager.goto_scene(self, next_scene)
 
 func _on_Play_pressed():
 	next_scene = "res://Scenes/CharacterSelection.tscn"

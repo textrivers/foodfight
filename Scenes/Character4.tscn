@@ -94,6 +94,10 @@ monitoring = false
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 shape = SubResource( 3 )
 
+[node name="Listener" type="Listener" parent="."]
+
+[node name="CharacterSound" type="AudioStreamPlayer3D" parent="."]
+
 [connection signal="input_event" from="." to="." method="_on_Character3D_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_Character3D_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Character3D_mouse_exited"]
