@@ -227,8 +227,8 @@ func handle_action(action):
 #		if $NavigationAgent.get_target_location() != action[1]:
 #			$NavigationAgent.set_target_location(action[1])
 		$NavigationAgent.set_target_location(action[1])
-#		$CharacterSound.stream = walk_sound_array[randi() % walk_sound_array.size()]
-#		$CharacterSound.play()
+		$CharacterSound.stream = walk_sound_array[randi() % walk_sound_array.size()]
+		$CharacterSound.play()
 
 func add_to_food_contacts(floor_food):
 	if !food_contacts.has(floor_food):

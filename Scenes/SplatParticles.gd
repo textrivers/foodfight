@@ -17,7 +17,26 @@ var particle_mesh_array = [
 	
 ]
 
-
+var sound_array = [
+	preload("res://Assets/Audio/impact_01.wav"),
+	preload("res://Assets/Audio/impact_02.wav"),
+	preload("res://Assets/Audio/impact_03.wav"),
+	preload("res://Assets/Audio/impact_04.wav"),
+	preload("res://Assets/Audio/impact_05.wav"),
+	preload("res://Assets/Audio/impact_06.wav"),
+	preload("res://Assets/Audio/impact_07.wav"),
+	preload("res://Assets/Audio/impact_08.wav"),
+	preload("res://Assets/Audio/impact_09.wav"),
+	preload("res://Assets/Audio/impact_10.wav"),
+	preload("res://Assets/Audio/impact_11.wav"),
+	preload("res://Assets/Audio/impact_12.wav"),
+	preload("res://Assets/Audio/impact_13.wav"),
+	preload("res://Assets/Audio/impact_14.wav"),
+	preload("res://Assets/Audio/impact_15.wav"),
+	preload("res://Assets/Audio/impact_16.wav"),
+	preload("res://Assets/Audio/impact_17.wav"),
+	preload("res://Assets/Audio/impact_18.wav")
+]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,7 +47,9 @@ func _ready():
 	get_parent().connect("green_light", self, "_on_green_light")
 	material_override = material_override.duplicate()
 	draw_pass_1 = particle_mesh_array[randi() % particle_mesh_array.size()]
-	
+	$ImpactSound.stream = sound_array[randi() % sound_array.size()]
+	yield(get_tree().create_timer(randf() * 0.1), "timeout")
+	$ImpactSound.play()
 
 func _on_red_light():
 	speed_scale = 0

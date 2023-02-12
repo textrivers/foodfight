@@ -10,27 +10,6 @@ var floor_splat_mod: int = 1
 export var splat_colors: Array
 var thrown_by_player: bool = false
 
-var sound_array = [
-	preload("res://Assets/Audio/impact_01.wav"),
-	preload("res://Assets/Audio/impact_02.wav"),
-	preload("res://Assets/Audio/impact_03.wav"),
-	preload("res://Assets/Audio/impact_04.wav"),
-	preload("res://Assets/Audio/impact_05.wav"),
-	preload("res://Assets/Audio/impact_06.wav"),
-	preload("res://Assets/Audio/impact_07.wav"),
-	preload("res://Assets/Audio/impact_08.wav"),
-	preload("res://Assets/Audio/impact_09.wav"),
-	preload("res://Assets/Audio/impact_10.wav"),
-	preload("res://Assets/Audio/impact_11.wav"),
-	preload("res://Assets/Audio/impact_12.wav"),
-	preload("res://Assets/Audio/impact_13.wav"),
-	preload("res://Assets/Audio/impact_14.wav"),
-	preload("res://Assets/Audio/impact_15.wav"),
-	preload("res://Assets/Audio/impact_16.wav"),
-	preload("res://Assets/Audio/impact_17.wav"),
-	preload("res://Assets/Audio/impact_18.wav")
-]
-
 signal player_hit
 
 # Called when the node enters the scene tree for the first time.
@@ -57,7 +36,6 @@ func _ready():
 		$Viewport/FoodSprite/AnimatedSprite2.set_frame(0)
 		$Viewport/FoodSprite/AnimatedSprite2.playing = false
 	self.connect("player_hit", get_parent().get_parent(), "on_player_hit")
-	$ImpactSound.stream = sound_array[randi() % sound_array.size()]
 
 func _physics_process(delta):
 	if translation.y < -40: 
@@ -117,8 +95,6 @@ func _physics_process(delta):
 					print($RayCast.get_collider().name)
 			$CollisionShape.disabled = true
 			$Sprite3D.hide()
-			$ImpactSound.play()
-			print(str($ImpactSound.stream.resource_name))
 
 func spawn_splatter_particles(pos, col):
 	var new_splat = splat.instance()
@@ -160,6 +136,3 @@ func _on_Area_body_exited(body):
 	if !thrown:
 		if body.is_in_group("character"):
 			body.remove_from_food_contacts(self)
-
-func _on_ImpactSound_finished():
-	call_deferred("queue_free")

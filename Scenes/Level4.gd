@@ -303,7 +303,7 @@ func prompt_turns():
 				else:
 					#TODO center camera on player character(s)
 					cam_rig_trans_target = turn.get_node("TargetPosition")
-					turn.get_node("Listener").make_current()
+					#turn.get_node("Listener").make_current()
 #					turn.get_node("CharacterSound").stream = load("res://Assets/Audio/done_01.wav")
 #					turn.get_node("CharacterSound").play()
 					display_character_options(turn.player)
