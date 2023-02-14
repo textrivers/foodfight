@@ -3,3 +3,5 @@
 [node name="AudioManager" type="Node"]
 
 [node name="Music" type="Node" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Music"]

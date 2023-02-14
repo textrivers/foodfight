@@ -30,6 +30,7 @@ animations = [ {
 radius = 1.05
 
 [node name="GiantIceCream" type="Spatial"]
+visible = false
 script = ExtResource( 12 )
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]

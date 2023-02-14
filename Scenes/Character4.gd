@@ -124,7 +124,7 @@ func _ready():
 		visible = true
 		$Area.monitoring = true
 		Global.player_node = self
-		$Listener.make_current()
+		#$Listener.make_current()
 	else:
 		generate_unique_appearance()
 	revert_color = $Viewport/CharacterSprite/Sprite.modulate
@@ -178,13 +178,13 @@ func _physics_process(_delta):
 
 func on_red_light():
 	set_deferred("red_light", true)
-	$CharacterSound.stream_paused = true
+	#$CharacterSound.stream_paused = true
 
 func on_green_light():
 	set_deferred("red_light", false)
 	selecting = false
 	$Viewport/CharacterSprite/Sprite.modulate = revert_color
-	$CharacterSound.stream_paused = false
+	#$CharacterSound.stream_paused = false
 
 func acquire_target():
 	$RayCast.cast_to = (Global.player_node.bullseye - $RayCast.global_translation).normalized() * Global.character_proximity_radius
@@ -227,8 +227,8 @@ func handle_action(action):
 #		if $NavigationAgent.get_target_location() != action[1]:
 #			$NavigationAgent.set_target_location(action[1])
 		$NavigationAgent.set_target_location(action[1])
-		$CharacterSound.stream = walk_sound_array[randi() % walk_sound_array.size()]
-		$CharacterSound.play()
+		#$CharacterSound.stream = walk_sound_array[randi() % walk_sound_array.size()]
+		#$CharacterSound.play()
 
 func add_to_food_contacts(floor_food):
 	if !food_contacts.has(floor_food):

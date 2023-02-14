@@ -47,8 +47,6 @@ font_data = ExtResource( 13 )
 [sub_resource type="StyleBoxFlat" id=4]
 content_margin_right = 0.0
 bg_color = Color( 0.458824, 0.458824, 0.458824, 1 )
-border_width_left = 2
-border_width_top = 2
 border_color = Color( 0.819608, 0.819608, 0.819608, 1 )
 corner_radius_top_left = 5
 corner_radius_top_right = 5
@@ -260,7 +258,7 @@ autowrap = true
 width = 2400.0
 
 [node name="You" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 19 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 16 )
 visible = true
 player = true
 
@@ -275,19 +273,19 @@ far = 200.0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 8 )
 
 [node name="Ignatius" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 4 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 4 )
 
-[node name="Ignatius2" parent="." groups=["stationary"] instance=ExtResource( 7 )]
+[node name="Ignatius2" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 3 )
 
-[node name="Ignatius3" parent="." groups=["stationary"] instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0 )
+[node name="Ignatius3" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -2 )
 
-[node name="Ignatius4" parent="." groups=["stationary"] instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 2, -5 )
+[node name="Ignatius4" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -5 )
 
-[node name="Ignatius5" parent="." groups=["stationary"] instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 2, -11 )
+[node name="Ignatius5" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -11 )
 
 [node name="Panel" type="Panel" parent="."]
 margin_right = 245.0
@@ -643,13 +641,12 @@ environment = SubResource( 1 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.824707, 0.300371, 0.479204, -0.534501, 0.690879, 0.486821, -0.184845, -0.657619, 0.730321, 8.30672, 3.51017, 9.72209 )
-visible = false
 shadow_enabled = true
 
 [node name="GiantIceCream" parent="." instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0.5, -15 )
-visible = false
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 19 )
 nextscene = "res://Scenes/Level_3.tscn"
+locations_array = [ Vector3( -18, 0.5, -15 ), Vector3( -6, 0.5, -11 ), Vector3( -3, 0.5, 14 ), Vector3( 0, 0.5, 19 ) ]
 
 [node name="MapDQ2" parent="." instance=ExtResource( 10 )]
 
@@ -657,13 +654,13 @@ nextscene = "res://Scenes/Level_3.tscn"
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 3 )
 
 [node name="ClusterTomato4" parent="." instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -2 )
 
 [node name="ClusterTomato5" parent="." instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 2, -5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -5 )
 
 [node name="ClusterTomato6" parent="." instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 2, -11 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -11 )
 
 [node name="ClusterTomato3" parent="." instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 8 )

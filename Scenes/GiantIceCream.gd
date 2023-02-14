@@ -9,6 +9,7 @@ func _ready():
 	randomize()
 	$AnimatedSprite3D.animation = "approach"
 	translation = locations_array[randi() % locations_array.size()]
+	print(translation)
 
 # warning-ignore:unused_argument
 func _process(delta):

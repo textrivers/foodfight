@@ -115,7 +115,12 @@ theme = SubResource( 15 )
 [node name="VBoxContainer" parent="LevelUpOptions" index="0"]
 theme = SubResource( 15 )
 
+[node name="DirectionalLight" parent="." index="10"]
+visible = true
+
 [node name="GiantIceCream" parent="." index="12"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 8 )
 nextscene = "res://Scenes/Level_2.tscn"
+locations_array = [ Vector3( 4, 1.5, 20 ), Vector3( -2, 1.5, 11 ), Vector3( 3, 0, -4 ), Vector3( 18, 0, 8 ) ]
 
 [editable path="GUI/Center/HPContainer"]

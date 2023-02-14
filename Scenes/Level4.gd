@@ -304,8 +304,6 @@ func prompt_turns():
 					#TODO center camera on player character(s)
 					cam_rig_trans_target = turn.get_node("TargetPosition")
 					#turn.get_node("Listener").make_current()
-#					turn.get_node("CharacterSound").stream = load("res://Assets/Audio/done_01.wav")
-#					turn.get_node("CharacterSound").play()
 					display_character_options(turn.player)
 				yield(self, "GUI_action_taken")
 				resolve_turn()
@@ -398,6 +396,8 @@ func rotate_cam_rig():
 
 func display_character_options(_player):
 	if _player == true: 
+		whose_turn.get_node("CharacterSound").stream.audio_stream = load("res://Assets/Audio/done_01.wav")
+		whose_turn.get_node("CharacterSound").play()
 		yield(VisualServer, "frame_post_draw")
 		reset_character_options()
 		$Panel.show()
@@ -584,7 +584,7 @@ func _on_CheckButton_toggled(button_pressed):
 	if button_pressed == true:
 		Global.AI_turn_delay = 3
 	else:
-		Global.AI_turn_delay = 0.01
+		Global.AI_turn_delay = 0.001
 
 func display_debug_path():
 	remove_debug_path()

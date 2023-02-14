@@ -68,13 +68,13 @@ ambient_light_color = Color( 1.2, 1.2, 1.2, 1 )
 ambient_light_energy = 0.7
 ambient_light_sky_contribution = 0.0
 glow_enabled = true
-glow_intensity = 0.9
-glow_strength = 1.1
-glow_bloom = 0.08
+glow_intensity = 0.1
+glow_strength = 1.05
+glow_bloom = 0.06
 glow_blend_mode = 0
 glow_hdr_threshold = 0.8
-glow_hdr_luminance_cap = 60.0
-glow_hdr_scale = 2.73
+glow_hdr_luminance_cap = 20.0
+glow_hdr_scale = 1.5
 adjustment_saturation = 2.13
 
 [node name="Level" type="Spatial"]
@@ -536,7 +536,7 @@ shadow_enabled = true
 
 [node name="GiantIceCream" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 17 )
-visible = false
+visible = true
 nextscene = "res://Scenes/Level5.tscn"
 
 [connection signal="tree_exiting" from="." to="." method="_on_Level4_tree_exiting"]

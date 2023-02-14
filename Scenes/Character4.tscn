@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Splatter.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Character4.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Audio/done_01.wav" type="AudioStream" id=3]
 
 [sub_resource type="SpatialMaterial" id=2]
 flags_transparent = true
@@ -15,6 +16,9 @@ height = 0.6
 
 [sub_resource type="SphereShape" id=3]
 radius = 8.0
+
+[sub_resource type="AudioStreamRandomPitch" id=4]
+audio_stream = ExtResource( 3 )
 
 [node name="Character4" type="KinematicBody" groups=["character", "proximity", "selectable"]]
 visible = false
@@ -74,6 +78,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0 )
 [node name="NavigationAgent" type="NavigationAgent" parent="."]
 path_desired_distance = 0.1
 target_desired_distance = 0.1
+agent_height_offset = 0.05
 avoidance_enabled = true
 radius = 0.1
 neighbor_dist = 10.0
@@ -94,9 +99,8 @@ monitoring = false
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 shape = SubResource( 3 )
 
-[node name="Listener" type="Listener" parent="."]
-
 [node name="CharacterSound" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource( 4 )
 
 [connection signal="input_event" from="." to="." method="_on_Character3D_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_Character3D_mouse_entered"]

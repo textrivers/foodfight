@@ -93,8 +93,7 @@ func _physics_process(delta):
 						get_parent().add_child(new_floor_splat)
 				else:
 					print($RayCast.get_collider().name)
-			$CollisionShape.disabled = true
-			$Sprite3D.hide()
+			call_deferred("queue_free")
 
 func spawn_splatter_particles(pos, col):
 	var new_splat = splat.instance()

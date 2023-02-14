@@ -3,14 +3,14 @@
 [ext_resource path="res://Scenes/FloorTile3D.tscn" type="PackedScene" id=1]
 
 [sub_resource type="NavigationMesh" id=1]
-vertices = PoolVector3Array( -8.4, 0.07, 1.2, -8.1, 0.07, 1.5, -7.8, 0.07, 1.5, -7.5, 0.07, 1.2, -7.4, 0.07, 0.9, -8.5, 0.07, 0.9, 0.200001, 0.07, 4.2, 0.200001, 0.07, 3.5, -0.1, 0.07, 3.6, -0.4, 0.07, 3.9, -1.8, 0.07, 3.6, -1.8, 0.07, 2.9, -2.5, 0.07, 2.9, -2.4, 0.07, 3.2, -2.1, 0.07, 3.5, -9.8, 0.07, -1.4, -9.8, 0.07, -2.1, -10.5, 0.07, -2.1, -10.4, 0.07, -1.8, -10.1, 0.07, -1.5, -10.1, 0.07, -1.5, -10.1, 0.07, -0.8, -9.4, 0.07, -0.8, -9.5, 0.07, -1.1, -9.8, 0.07, -1.4, -3.8, 0.07, 6.6, -3.8, 0.07, 4.9, -4.1, 0.07, 4.9, -4.1, 0.07, 6.6, -5.4, 0.07, -1.8, -4.8, 0.07, -2.1, -7.1, 0.07, -2.1, -6.6, 0.07, -1.8, -3.5, 0.07, 6.9, -3.8, 0.07, 6.6, -4.1, 0.07, 6.6, -4.4, 0.07, 6.9, 0.200001, 0.07, 3.5, 0.5, 0.07, 3.2, -0.1, 0.07, 2.9, -0.1, 0.07, 3.6, 3.9, 0.07, 19.1, 5.2, 0.07, 19.1, 5.2, 0.07, 17.4, -0.1, 0.07, -0.0999994, -0.1, 0.07, 1.2, 1.6, 0.07, 1.2, 5.5, 0.07, 1.9, 3.9, 0.07, 3.5, 3.9, 0.07, 5.2, 5.6, 0.07, 5.2, 7.2, 0.07, 3.6, 7.2, 0.07, 1.9, 9.6, 0.07, 9.9, 7.9, 0.07, 9.9, 7.9, 0.07, 11.6, 9.4, 0.07, 13.2, 7.6, 0.07, 11.9, 5.9, 0.07, 11.9, 5.9, 0.07, 13.6, 7.4, 0.07, 15.2, 9.2, 0.07, 15.2, 9.2, 0.07, 13.4, 9.2, 0.07, 5.6, 9.2, 0.07, 3.9, 7.5, 0.07, 3.9, -9.1, 0.07, 1.2, -8.4, 0.07, 1.2, -8.5, 0.07, 0.9, -8.8, 0.07, 0.6, 5.4, 0.07, 17.2, 7.2, 0.07, 17.2, 7.2, 0.07, 15.4, 5.6, 0.07, 13.9, -1.5, 0.07, 4.2, -1.5, 0.07, 3.9, -1.8, 0.07, 3.6, -2.1, 0.07, 3.5, -1.8, 0.07, 4.5, -7.8, 0.07, 4.6, -7.8, 0.07, 1.5, -8.1, 0.07, 1.5, -8.1, 0.07, 5.2, -8.8, 0.07, -1.1, -9.5, 0.07, -1.1, -9.4, 0.07, -0.8, -9.1, 0.07, -0.5, -7.5, 0.07, 4.9, -7.8, 0.07, 4.6, -8.1, 0.07, 5.2, -7.5, 0.07, 4.9, -8.1, 0.07, 5.2, -6.4, 0.07, 5.2, -5.8, 0.07, 4.9, -5.1, 0.07, -1.5, -5.1, 0.07, 1.2, -4.8, 0.07, 0.6, -4.8, 0.07, -2.1, -5.8, 0.07, 4.9, -6.4, 0.07, 5.2, -6.1, 0.07, 5.5, -5.8, 0.07, 6.6, -5.8, 0.07, 4.9, -6.1, 0.07, 5.5, -6.1, 0.07, 7.2, -5.1, 0.07, 1.2, -4.5, 0.07, 0.9, -4.8, 0.07, 0.6, -5.5, 0.07, 6.9, -5.8, 0.07, 6.6, -6.1, 0.07, 7.2, -4.4, 0.07, 6.9, -5.5, 0.07, 6.9, -6.1, 0.07, 7.2, -3.5, 0.07, 6.9, -4.4, 0.07, 6.9, -6.1, 0.07, 7.2, -1.8, 0.07, 7.2, -11.1, 0.07, -8.2, -11.1, 0.07, -1.8, -10.8, 0.07, -2.4, -10.8, 0.07, -8.8, -2.4, 0.07, 6.9, -3.5, 0.07, 6.9, -1.8, 0.07, 7.2, -2.1, 0.07, 6.6, -2.4, 0.07, 6.9, -1.8, 0.07, 7.2, -2.1, 0.07, 6.6, -1.8, 0.07, 7.2, -1.8, 0.07, 4.5, -2.1, 0.07, 3.5, -6.8, 0.07, -1.6, -6.6, 0.07, -1.8, -7.1, 0.07, -2.1, 3.6, 0.07, 3.2, 1.9, 0.07, 2.6, 1.6, 0.07, 2.9, 3.9, 0.07, 13.9, 3.9, 0.07, 19.1, 5.2, 0.07, 17.4, 5.6, 0.07, 13.9, -18.1, 0.07, -15.1, -18.1, 0.07, -14.8, -11.4, 0.07, -14.8, -10.8, 0.07, -15.1, 5.6, 0.07, 13.9, 5.2, 0.07, 17.4, 5.4, 0.07, 17.2, -8.8, 0.07, 0.6, -8.8, 0.07, -1.1, -9.1, 0.07, -0.5, -9.1, 0.07, 1.2, 5.9, 0.07, 13.6, 5.6, 0.07, 13.9, 7.2, 0.07, 15.4, 7.4, 0.07, 15.2, -6.8, 0.07, 1.2, -7.1, 0.07, 0.6, -7.4, 0.07, 0.9, -7.5, 0.07, 1.2, -4.5, 0.07, 0.9, -5.1, 0.07, 1.2, -3.4, 0.07, 1.2, -2.8, 0.07, 0.9, -1.5, 0.07, 4.2, 0.200001, 0.07, 4.2, -0.4, 0.07, 3.9, -1.5, 0.07, 3.9, 7.9, 0.07, 11.6, 7.6, 0.07, 11.9, 9.2, 0.07, 13.4, 9.4, 0.07, 13.2, -7.1, 0.07, 0.6, -6.8, 0.07, 1.2, -6.8, 0.07, -1.6, -7.1, 0.07, -2.1, -2.5, 0.07, 2.9, -2.8, 0.07, 2.6, -3.1, 0.07, 3.2, -2.4, 0.07, 3.2, 9.6, 0.07, 9.9, 9.4, 0.07, 13.2, 11.1, 0.07, 13.2, 9.9, 0.07, 9.6, -11.1, 0.07, -1.8, -10.4, 0.07, -1.8, -10.5, 0.07, -2.1, -10.8, 0.07, -2.4, 5.2, 0.07, -0.0999994, -0.1, 0.07, -0.0999994, 1.6, 0.07, 1.2, 5.2, 0.07, 1.6, -11.1, 0.07, -14.5, -11.1, 0.07, -8.2, -10.8, 0.07, -8.8, -10.8, 0.07, -15.1, 5.2, 0.07, 1.6, 1.6, 0.07, 1.2, 1.9, 0.07, 1.5, 5.2, 0.07, 1.6, 1.9, 0.07, 1.5, 1.9, 0.07, 2.6, 3.6, 0.07, 3.2, 5.5, 0.07, 1.9, -2.8, 0.07, 2.6, -2.8, 0.07, 0.9, -3.1, 0.07, 1.5, -3.1, 0.07, 3.2, 9.9, 0.07, 9.6, 11.1, 0.07, 13.2, 11.1, 0.07, 5.9, 9.9, 0.07, 7.5, -11.4, 0.07, -14.8, -11.1, 0.07, -14.5, -10.8, 0.07, -15.1, 9.9, 0.07, 7.5, 11.1, 0.07, 5.9, 9.5, 0.07, 5.9, 9.6, 0.07, 7.2, -5.4, 0.07, -1.8, -5.1, 0.07, -1.5, -4.8, 0.07, -2.1, 9.6, 0.07, 7.2, 9.5, 0.07, 5.9, 9.2, 0.07, 5.6, 5.9, 0.07, 5.5, 5.9, 0.07, 7.2, 9.6, 0.07, 7.2, 9.2, 0.07, 5.6, 7.5, 0.07, 3.9, 0.5, 0.07, 3.2, 3.6, 0.07, 3.2, 1.6, 0.07, 2.9, -0.1, 0.07, 2.9, -3.4, 0.07, 1.2, -3.1, 0.07, 1.5, -2.8, 0.07, 0.9, 5.6, 0.07, 5.2, 5.9, 0.07, 5.5, 7.5, 0.07, 3.9, 7.2, 0.07, 3.6, 3.6, 0.07, 3.2, 3.9, 0.07, 3.5, 5.5, 0.07, 1.9, -14.1, 2.06, -11.1, -14.1, 2.06, -10.8, -13.8, 2.06, -10.8, -13.8, 2.06, -11.1, -9.1, 2.06, -5.1, -9.1, 2.06, -4.8, -8.8, 2.06, -4.8, -8.8, 2.06, -5.1, -12.1, 0.07, -0.0999994, -12.1, 0.07, 0.2, -11.8, 0.07, 0.2, -11.8, 0.07, -0.0999994, -6.1, 0.07, 2.9, -6.1, 0.07, 3.2, -5.8, 0.07, 3.2, -5.8, 0.07, 2.9, -0.1, 0.07, 7.9, -0.1, 0.07, 10.2, 0.6, 0.07, 10.2, 0.6, 0.07, 7.9, 3.5, 0.07, 7.9, 3.2, 0.07, 7.6, 0.9, 0.07, 7.6, 0.9, 0.07, 10.5, 0.9, 0.07, 11.2, 3.2, 0.07, 11.2, 3.2, 0.07, 10.5, 0.9, 0.07, 7.6, 0.6, 0.07, 7.9, 0.6, 0.07, 10.2, 3.5, 0.07, 10.2, 4.2, 0.07, 10.2, 4.2, 0.07, 7.9, 3.5, 0.07, 7.9, 3.5, 0.07, 7.9, 0.9, 0.07, 7.6, 0.6, 0.07, 10.2, 0.9, 0.07, 10.5, 3.2, 0.07, 10.5, 3.5, 0.07, 10.2, 3.2, 0.07, 7.6, 3.2, 0.07, 6.9, 0.9, 0.07, 6.9, 0.9, 0.07, 7.6 )
-polygons = [ PoolIntArray( 1, 0, 2 ), PoolIntArray( 2, 0, 5 ), PoolIntArray( 2, 5, 3 ), PoolIntArray( 3, 5, 4 ), PoolIntArray( 8, 7, 9 ), PoolIntArray( 9, 7, 6 ), PoolIntArray( 14, 13, 10 ), PoolIntArray( 10, 13, 12 ), PoolIntArray( 10, 12, 11 ), PoolIntArray( 19, 18, 15 ), PoolIntArray( 15, 18, 17 ), PoolIntArray( 15, 17, 16 ), PoolIntArray( 24, 23, 20 ), PoolIntArray( 20, 23, 22 ), PoolIntArray( 20, 22, 21 ), PoolIntArray( 28, 27, 25 ), PoolIntArray( 25, 27, 26 ), PoolIntArray( 32, 31, 29 ), PoolIntArray( 29, 31, 30 ), PoolIntArray( 34, 33, 35 ), PoolIntArray( 35, 33, 36 ), PoolIntArray( 37, 40, 38 ), PoolIntArray( 38, 40, 39 ), PoolIntArray( 43, 42, 41 ), PoolIntArray( 46, 45, 44 ), PoolIntArray( 52, 51, 47 ), PoolIntArray( 47, 51, 50 ), PoolIntArray( 47, 50, 48 ), PoolIntArray( 48, 50, 49 ), PoolIntArray( 54, 53, 55 ), PoolIntArray( 55, 53, 56 ), PoolIntArray( 58, 57, 59 ), PoolIntArray( 59, 57, 62 ), PoolIntArray( 59, 62, 60 ), PoolIntArray( 60, 62, 61 ), PoolIntArray( 65, 64, 63 ), PoolIntArray( 68, 67, 69 ), PoolIntArray( 69, 67, 66 ), PoolIntArray( 71, 70, 72 ), PoolIntArray( 72, 70, 73 ), PoolIntArray( 74, 78, 75 ), PoolIntArray( 75, 78, 76 ), PoolIntArray( 76, 78, 77 ), PoolIntArray( 80, 79, 81 ), PoolIntArray( 81, 79, 82 ), PoolIntArray( 85, 84, 86 ), PoolIntArray( 86, 84, 83 ), PoolIntArray( 87, 89, 88 ), PoolIntArray( 93, 92, 90 ), PoolIntArray( 90, 92, 91 ), PoolIntArray( 97, 96, 94 ), PoolIntArray( 94, 96, 95 ), PoolIntArray( 100, 99, 98 ), PoolIntArray( 104, 103, 101 ), PoolIntArray( 101, 103, 102 ), PoolIntArray( 107, 106, 105 ), PoolIntArray( 108, 110, 109 ), PoolIntArray( 113, 112, 111 ), PoolIntArray( 115, 114, 116 ), PoolIntArray( 116, 114, 117 ), PoolIntArray( 119, 118, 120 ), PoolIntArray( 120, 118, 121 ), PoolIntArray( 124, 123, 122 ), PoolIntArray( 125, 127, 126 ), PoolIntArray( 129, 128, 130 ), PoolIntArray( 130, 128, 131 ), PoolIntArray( 134, 133, 132 ), PoolIntArray( 137, 136, 135 ), PoolIntArray( 141, 140, 138 ), PoolIntArray( 138, 140, 139 ), PoolIntArray( 143, 142, 144 ), PoolIntArray( 144, 142, 145 ), PoolIntArray( 148, 147, 146 ), PoolIntArray( 150, 149, 151 ), PoolIntArray( 151, 149, 152 ), PoolIntArray( 156, 155, 153 ), PoolIntArray( 153, 155, 154 ), PoolIntArray( 159, 158, 160 ), PoolIntArray( 160, 158, 157 ), PoolIntArray( 164, 163, 161 ), PoolIntArray( 161, 163, 162 ), PoolIntArray( 168, 167, 165 ), PoolIntArray( 165, 167, 166 ), PoolIntArray( 172, 171, 169 ), PoolIntArray( 169, 171, 170 ), PoolIntArray( 176, 175, 173 ), PoolIntArray( 173, 175, 174 ), PoolIntArray( 177, 180, 178 ), PoolIntArray( 178, 180, 179 ), PoolIntArray( 181, 184, 182 ), PoolIntArray( 182, 184, 183 ), PoolIntArray( 187, 186, 188 ), PoolIntArray( 188, 186, 185 ), PoolIntArray( 192, 191, 189 ), PoolIntArray( 189, 191, 190 ), PoolIntArray( 196, 195, 193 ), PoolIntArray( 193, 195, 194 ), PoolIntArray( 198, 197, 199 ), PoolIntArray( 204, 203, 200 ), PoolIntArray( 200, 203, 202 ), PoolIntArray( 200, 202, 201 ), PoolIntArray( 208, 207, 205 ), PoolIntArray( 205, 207, 206 ), PoolIntArray( 212, 211, 209 ), PoolIntArray( 209, 211, 210 ), PoolIntArray( 215, 214, 213 ), PoolIntArray( 219, 218, 216 ), PoolIntArray( 216, 218, 217 ), PoolIntArray( 222, 221, 220 ), PoolIntArray( 225, 224, 223 ), PoolIntArray( 226, 230, 227 ), PoolIntArray( 227, 230, 229 ), PoolIntArray( 227, 229, 228 ), PoolIntArray( 234, 233, 231 ), PoolIntArray( 231, 233, 232 ), PoolIntArray( 235, 237, 236 ), PoolIntArray( 241, 240, 238 ), PoolIntArray( 238, 240, 239 ), PoolIntArray( 244, 243, 242 ), PoolIntArray( 248, 247, 245 ), PoolIntArray( 245, 247, 246 ), PoolIntArray( 252, 251, 249 ), PoolIntArray( 249, 251, 250 ), PoolIntArray( 256, 255, 253 ), PoolIntArray( 253, 255, 254 ), PoolIntArray( 260, 259, 257 ), PoolIntArray( 257, 259, 258 ), PoolIntArray( 264, 263, 261 ), PoolIntArray( 261, 263, 262 ), PoolIntArray( 267, 266, 265 ), PoolIntArray( 271, 270, 268 ), PoolIntArray( 268, 270, 269 ), PoolIntArray( 274, 273, 272 ), PoolIntArray( 278, 277, 275 ), PoolIntArray( 275, 277, 276 ), PoolIntArray( 284, 283, 279 ), PoolIntArray( 279, 283, 282 ), PoolIntArray( 279, 282, 281 ), PoolIntArray( 279, 281, 280 ), PoolIntArray( 288, 287, 285 ), PoolIntArray( 285, 287, 286 ) ]
+vertices = PoolVector3Array( -8.4, 0.07, 1.2, -8.1, 0.07, 1.5, -7.8, 0.07, 1.5, -7.5, 0.07, 1.2, -7.4, 0.07, 0.9, -8.5, 0.07, 0.9, -3.4, 0.07, 7.2, -3.1, 0.07, 7.5, -2.8, 0.07, 7.5, -2.5, 0.07, 7.2, -2.4, 0.07, 6.9, -3.5, 0.07, 6.9, -0.1, 0.07, -0.0999994, 0.200001, 0.07, 0.5, 0.5, 0.07, 0.2, 1.6, 0.07, 0.2, 1.9, 0.07, 0.5, 2.2, 0.07, 0.5, 2.5, 0.07, 0.2, 3.9, 0.07, 2.6, 4.2, 0.07, 2.5, 4.5, 0.07, 2.2, 3.9, 0.07, 3.5, 4.2, 0.07, 2.5, 3.9, 0.07, 2.6, 3.6, 0.07, 2.9, 3.6, 0.07, 3.2, -11.4, 0.07, -2.1, -12.1, 0.07, -2.1, -12.1, 0.07, -1.8, -10.4, 0.07, -1.8, -11.1, 0.07, -11.4, -11.1, 0.07, -10.5, -10.8, 0.07, -15.1, 9.9, 0.07, 9.6, 11.1, 0.07, 13.2, 11.1, 0.07, 5.9, 9.9, 0.07, 7.5, -11.1, 0.07, -14.5, -11.1, 0.07, -11.4, -10.8, 0.07, -15.1, -1.8, 0.07, 3.6, -1.8, 0.07, 2.9, -2.5, 0.07, 2.9, -2.4, 0.07, 3.2, -2.1, 0.07, 3.5, -9.8, 0.07, -1.4, -9.8, 0.07, -2.1, -10.5, 0.07, -2.1, -10.4, 0.07, -1.8, -10.1, 0.07, -1.5, -10.1, 0.07, -1.5, -10.1, 0.07, -0.8, -9.4, 0.07, -0.8, -9.5, 0.07, -1.1, -9.8, 0.07, -1.4, 5.6, 0.07, 5.2, 5.9, 0.07, 5.5, 6.6, 0.07, 4.9, -11.1, 0.07, -2.4, -11.4, 0.07, -2.1, -10.4, 0.07, -1.8, -10.5, 0.07, -2.1, -10.8, 0.07, -2.4, -7.8, 0.07, 2.6, -7.8, 0.07, 1.5, -8.1, 0.07, 1.5, -3.8, 0.07, 6.6, -3.8, 0.07, 4.9, -4.1, 0.07, 4.9, -4.1, 0.07, 6.6, -4.5, 0.07, 0.9, -5.1, 0.07, 1.2, -3.4, 0.07, 1.2, -2.8, 0.07, 0.9, -3.5, 0.07, 6.9, -3.8, 0.07, 6.6, -4.1, 0.07, 6.6, -4.4, 0.07, 6.9, -3.4, 0.07, 7.2, 7.9, 0.07, 11.6, 7.6, 0.07, 11.9, 9.4, 0.07, 13.2, -7.5, 0.07, 3.2, -5.8, 0.07, 3.2, -5.8, 0.07, 2.9, -7.5, 0.07, 2.9, 0.5, 0.07, 3.2, 3.6, 0.07, 3.2, 2.5, 0.07, 2.9, 1.6, 0.07, 2.9, -7.8, 0.07, 3.5, -7.5, 0.07, 3.2, -7.5, 0.07, 2.9, -7.8, 0.07, 2.6, -10.6, 0.07, -4.8, -5.8, 0.07, -4.8, -6.4, 0.07, -5.1, -10.5, 0.07, -5.1, -0.1, 0.07, -0.0999994, 0.5, 0.07, 0.2, 1.6, 0.07, 0.2, 3.9, 0.07, 0.5, 3.9, 0.07, 2.6, 4.5, 0.07, 2.2, 5.2, 0.07, 1.6, 5.2, 0.07, -0.0999994, 0.6, 0.07, 7.9, -0.1, 0.07, 7.9, -0.1, 0.07, 9.6, -7.8, 0.07, 3.5, -7.8, 0.07, 2.6, -8.1, 0.07, 1.5, -8.1, 0.07, 5.2, -5.4, 0.07, -1.8, -4.8, 0.07, -2.1, -7.1, 0.07, -2.1, -6.6, 0.07, -1.8, -7.8, 0.07, 4.6, -7.8, 0.07, 3.5, -8.1, 0.07, 5.2, -7.5, 0.07, 4.9, -7.8, 0.07, 4.6, -8.1, 0.07, 5.2, -7.5, 0.07, 4.9, -8.1, 0.07, 5.2, -6.4, 0.07, 5.2, -5.8, 0.07, 4.9, -11.4, 0.07, -14.8, -11.1, 0.07, -14.5, -10.8, 0.07, -15.1, -5.8, 0.07, 4.9, -6.4, 0.07, 5.2, -6.1, 0.07, 5.5, -5.8, 0.07, 6.6, -5.8, 0.07, 4.9, -6.1, 0.07, 5.5, -6.1, 0.07, 7.2, -1.8, 0.07, 3.6, -2.1, 0.07, 3.5, -1.8, 0.07, 4.5, -1.5, 0.07, 4.2, -1.5, 0.07, 3.9, -5.5, 0.07, 6.9, -5.8, 0.07, 6.6, -6.1, 0.07, 7.2, -4.4, 0.07, 6.9, -5.5, 0.07, 6.9, -6.1, 0.07, 7.2, -3.4, 0.07, 7.2, -2.8, 0.07, 2.6, -2.8, 0.07, 0.9, -3.1, 0.07, 1.5, -3.1, 0.07, 3.2, 5.6, 0.07, 5.2, 6.6, 0.07, 4.9, 4.5, 0.07, 4.9, 3.9, 0.07, 5.2, 3.9, 0.07, 3.5, 3.9, 0.07, 5.2, 4.2, 0.07, 4.6, 4.2, 0.07, 2.5, 0.5, 0.07, 3.2, 1.6, 0.07, 2.9, 0.5, 0.07, 2.9, -2.4, 0.07, 6.9, -2.5, 0.07, 7.2, -1.8, 0.07, 7.2, -2.1, 0.07, 6.6, -6.8, 0.07, -1.6, -6.6, 0.07, -1.8, -7.1, 0.07, -2.1, 2.2, 0.07, 2.6, 2.2, 0.07, 0.5, 1.9, 0.07, 0.5, 1.9, 0.07, 2.6, -7.4, 0.07, 0.9, -7.5, 0.07, 1.2, -6.8, 0.07, 1.2, -7.1, 0.07, 0.6, 2.5, 0.07, 2.9, 2.2, 0.07, 2.6, 1.9, 0.07, 2.6, 1.6, 0.07, 2.9, 2.9, 0.07, 12.2, 3.5, 0.07, 11.9, 3.2, 0.07, 11.6, 2.9, 0.07, 11.5, -2.1, 0.07, 6.6, -1.8, 0.07, 7.2, -1.8, 0.07, 4.5, -2.1, 0.07, 3.5, 3.5, 0.07, 11.9, 2.9, 0.07, 12.2, 5.6, 0.07, 12.2, 7.6, 0.07, 11.9, 0.200001, 0.07, 3.5, 0.5, 0.07, 3.2, 0.5, 0.07, 2.9, 0.200001, 0.07, 2.6, -0.1, 0.07, 3.6, -2.8, 0.07, 9.6, -2.8, 0.07, 7.5, -3.1, 0.07, 7.5, -3.1, 0.07, 10.2, 3.9, 0.07, 5.2, 4.5, 0.07, 4.9, 4.2, 0.07, 4.6, -2.5, 0.07, 9.9, -2.8, 0.07, 9.6, -3.1, 0.07, 10.2, 0.9, 0.07, 7.6, 0.6, 0.07, 7.9, -0.1, 0.07, 9.6, 0.6, 0.07, 10.2, 9.6, 0.07, 9.9, 7.9, 0.07, 9.9, 7.9, 0.07, 11.6, 9.4, 0.07, 13.2, 3.5, 0.07, 10.2, 4.2, 0.07, 10.2, 4.2, 0.07, 7.9, 3.5, 0.07, 7.9, -8.8, 0.07, 0.6, -8.8, 0.07, -1.1, -9.1, 0.07, -0.5, -9.1, 0.07, 1.2, 3.2, 0.07, 7.6, 3.2, 0.07, 6.9, 0.9, 0.07, 6.9, 0.9, 0.07, 7.6, -0.4, 0.07, 3.9, -1.5, 0.07, 3.9, -1.5, 0.07, 4.2, 0.200001, 0.07, 4.2, 9.2, 0.07, 5.6, 9.2, 0.07, 3.9, 7.5, 0.07, 3.9, 6.9, 0.07, 4.6, 5.4, 0.07, 17.2, 7.2, 0.07, 17.2, 7.2, 0.07, 15.4, 7.4, 0.07, 15.2, 9.2, 0.07, 15.2, 9.2, 0.07, 13.4, 5.9, 0.07, 12.5, 5.9, 0.07, 13.6, 3.2, 0.07, 10.5, 3.5, 0.07, 10.2, 3.5, 0.07, 7.9, 0.9, 0.07, 7.6, 0.6, 0.07, 10.2, 0.9, 0.07, 10.5, 3.5, 0.07, 7.9, 3.2, 0.07, 7.6, 0.9, 0.07, 7.6, -0.1, 0.07, -0.0999994, 1.6, 0.07, 0.2, 2.5, 0.07, 0.2, 0.200001, 0.07, 2.6, 0.200001, 0.07, 0.5, -0.1, 0.07, -0.0999994, -0.1, 0.07, 3.6, -9.4, 0.07, -0.8, -9.1, 0.07, -0.5, -8.8, 0.07, -1.1, -9.5, 0.07, -1.1, 9.9, 0.07, 7.5, 11.1, 0.07, 5.9, 9.5, 0.07, 5.9, 9.6, 0.07, 7.2, -11.4, 0.07, -11.1, -14.1, 0.07, -11.1, -14.1, 0.07, -10.8, -11.4, 0.07, -10.8, 5.9, 0.07, 5.5, 5.9, 0.07, 7.2, 6.6, 0.07, 4.9, -11.1, 0.07, -11.4, -11.4, 0.07, -11.1, -11.4, 0.07, -10.8, -11.1, 0.07, -10.5, -3.4, 0.07, 1.2, -3.1, 0.07, 1.5, -2.8, 0.07, 0.9, -0.4, 0.07, 9.9, -2.5, 0.07, 9.9, -3.1, 0.07, 10.2, 0.6, 0.07, 10.2, 3.6, 0.07, 3.2, 3.6, 0.07, 2.9, 2.5, 0.07, 2.9, -0.1, 0.07, 9.6, -0.4, 0.07, 9.9, 0.6, 0.07, 10.2, -9.1, 0.07, 1.2, -8.4, 0.07, 1.2, -8.5, 0.07, 0.9, -8.8, 0.07, 0.6, 5.2, 0.07, -0.0999994, -0.1, 0.07, -0.0999994, 2.5, 0.07, 0.2, 3.6, 0.07, 0.2, -5.8, 0.07, -11.1, -6.1, 0.07, -11.1, -6.1, 0.07, -5.4, -5.8, 0.07, -4.8, 5.2, 0.07, -0.0999994, 3.6, 0.07, 0.2, 3.9, 0.07, 0.5, -5.1, 0.07, 1.2, -4.5, 0.07, 0.9, -4.8, 0.07, 0.6, -5.1, 0.07, -1.5, -5.1, 0.07, 1.2, -4.8, 0.07, 0.6, -4.8, 0.07, -2.1, 5.5, 0.07, 1.9, 5.2, 0.07, 1.6, 4.5, 0.07, 2.2, 5.5, 0.07, 1.9, 4.5, 0.07, 2.2, 6.6, 0.07, 2.2, 7.2, 0.07, 1.9, -0.1, 0.07, 3.6, -0.4, 0.07, 3.9, 0.200001, 0.07, 4.2, 0.200001, 0.07, 3.5, 7.2, 0.07, 1.9, 6.6, 0.07, 2.2, 6.9, 0.07, 2.5, 7.2, 0.07, 3.6, 7.2, 0.07, 1.9, 6.9, 0.07, 2.5, 6.9, 0.07, 4.6, 0.9, 0.07, 10.5, 1.2, 0.07, 11.5, 1.5, 0.07, 11.2, 7.5, 0.07, 3.9, 7.2, 0.07, 3.6, 6.9, 0.07, 4.6, 3.2, 0.07, 10.5, 0.9, 0.07, 10.5, 1.5, 0.07, 11.2, 2.6, 0.07, 11.2, 9.2, 0.07, 5.6, 6.9, 0.07, 4.6, 6.6, 0.07, 4.9, 5.9, 0.07, 7.2, 9.6, 0.07, 7.2, 9.5, 0.07, 5.9, 9.6, 0.07, 9.9, 9.4, 0.07, 13.2, 11.1, 0.07, 13.2, 9.9, 0.07, 9.6, -2.5, 0.07, 2.9, -2.8, 0.07, 2.6, -3.1, 0.07, 3.2, -2.4, 0.07, 3.2, -11.1, 0.07, -2.4, -10.8, 0.07, -2.4, -10.8, 0.07, -4.6, -10.5, 0.07, -5.1, -10.8, 0.07, -5.4, -10.8, 0.07, -4.6, -10.6, 0.07, -4.8, 3.6, 0.07, 18.9, -0.1, 0.07, 18.9, -0.1, 0.07, 19.1, 5.2, 0.07, 19.1, -11.1, 0.07, -2.4, -10.8, 0.07, -4.6, -10.8, 0.07, -5.4, 3.9, 0.07, 18.6, 3.6, 0.07, 18.9, 5.2, 0.07, 19.1, 5.2, 0.07, 17.4, -6.8, 0.07, -1.6, -7.1, 0.07, -2.1, -7.1, 0.07, 0.6, -6.8, 0.07, 1.2, 3.9, 0.07, 18.6, 5.2, 0.07, 17.4, 5.4, 0.07, 17.2, 5.6, 0.07, 13.9, 3.9, 0.07, 13.9, 3.9, 0.07, 18.6, 5.4, 0.07, 17.2, 7.2, 0.07, 15.4, 0.9, 0.07, 13.6, 1.2, 0.07, 14.2, 1.2, 0.07, 11.5, 0.9, 0.07, 10.5, -5.8, 0.07, -4.8, -6.1, 0.07, -5.4, -6.4, 0.07, -5.1, 5.9, 0.07, 13.6, 5.6, 0.07, 13.9, 7.2, 0.07, 15.4, 7.4, 0.07, 15.2, -5.4, 0.07, -1.8, -5.1, 0.07, -1.5, -4.8, 0.07, -2.1, 3.2, 0.07, 11.6, 3.2, 0.07, 10.5, 2.6, 0.07, 11.2, 2.9, 0.07, 11.5, -18.1, 0.07, -15.1, -18.1, 0.07, -14.8, -11.4, 0.07, -14.8, -10.8, 0.07, -15.1, 5.9, 0.07, 12.5, 9.2, 0.07, 13.4, 9.4, 0.07, 13.2, 7.6, 0.07, 11.9, 5.6, 0.07, 12.2, 0.6, 0.07, 13.9, -3.1, 0.07, 13.9, -3.1, 0.07, 14.2, 1.2, 0.07, 14.2, -11.1, 0.07, -10.5, -11.1, 0.07, -2.4, -10.8, 0.07, -5.4, -10.8, 0.07, -15.1, 0.9, 0.07, 13.6, 0.6, 0.07, 13.9, 1.2, 0.07, 14.2 )
+polygons = [ PoolIntArray( 1, 0, 2 ), PoolIntArray( 2, 0, 5 ), PoolIntArray( 2, 5, 3 ), PoolIntArray( 3, 5, 4 ), PoolIntArray( 7, 6, 8 ), PoolIntArray( 8, 6, 11 ), PoolIntArray( 8, 11, 9 ), PoolIntArray( 9, 11, 10 ), PoolIntArray( 14, 13, 12 ), PoolIntArray( 16, 15, 17 ), PoolIntArray( 17, 15, 18 ), PoolIntArray( 21, 20, 19 ), PoolIntArray( 26, 25, 22 ), PoolIntArray( 22, 25, 24 ), PoolIntArray( 22, 24, 23 ), PoolIntArray( 28, 27, 29 ), PoolIntArray( 29, 27, 30 ), PoolIntArray( 33, 32, 31 ), PoolIntArray( 37, 36, 34 ), PoolIntArray( 34, 36, 35 ), PoolIntArray( 40, 39, 38 ), PoolIntArray( 45, 44, 41 ), PoolIntArray( 41, 44, 43 ), PoolIntArray( 41, 43, 42 ), PoolIntArray( 50, 49, 46 ), PoolIntArray( 46, 49, 48 ), PoolIntArray( 46, 48, 47 ), PoolIntArray( 55, 54, 51 ), PoolIntArray( 51, 54, 53 ), PoolIntArray( 51, 53, 52 ), PoolIntArray( 58, 57, 56 ), PoolIntArray( 63, 62, 59 ), PoolIntArray( 59, 62, 61 ), PoolIntArray( 59, 61, 60 ), PoolIntArray( 66, 65, 64 ), PoolIntArray( 70, 69, 67 ), PoolIntArray( 67, 69, 68 ), PoolIntArray( 74, 73, 71 ), PoolIntArray( 71, 73, 72 ), PoolIntArray( 76, 75, 77 ), PoolIntArray( 77, 75, 79 ), PoolIntArray( 77, 79, 78 ), PoolIntArray( 82, 81, 80 ), PoolIntArray( 86, 85, 83 ), PoolIntArray( 83, 85, 84 ), PoolIntArray( 90, 89, 87 ), PoolIntArray( 87, 89, 88 ), PoolIntArray( 92, 91, 93 ), PoolIntArray( 93, 91, 94 ), PoolIntArray( 98, 97, 95 ), PoolIntArray( 95, 97, 96 ), PoolIntArray( 101, 100, 99 ), PoolIntArray( 104, 103, 105 ), PoolIntArray( 105, 103, 102 ), PoolIntArray( 105, 102, 106 ), PoolIntArray( 109, 108, 107 ), PoolIntArray( 111, 110, 112 ), PoolIntArray( 112, 110, 113 ), PoolIntArray( 117, 116, 114 ), PoolIntArray( 114, 116, 115 ), PoolIntArray( 120, 119, 118 ), PoolIntArray( 121, 123, 122 ), PoolIntArray( 127, 126, 124 ), PoolIntArray( 124, 126, 125 ), PoolIntArray( 130, 129, 128 ), PoolIntArray( 133, 132, 131 ), PoolIntArray( 137, 136, 134 ), PoolIntArray( 134, 136, 135 ), PoolIntArray( 142, 141, 138 ), PoolIntArray( 138, 141, 139 ), PoolIntArray( 139, 141, 140 ), PoolIntArray( 143, 145, 144 ), PoolIntArray( 147, 146, 148 ), PoolIntArray( 148, 146, 149 ), PoolIntArray( 153, 152, 150 ), PoolIntArray( 150, 152, 151 ), PoolIntArray( 157, 156, 154 ), PoolIntArray( 154, 156, 155 ), PoolIntArray( 159, 158, 160 ), PoolIntArray( 160, 158, 161 ), PoolIntArray( 164, 163, 162 ), PoolIntArray( 165, 168, 166 ), PoolIntArray( 166, 168, 167 ), PoolIntArray( 171, 170, 169 ), PoolIntArray( 175, 174, 172 ), PoolIntArray( 172, 174, 173 ), PoolIntArray( 176, 179, 177 ), PoolIntArray( 177, 179, 178 ), PoolIntArray( 181, 180, 182 ), PoolIntArray( 182, 180, 183 ), PoolIntArray( 186, 185, 187 ), PoolIntArray( 187, 185, 184 ), PoolIntArray( 189, 188, 190 ), PoolIntArray( 190, 188, 191 ), PoolIntArray( 193, 192, 194 ), PoolIntArray( 194, 192, 195 ), PoolIntArray( 197, 196, 198 ), PoolIntArray( 198, 196, 200 ), PoolIntArray( 198, 200, 199 ), PoolIntArray( 202, 201, 203 ), PoolIntArray( 203, 201, 204 ), PoolIntArray( 207, 206, 205 ), PoolIntArray( 208, 210, 209 ), PoolIntArray( 212, 211, 213 ), PoolIntArray( 213, 211, 214 ), PoolIntArray( 216, 215, 217 ), PoolIntArray( 217, 215, 218 ), PoolIntArray( 222, 221, 219 ), PoolIntArray( 219, 221, 220 ), PoolIntArray( 224, 223, 225 ), PoolIntArray( 225, 223, 226 ), PoolIntArray( 230, 229, 227 ), PoolIntArray( 227, 229, 228 ), PoolIntArray( 232, 231, 233 ), PoolIntArray( 233, 231, 234 ), PoolIntArray( 237, 236, 238 ), PoolIntArray( 238, 236, 235 ), PoolIntArray( 241, 240, 239 ), PoolIntArray( 243, 242, 244 ), PoolIntArray( 244, 242, 246 ), PoolIntArray( 244, 246, 245 ), PoolIntArray( 252, 251, 247 ), PoolIntArray( 247, 251, 248 ), PoolIntArray( 248, 251, 249 ), PoolIntArray( 249, 251, 250 ), PoolIntArray( 255, 254, 253 ), PoolIntArray( 258, 257, 256 ), PoolIntArray( 260, 259, 261 ), PoolIntArray( 261, 259, 262 ), PoolIntArray( 263, 266, 264 ), PoolIntArray( 264, 266, 265 ), PoolIntArray( 270, 269, 267 ), PoolIntArray( 267, 269, 268 ), PoolIntArray( 274, 273, 271 ), PoolIntArray( 271, 273, 272 ), PoolIntArray( 277, 276, 275 ), PoolIntArray( 280, 279, 281 ), PoolIntArray( 281, 279, 278 ), PoolIntArray( 282, 284, 283 ), PoolIntArray( 286, 285, 287 ), PoolIntArray( 287, 285, 288 ), PoolIntArray( 291, 290, 289 ), PoolIntArray( 294, 293, 292 ), PoolIntArray( 297, 296, 298 ), PoolIntArray( 298, 296, 295 ), PoolIntArray( 302, 301, 299 ), PoolIntArray( 299, 301, 300 ), PoolIntArray( 304, 303, 305 ), PoolIntArray( 305, 303, 306 ), PoolIntArray( 309, 308, 307 ), PoolIntArray( 312, 311, 310 ), PoolIntArray( 316, 315, 313 ), PoolIntArray( 313, 315, 314 ), PoolIntArray( 319, 318, 317 ), PoolIntArray( 323, 322, 320 ), PoolIntArray( 320, 322, 321 ), PoolIntArray( 324, 327, 325 ), PoolIntArray( 325, 327, 326 ), PoolIntArray( 330, 329, 328 ), PoolIntArray( 332, 331, 333 ), PoolIntArray( 333, 331, 334 ), PoolIntArray( 337, 336, 335 ), PoolIntArray( 340, 339, 338 ), PoolIntArray( 344, 343, 341 ), PoolIntArray( 341, 343, 342 ), PoolIntArray( 350, 349, 345 ), PoolIntArray( 345, 349, 346 ), PoolIntArray( 346, 349, 347 ), PoolIntArray( 347, 349, 348 ), PoolIntArray( 351, 354, 352 ), PoolIntArray( 352, 354, 353 ), PoolIntArray( 355, 358, 356 ), PoolIntArray( 356, 358, 357 ), PoolIntArray( 361, 360, 359 ), PoolIntArray( 365, 364, 362 ), PoolIntArray( 362, 364, 363 ), PoolIntArray( 367, 366, 368 ), PoolIntArray( 368, 366, 369 ), PoolIntArray( 372, 371, 370 ), PoolIntArray( 374, 373, 375 ), PoolIntArray( 375, 373, 376 ), PoolIntArray( 378, 377, 379 ), PoolIntArray( 379, 377, 380 ), PoolIntArray( 383, 382, 381 ), PoolIntArray( 384, 388, 385 ), PoolIntArray( 385, 388, 387 ), PoolIntArray( 385, 387, 386 ), PoolIntArray( 390, 389, 391 ), PoolIntArray( 391, 389, 392 ), PoolIntArray( 395, 394, 393 ), PoolIntArray( 399, 398, 396 ), PoolIntArray( 396, 398, 397 ), PoolIntArray( 402, 401, 400 ), PoolIntArray( 406, 405, 403 ), PoolIntArray( 403, 405, 404 ), PoolIntArray( 408, 407, 409 ), PoolIntArray( 409, 407, 410 ), PoolIntArray( 415, 414, 411 ), PoolIntArray( 411, 414, 412 ), PoolIntArray( 412, 414, 413 ), PoolIntArray( 417, 416, 418 ), PoolIntArray( 418, 416, 419 ), PoolIntArray( 421, 420, 422 ), PoolIntArray( 422, 420, 423 ), PoolIntArray( 424, 426, 425 ) ]
 sample_partition_type = 2
 cell_size = 0.1
 cell_height = 0.01
 agent_height = 0.0
 agent_radius = 0.25
-region_min_size = 1.0
+detail_sample_max_error = 8.0
 filter_ledge_spans = true
 
 [node name="MapDQ2" type="NavigationMeshInstance"]
@@ -39,13 +39,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1 )
 
 [node name="FloorTile3D8" parent="Room1" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2 )
 
 [node name="FloorTile3D9" parent="Room1" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 1 )
-
-[node name="FloorTile3D10" parent="Room1" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 1 )
 
 [node name="FloorTile3D11" parent="Room1" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 1 )
@@ -55,9 +52,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 1 )
 
 [node name="FloorTile3D13" parent="Room1" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2 )
-
-[node name="FloorTile3D14" parent="Room1" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 2 )
 
 [node name="FloorTile3D15" parent="Room1" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2 )
@@ -80,23 +74,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3 )
 [node name="FloorTile3D21" parent="Room1" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 3 )
 
-[node name="FloorTile3D22" parent="Room1" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 3 )
-
-[node name="FloorTile3D23" parent="Room1" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 3 )
-
 [node name="FloorTile3D24" parent="Room1" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 3 )
 
 [node name="FloorTile3D25" parent="Room1" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4 )
-
-[node name="FloorTile3D26" parent="Room1" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 4 )
-
-[node name="FloorTile3D27" parent="Room1" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 4 )
 
 [node name="FloorTile3D28" parent="Room1" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 4 )
@@ -256,6 +238,15 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 4 )
 [node name="FloorTile3D31" parent="Room3" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 5 )
 
+[node name="FloorTile3D53" parent="Room3" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 6 )
+
+[node name="FloorTile3D54" parent="Room3" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 7 )
+
+[node name="FloorTile3D55" parent="Room3" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 8 )
+
 [node name="FloorTile3D32" parent="Room3" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 5 )
 
@@ -306,6 +297,18 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 7 )
 
 [node name="FloorTile3D48" parent="Room3" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 7 )
+
+[node name="FloorTile3D49" parent="Room3" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 8 )
+
+[node name="FloorTile3D50" parent="Room3" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 9 )
+
+[node name="FloorTile3D51" parent="Room3" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 10 )
+
+[node name="FloorTile3D52" parent="Room3" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 11 )
 
 [node name="Room2" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -3 )
@@ -379,13 +382,49 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 4 )
 
 [node name="FloorTile3D5" parent="Room2" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 3 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1 )
+
+[node name="FloorTile3D75" parent="Room2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2 )
 
 [node name="FloorTile3D24" parent="Room2" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -2 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2 )
+
+[node name="FloorTile3D76" parent="Room2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -2 )
+
+[node name="FloorTile3D77" parent="Room2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2 )
+
+[node name="FloorTile3D78" parent="Room2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -2 )
+
+[node name="FloorTile3D79" parent="Room2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -3 )
+
+[node name="FloorTile3D80" parent="Room2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -4 )
+
+[node name="FloorTile3D81" parent="Room2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -5 )
+
+[node name="FloorTile3D82" parent="Room2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -6 )
+
+[node name="FloorTile3D83" parent="Room2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -7 )
+
+[node name="FloorTile3D84" parent="Room2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -8 )
 
 [node name="FloorTile3D31" parent="Room2" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, -8 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -8 )
+
+[node name="FloorTile3D73" parent="Room2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -8 )
+
+[node name="FloorTile3D74" parent="Room2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -8 )
 
 [node name="FloorTile3D6" parent="Room2" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 6 )
@@ -413,6 +452,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2 )
 
 [node name="FloorTile3D14" parent="Room2" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 6 )
+
+[node name="FloorTile3D33" parent="Room2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 6 )
 
 [node name="FloorTile3D15" parent="Room2" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2 )
@@ -498,6 +540,21 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 6 )
 [node name="FloorTile3D45" parent="Room2" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 10 )
 
+[node name="FloorTile3D68" parent="Room2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 11 )
+
+[node name="FloorTile3D69" parent="Room2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 12 )
+
+[node name="FloorTile3D70" parent="Room2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 13 )
+
+[node name="FloorTile3D71" parent="Room2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 13 )
+
+[node name="FloorTile3D72" parent="Room2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 13 )
+
 [node name="FloorTile3D46" parent="Room2" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 10 )
 
@@ -565,6 +622,27 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 10 )
 
 [node name="FloorTile3D22" parent="Spatial" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 11 )
+
+[node name="FloorTile3D25" parent="Spatial" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 12 )
+
+[node name="FloorTile3D26" parent="Spatial" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 13 )
+
+[node name="FloorTile3D27" parent="Spatial" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 14 )
+
+[node name="FloorTile3D28" parent="Spatial" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14 )
+
+[node name="FloorTile3D29" parent="Spatial" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 14 )
+
+[node name="FloorTile3D30" parent="Spatial" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 14 )
+
+[node name="FloorTile3D32" parent="Spatial" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 14 )
 
 [node name="FloorTile3D23" parent="Spatial" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 11 )
