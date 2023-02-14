@@ -38,7 +38,7 @@ var thumbnails: Array = [
 var next_scene = "res://Scenes/Level_1.tscn"
 
 func _ready():
-	pass
+	print($CharGUI/VBoxContainer/RandomOrDone/VBoxContainer/DifficultySlider.value)
 
 func on_thumbnail_changed(thumb_num):
 	thumb_calc = thumb_num
@@ -71,24 +71,30 @@ func _on_DifficultySlider_value_changed(value):
 	match int_value:
 		0: 
 			update_text = "Easy"
-			Global.hit_maximum = 999999
 		1:
 			update_text = "Medium"
-			Global.hit_maximum = 10
 		2:
 			update_text = "Hard"
-			Global.hit_maximum = 5
 		3:
 			update_text = "Impossible"
-			Global.hit_maximum = 1
 		_: 
 			update_text = "HAHAHAHAHAHA"
-			Global.hit_maximum = 1
-	print(update_text)
 	$CharGUI/VBoxContainer/RandomOrDone/VBoxContainer/Label.text = "Difficulty: " + update_text
 	
 func _on_DoneButton_pressed():
 	Global.game_hit_count = 0
 	Global.game_text_count = 0
 	Global.hit_splat_array = []
+	match int($CharGUI/VBoxContainer/RandomOrDone/VBoxContainer/DifficultySlider.value):
+		0: 
+			Global.hit_maximum = 999999
+		1:
+			Global.hit_maximum = 10
+		2:
+			Global.hit_maximum = 5
+		3:
+			Global.hit_maximum = 1
+		_: 
+			Global.hit_maximum = 1
+	print(Global.hit_maximum)
 	SceneManager.goto_scene(self, next_scene)

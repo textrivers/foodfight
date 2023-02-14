@@ -1,19 +1,19 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/Food.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Assets/FoodSprites/betterblackberry/betterblackberry_4.png" type="Texture" id=2]
-[ext_resource path="res://Assets/FoodSprites/betterblackberry/betterblackberry_7.png" type="Texture" id=3]
-[ext_resource path="res://Assets/FoodSprites/betterblackberry/betterblackberry_2.png" type="Texture" id=4]
-[ext_resource path="res://Assets/FoodSprites/betterblackberry/betterblackberry_1.png" type="Texture" id=5]
-[ext_resource path="res://Assets/FoodSprites/betterblackberry/betterblackberry_3.png" type="Texture" id=6]
-[ext_resource path="res://Assets/FoodSprites/betterblackberry/betterblackberry_5.png" type="Texture" id=7]
-[ext_resource path="res://Assets/FoodSprites/betterblackberry/betterblackberry_6.png" type="Texture" id=8]
-[ext_resource path="res://Assets/FoodSprites/betterblackberry/betterblackberry_0.png" type="Texture" id=9]
+[ext_resource path="res://Assets/FoodSprites/betterblackberry/betterboysenberry/betterblackberry/Berry 7.PNG" type="Texture" id=2]
+[ext_resource path="res://Assets/FoodSprites/betterblackberry/betterboysenberry/betterblackberry/Berry 1.PNG" type="Texture" id=3]
+[ext_resource path="res://Assets/FoodSprites/betterblackberry/betterboysenberry/betterblackberry/Berry 0.PNG" type="Texture" id=4]
+[ext_resource path="res://Assets/FoodSprites/betterblackberry/betterboysenberry/betterblackberry/Berry 2.PNG" type="Texture" id=5]
+[ext_resource path="res://Assets/FoodSprites/betterblackberry/betterboysenberry/betterblackberry/Berry 5.PNG" type="Texture" id=6]
+[ext_resource path="res://Assets/FoodSprites/betterblackberry/betterboysenberry/betterblackberry/Berry 3.PNG" type="Texture" id=7]
+[ext_resource path="res://Assets/FoodSprites/betterblackberry/betterboysenberry/betterblackberry/Berry 4.PNG" type="Texture" id=8]
+[ext_resource path="res://Assets/FoodSprites/betterblackberry/betterboysenberry/betterblackberry/Berry 6.PNG" type="Texture" id=9]
 
 [sub_resource type="SpriteFrames" id=1]
 resource_local_to_scene = true
 animations = [ {
-"frames": [ ExtResource( 9 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 2 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 3 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 2 ) ],
 "loop": true,
 "name": "default",
 "speed": 30.0

@@ -17,16 +17,17 @@ var food_palettes: Dictionary = {
 }
 var checkerboard_palette: Array = [
 	"teal_2", 
-	"teal_3",
 	"seafoam_1",
+	"teal_3",
 	"seafoam_2",
 	"seafoam_3",
-	"babyblue_1",
 	"babyblue_2", 
+	"babyblue_1",
 	"babyblue_3",
 	"white_1",
-	"white_2",
 	"purple_2",
+	"white_2",
+
 ]
 var characters: Array = []
 var turn_tracker: Dictionary = {}
@@ -74,7 +75,7 @@ var power_up_dict: Dictionary = {
 	15: ["Dilettante's Diploma", "Spawn more ice cream cones"],
 	16: ["Thaumaturge's Greeting Card", "Randomly teleport once"],
 	17: ["Coriolis Scrubber", "Remove 1/2 of the floor splatters"],
-	18: ["Laser Unsmile Assist", "Set Hilarity to zero"],
+	18: ["Laser Level", "Set Hilarity to zero"],
 	19: ["Pocket Quasar", "Level up while waiting"], 
 	20: ["Banana Bonanza", "Spawn more bananas"],
 	21: ["Licorice Lovebird", "Decreased vision range"],
@@ -132,8 +133,8 @@ var power_up_dict: Dictionary = {
 	73: ["Thaumaturge's Greeting Card", "Randomly teleport once"],
 	74: ["Coriolis Scrubber", "Remove 1/2 of the floor splatters"],
 	75: ["Coriolis Scrubber", "Remove 1/2 of the floor splatters"],
-	76: ["Laser Unsmile Assist", "Set Hilarity to zero"],
-	77: ["Laser Unsmile Assist", "Set Hilarity to zero"],
+	76: ["Laser Level", "Set Hilarity to zero"],
+	77: ["Laser Level", "Set Hilarity to zero"],
 	78: ["Licorice Lovebird", "Decreased vision range"],
 	79: ["Licorice Lovebird", "Decreased vision range"],
 }
@@ -190,6 +191,7 @@ func _ready():
 		child.connect("power_up_chosen", self, "handle_power_up")
 	## populate the HPContainer
 	if Global.hit_maximum <= 10:
+		print(Global.hit_maximum)
 		for i in Global.hit_maximum:
 			var new_hprect = load("res://Scenes/HPRect.tscn").instance()
 			$GUI/Center/HPContainer/GridContainer.add_child(new_hprect)
@@ -200,6 +202,8 @@ func _ready():
 				hitboxes[i].get_node("Sprite").rotation_degrees = randf() * 360
 				hitboxes[i].get_node("Sprite").show()
 			Global.hit_splat_array = []
+	else:
+		$GUI/Center/HPContainer.hide()
 
 func place_objects():
 	## place food

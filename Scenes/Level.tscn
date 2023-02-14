@@ -536,7 +536,6 @@ shadow_enabled = true
 
 [node name="GiantIceCream" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 17 )
-visible = true
 nextscene = "res://Scenes/Level5.tscn"
 
 [connection signal="tree_exiting" from="." to="." method="_on_Level4_tree_exiting"]
