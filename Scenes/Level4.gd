@@ -400,7 +400,7 @@ func rotate_cam_rig():
 
 func display_character_options(_player):
 	if _player == true: 
-		whose_turn.get_node("CharacterSound").stream.audio_stream = load("res://Assets/Audio/done_01.wav")
+		whose_turn.get_node("CharacterSound").stream = whose_turn.sound_your_turn
 		whose_turn.get_node("CharacterSound").play()
 		yield(VisualServer, "frame_post_draw")
 		reset_character_options()

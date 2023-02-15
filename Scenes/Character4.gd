@@ -102,6 +102,10 @@ var waiting: bool = false
 var wait_modifier: float = 0.0
 var revert_color: Color
 
+var sound_pickup = preload("res://Assets/Audio/pickup.wav")
+var sound_throw = preload("res://Assets/Audio/throw_01.wav")
+var sound_wait = preload("res://Assets/Audio/select_01.wav")
+var sound_your_turn = preload("res://Assets/Audio/done_01.wav")
 var walk_sound_array: Array = [
 	preload("res://Assets/Audio/walk_01.wav"), 
 	preload("res://Assets/Audio/walk_02.wav"), 
@@ -196,12 +200,16 @@ func acquire_target():
 
 func handle_action(action):
 	if action[0] == "wait":
+		$CharacterSound.stream = sound_wait
+		$CharacterSound.play()
 		walking = false
 		waiting = true
 	if action[0] == "pick_up":
 		walking = false
 		waiting = false
 		if food_contacts.size() > 0 && !self.has_node("MyFood"):
+			$CharacterSound.stream = sound_pickup
+			$CharacterSound.play()
 			var my_food = food_contacts.pop_back()
 			var food_par = my_food.get_parent()
 			food_par.remove_child(my_food)
@@ -215,6 +223,8 @@ func handle_action(action):
 				var text_node = my_food.get_node("Text")
 				text_node.emit_signal("enable_read_action")
 	if action[0] == "throw":
+		$CharacterSound.stream = sound_throw
+		$CharacterSound.play()
 		walking = false
 		waiting = false
 		if self.has_node("MyFood"):
