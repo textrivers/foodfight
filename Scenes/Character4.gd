@@ -103,19 +103,20 @@ var wait_modifier: float = 0.0
 var revert_color: Color
 
 var sound_pickup = preload("res://Assets/Audio/pickup.wav")
-var sound_throw = preload("res://Assets/Audio/throw_01.wav")
-var sound_wait = preload("res://Assets/Audio/select_01.wav")
-var sound_your_turn = preload("res://Assets/Audio/done_01.wav")
-var walk_sound_array: Array = [
-	preload("res://Assets/Audio/walk_01.wav"), 
-	preload("res://Assets/Audio/walk_02.wav"), 
-	preload("res://Assets/Audio/walk_03.wav"), 
-	preload("res://Assets/Audio/walk_04.wav"), 
-	preload("res://Assets/Audio/walk_05.wav"), 
-	preload("res://Assets/Audio/walk_06.wav"), 
-	preload("res://Assets/Audio/walk_07.wav"), 
-	preload("res://Assets/Audio/walk_08.wav"), 
-	preload("res://Assets/Audio/walk_09.wav")
+var sound_throw = preload("res://Assets/Audio/FF_throw_02.wav")
+var sound_wait = preload("res://Assets/Audio/BFXR_wait_01.wav")
+var sound_your_turn = preload("res://Assets/Audio/blip_01.wav")
+var footstep_index: int = 0
+var footstep_array: Array = [
+	preload("res://Assets/Audio/footstep_01.wav"), 
+	preload("res://Assets/Audio/footstep_02.wav"), 
+	preload("res://Assets/Audio/footstep_03.wav"), 
+	preload("res://Assets/Audio/footstep_04.wav"), 
+	preload("res://Assets/Audio/footstep_05.wav"), 
+	preload("res://Assets/Audio/footstep_06.wav"), 
+	preload("res://Assets/Audio/footstep_07.wav"), 
+	preload("res://Assets/Audio/footstep_07.wav"), 
+	preload("res://Assets/Audio/footstep_08.wav"), 
 ]
 
 signal give_on_select_info
@@ -164,21 +165,37 @@ func generate_unique_name(name_prefix):
 func _physics_process(_delta):
 	bullseye = Vector3(global_translation.x, global_translation.y + 0.6, global_translation.z)
 	var next_loc = $NavigationAgent.get_next_location()
-	if waiting && !red_light:
-		Global.level_up_tracker += wait_modifier
-	if walking:
-		if !red_light:
+	if !red_light:
+		if food_contacts.size() > 0 && !self.has_node("MyFood"):
+#			$CharacterSound.stream = sound_pickup
+#			$CharacterSound.play()
+			var my_food = food_contacts.pop_back()
+			var food_par = my_food.get_parent()
+			food_par.remove_child(my_food)
+			add_child(my_food)
+			my_food.translation = Vector3(0, 0.5, 0)
+			if my_food.name == "MyFood": ## taking from someone else, food ends up thrown at them
+				throw_food(food_par.global_translation)
+			else:
+				my_food.name = "MyFood"
+			if player && my_food.has_node("Text"):
+				var text_node = my_food.get_node("Text")
+				text_node.emit_signal("enable_read_action")
+		if waiting:
+			Global.level_up_tracker += wait_modifier
+		if walking:
 			velocity = global_translation.direction_to(next_loc) * walk_speed
 			if knockback:
 				velocity = global_translation.direction_to(next_loc) * knockback_speed
 				knockback_speed -= knockback_speed * knockback_speed_attrition
-# warning-ignore:return_value_discarded
+	# warning-ignore:return_value_discarded
 			move_and_slide(velocity)
 			if hunting: 
 				hunting = !acquire_target()
-		else:
-#			## leaving this here for error handling potentially
-			pass
+			if !$CharacterSound.playing:
+				$CharacterSound.stream = footstep_array[footstep_index]
+				footstep_index = (footstep_index + 1) % footstep_array.size()
+				$CharacterSound.play()
 
 func on_red_light():
 	set_deferred("red_light", true)
@@ -200,28 +217,13 @@ func acquire_target():
 
 func handle_action(action):
 	if action[0] == "wait":
-		$CharacterSound.stream = sound_wait
-		$CharacterSound.play()
+		if player:
+			$CharacterSound.stream = sound_wait
+			$CharacterSound.play()
 		walking = false
 		waiting = true
 	if action[0] == "pick_up":
-		walking = false
-		waiting = false
-		if food_contacts.size() > 0 && !self.has_node("MyFood"):
-			$CharacterSound.stream = sound_pickup
-			$CharacterSound.play()
-			var my_food = food_contacts.pop_back()
-			var food_par = my_food.get_parent()
-			food_par.remove_child(my_food)
-			add_child(my_food)
-			my_food.translation = Vector3(0, 0.5, 0)
-			if my_food.name == "MyFood": ## taking from someone else, food ends up thrown at them
-				throw_food(food_par.global_translation)
-			else:
-				my_food.name = "MyFood"
-			if player && my_food.has_node("Text"):
-				var text_node = my_food.get_node("Text")
-				text_node.emit_signal("enable_read_action")
+		print("action chosen was pickup")
 	if action[0] == "throw":
 		$CharacterSound.stream = sound_throw
 		$CharacterSound.play()
@@ -237,7 +239,8 @@ func handle_action(action):
 #		if $NavigationAgent.get_target_location() != action[1]:
 #			$NavigationAgent.set_target_location(action[1])
 		$NavigationAgent.set_target_location(action[1])
-		#$CharacterSound.stream = walk_sound_array[randi() % walk_sound_array.size()]
+		$CharacterSound.stream = footstep_array[0]
+		footstep_index = (footstep_index + 1) % footstep_array.size()
 		#$CharacterSound.play()
 
 func add_to_food_contacts(floor_food):

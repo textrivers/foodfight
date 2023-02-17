@@ -9,7 +9,15 @@ var floor_splat = preload("res://Scenes/FloorSplat.tscn")
 var floor_splat_mod: int = 1
 export var splat_colors: Array
 var thrown_by_player: bool = false
-
+var impact_sound_array = [
+	"res://Assets/Audio/BFXR_splat_01.wav", 
+	"res://Assets/Audio/BFXR_splat_02.wav", 
+	"res://Assets/Audio/BFXR_splat_03.wav", 
+	"res://Assets/Audio/BFXR_splat_04.wav", 
+	"res://Assets/Audio/BFXR_splat_05.wav", 
+	"res://Assets/Audio/BFXR_splat_06.wav", 
+	"res://Assets/Audio/BFXR_splat_07.wav"
+]
 signal player_hit
 
 # Called when the node enters the scene tree for the first time.
@@ -18,6 +26,7 @@ func _ready():
 	$Sprite3D.material_override = $Sprite3D.material_override.duplicate(true)
 	$Sprite3D.texture = $Viewport.get_texture()
 	$Sprite3D.material_override.albedo_texture = $Viewport.get_texture()
+	$ImpactSound.stream.audio_stream = load(impact_sound_array[randi() % impact_sound_array.size()])
 # warning-ignore:return_value_discarded
 	get_parent().get_parent().connect("red_light", self, "on_red_light")
 # warning-ignore:return_value_discarded
@@ -93,7 +102,10 @@ func _physics_process(delta):
 						get_parent().add_child(new_floor_splat)
 				else:
 					print($RayCast.get_collider().name)
-			call_deferred("queue_free")
+			$Sprite3D.hide()
+			$CollisionShape.call_deferred("set_disabled", true) 
+			$ImpactSound.play()
+			$Timer.start()
 
 func spawn_splatter_particles(pos, col):
 	var new_splat = splat.instance()

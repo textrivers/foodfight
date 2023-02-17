@@ -40,6 +40,7 @@ var sound_array = [
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Timer.start()
 	randomize()
 # warning-ignore:return_value_discarded
 	get_parent().connect("red_light", self, "_on_red_light")
@@ -47,9 +48,9 @@ func _ready():
 	get_parent().connect("green_light", self, "_on_green_light")
 	material_override = material_override.duplicate()
 	draw_pass_1 = particle_mesh_array[randi() % particle_mesh_array.size()]
-	$ImpactSound.stream = sound_array[randi() % sound_array.size()]
-	yield(get_tree().create_timer(randf() * 0.1), "timeout")
-	$ImpactSound.play()
+#	$ImpactSound.stream = sound_array[randi() % sound_array.size()]
+#	yield(get_tree().create_timer(randf() * 0.1), "timeout")
+#	$ImpactSound.play()
 
 func _on_red_light():
 	speed_scale = 0

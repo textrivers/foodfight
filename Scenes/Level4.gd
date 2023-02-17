@@ -57,8 +57,8 @@ var mess_multiplier: float = 2.0
 var hilarity_multiplier: float = 0.25
 
 var power_up_dict: Dictionary = {
-	0: ["Quickling's Quill", "Increased move speed", "res://Assets/PowerUpIcons/QQ.png"], 
-	1: ["Barbed Wire Map", "Decreased opponent move speed", "res://Assets/PowerUpIcons/BW.png"], 
+	0: ["Quickling's Quill", "Increased walk speed", "res://Assets/PowerUpIcons/QQ.png"], 
+	1: ["Barbed Wire Map", "Decreased opponent walk speed", "res://Assets/PowerUpIcons/BW.png"], 
 	2: ["Uriel's Eye", "Increased vision range", "res://Assets/PowerUpIcons/UE.png"], 
 	3: ["Hydraulic Shoulder", "Increased throw speed", "res://Assets/PowerUpIcons/HS.png"],
 	4: ["Demon Refractor", "Reveal level exit (the big ice cream that eats you)", "res://Assets/PowerUpIcons/DR.png"], 
@@ -76,7 +76,7 @@ var power_up_dict: Dictionary = {
 	16: ["Thaumaturge's Greeting Card", "Randomly teleport once", "res://Assets/PowerUpIcons/TM.png"],
 	17: ["Coriolis Scrubber", "Remove 1/2 of the floor splatters", "res://Assets/PowerUpIcons/CS.png"],
 	18: ["Laser Level", "Set Hilarity to zero", "res://Assets/PowerUpIcons/LaLe.png"],
-	19: ["Pocket Quasar", "Level up while waiting", "res://Assets/PowerUpIcons/PQ.png"], 
+	19: ["Pocket Quasar", "Level up while resting", "res://Assets/PowerUpIcons/PQ.png"], 
 	20: ["Banana Bonanza", "Spawn more bananas", "res://Assets/PowerUpIcons/BB.png"],
 	21: ["Licorice Lovebird", "Decreased vision range", "res://Assets/PowerUpIcons/LiLo.png"],
 	22: ["Surrogate Scissor", "Take control of one opponent", "res://Assets/PowerUpIcons/SS.png"],
@@ -87,19 +87,19 @@ var power_up_dict: Dictionary = {
 	27: ["Ballistics Textbook", "Better aim", "res://Assets/PowerUpIcons/BT.png"],
 	28: ["Ballistics Textbook", "Better aim", "res://Assets/PowerUpIcons/BT.png"],
 	29: ["Ballistics Textbook", "Better aim", "res://Assets/PowerUpIcons/BT.png"],
-	30: ["Pocket Quasar", "Level up while waiting", "res://Assets/PowerUpIcons/PQ.png"], 
-	31: ["Pocket Quasar", "Level up while waiting", "res://Assets/PowerUpIcons/PQ.png"], 
+	30: ["Pocket Quasar", "Level up while resting", "res://Assets/PowerUpIcons/PQ.png"], 
+	31: ["Pocket Quasar", "Level up while resting", "res://Assets/PowerUpIcons/PQ.png"], 
 	32: ["Demon Refractor", "Reveal level exit (the big ice cream that eats you)", "res://Assets/PowerUpIcons/DR.png"], 
 	33: ["Demon Refractor", "Reveal level exit (the big ice cream that eats you)", "res://Assets/PowerUpIcons/DR.png"], 
 	34: ["Demon Refractor", "Reveal level exit (the big ice cream that eats you)", "res://Assets/PowerUpIcons/DR.png"], 
 	35: ["Demon Refractor", "Reveal level exit (the big ice cream that eats you)", "res://Assets/PowerUpIcons/DR.png"], 
 	36: ["Demon Refractor", "Reveal level exit (the big ice cream that eats you)", "res://Assets/PowerUpIcons/DR.png"], 
-	37: ["Quickling's Quill", "Increased move speed", "res://Assets/PowerUpIcons/QQ.png"],
-	38: ["Quickling's Quill", "Increased move speed", "res://Assets/PowerUpIcons/QQ.png"],
-	39: ["Quickling's Quill", "Increased move speed", "res://Assets/PowerUpIcons/QQ.png"],
-	40: ["Barbed Wire Map", "Decreased opponent move speed", "res://Assets/PowerUpIcons/BW.png"], 
-	41: ["Barbed Wire Map", "Decreased opponent move speed", "res://Assets/PowerUpIcons/BW.png"], 
-	42: ["Barbed Wire Map", "Decreased opponent move speed", "res://Assets/PowerUpIcons/BW.png"], 
+	37: ["Quickling's Quill", "Increased walk speed", "res://Assets/PowerUpIcons/QQ.png"],
+	38: ["Quickling's Quill", "Increased walk speed", "res://Assets/PowerUpIcons/QQ.png"],
+	39: ["Quickling's Quill", "Increased walk speed", "res://Assets/PowerUpIcons/QQ.png"],
+	40: ["Barbed Wire Map", "Decreased opponent walk speed", "res://Assets/PowerUpIcons/BW.png"], 
+	41: ["Barbed Wire Map", "Decreased opponent walk speed", "res://Assets/PowerUpIcons/BW.png"], 
+	42: ["Barbed Wire Map", "Decreased opponent walk speed", "res://Assets/PowerUpIcons/BW.png"], 
 	43: ["Uriel's Eye", "Increased vision range", "res://Assets/PowerUpIcons/UE.png"], 
 	44: ["Uriel's Eye", "Increased vision range", "res://Assets/PowerUpIcons/UE.png"], 
 	45: ["Uriel's Eye", "Increased vision range", "res://Assets/PowerUpIcons/UE.png"], 
@@ -271,11 +271,25 @@ func _on_HSlider_value_changed(value):
 
 # warning-ignore:unused_argument
 func _physics_process(delta):
+	## keyboard input, apologies to anyone reading this for the clumsy/naive approach
 	if Input.is_action_just_pressed("debug"):
 		debug = !debug
 		print("debug is " + str(debug))
 	if Input.is_action_just_pressed("ui_cancel"):
 		SceneManager.goto_scene(self, "res://Scenes/TitleScreen.tscn")
+	if whose_turn == Global.player_node:
+		if $GUI/Right/PlayerOptions.visible == true:
+			if Input.is_action_just_pressed("read") && $GUI/Right/PlayerOptions/Read.disabled == false:
+				_on_Read_pressed()
+			if Input.is_action_just_pressed("walk") && $GUI/Right/PlayerOptions/Walk.disabled == false:
+				_on_Walk_pressed()
+			if Input.is_action_just_pressed("throw") && $GUI/Right/PlayerOptions/Throw.disabled == false:
+				_on_Throw_pressed()
+			if Input.is_action_just_pressed("wait") && $GUI/Right/PlayerOptions/Wait.disabled == false:
+				_on_Wait_pressed()
+		if $GUI/Right/ProceedCancel.visible == true:
+			if Input.is_action_just_pressed("cancel") && $GUI/Right/ProceedCancel/Cancel.disabled == false:
+				_on_Cancel_pressed()
 	advance_time()
 	prompt_turns()
 	translate_cam_rig()
@@ -335,21 +349,14 @@ func AI_action_select():
 				current_action = AI_actions[0].duplicate(false)
 				current_action[2] = 100
 		else: ## not holding food
-			if whose_turn.food_contacts.size() > 0: ## if standing on food
-				current_action = AI_actions[1].duplicate(false) ## pick up food
-			else: ## if not standing on food
-				if whose_turn.is_in_group("stationary"): ## stationary opponents just wait
-					current_action = AI_actions[0].duplicate(false)
-					current_action[2] = 100
-				else: ## not stationary
-					current_action = AI_actions[3].duplicate(false) ## walk 
-					if get_tree().get_nodes_in_group("throwable").size() > 0: ## if food exists
-						action_target = find_closest_food() ## walk to closest food
-						current_action[1] = action_target
-					else: ## if food doesn't exist
-						var tiles = get_tree().get_nodes_in_group("tile") ## walk to random tile
-						var dest_tile = tiles[randi() % tiles.size()]
-						current_action[1] = dest_tile.global_translation
+			current_action = AI_actions[3].duplicate(false) ## walk 
+			if get_tree().get_nodes_in_group("throwable").size() > 0: ## if food exists
+				action_target = find_closest_food() ## walk to closest food
+				current_action[1] = action_target
+			else: ## if food doesn't exist
+				var tiles = get_tree().get_nodes_in_group("tile") ## walk to random tile
+				var dest_tile = tiles[randi() % tiles.size()]
+				current_action[1] = dest_tile.global_translation
 		## handle navigation for walking
 		if current_action[0] == "walk":
 			whose_turn.get_node("NavigationAgent").set_target_location(current_action[1])
@@ -412,12 +419,11 @@ func display_character_options(_player):
 			if button is Button && button.name != "Read":
 				button.disabled = false
 		if whose_turn.has_node("MyFood"):
-			$GUI/Right/PlayerOptions/PickUp.disabled = true
+			pass
 		else:
 			$GUI/Right/PlayerOptions/Throw.disabled = true
-		if whose_turn.food_contacts.size() == 0:
-			$GUI/Right/PlayerOptions/PickUp.disabled = true
 		if Global.level_up_tracker > Global.level_up_threshold:
+			$LevelUpOptions/LevelUpSound.play()
 			$LevelUpOptions.show()
 			for button in $LevelUpOptions/VBoxContainer/HBoxContainer.get_children():
 				var power = []
@@ -482,6 +488,7 @@ func _on_Read_pressed():
 	$You/PoemCamRig.direction = !$You/PoemCamRig.direction
 	$You/PoemCamRig/PoemCam.current = true
 	Global.level_up_tracker += 15
+	$HumSound.play()
 
 func _on_Screenshot_pressed():
 	$GUI/Right/ReadOptions.hide()
@@ -504,10 +511,10 @@ func _on_Screenshot_pressed():
 		Global.level_up_tracker += 25
 		screenshot_acquired = true
 
-func _on_PickUp_pressed():
-	current_action[0] = "pick_up"
-	current_action[2] = 25
-	_on_Proceed_pressed()
+#func _on_PickUp_pressed():
+#	current_action[0] = "pick_up"
+#	current_action[2] = 25
+#	_on_Proceed_pressed()
 
 func _on_Throw_pressed():
 	$GUI/Right/PlayerOptions.hide()
@@ -585,6 +592,8 @@ func _on_Cancel_pressed():
 	$TurnMarker.show()
 	$GUI/Center.show()
 	screenshot_acquired = false
+	if $HumSound.playing:
+		$HumSound.stop()
 
 func _on_CheckButton_toggled(button_pressed):
 	if button_pressed == true:
@@ -643,9 +652,9 @@ func handle_power_up(_index, _icon, _tooltip):
 	for child in $LevelUpOptions/VBoxContainer/HBoxContainer.get_children():
 		if child.power_up_index == _index: 
 			match _index:
-				0, 37, 38, 39: ## increase move speed
+				0, 37, 38, 39: ## increase walk speed
 					Global.player_node.walk_speed += 2.0 
-				1, 40, 41, 42: ## decrease opponent move speed
+				1, 40, 41, 42: ## decrease opponent walk speed
 					for character in get_tree().get_nodes_in_group("character"):
 						if character != Global.player_node:
 							character.walk_speed *= 0.66 
