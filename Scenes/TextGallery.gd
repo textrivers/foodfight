@@ -45,6 +45,7 @@ func _process(_delta):
 
 func tween_text(text_sprite): 
 	if !tweening:
+		$ButtonSound.play()
 		tweening = true
 		viewing = true
 		text_sprite.z_index = 5
@@ -67,12 +68,15 @@ func _on_Tween_tween_all_completed():
 		viewed_sprite.z_index = 0
 
 func _on_MainMenu_pressed():
+	$ButtonSound.play()
 	SceneManager.goto_scene(self, "res://Scenes/TitleScreen.tscn")
 
 func _on_ResetTexts_pressed():
+	$ButtonSound.play()
 	$AreYouSure.show()
 
 func _on_Proceed_pressed():
+	$ButtonSound.play()
 	var texts_for_save = []
 	for i in Global.poem_text_dict:
 		Global.poem_text_dict[i][3] = false
@@ -85,4 +89,5 @@ func _on_Proceed_pressed():
 	SceneManager.goto_scene(self, "res://Scenes/TitleScreen.tscn")
 
 func _on_Cancel_pressed():
+	$ButtonSound.play()
 	$AreYouSure.hide()

@@ -38,9 +38,10 @@ var thumbnails: Array = [
 var next_scene = "res://Scenes/Level_1.tscn"
 
 func _ready():
-	print($CharGUI/VBoxContainer/RandomOrDone/VBoxContainer/DifficultySlider.value)
+	pass
 
 func on_thumbnail_changed(thumb_num):
+	$ButtonSound.play()
 	thumb_calc = thumb_num
 	if $CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/HBoxContainer/HaloCheck.pressed == true:
 		thumb_calc += 1
@@ -51,6 +52,7 @@ func on_thumbnail_changed(thumb_num):
 	Global.character_light_mask = Global.light_mask_lookup[thumbnails[thumb_calc]]
 
 func on_halo_or_horns(_pressed):
+	$ButtonSound.play()
 	while thumb_calc % 4 != 0:
 		thumb_calc -= 1
 	if $CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/HBoxContainer/HaloCheck.pressed == true:
@@ -62,10 +64,12 @@ func on_halo_or_horns(_pressed):
 	Global.character_light_mask = Global.light_mask_lookup[thumbnails[thumb_calc]]
 
 func on_color_changed(new_color):
+	$ButtonSound.play()
 	$CharGUI/VBoxContainer/MainChoiceArea/ThumbsEtc/HBoxContainer2/PhotoEtc/TextureRect.self_modulate = new_color
 	Global.character_modulate = new_color
 	
 func _on_DifficultySlider_value_changed(value):
+	$SliderSound.play()
 	var update_text: String
 	var int_value = int(value)
 	match int_value:
@@ -82,6 +86,7 @@ func _on_DifficultySlider_value_changed(value):
 	$CharGUI/VBoxContainer/RandomOrDone/VBoxContainer/Label.text = "Difficulty: " + update_text
 	
 func _on_DoneButton_pressed():
+	$ButtonSound.play()
 	Global.game_hit_count = 0
 	Global.game_text_count = 0
 	Global.hit_splat_array = []
@@ -96,5 +101,4 @@ func _on_DoneButton_pressed():
 			Global.hit_maximum = 1
 		_: 
 			Global.hit_maximum = 1
-	print(Global.hit_maximum)
 	SceneManager.goto_scene(self, next_scene)

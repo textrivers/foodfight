@@ -12,7 +12,7 @@ dest_files=[ "res://.import/bullseye.wav-88c7cd92c2798411d1a4e6982475e75c.sample
 [params]
 
 force/8_bit=false
-force/mono=false
+force/mono=true
 force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false

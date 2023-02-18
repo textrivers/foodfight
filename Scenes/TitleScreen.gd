@@ -41,11 +41,14 @@ func _process(delta):
 func _on_Play_pressed():
 	next_scene = "res://Scenes/CharacterSelection.tscn"
 	SceneManager.goto_scene(self, next_scene)
+	$ButtonSound.play()
 
 func _on_Tutorial_pressed():
 	next_scene = "res://Scenes/Tutorial.tscn"
 	SceneManager.goto_scene(self, next_scene)
+	$ButtonSound.play()
 
 func _on_Texts_pressed():
 	next_scene = "res://Scenes/TextGallery.tscn"
 	SceneManager.goto_scene(self, next_scene)
+	$ButtonSound.play()

@@ -10,3 +10,4 @@ func _ready():
 
 func _on_Button_pressed():
 	emit_signal("change_thumb", self.thumb_num)
+	

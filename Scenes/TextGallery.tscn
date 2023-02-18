@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
+[ext_resource path="res://Scenes/ButtonSound.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/PanoramaSky/A_pano_1.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/TextGallery.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Fonts/TCM_____.TTF" type="DynamicFontData" id=4]
@@ -139,6 +140,8 @@ margin_bottom = 280.0
 text = "Cancel"
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="ButtonSound" parent="." instance=ExtResource( 1 )]
 
 [connection signal="pressed" from="Control/VBoxContainer/HBox/ResetTexts" to="." method="_on_ResetTexts_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/HBox/MainMenu" to="." method="_on_MainMenu_pressed"]
