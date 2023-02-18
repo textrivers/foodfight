@@ -666,6 +666,7 @@ func handle_power_up(_index, _icon, _tooltip):
 				4, 32, 33, 34, 35, 36: ## reveal ice cream
 					$GiantIceCream.show()
 					$GiantIceCream/Area.monitoring = true
+					$GiantIceCream/IceCreamSound.play()
 					## erase all other keys that have this same power
 					var erase_array = []
 					for k in power_up_dict: 
