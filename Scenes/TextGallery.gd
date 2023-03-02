@@ -11,6 +11,10 @@ var text_button_scene = preload("res://Scenes/TextButton0.tscn")
 const FILE_NAME = "user://enough-of-a-mess-data.json"
 
 func _ready():
+	var music = Global.audio.get_node("Music/AudioStreamPlayer")
+	if !music.playing:
+		music.stream = load("res://Assets/Audio/EG_FW.ogg")
+		music.play()
 	tween = $Tween
 	var any_found: bool = false
 	if Global.poem_text_dict.size() > 32: 
@@ -45,7 +49,7 @@ func _process(_delta):
 
 func tween_text(text_sprite): 
 	if !tweening:
-		$ButtonSound.play()
+		#$ButtonSound.play()
 		tweening = true
 		viewing = true
 		text_sprite.z_index = 5
@@ -69,6 +73,7 @@ func _on_Tween_tween_all_completed():
 
 func _on_MainMenu_pressed():
 	$ButtonSound.play()
+	Global.audio.fade_out()
 	SceneManager.goto_scene(self, "res://Scenes/TitleScreen.tscn")
 
 func _on_ResetTexts_pressed():

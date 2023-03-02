@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/music_lvl_2-live_pseudo-live.ogg-54feaf5ec54c8da5a90791b07f59d231.oggstr"
+
+[deps]
+
+source_file="res://Assets/Audio/music_lvl_2-live_pseudo-live.ogg"
+dest_files=[ "res://.import/music_lvl_2-live_pseudo-live.ogg-54feaf5ec54c8da5a90791b07f59d231.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -20,6 +20,10 @@ var loss_messages: Array = [
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
+	var music = Global.audio.get_node("Music/AudioStreamPlayer")
+	if !music.playing:
+		music.stream = load("res://Assets/Audio/EG_PAM.ogg")
+		music.play()
 	if Global.game_hit_count >= Global.hit_maximum:
 		$VBoxContainer/SummaryMessage.text = loss_messages[randi() % loss_messages.size()]
 		$VBoxContainer/VictoryText.text = ""
@@ -51,6 +55,7 @@ func _process(_delta):
 
 func _on_TextGallery_pressed():
 	SceneManager.goto_scene(self, "res://Scenes/TextGallery.tscn")
+	Global.audio.fade_out()
 
 func _on_MainMenu_pressed():
 	SceneManager.goto_scene(self, "res://Scenes/TitleScreen.tscn")

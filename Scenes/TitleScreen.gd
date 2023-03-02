@@ -7,6 +7,11 @@ var scroll_rate: float = 0.5
 const FILE_NAME = "user://enough-of-a-mess-data.json"
 
 func _ready():
+	print("title screen ready")
+	var music = Global.audio.get_node("Music/AudioStreamPlayer")
+	if !music.playing:
+		music.stream = load("res://Assets/Audio/EG_PAM.ogg")
+		music.play()
 	$AnimationPlayer.play("default")
 	## load user save file and sync to Global
 	var file = File.new()
@@ -50,5 +55,6 @@ func _on_Tutorial_pressed():
 
 func _on_Texts_pressed():
 	next_scene = "res://Scenes/TextGallery.tscn"
-	SceneManager.goto_scene(self, next_scene)
 	$ButtonSound.play()
+	SceneManager.goto_scene(self, next_scene)
+	Global.audio.fade_out()

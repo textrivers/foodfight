@@ -126,9 +126,11 @@ var hit_maximum: int = 10
 var hit_splat_array: Array = []
 var game_text_count: int = 5
 
+var audio
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
 func get_random_palette_color(): ## okay I thought I didn't remember writing this, because apparently I didn't
 	var color_keys = palette_dict.keys()

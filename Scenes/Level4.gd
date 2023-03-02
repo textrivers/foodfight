@@ -139,6 +139,7 @@ var power_up_dict: Dictionary = {
 	79: ["Licorice Lovebird", "Decreased vision range", "res://Assets/PowerUpIcons/LiLo.png"],
 }
 var unique_power_int: int = 100
+export var level_music = preload("res://Assets/Audio/music_lvl_1-live_pseudo-live.ogg")
 
 const FILE_NAME = "user://enough-of-a-mess-data.json"
 
@@ -152,6 +153,9 @@ func _ready():
 	if OS.get_name() == "Windows":
 		print("adjusting background energy")
 		$WorldEnvironment.get_environment().background_energy = 4.0
+	var music = Global.audio.get_node("Music/AudioStreamPlayer")
+	music.stream = level_music
+	music.play()
 	randomize()
 	Global.level_up_tracker = 0
 	Global.level_up_threshold = 10
@@ -793,3 +797,4 @@ func handle_power_up(_index, _icon, _tooltip):
 
 func do_game_over():
 	SceneManager.goto_scene(self, "res://Scenes/GameSummary.tscn")
+	Global.audio.fade_out()

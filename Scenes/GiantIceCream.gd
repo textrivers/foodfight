@@ -23,3 +23,4 @@ func _on_Area_body_entered(body):
 	Global.visible_splat_count = 0
 	if body.player:
 		SceneManager.goto_scene(get_parent(), nextscene)
+		Global.audio.fade_out()

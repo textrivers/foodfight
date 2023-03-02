@@ -102,3 +102,4 @@ func _on_DoneButton_pressed():
 		_: 
 			Global.hit_maximum = 1
 	SceneManager.goto_scene(self, next_scene)
+	Global.audio.fade_out()
