@@ -339,19 +339,27 @@ func AI_action_select():
 		current_action = AI_actions[0].duplicate(false) ## wait 30 
 	else:
 		if whose_turn.has_node("MyFood"): ## if holding food
-			if whose_turn.acquire_target(): ## if can see player
-				current_action = AI_actions[2].duplicate(false) ## throw
-				action_target = Global.player_node.bullseye
+			if AI_rand == 1: ## chance to throw at random character
+				current_action = AI_actions[2].duplicate(false)
+				var characters = get_tree().get_nodes_in_group("character")
+				var rand_target = characters[randi() % characters.size()].bullseye
+				action_target = rand_target
 				var throw_mod = Vector3((randf() - 0.5)/whose_turn.aim_divisor, (randf() - 0.5)/whose_turn.aim_divisor, (randf() - 0.5)/whose_turn.aim_divisor)
-				#throw_mod *= 2 ## up to 1 square off by default
 				current_action[1] = action_target + throw_mod
-			elif !whose_turn.is_in_group("stationary"): ## can't see player
-				current_action = AI_actions[3].duplicate(false) ## walk to player
-				current_action[1] = Global.player_node.global_translation
-				whose_turn.hunting = true
-			else: ## stationary; wait 100
-				current_action = AI_actions[0].duplicate(false)
-				current_action[2] = 100
+			else:
+				if whose_turn.acquire_target(): ## if can see player
+					current_action = AI_actions[2].duplicate(false) ## throw
+					action_target = Global.player_node.bullseye
+					var throw_mod = Vector3((randf() - 0.5)/whose_turn.aim_divisor, (randf() - 0.5)/whose_turn.aim_divisor, (randf() - 0.5)/whose_turn.aim_divisor)
+					#throw_mod *= 2 ## up to 1 square off by default
+					current_action[1] = action_target + throw_mod
+				elif !whose_turn.is_in_group("stationary"): ## can't see player
+					current_action = AI_actions[3].duplicate(false) ## walk to player
+					current_action[1] = Global.player_node.global_translation
+					whose_turn.hunting = true
+				else: ## stationary; wait 100
+					current_action = AI_actions[0].duplicate(false)
+					current_action[2] = 100
 		else: ## not holding food
 			current_action = AI_actions[3].duplicate(false) ## walk 
 			if get_tree().get_nodes_in_group("throwable").size() > 0: ## if food exists
@@ -492,6 +500,7 @@ func _on_Read_pressed():
 	$You/PoemCamRig.direction = !$You/PoemCamRig.direction
 	$You/PoemCamRig/PoemCam.current = true
 	Global.level_up_tracker += 15
+	Global.audio.mute_music()
 	$HumSound.play()
 
 func _on_Screenshot_pressed():
@@ -598,6 +607,7 @@ func _on_Cancel_pressed():
 	screenshot_acquired = false
 	if $HumSound.playing:
 		$HumSound.stop()
+	Global.audio.unmute_music()
 
 func _on_CheckButton_toggled(button_pressed):
 	if button_pressed == true:

@@ -16,3 +16,9 @@ func _on_Timer_timeout():
 	$Music/AudioStreamPlayer.stop()
 	AudioServer.set_bus_volume_db(1, linear2db(1))
 	$Timer.wait_time = 2.0
+
+func mute_music():
+	AudioServer.set_bus_volume_db(1, linear2db(0))
+
+func unmute_music():
+	AudioServer.set_bus_volume_db(1, linear2db(1))
