@@ -7,3 +7,4 @@ audio_stream = ExtResource( 1 )
 
 [node name="LevelUpSound" type="AudioStreamPlayer"]
 stream = SubResource( 1 )
+bus = "SFX"

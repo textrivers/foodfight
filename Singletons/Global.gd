@@ -127,6 +127,8 @@ var hit_splat_array: Array = []
 var game_text_count: int = 5
 
 var audio
+var max_vol_music: float = 1.0
+var max_vol_sfx: float = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

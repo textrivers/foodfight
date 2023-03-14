@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Assets/PanoramaSky/A_pano_FULL.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Level4.gd" type="Script" id=2]
@@ -16,6 +16,9 @@
 [ext_resource path="res://Scenes/PowerUpIconContainer.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/LevelUpSound.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/HumSound.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/Options.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Assets/toggle_splat.png" type="Texture" id=18]
+[ext_resource path="res://Assets/toggle_sq.png" type="Texture" id=19]
 
 [sub_resource type="DynamicFont" id=16]
 size = 60
@@ -60,6 +63,105 @@ width = 1024
 height = 600
 fill = 1
 fill_from = Vector2( 0.5, 0.6 )
+
+[sub_resource type="DynamicFont" id=26]
+size = 20
+font_data = ExtResource( 10 )
+
+[sub_resource type="StyleBoxFlat" id=27]
+content_margin_right = 0.0
+bg_color = Color( 0.458824, 0.458824, 0.458824, 1 )
+border_color = Color( 0.819608, 0.819608, 0.819608, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_offset = Vector2( 2, 2 )
+
+[sub_resource type="StyleBoxFlat" id=28]
+bg_color = Color( 0.556863, 0.815686, 0.878431, 1 )
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=29]
+bg_color = Color( 0.0509804, 0.392157, 0.482353, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0784314, 0.270588, 0.321569, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+shadow_size = 2
+shadow_offset = Vector2( 2, 2 )
+
+[sub_resource type="StyleBoxFlat" id=21]
+bg_color = Color( 0.192157, 0.133333, 0.266667, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.262745, 0.0980392, 0.466667, 1 )
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+shadow_size = 2
+shadow_offset = Vector2( 2, 2 )
+
+[sub_resource type="Image" id=32]
+data = {
+"data": PoolByteArray( 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42, 37, 37, 42 ),
+"format": "RGB8",
+"height": 8,
+"mipmaps": false,
+"width": 8
+}
+
+[sub_resource type="ImageTexture" id=23]
+flags = 4
+flags = 4
+image = SubResource( 32 )
+size = Vector2( 8, 8 )
+
+[sub_resource type="StyleBoxTexture" id=24]
+texture = SubResource( 23 )
+region_rect = Rect2( 0, 0, 8, 8 )
+
+[sub_resource type="Theme" id=31]
+resource_local_to_scene = true
+default_font = SubResource( 26 )
+Button/colors/font_color = Color( 0.788235, 0.694118, 0.0666667, 1 )
+Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+Button/colors/font_color_focus = Color( 1, 0.878431, 0.054902, 1 )
+Button/colors/font_color_hover = Color( 1, 0.878431, 0.054902, 1 )
+Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+Button/constants/hseparation = 0
+Button/fonts/font = SubResource( 26 )
+Button/styles/disabled = SubResource( 27 )
+Button/styles/focus = SubResource( 28 )
+Button/styles/hover = SubResource( 29 )
+Button/styles/normal = SubResource( 21 )
+Button/styles/pressed = SubResource( 28 )
+CheckBox/icons/checked = ExtResource( 18 )
+CheckBox/icons/unchecked = ExtResource( 19 )
+CheckButton/icons/off = ExtResource( 19 )
+CheckButton/icons/on = ExtResource( 18 )
+Panel/styles/panel = SubResource( 24 )
 
 [sub_resource type="PanoramaSky" id=2]
 panorama = ExtResource( 1 )
@@ -516,6 +618,9 @@ expand_icon = true
 script = ExtResource( 3 )
 
 [node name="LevelUpSound" parent="LevelUpOptions" instance=ExtResource( 15 )]
+
+[node name="Options" parent="." instance=ExtResource( 17 )]
+theme = SubResource( 31 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )

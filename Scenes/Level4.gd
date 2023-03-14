@@ -279,8 +279,6 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("debug"):
 		debug = !debug
 		print("debug is " + str(debug))
-	if Input.is_action_just_pressed("ui_cancel"):
-		SceneManager.goto_scene(self, "res://Scenes/TitleScreen.tscn")
 	if whose_turn == Global.player_node:
 		if $GUI/Right/PlayerOptions.visible == true:
 			if Input.is_action_just_pressed("read") && $GUI/Right/PlayerOptions/Read.disabled == false:

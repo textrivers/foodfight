@@ -58,3 +58,6 @@ func _on_Texts_pressed():
 	$ButtonSound.play()
 	SceneManager.goto_scene(self, next_scene)
 	Global.audio.fade_out()
+
+func _on_Options_pressed():
+	$Options.toggle_appearance()
