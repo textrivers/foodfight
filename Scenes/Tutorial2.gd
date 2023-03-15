@@ -513,17 +513,16 @@ func _on_Screenshot_pressed():
 	yield(VisualServer, "frame_post_draw")
 	var new_screen = get_viewport().get_texture().get_data()
 	new_screen.flip_y()
-	var datetime = OS.get_datetime()
+	var date_string: String = Time.get_datetime_string_from_system(false, false)
+	date_string = date_string.replace(":", "-")
 	if OS.get_name() == "HTML5":
 		## from here: https://godotengine.org/qa/104093/how-can-i-save-an-image-to-the-users-filesystem-in-a-web-export
 		var buf: PoolByteArray = new_screen.save_png_to_buffer()
-		JavaScript.download_buffer(buf, "screenshot" + str(1) + ".png", "image/png")
+		JavaScript.download_buffer(buf, "screenshot_" + date_string + ".png", "image/png")
 	elif OS.get_name() == "Windows": 
-		new_screen.save_png("res://" + "screenshot" + str(1) + ".png")
+		new_screen.save_png("res://" + "screenshot_" + date_string + ".png")
 # warning-ignore:return_value_discarded
 		OS.shell_open(ProjectSettings.globalize_path("res://"))
-	else: 
-		pass
 	$GUI/Right/ReadOptions.show()
 	$GUI/Right/ProceedCancel/Cancel.show()
 	if screenshot_acquired == false:

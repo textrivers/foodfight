@@ -175,6 +175,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, 15 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 4 )
 
 [node name="Panel" type="Panel" parent="."]
+modulate = Color( 1, 1, 1, 0.501961 )
 margin_right = 245.0
 margin_bottom = 229.0
 theme = SubResource( 10 )
@@ -268,12 +269,12 @@ text = "Pause during all turns"
 
 [node name="ReadOptions" type="VBoxContainer" parent="GUI/Right"]
 visible = false
-margin_top = 222.0
-margin_right = 239.0
-margin_bottom = 249.0
+margin_top = 151.0
+margin_right = 240.0
+margin_bottom = 178.0
 
 [node name="Screenshot" type="Button" parent="GUI/Right/ReadOptions"]
-margin_right = 239.0
+margin_right = 240.0
 margin_bottom = 27.0
 text = "Take Screenshot"
 
@@ -374,6 +375,15 @@ rect_min_size = Vector2( 0, 30 )
 mouse_filter = 2
 alignment = 2
 
+[node name="SpeedrunTimer" type="Label" parent="GUI/Center/HBoxContainer"]
+visible = false
+margin_top = 6.0
+margin_right = 392.0
+margin_bottom = 29.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.490196, 0.584314, 0.788235, 1 )
+text = " 00:00:000"
+
 [node name="Label" type="Label" parent="GUI/Center/HBoxContainer"]
 margin_left = 396.0
 margin_top = 6.0
@@ -429,6 +439,7 @@ margin_top = 78.0
 margin_right = 780.0
 margin_bottom = 88.0
 rect_min_size = Vector2( 0, 10 )
+mouse_filter = 2
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="GUI/Center"]
 margin_top = 78.0
@@ -459,11 +470,16 @@ theme = ExtResource( 10 )
 allow_greater = true
 
 [node name="HPContainer" parent="GUI/Center" instance=ExtResource( 13 )]
+mouse_filter = 2
 
 [node name="Label" parent="GUI/Center/HPContainer" index="0"]
 margin_left = 681.0
 
+[node name="GridContainer" parent="GUI/Center/HPContainer" index="1"]
+mouse_filter = 2
+
 [node name="PowerUpIconContainer" parent="GUI/Center" instance=ExtResource( 15 )]
+mouse_filter = 2
 
 [node name="LevelUpOptions" type="TextureRect" parent="."]
 visible = false
