@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Assets/PanoramaSky/A_pano_FULL.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Level4.gd" type="Script" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://Scenes/Options.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Assets/toggle_splat.png" type="Texture" id=18]
 [ext_resource path="res://Assets/toggle_sq.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Audio/music_lvl_3-live_work.ogg" type="AudioStream" id=20]
 
 [sub_resource type="DynamicFont" id=16]
 size = 60
@@ -184,6 +185,7 @@ adjustment_saturation = 2.13
 script = ExtResource( 2 )
 board_size = Vector2( 10, 10 )
 mouse_sensitivity = 0.2
+level_music = ExtResource( 20 )
 
 [node name="CameraRig" type="Position3D" parent="."]
 transform = Transform( -0.573577, 0.212012, -0.79124, 0, 0.965926, 0.258819, 0.819152, 0.148453, -0.554033, 0, 0, 0 )

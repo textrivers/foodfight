@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/music_lvl_3-live_work.ogg-755b252aac7a4574b5900d5df886e492.oggstr"
+
+[deps]
+
+source_file="res://Assets/Audio/music_lvl_3-live_work.ogg"
+dest_files=[ "res://.import/music_lvl_3-live_work.ogg-755b252aac7a4574b5900d5df886e492.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
