@@ -404,7 +404,6 @@ rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 8 )
-disabled = true
 text = "TUTORIAL"
 
 [node name="Texts" type="Button" parent="GUI/HBoxContainer"]
@@ -455,8 +454,8 @@ custom_colors/font_color = Color( 0.443137, 0.615686, 1, 1 )
 custom_colors/font_outline_modulate = Color( 1, 0.533333, 0, 1 )
 custom_colors/font_color_shadow = Color( 0.0823529, 0.0627451, 0.109804, 1 )
 custom_fonts/font = SubResource( 10 )
-text = "Game, visuals,  texts, sounds, and in-game music by Jon Woodward. 
-Menu music = \"Pleasure principle\" and \"Fallingwater\" by Erik Griswold.
+text = "A game by Jon Woodward.
+The current music is \"Pleasure principle\" by Erik Griswold.
 “If together we throw enough food, we could make enough of a mess, but we would have to keep our mouths tightly closed, to disappear from hunger.”"
 align = 1
 valign = 1

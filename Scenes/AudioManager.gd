@@ -22,3 +22,9 @@ func mute_music():
 
 func unmute_music():
 	AudioServer.set_bus_volume_db(1, linear2db(Global.max_vol_music))
+
+func pause_music():
+	$Music/AudioStreamPlayer.stream_paused = true
+
+func unpause_music():
+	$Music/AudioStreamPlayer.stream_paused = false

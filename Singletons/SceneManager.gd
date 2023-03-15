@@ -19,9 +19,9 @@ func goto_scene(current_scene, path):
 		print("error, could not load level")
 		return
 	
-	var load_time = OS.get_ticks_msec()
+	var load_time = Time.get_ticks_msec()
 	
-	while OS.get_ticks_msec() - load_time < max_time: 
+	while Time.get_ticks_msec() - load_time < max_time: 
 		var err = loader.poll()
 		if err == ERR_FILE_EOF: #Load complete
 			var resource = loader.get_resource()

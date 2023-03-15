@@ -49,7 +49,7 @@ func _on_Play_pressed():
 	$ButtonSound.play()
 
 func _on_Tutorial_pressed():
-	next_scene = "res://Scenes/Tutorial.tscn"
+	next_scene = "res://Scenes/Tutorial2.tscn"
 	SceneManager.goto_scene(self, next_scene)
 	$ButtonSound.play()
 

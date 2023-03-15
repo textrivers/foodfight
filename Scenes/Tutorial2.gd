@@ -4,9 +4,9 @@ export var board_size: Vector2 = Vector2(5, 5)
 export var tile_size: float = 1
 var tile = preload("res://Scenes/FloorTile3D.tscn")
 var food_palettes: Dictionary = {
-	#"all_bananas": [preload("res://Scenes/ClusterBanana.tscn"), preload("res://Scenes/ClusterBanana.tscn")],
-	#"all_oranges": [preload("res://Scenes/ClusterOrange.tscn"), preload("res://Scenes/ClusterOrange.tscn")],
-#	"orange_you_glad": [preload("res://Scenes/ClusterOrange.tscn"), preload("res://Scenes/ClusterBanana.tscn")],	
+	"all_bananas": [load("res://Scenes/ClusterBanana.tscn"), load("res://Scenes/ClusterBanana.tscn")],
+	"all_watermelon": [load("res://Scenes/ClusterWatermelon.tscn"), load("res://Scenes/ClusterWatermelon.tscn")],
+	"orange_you_glad": [load("res://Scenes/ClusterOrange.tscn"), load("res://Scenes/ClusterBanana.tscn")],	
 	"all_fruits": [
 		load("res://Scenes/ClusterOrange.tscn"), 
 		load("res://Scenes/ClusterBanana.tscn"), 
@@ -54,88 +54,89 @@ var advancing: bool = true
 var screenshot_acquired: bool = false
 var mess_multiplier: float = 2.0
 var hilarity_multiplier: float = 0.25
+var tutorial_state: int = 0
 
 var power_up_dict: Dictionary = {
-	0: ["Quickling's Quill", "Increased walk speed", "res://Assets/PowerUpIcons/QQ.png"], 
-	1: ["Barbed Wire Map", "Decreased opponent walk speed", "res://Assets/PowerUpIcons/BW.png"], 
-	2: ["Uriel's Eye", "Increased vision range", "res://Assets/PowerUpIcons/UE.png"], 
-	3: ["Hydraulic Shoulder", "Increased throw speed", "res://Assets/PowerUpIcons/HS.png"],
+#	0: ["Quickling's Quill", "Increased walk speed", "res://Assets/PowerUpIcons/QQ.png"], 
+#	1: ["Barbed Wire Map", "Decreased opponent walk speed", "res://Assets/PowerUpIcons/BW.png"], 
+#	2: ["Uriel's Eye", "Increased vision range", "res://Assets/PowerUpIcons/UE.png"], 
+#	3: ["Hydraulic Shoulder", "Increased throw speed", "res://Assets/PowerUpIcons/HS.png"],
 	4: ["Demon Refractor", "Reveal level exit (the big ice cream that eats you)", "res://Assets/PowerUpIcons/DR.png"], 
-	5: ["Disperser Compound", "Food makes more mess", "res://Assets/PowerUpIcons/DC.png"], ## food script needs a var for this
-	6: ["Laughing Gas", "Hilarity drains more slowly", "res://Assets/PowerUpIcons/LG.png"],
-	7: ["The Robert Hass Special", "Spawn more blackberries", "res://Assets/PowerUpIcons/RH.png"],
-	8: ["Janice's Testimony", "Spawn an extra opponent", "res://Assets/PowerUpIcons/JT.png"],
-	9: ["Early Retirement", "Despawn one opponent (if at least one exists)", "res://Assets/PowerUpIcons/ER.png"],
-	10: ["Banana Bonanza", "Spawn more bananas", "res://Assets/PowerUpIcons/BB.png"], 
-	11: ["Ballistics Textbook", "Better aim", "res://Assets/PowerUpIcons/BT.png"],
-	12: ["Two More Chrysanthemums", "Worse aim", "res://Assets/PowerUpIcons/TM.png"],
-	13: ["Guava Moonshine", "Everyone gets worse aim", "res://Assets/PowerUpIcons/GM.png"],
-#	14: ["Unwilling Disguise", "One opponent will only target opponents"], ## might be a huge pain in the ass
-	15: ["Dilettante's Diploma", "Spawn more ice cream cones", "res://Assets/PowerUpIcons/DD.png"],
-	16: ["Thaumaturge's Greeting Card", "Randomly teleport once", "res://Assets/PowerUpIcons/TM.png"],
-	17: ["Coriolis Scrubber", "Remove 1/2 of the floor splatters", "res://Assets/PowerUpIcons/CS.png"],
-	18: ["Laser Level", "Set Hilarity to zero", "res://Assets/PowerUpIcons/LaLe.png"],
-	19: ["Pocket Quasar", "Level up while resting", "res://Assets/PowerUpIcons/PQ.png"], 
-	20: ["Banana Bonanza", "Spawn more bananas", "res://Assets/PowerUpIcons/BB.png"],
-	21: ["Licorice Lovebird", "Decreased vision range", "res://Assets/PowerUpIcons/LiLo.png"],
-	22: ["Surrogate Scissor", "Take control of one opponent", "res://Assets/PowerUpIcons/SS.png"],
-	23: ["Surrogate Scissor", "Take control of one opponent", "res://Assets/PowerUpIcons/SS.png"],
-	24: ["Banana Bonanza", "Spawn more bananas", "res://Assets/PowerUpIcons/BB.png"],
-	25: ["Banana Bonanza", "Spawn more bananas", "res://Assets/PowerUpIcons/BB.png"],
-	26: ["Banana Bonanza", "Spawn more bananas", "res://Assets/PowerUpIcons/BB.png"],
-	27: ["Ballistics Textbook", "Better aim", "res://Assets/PowerUpIcons/BT.png"],
-	28: ["Ballistics Textbook", "Better aim", "res://Assets/PowerUpIcons/BT.png"],
-	29: ["Ballistics Textbook", "Better aim", "res://Assets/PowerUpIcons/BT.png"],
-	30: ["Pocket Quasar", "Level up while resting", "res://Assets/PowerUpIcons/PQ.png"], 
-	31: ["Pocket Quasar", "Level up while resting", "res://Assets/PowerUpIcons/PQ.png"], 
+#	5: ["Disperser Compound", "Food makes more mess", "res://Assets/PowerUpIcons/DC.png"], ## food script needs a var for this
+#	6: ["Laughing Gas", "Hilarity drains more slowly", "res://Assets/PowerUpIcons/LG.png"],
+#	7: ["The Robert Hass Special", "Spawn more blackberries", "res://Assets/PowerUpIcons/RH.png"],
+#	8: ["Janice's Testimony", "Spawn an extra opponent", "res://Assets/PowerUpIcons/JT.png"],
+#	9: ["Early Retirement", "Despawn one opponent (if at least one exists)", "res://Assets/PowerUpIcons/ER.png"],
+#	10: ["Banana Bonanza", "Spawn more bananas", "res://Assets/PowerUpIcons/BB.png"], 
+#	11: ["Ballistics Textbook", "Better aim", "res://Assets/PowerUpIcons/BT.png"],
+#	12: ["Two More Chrysanthemums", "Worse aim", "res://Assets/PowerUpIcons/TM.png"],
+#	13: ["Guava Moonshine", "Everyone gets worse aim", "res://Assets/PowerUpIcons/GM.png"],
+##	14: ["Unwilling Disguise", "One opponent will only target opponents"], ## might be a huge pain in the ass
+#	15: ["Dilettante's Diploma", "Spawn more ice cream cones", "res://Assets/PowerUpIcons/DD.png"],
+#	16: ["Thaumaturge's Greeting Card", "Randomly teleport once", "res://Assets/PowerUpIcons/TM.png"],
+#	17: ["Coriolis Scrubber", "Remove 1/2 of the floor splatters", "res://Assets/PowerUpIcons/CS.png"],
+#	18: ["Laser Level", "Set Hilarity to zero", "res://Assets/PowerUpIcons/LaLe.png"],
+#	19: ["Pocket Quasar", "Level up while resting", "res://Assets/PowerUpIcons/PQ.png"], 
+#	20: ["Banana Bonanza", "Spawn more bananas", "res://Assets/PowerUpIcons/BB.png"],
+#	21: ["Licorice Lovebird", "Decreased vision range", "res://Assets/PowerUpIcons/LiLo.png"],
+#	22: ["Surrogate Scissor", "Take control of one opponent", "res://Assets/PowerUpIcons/SS.png"],
+#	23: ["Surrogate Scissor", "Take control of one opponent", "res://Assets/PowerUpIcons/SS.png"],
+#	24: ["Banana Bonanza", "Spawn more bananas", "res://Assets/PowerUpIcons/BB.png"],
+#	25: ["Banana Bonanza", "Spawn more bananas", "res://Assets/PowerUpIcons/BB.png"],
+#	26: ["Banana Bonanza", "Spawn more bananas", "res://Assets/PowerUpIcons/BB.png"],
+#	27: ["Ballistics Textbook", "Better aim", "res://Assets/PowerUpIcons/BT.png"],
+#	28: ["Ballistics Textbook", "Better aim", "res://Assets/PowerUpIcons/BT.png"],
+#	29: ["Ballistics Textbook", "Better aim", "res://Assets/PowerUpIcons/BT.png"],
+#	30: ["Pocket Quasar", "Level up while resting", "res://Assets/PowerUpIcons/PQ.png"], 
+#	31: ["Pocket Quasar", "Level up while resting", "res://Assets/PowerUpIcons/PQ.png"], 
 	32: ["Demon Refractor", "Reveal level exit (the big ice cream that eats you)", "res://Assets/PowerUpIcons/DR.png"], 
 	33: ["Demon Refractor", "Reveal level exit (the big ice cream that eats you)", "res://Assets/PowerUpIcons/DR.png"], 
 	34: ["Demon Refractor", "Reveal level exit (the big ice cream that eats you)", "res://Assets/PowerUpIcons/DR.png"], 
 	35: ["Demon Refractor", "Reveal level exit (the big ice cream that eats you)", "res://Assets/PowerUpIcons/DR.png"], 
 	36: ["Demon Refractor", "Reveal level exit (the big ice cream that eats you)", "res://Assets/PowerUpIcons/DR.png"], 
-	37: ["Quickling's Quill", "Increased walk speed", "res://Assets/PowerUpIcons/QQ.png"],
-	38: ["Quickling's Quill", "Increased walk speed", "res://Assets/PowerUpIcons/QQ.png"],
-	39: ["Quickling's Quill", "Increased walk speed", "res://Assets/PowerUpIcons/QQ.png"],
-	40: ["Barbed Wire Map", "Decreased opponent walk speed", "res://Assets/PowerUpIcons/BW.png"], 
-	41: ["Barbed Wire Map", "Decreased opponent walk speed", "res://Assets/PowerUpIcons/BW.png"], 
-	42: ["Barbed Wire Map", "Decreased opponent walk speed", "res://Assets/PowerUpIcons/BW.png"], 
-	43: ["Uriel's Eye", "Increased vision range", "res://Assets/PowerUpIcons/UE.png"], 
-	44: ["Uriel's Eye", "Increased vision range", "res://Assets/PowerUpIcons/UE.png"], 
-	45: ["Uriel's Eye", "Increased vision range", "res://Assets/PowerUpIcons/UE.png"], 
-	46: ["Hydraulic Shoulder", "Increased throw speed", "res://Assets/PowerUpIcons/HS.png"], 
-	47: ["Hydraulic Shoulder", "Increased throw speed", "res://Assets/PowerUpIcons/HS.png"], 
-	48: ["Hydraulic Shoulder", "Increased throw speed", "res://Assets/PowerUpIcons/HS.png"], 
-	49: ["Disperser Compound", "Food makes more mess", "res://Assets/PowerUpIcons/DC.png"],
-	50: ["Disperser Compound", "Food makes more mess", "res://Assets/PowerUpIcons/DC.png"],
-	51: ["Laughing Gas", "Hilarity drains more slowly", "res://Assets/PowerUpIcons/LG.png"],
-	52: ["Laughing Gas", "Hilarity drains more slowly", "res://Assets/PowerUpIcons/LG.png"],
-	53: ["The Robert Hass Special", "Spawn more blackberries", "res://Assets/PowerUpIcons/RH.png"],
-	54: ["The Robert Hass Special", "Spawn more blackberries", "res://Assets/PowerUpIcons/RH.png"],
-	55: ["Janice's Testimony", "Spawn an extra opponent", "res://Assets/PowerUpIcons/JT.png"],
-	56: ["Janice's Testimony", "Spawn an extra opponent", "res://Assets/PowerUpIcons/JT.png"],
-	57: ["Early Retirement", "Despawn one opponent (if at least one exists)", "res://Assets/PowerUpIcons/ER.png"],
-	58: ["Early Retirement", "Despawn one opponent (if at least one exists)", "res://Assets/PowerUpIcons/ER.png"],
-	59: ["Ballistics Textbook", "Better aim", "res://Assets/PowerUpIcons/BT.png"],
-	60: ["Ballistics Textbook", "Better aim", "res://Assets/PowerUpIcons/BT.png"],
-	61: ["Ballistics Textbook", "Better aim", "res://Assets/PowerUpIcons/BT.png"],
-	62: ["Two More Chrysanthemums", "Worse aim", "res://Assets/PowerUpIcons/TM.png"],
-	63: ["Two More Chrysanthemums", "Worse aim", "res://Assets/PowerUpIcons/TM.png"],
-	64: ["Two More Chrysanthemums", "Worse aim", "res://Assets/PowerUpIcons/TM.png"],
-	65: ["Guava Moonshine", "Everyone gets worse aim", "res://Assets/PowerUpIcons/GM.png"],
-	66: ["Guava Moonshine", "Everyone gets worse aim", "res://Assets/PowerUpIcons/GM.png"],
-	67: ["Guava Moonshine", "Everyone gets worse aim", "res://Assets/PowerUpIcons/GM.png"],
-	68: ["Dilettante's Diploma", "Spawn more ice cream cones", "res://Assets/PowerUpIcons/DD.png"],
-	69: ["Dilettante's Diploma", "Spawn more ice cream cones", "res://Assets/PowerUpIcons/DD.png"],
-	70: ["Dilettante's Diploma", "Spawn more ice cream cones", "res://Assets/PowerUpIcons/DD.png"],
-	71: ["Thaumaturge's Greeting Card", "Randomly teleport once", "res://Assets/PowerUpIcons/TG.png"],
-	72: ["Thaumaturge's Greeting Card", "Randomly teleport once", "res://Assets/PowerUpIcons/TG.png"],
-	73: ["Thaumaturge's Greeting Card", "Randomly teleport once", "res://Assets/PowerUpIcons/TG.png"],
-	74: ["Coriolis Scrubber", "Remove 1/2 of the floor splatters", "res://Assets/PowerUpIcons/CS.png"],
-	75: ["Coriolis Scrubber", "Remove 1/2 of the floor splatters", "res://Assets/PowerUpIcons/CS.png"],
-	76: ["Laser Level", "Set Hilarity to zero", "res://Assets/PowerUpIcons/LaLe.png"],
-	77: ["Laser Level", "Set Hilarity to zero", "res://Assets/PowerUpIcons/LaLe.png"],
-	78: ["Licorice Lovebird", "Decreased vision range", "res://Assets/PowerUpIcons/LiLo.png"],
-	79: ["Licorice Lovebird", "Decreased vision range", "res://Assets/PowerUpIcons/LiLo.png"],
+#	37: ["Quickling's Quill", "Increased walk speed", "res://Assets/PowerUpIcons/QQ.png"],
+#	38: ["Quickling's Quill", "Increased walk speed", "res://Assets/PowerUpIcons/QQ.png"],
+#	39: ["Quickling's Quill", "Increased walk speed", "res://Assets/PowerUpIcons/QQ.png"],
+#	40: ["Barbed Wire Map", "Decreased opponent walk speed", "res://Assets/PowerUpIcons/BW.png"], 
+#	41: ["Barbed Wire Map", "Decreased opponent walk speed", "res://Assets/PowerUpIcons/BW.png"], 
+#	42: ["Barbed Wire Map", "Decreased opponent walk speed", "res://Assets/PowerUpIcons/BW.png"], 
+#	43: ["Uriel's Eye", "Increased vision range", "res://Assets/PowerUpIcons/UE.png"], 
+#	44: ["Uriel's Eye", "Increased vision range", "res://Assets/PowerUpIcons/UE.png"], 
+#	45: ["Uriel's Eye", "Increased vision range", "res://Assets/PowerUpIcons/UE.png"], 
+#	46: ["Hydraulic Shoulder", "Increased throw speed", "res://Assets/PowerUpIcons/HS.png"], 
+#	47: ["Hydraulic Shoulder", "Increased throw speed", "res://Assets/PowerUpIcons/HS.png"], 
+#	48: ["Hydraulic Shoulder", "Increased throw speed", "res://Assets/PowerUpIcons/HS.png"], 
+#	49: ["Disperser Compound", "Food makes more mess", "res://Assets/PowerUpIcons/DC.png"],
+#	50: ["Disperser Compound", "Food makes more mess", "res://Assets/PowerUpIcons/DC.png"],
+#	51: ["Laughing Gas", "Hilarity drains more slowly", "res://Assets/PowerUpIcons/LG.png"],
+#	52: ["Laughing Gas", "Hilarity drains more slowly", "res://Assets/PowerUpIcons/LG.png"],
+#	53: ["The Robert Hass Special", "Spawn more blackberries", "res://Assets/PowerUpIcons/RH.png"],
+#	54: ["The Robert Hass Special", "Spawn more blackberries", "res://Assets/PowerUpIcons/RH.png"],
+#	55: ["Janice's Testimony", "Spawn an extra opponent", "res://Assets/PowerUpIcons/JT.png"],
+#	56: ["Janice's Testimony", "Spawn an extra opponent", "res://Assets/PowerUpIcons/JT.png"],
+#	57: ["Early Retirement", "Despawn one opponent (if at least one exists)", "res://Assets/PowerUpIcons/ER.png"],
+#	58: ["Early Retirement", "Despawn one opponent (if at least one exists)", "res://Assets/PowerUpIcons/ER.png"],
+#	59: ["Ballistics Textbook", "Better aim", "res://Assets/PowerUpIcons/BT.png"],
+#	60: ["Ballistics Textbook", "Better aim", "res://Assets/PowerUpIcons/BT.png"],
+#	61: ["Ballistics Textbook", "Better aim", "res://Assets/PowerUpIcons/BT.png"],
+#	62: ["Two More Chrysanthemums", "Worse aim", "res://Assets/PowerUpIcons/TM.png"],
+#	63: ["Two More Chrysanthemums", "Worse aim", "res://Assets/PowerUpIcons/TM.png"],
+#	64: ["Two More Chrysanthemums", "Worse aim", "res://Assets/PowerUpIcons/TM.png"],
+#	65: ["Guava Moonshine", "Everyone gets worse aim", "res://Assets/PowerUpIcons/GM.png"],
+#	66: ["Guava Moonshine", "Everyone gets worse aim", "res://Assets/PowerUpIcons/GM.png"],
+#	67: ["Guava Moonshine", "Everyone gets worse aim", "res://Assets/PowerUpIcons/GM.png"],
+#	68: ["Dilettante's Diploma", "Spawn more ice cream cones", "res://Assets/PowerUpIcons/DD.png"],
+#	69: ["Dilettante's Diploma", "Spawn more ice cream cones", "res://Assets/PowerUpIcons/DD.png"],
+#	70: ["Dilettante's Diploma", "Spawn more ice cream cones", "res://Assets/PowerUpIcons/DD.png"],
+#	71: ["Thaumaturge's Greeting Card", "Randomly teleport once", "res://Assets/PowerUpIcons/TG.png"],
+#	72: ["Thaumaturge's Greeting Card", "Randomly teleport once", "res://Assets/PowerUpIcons/TG.png"],
+#	73: ["Thaumaturge's Greeting Card", "Randomly teleport once", "res://Assets/PowerUpIcons/TG.png"],
+#	74: ["Coriolis Scrubber", "Remove 1/2 of the floor splatters", "res://Assets/PowerUpIcons/CS.png"],
+#	75: ["Coriolis Scrubber", "Remove 1/2 of the floor splatters", "res://Assets/PowerUpIcons/CS.png"],
+#	76: ["Laser Level", "Set Hilarity to zero", "res://Assets/PowerUpIcons/LaLe.png"],
+#	77: ["Laser Level", "Set Hilarity to zero", "res://Assets/PowerUpIcons/LaLe.png"],
+#	78: ["Licorice Lovebird", "Decreased vision range", "res://Assets/PowerUpIcons/LiLo.png"],
+#	79: ["Licorice Lovebird", "Decreased vision range", "res://Assets/PowerUpIcons/LiLo.png"],
 }
 var unique_power_int: int = 100
 export var level_music = preload("res://Assets/Audio/music_lvl_1-live_pseudo-live.ogg")
@@ -207,6 +208,7 @@ func _ready():
 			Global.hit_splat_array = []
 	else:
 		$GUI/Center/HPContainer.hide()
+	handle_state_update(tutorial_state)
 
 func place_objects():
 	## place food
@@ -262,6 +264,9 @@ func _input(event):
 	if event is InputEventMouseMotion && Input.is_action_pressed("right_click"):
 		cam_rig_rot_target.x += (event.relative.x * mouse_sensitivity * -1)
 		cam_rig_rot_target.y += (event.relative.y * mouse_sensitivity * -1)
+		if tutorial_state == 0:
+			tutorial_state = 1
+			handle_state_update(tutorial_state)
 	if Input.is_action_just_released("scroll_in"):
 		cam_rig_zoom_target -= 1.0
 	if Input.is_action_just_released("scroll_out"):
@@ -332,7 +337,7 @@ func AI_action_select():
 		yield(get_tree().create_timer(Global.AI_turn_delay), "timeout")
 	## decide action
 	var AI_rand = randi() % 4
-	if AI_rand == 0: ## 1 in 4 chance to just stand there doing nothing
+	if AI_rand == 0 || whose_turn.is_in_group("stationary"): ## 1 in 4 chance to just stand there doing nothing
 		current_action = AI_actions[0].duplicate(false) ## wait 30 
 	else:
 		if whose_turn.has_node("MyFood"): ## if holding food
@@ -428,7 +433,9 @@ func display_character_options(_player):
 			if button is Button && button.name != "Read":
 				button.disabled = false
 		if whose_turn.has_node("MyFood"):
-			pass
+			if tutorial_state == 1:
+				tutorial_state += 1
+			handle_state_update(tutorial_state)
 		else:
 			$GUI/Right/PlayerOptions/Throw.disabled = true
 		if Global.level_up_tracker > Global.level_up_threshold:
@@ -506,20 +513,21 @@ func _on_Screenshot_pressed():
 	yield(VisualServer, "frame_post_draw")
 	var new_screen = get_viewport().get_texture().get_data()
 	new_screen.flip_y()
-	var date_string: String = Time.get_datetime_string_from_system(false, false)
-	date_string = date_string.replace(":", "-")
+	var datetime = OS.get_datetime()
 	if OS.get_name() == "HTML5":
 		## from here: https://godotengine.org/qa/104093/how-can-i-save-an-image-to-the-users-filesystem-in-a-web-export
 		var buf: PoolByteArray = new_screen.save_png_to_buffer()
-		JavaScript.download_buffer(buf, "screenshot_" + date_string + ".png", "image/png")
+		JavaScript.download_buffer(buf, "screenshot" + str(1) + ".png", "image/png")
 	elif OS.get_name() == "Windows": 
-		new_screen.save_png("res://" + "screenshot_" + date_string + ".png")
+		new_screen.save_png("res://" + "screenshot" + str(1) + ".png")
 # warning-ignore:return_value_discarded
 		OS.shell_open(ProjectSettings.globalize_path("res://"))
+	else: 
+		pass
 	$GUI/Right/ReadOptions.show()
 	$GUI/Right/ProceedCancel/Cancel.show()
 	if screenshot_acquired == false:
-		Global.level_up_tracker += 25
+		Global.level_up_tracker += 0
 		screenshot_acquired = true
 
 #func _on_PickUp_pressed():
@@ -599,13 +607,16 @@ func _on_Cancel_pressed():
 	emit_signal("selecting_action_target")
 	emit_signal("done_selecting_action_target")
 	$CameraRig/Camera.current = true
-	$PoemLabelContainer.hide()
+	#$PoemLabelContainer.hide()
 	$TurnMarker.show()
 	$GUI/Center.show()
 	screenshot_acquired = false
 	if $HumSound.playing:
 		$HumSound.stop()
 		Global.audio.unpause_music()
+		if tutorial_state == 3:
+			tutorial_state += 1
+			handle_state_update(tutorial_state)
 
 func _on_CheckButton_toggled(button_pressed):
 	if button_pressed == true:
@@ -802,6 +813,25 @@ func handle_power_up(_index, _icon, _tooltip):
 		Global.level_up_tracker = 0
 	Global.level_up_threshold *= 1.25
 	display_character_options(true)
+
+func handle_state_update(state):
+	match state:
+		0:
+			for child in $PoemLabelContainer.get_children():
+				child.text = "Scroll-wheel to zoom in/out\n\nRight-click and drag\nto look around"
+		1:
+			for child in $PoemLabelContainer.get_children():
+				child.text = "\n(W)alk to food\nto pick it up"
+		2:
+			for child in $PoemLabelContainer.get_children():
+				child.text = "\n(T)hrow food at opponent!\na successful hit\n creates ice cream cone"
+		3:
+			for child in $PoemLabelContainer.get_children():
+				child.text = "\nPick up and (E)at ice cream\n to see poem text\nand gain experience"
+		4:
+			for child in $PoemLabelContainer.get_children():
+				child.text = "(W)alk directly into\ngiant ice cream mouth\nto exit level"
+		_: pass
 
 func do_game_over():
 	SceneManager.goto_scene(self, "res://Scenes/GameSummary.tscn")

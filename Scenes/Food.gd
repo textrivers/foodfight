@@ -60,12 +60,16 @@ func _physics_process(delta):
 			if coll.collider.is_in_group("character"):
 				coll.collider.add_splatter(splat_colors[randi() % splat_colors.size()])
 				if coll.collider.is_in_group("dummy"):
-					coll.collider.call_deferred("queue_free")
-					get_parent().state += 1 ## Tutorial state increments to 4
-					get_parent().spawn_ice_cream(Vector3(coll.position.x, 0, coll.position.z))
+					var parent = get_parent()
+					#coll.collider.call_deferred("queue_free")
+					if parent.tutorial_state == 2:
+						parent.tutorial_state += 1 ## Tutorial state increments to 4
+						parent.handle_state_update(parent.tutorial_state)
+					spawn_ice_cream(coll.collider.global_translation)
+					coll.collider.start_knockback(Vector3(velocity.x, 0, velocity.z))
 				else:
 					coll.collider.start_knockback(Vector3(velocity.x, 0, velocity.z))
-					if thrown_by_player:
+					if thrown_by_player && !get_parent().is_in_group("tutorial"):
 						Global.level_up_tracker += 10
 						Global.game_enemy_hit_count += 1
 						spawn_ice_cream(coll.collider.global_translation)
@@ -75,12 +79,11 @@ func _physics_process(delta):
 				Global.hilarity += 40
 			elif coll.collider.is_in_group("throwable"): 
 				Global.hilarity += 10
-				if thrown_by_player:
+				if thrown_by_player && !get_parent().is_in_group("tutorial"):
 					Global.level_up_tracker += 5
-					
 			else: 
 				Global.hilarity += 5
-				if thrown_by_player:
+				if thrown_by_player && !get_parent().is_in_group("tutorial"):
 					Global.level_up_tracker += 3
 			Global.hilarity = clamp(Global.hilarity, 0, 120)
 			if $RayCast.is_colliding():

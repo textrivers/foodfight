@@ -88,7 +88,7 @@ var poem_text_dict: Dictionary = { ## syntax: ID: ["text", "source", checked-out
 	7: ["Dot your own arm\nwith a stranger’s blemishes\nwith a borrowed Sharpie\nat an audition.", "from “Eight Second Hand Choreography”", false, false],
 	8: ["Dealer deals eleven cards each.\nGhosts (dealer and dealer’s opposite)\nhold their cards face out,\ncan gain no knowledge, and do not play.", "from “Knowledge Game Over Dream”", false, false],
 	9: ["“Thou makest darkness,”\nI guess.\n\nI made eyes\nat a pop-up book\n\nbefore I knew\nwhat was what", "from “Spare an Origami Autobiographer”", false, false], 
-	10: ["a convulsive distress followed\nwhich I’ve somehow still\nstopped experiencing it just\nended at some point\nand for no reason", "from “Extinction Mask Memory Exhibit”", false, false], 
+	10: ["a convulsive distress followed\n I’ve somehow still stopped\nexperiencing it it just\nended at some point\nand for no reason", "from “Extinction Mask Memory Exhibit”", false, false], 
 	11: ["the exhibit doesn’t end\nas the species does\nas each species does\nin an undifferentiated unsaidness \nan end of blood", "from “Extinction Mask Memory Exhibit”", false, false], 
 	12: ["Hunger is a human\nright. Every time roles\nreverse they remain true\nwhich honestly feels fair.", "from “Upside-Down Crown”", false, false],
 	13: ["Not a tree’s fruit\nbut every time rules\nsay ice cream sandwich\nthey eat of it.", "from “Upside-Down Crown”", false, false], 
@@ -122,7 +122,7 @@ var level_up_threshold: float = 10
 
 var game_hit_count: int = 0
 var game_enemy_hit_count: int = 0
-var hit_maximum: int = 10
+var hit_maximum: int = 999999
 var hit_splat_array: Array = []
 var game_text_count: int = 5
 
