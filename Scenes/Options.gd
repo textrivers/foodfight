@@ -31,3 +31,8 @@ func _on_SFXSlider_value_changed(value):
 
 func _on_SFXSlider_drag_ended(value_changed):
 	$AudioStreamPlayer.play()
+
+func _on_CheckBox_toggled(button_pressed):
+	Global.timer_visible = button_pressed
+	if get_parent().has_node("GUI/Center/HBoxContainer/SpeedrunTimer"):
+		get_parent().get_node("GUI/Center/HBoxContainer/SpeedrunTimer").visible = button_pressed

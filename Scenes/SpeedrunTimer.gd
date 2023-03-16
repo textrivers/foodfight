@@ -11,6 +11,7 @@ func _ready():
 	# Connect to the "tree_exited" signal of the label
 	connect("tree_exited", self, "on_tree_exited")
 	timer = Global.timer_value
+	visible = Global.timer_visible
 	start_timer()
 
 func _process(delta):

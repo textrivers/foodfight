@@ -54,53 +54,60 @@ custom_constants/separation = 12
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_top = 146.0
+margin_top = 124.0
 margin_right = 324.0
-margin_bottom = 169.0
+margin_bottom = 147.0
 text = "Music Volume"
 align = 1
 
 [node name="MusicSlider" type="HSlider" parent="VBoxContainer"]
-margin_top = 181.0
+margin_top = 159.0
 margin_right = 324.0
-margin_bottom = 229.0
+margin_bottom = 207.0
 theme = SubResource( 3 )
 max_value = 1.0
 step = 0.01
 value = 1.0
 
 [node name="Label2" type="Label" parent="VBoxContainer"]
-margin_top = 241.0
+margin_top = 219.0
 margin_right = 324.0
-margin_bottom = 264.0
+margin_bottom = 242.0
 text = "Sound Effects Volume"
 align = 1
 
 [node name="SFXSlider" type="HSlider" parent="VBoxContainer"]
-margin_top = 276.0
+margin_top = 254.0
 margin_right = 324.0
-margin_bottom = 324.0
+margin_bottom = 302.0
 theme = SubResource( 3 )
 max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="Spacer" type="Control" parent="VBoxContainer"]
-margin_top = 336.0
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer"]
+margin_top = 314.0
 margin_right = 324.0
-margin_bottom = 376.0
+margin_bottom = 346.0
+text = "Speedrun Timer Visible"
+align = 1
+
+[node name="Spacer" type="Control" parent="VBoxContainer"]
+margin_top = 358.0
+margin_right = 324.0
+margin_bottom = 398.0
 rect_min_size = Vector2( 0, 40 )
 
 [node name="Cancel" type="Button" parent="VBoxContainer"]
-margin_top = 388.0
+margin_top = 410.0
 margin_right = 324.0
-margin_bottom = 415.0
+margin_bottom = 437.0
 text = "Close"
 
 [node name="MainMenu" type="Button" parent="VBoxContainer"]
-margin_top = 427.0
+margin_top = 449.0
 margin_right = 324.0
-margin_bottom = 454.0
+margin_bottom = 476.0
 text = "Quit to Main Menu"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -111,5 +118,6 @@ bus = "SFX"
 [connection signal="value_changed" from="VBoxContainer/MusicSlider" to="." method="_on_MusicSlider_value_changed"]
 [connection signal="drag_ended" from="VBoxContainer/SFXSlider" to="." method="_on_SFXSlider_drag_ended"]
 [connection signal="value_changed" from="VBoxContainer/SFXSlider" to="." method="_on_SFXSlider_value_changed"]
+[connection signal="toggled" from="VBoxContainer/CheckBox" to="." method="_on_CheckBox_toggled"]
 [connection signal="pressed" from="VBoxContainer/Cancel" to="." method="toggle_appearance"]
 [connection signal="pressed" from="VBoxContainer/MainMenu" to="." method="_on_MainMenu_pressed"]
