@@ -75,7 +75,7 @@ range_item_cull_mask = 2
 margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 1024, 600 )
-custom_constants/separation = 11
+custom_constants/separation = 8
 
 [node name="SummaryMessage" type="Label" parent="VBoxContainer"]
 margin_right = 1024.0
@@ -90,9 +90,9 @@ align = 1
 valign = 1
 
 [node name="DifficultyContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 161.0
+margin_top = 158.0
 margin_right = 1024.0
-margin_bottom = 189.0
+margin_bottom = 186.0
 theme = ExtResource( 1 )
 alignment = 1
 
@@ -117,9 +117,9 @@ custom_colors/font_outline_modulate = Color( 0.572549, 0.0980392, 0.129412, 1 )
 custom_fonts/font = SubResource( 4 )
 
 [node name="HitsContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 200.0
+margin_top = 194.0
 margin_right = 1024.0
-margin_bottom = 228.0
+margin_bottom = 222.0
 theme = ExtResource( 1 )
 alignment = 1
 
@@ -145,9 +145,9 @@ custom_fonts/font = SubResource( 4 )
 text = "10"
 
 [node name="OpponentHitsContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 239.0
+margin_top = 230.0
 margin_right = 1024.0
-margin_bottom = 267.0
+margin_bottom = 258.0
 theme = ExtResource( 1 )
 alignment = 1
 
@@ -173,9 +173,9 @@ custom_fonts/font = SubResource( 4 )
 text = "10"
 
 [node name="TextsFoundContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 278.0
+margin_top = 266.0
 margin_right = 1024.0
-margin_bottom = 306.0
+margin_bottom = 294.0
 theme = ExtResource( 1 )
 alignment = 1
 
@@ -200,11 +200,39 @@ custom_colors/font_outline_modulate = Color( 0.572549, 0.0980392, 0.129412, 1 )
 custom_fonts/font = SubResource( 4 )
 text = "10"
 
+[node name="TimeContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 302.0
+margin_right = 1024.0
+margin_bottom = 330.0
+theme = ExtResource( 1 )
+alignment = 1
+
+[node name="TimeLabel" type="Label" parent="VBoxContainer/TimeContainer"]
+margin_left = 331.0
+margin_right = 451.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 120, 0 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0.572549, 0.0980392, 0.129412, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Time: "
+align = 1
+valign = 1
+
+[node name="TimeValue" type="Label" parent="VBoxContainer/TimeContainer"]
+margin_left = 455.0
+margin_right = 693.0
+margin_bottom = 28.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0.572549, 0.0980392, 0.129412, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "[something went wrong]"
+
 [node name="VictoryText" type="Label" parent="VBoxContainer"]
 margin_left = 188.0
-margin_top = 317.0
+margin_top = 338.0
 margin_right = 836.0
-margin_bottom = 482.0
+margin_bottom = 503.0
 rect_min_size = Vector2( 0, 165 )
 size_flags_horizontal = 4
 theme = ExtResource( 1 )
@@ -220,20 +248,21 @@ like an oversimplification?"
 valign = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 493.0
+margin_top = 511.0
 margin_right = 1024.0
-margin_bottom = 553.0
+margin_bottom = 571.0
+grow_vertical = 0
 rect_min_size = Vector2( 0, 60 )
 custom_constants/separation = 20
 alignment = 1
 
 [node name="TextGallery" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_left = 382.0
-margin_top = 33.0
+margin_top = 16.0
 margin_right = 502.0
-margin_bottom = 60.0
+margin_bottom = 43.0
 rect_min_size = Vector2( 120, 0 )
-size_flags_vertical = 8
+size_flags_vertical = 4
 theme = ExtResource( 1 )
 custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
 custom_colors/font_color_focus = Color( 0, 0, 0, 1 )
@@ -246,11 +275,12 @@ text = "Text Gallery"
 
 [node name="MainMenu" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_left = 522.0
-margin_top = 33.0
+margin_top = 16.0
 margin_right = 642.0
-margin_bottom = 60.0
+margin_bottom = 43.0
 rect_min_size = Vector2( 120, 0 )
-size_flags_vertical = 8
+size_flags_horizontal = 5
+size_flags_vertical = 4
 theme = ExtResource( 1 )
 custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
 custom_colors/font_color_focus = Color( 0, 0, 0, 1 )
@@ -261,5 +291,6 @@ custom_constants/hseparation = 2
 custom_styles/normal = SubResource( 6 )
 text = "Main Menu"
 
+[connection signal="tree_exiting" from="." to="." method="_on_GameSummary_tree_exiting"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/TextGallery" to="." method="_on_TextGallery_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/MainMenu" to="." method="_on_MainMenu_pressed"]

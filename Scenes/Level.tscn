@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Scenes/PoemCamRig.gd" type="Script" id=1]
 [ext_resource path="res://Assets/PanoramaSky/A_pano_FULL.png" type="Texture" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://Scenes/PowerUpIconContainer.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/LevelUpSound.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/HumSound.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/SpeedrunTimer.gd" type="Script" id=18]
 
 [sub_resource type="DynamicFont" id=16]
 size = 60
@@ -376,13 +377,20 @@ mouse_filter = 2
 alignment = 2
 
 [node name="SpeedrunTimer" type="Label" parent="GUI/Center/HBoxContainer"]
-visible = false
+margin_left = 7.0
 margin_top = 6.0
-margin_right = 392.0
+margin_right = 98.0
 margin_bottom = 29.0
-size_flags_horizontal = 3
+size_flags_horizontal = 8
 custom_colors/font_color = Color( 0.490196, 0.584314, 0.788235, 1 )
 text = " 00:00:000"
+script = ExtResource( 18 )
+
+[node name="Control" type="Control" parent="GUI/Center/HBoxContainer"]
+margin_left = 102.0
+margin_right = 392.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 290, 0 )
 
 [node name="Label" type="Label" parent="GUI/Center/HBoxContainer"]
 margin_left = 396.0

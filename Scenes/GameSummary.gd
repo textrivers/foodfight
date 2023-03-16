@@ -43,7 +43,11 @@ func _ready():
 	$VBoxContainer/HitsContainer/HitsValue.text = str(Global.game_enemy_hit_count)
 	$VBoxContainer/OpponentHitsContainer/OpponentHitsValue.text = str(Global.game_hit_count)
 	$VBoxContainer/TextsFoundContainer/TextsFoundValue.text = str(Global.game_text_count)
-		
+	var timer = Global.timer_value
+	var minutes = int(timer / 60000)
+	var seconds = int((timer % 60000) / 1000)
+	var milliseconds = int(timer % 1000)
+	$VBoxContainer/TimeContainer/TimeValue.text = String(minutes).pad_zeros(2) + ":" + String(seconds).pad_zeros(2) + ":" + String(milliseconds).pad_zeros(3) 
 
 func _process(_delta):
 	for child in $ScrollingBackground.get_children():
@@ -59,3 +63,7 @@ func _on_TextGallery_pressed():
 
 func _on_MainMenu_pressed():
 	SceneManager.goto_scene(self, "res://Scenes/TitleScreen.tscn")
+
+
+func _on_GameSummary_tree_exiting():
+	Global.timer_value = 0
