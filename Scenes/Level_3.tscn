@@ -650,11 +650,12 @@ transform = Transform( 0.824707, 0.300371, 0.479204, -0.534501, 0.690879, 0.4868
 shadow_enabled = true
 
 [node name="GiantIceCream" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -2, 20 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -2, 20 )
 nextscene = "res://Scenes/GameSummary.tscn"
 locations_array = [ Vector3( 5, 3, 20 ), Vector3( 9, -2, 20 ), Vector3( 4, 1, 5 ), Vector3( -7, -3.5, 12 ) ]
 
 [node name="Map3Point5RaisedRoom" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="HumSound" parent="." instance=ExtResource( 16 )]
 
