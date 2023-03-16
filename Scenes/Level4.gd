@@ -278,7 +278,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("debug"):
 		debug = !debug
 		print("debug is " + str(debug))
-	if whose_turn == Global.player_node:
+	if whose_turn.player:
 		if $GUI/Right/PlayerOptions.visible == true:
 			if Input.is_action_just_pressed("read") && $GUI/Right/PlayerOptions/Read.disabled == false:
 				_on_Read_pressed()
@@ -781,6 +781,7 @@ func handle_power_up(_index, _icon, _tooltip):
 							all_chars.erase(_char)
 					var rand_char = all_chars[randi() % all_chars.size()]
 					rand_char.player = true
+					rand_char.get_node("Area").monitoring = true
 				_: ## default, change player color
 					Global.player_node.get_node("Viewport/CharacterSprite/Sprite").modulate = Global.get_random_palette_color() 
 		else: 
