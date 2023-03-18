@@ -257,11 +257,13 @@ transform = Transform( 1, 0, 0, 0, 0.939693, -0.34202, 0, 0.34202, 0.939693, 2, 
 far = 200.0
 
 [node name="Panel" type="Panel" parent="."]
+visible = false
 margin_right = 245.0
 margin_bottom = 229.0
 theme = SubResource( 10 )
 
 [node name="GUI" type="HBoxContainer" parent="."]
+visible = false
 margin_right = 1024.0
 margin_bottom = 228.0
 mouse_filter = 2

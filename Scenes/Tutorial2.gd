@@ -265,6 +265,8 @@ func _input(event):
 		cam_rig_rot_target.x += (event.relative.x * mouse_sensitivity * -1)
 		cam_rig_rot_target.y += (event.relative.y * mouse_sensitivity * -1)
 		if tutorial_state == 0:
+			$GUI.visible = true
+			$Panel.visible = true
 			tutorial_state = 1
 			handle_state_update(tutorial_state)
 	if Input.is_action_just_released("scroll_in"):
@@ -425,7 +427,8 @@ func display_character_options(_player):
 		whose_turn.get_node("CharacterSound").play()
 		yield(VisualServer, "frame_post_draw")
 		reset_character_options()
-		$Panel.show()
+		if tutorial_state != 0:
+			$Panel.show()
 		$GUI/Right.show()
 		$GUI/Right/PlayerOptions.show()
 		$GUI/Right/PlayerOptions/Label.text = "It is your turn"

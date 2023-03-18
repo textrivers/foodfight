@@ -278,6 +278,12 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("debug"):
 		debug = !debug
 		print("debug is " + str(debug))
+	
+	advance_time()
+	prompt_turns()
+	translate_cam_rig()
+	rotate_cam_rig()
+	update_progress_bars()
 	if whose_turn.player:
 		if $GUI/Right/PlayerOptions.visible == true:
 			if Input.is_action_just_pressed("read") && $GUI/Right/PlayerOptions/Read.disabled == false:
@@ -291,11 +297,6 @@ func _physics_process(delta):
 		if $GUI/Right/ProceedCancel.visible == true:
 			if Input.is_action_just_pressed("cancel") && $GUI/Right/ProceedCancel/Cancel.disabled == false:
 				_on_Cancel_pressed()
-	advance_time()
-	prompt_turns()
-	translate_cam_rig()
-	rotate_cam_rig()
-	update_progress_bars()
 
 func advance_time():
 	if advancing:
