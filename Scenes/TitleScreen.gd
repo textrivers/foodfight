@@ -52,6 +52,7 @@ func _on_Tutorial_pressed():
 	next_scene = "res://Scenes/Tutorial2.tscn"
 	SceneManager.goto_scene(self, next_scene)
 	$ButtonSound.play()
+	Global.audio.fade_out()
 
 func _on_Texts_pressed():
 	next_scene = "res://Scenes/TextGallery.tscn"
