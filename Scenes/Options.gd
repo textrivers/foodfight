@@ -20,6 +20,7 @@ func _on_MainMenu_pressed():
 		get_tree().paused = false
 		despawning = true
 		SceneManager.goto_scene(get_parent(), "res://Scenes/TitleScreen.tscn")
+		Global.audio.fade_out()
 
 func _on_MusicSlider_value_changed(value):
 	AudioServer.set_bus_volume_db(1, linear2db(value))

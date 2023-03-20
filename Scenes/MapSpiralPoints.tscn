@@ -15,7 +15,7 @@ detail_sample_distance = 3.0
 detail_sample_max_error = 4.0
 filter_ledge_spans = true
 
-[node name="Map3Point5RaisedRoom" type="NavigationMeshInstance"]
+[node name="MapSpiralPoints" type="NavigationMeshInstance"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3103, -0.557819, -0.73273 )
 navmesh = SubResource( 1 )
 

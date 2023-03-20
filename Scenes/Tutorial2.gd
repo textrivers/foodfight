@@ -467,6 +467,7 @@ func display_character_options(_player):
 func reset_character_options():
 	for child in $GUI/Right/PlayerOptions.get_children():
 		child.show()
+	$GUI/Right/PlayerOptions/HBoxContainer.hide()
 	$GUI/Right/ReadOptions.hide()
 	$GUI/Right/WaitOptions.hide()
 	$GUI/Right/WalkOptions.hide()
@@ -823,7 +824,7 @@ func handle_state_update(state):
 				child.text = "Scroll-wheel to zoom in/out\n\nRight-click and drag\nto look around"
 		1:
 			for child in $PoemLabelContainer.get_children():
-				child.text = "\n(W)alk to food\nto pick it up"
+				child.text = "\n(W)alk to food\nto pick it up\n\nYou only hold one food\nat a time"
 		2:
 			for child in $PoemLabelContainer.get_children():
 				child.text = "\n(T)hrow food at opponent!\na successful hit\n creates ice cream cone"

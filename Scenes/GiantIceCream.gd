@@ -17,9 +17,9 @@ func _process(delta):
 	if dist_to_player <= 10: 
 		$AnimatedSprite3D.frame = int(10 - dist_to_player)
 		$AnimatedSprite3D.scale = Vector3.ONE + (scale * ((10 - dist_to_player) / 15))
-	if Input.is_action_just_pressed("debug"):
-		visible = true
-		$Area.monitoring = true
+#	if Input.is_action_just_pressed("debug"):
+#		visible = true
+#		$Area.monitoring = true
 		
 
 func _on_Area_body_entered(body):

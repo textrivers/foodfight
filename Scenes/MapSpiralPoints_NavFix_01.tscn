@@ -1,0 +1,439 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/FloorTile3DSlant.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/FloorTile3D.tscn" type="PackedScene" id=3]
+
+[sub_resource type="NavigationMesh" id=1]
+vertices = PoolVector3Array( 1.8, -0.6, 11.8, 2.5, -0.6, 11.8, 2.25, -0.6, 11.55, -1.25, 0.15, 15.8, -0.55, 0.15, 15.8, -0.8, 0.15, 15.55, 6.8, -2.15, 11.8, 6.8, -2.15, 12.25, 7.45, -2.1, 12.25, 7.25, 2.6, 13.55, 7.25, 2.6, 12.8, 6.5, 3.15, 12.8, 3.55, 3.15, 12.8, 2.75, 2.6, 12.8, 2.75, 2.6, 13.55, 4.55, 2.6, 11.75, 3.8, 2.6, 11.75, 3.75, 3.15, 12.65, 6.3, 3.15, 12.65, 6.25, 2.6, 11.75, 5.5, 2.6, 11.75, 7.25, 2.6, 13.55, 6.5, 3.15, 12.8, 6.3, 3.15, 12.65, 3.75, 3.15, 12.65, 3.55, 3.15, 12.8, 2.75, 2.6, 13.55, -1.25, 0.15, 15.8, -0.8, 0.15, 15.55, -0.8, 0.15, 14.5, -1.25, 0.15, 13.8, 7.5, 2.4, 14.25, 11.2, 0.15, 14.25, 10.55, 0.15, 13.8, 7.5, 2.4, 13.8, 10.0615, 0.45, 14.25, -1.25, 0.15, 13.8, -0.8, 0.15, 14.5, -0.55, 0.15, 14.25, 4.75, 2.5, 11.6, 4.55, 2.6, 11.75, 3.75, 3.15, 12.65, 5.3, 2.5, 11.6, 6.3, 3.15, 12.65, 5.5, 2.6, 11.75, 5.3, 2.5, 11.6, 7.5, 2.4, 13.8, 7.25, 2.6, 13.55, 6.3, 3.15, 12.65, 5.45, 3.15, 15.25, 7.25, 2.6, 14.5, 7.5, 2.4, 14.25, 6.47857, 3.15, 14.8214, 3.75, 3.15, 12.65, 2.75, 2.6, 13.55, 2.5, 2.4, 13.8, 2.5, 2.4, 14.25, 2.75, 2.6, 14.5, 4.65, 3.15, 15.3, 3.56429, 3.15, 14.8429, 5.45, 3.15, 15.25, 7.25, 2.6, 15.25, 7.25, 2.6, 14.5, 6.47857, 3.15, 14.8214, 6.47857, 3.15, 15.25, 2.75, 2.6, 14.5, 2.75, 2.6, 15.25, 4.65, 3.15, 15.3, 3.56429, 3.15, 14.8429, 3.56429, 3.15, 15.2714, 4.8, 0.9, 9.5, 5.25, 0.9, 8.8, 4.5, 0.9, 8.8, 4.65, 0.9, 9.3, 4.5, 0.9, 8.8, 4.25, 0.9, 8.55, 3.75, 0.9, 8.65, 3.55, 0.9, 8.8, 4.65, 0.9, 9.3, 1.8, -0.6, 11.8, 2.25, -0.6, 11.55, 2.3, 0.9, 9.35, 1.8, 0.9, 8.8, 11.2, 0.15, 11.8, 10.55, 0.15, 12.25, 10.8, 0.15, 12.5, 1.8, 0.9, 8.8, 2.3, 0.9, 9.35, 2.45, 0.9, 9.25, 3.55, 0.9, 8.8, 1.8, 0.9, 8.8, 2.45, 0.9, 9.25, 4.65, 0.9, 9.3, 11.2, 0.15, 14.25, 10.8, 0.15, 13.55, 10.55, 0.15, 13.8, 11.2, 0.15, 14.25, 11.2, 0.15, 11.8, 10.8, 0.15, 12.5, 10.8, 0.15, 13.55, 2.5, 2.4, 13.8, -1.25, 0.15, 13.8, -0.55, 0.15, 14.25, 2.5, 2.4, 14.25, -0.384615, 0.25, 13.8, 4.8, 0.9, 9.5, 4.75, 2.5, 11.6, 5.3, 2.5, 11.6, 5.25, 0.9, 8.8, 5.265, 1, 9.64, 4.25, 0.9, 8.55, 4.25, 0.9, 4.8, 3.8, 0.9, 4.8, 3.75, 0.9, 8.65, 5.3, 3.15, 15.35, 5.45, 3.15, 15.25, 6.3, 3.15, 12.65, 3.75, 3.15, 12.65, 4.65, 3.15, 15.3, 4.8, 3.15, 15.5, 5.3, 3.15, 15.35, 6.3, 3.15, 12.65, 5.3, 2.5, 11.6, 11.2, 0.15, 11.8, 6.8, -2.15, 11.8, 7.45, -2.1, 12.25, 10.55, 0.15, 12.25, 10.32, 0.05, 11.8, 7.38667, -2.15, 11.8, 4.8, 3.15, 15.5, 4.8, 3.15, 20.2, 5.25, 3.15, 20.2, 5.3, 3.15, 15.35, 7.25, -2.15, 12.45, 7.45, -2.1, 12.25, 6.8, -2.15, 12.25, 4.8, -0.6, 11.55, 4.55, -0.6, 11.8, 5.25, -0.6, 11.8, -0.2, -3.65, 12.5, 0.25, -3.65, 12.45, 0.35, -3.65, 12.3, -0.35, -3.65, 12.3, 2.5, -3.65, 11.8, 2.25, -3.6, 11.55, 1.8, -3.6, 11.55, 1.55, -3.65, 11.8, 2.75, -2.15, 15.55, 2.5, -2.1, 15.8, 3.45, -2.15, 15.8, 3.2, -2.15, 15.55, 0.4, -3.65, 16.75, 0.25, -3.65, 16.55, -0.2, -3.65, 17.25, 2.75, -2.15, 14.5, 2.75, -2.15, 15.55, 3.2, -2.15, 15.55, 3.2, -2.15, 13.8, 3.8, -3.65, 16.55, 4.25, -3.65, 17.25, 4.3, -3.65, 14.35, 4.25, -3.65, 13.55, 3.75, -3.65, 12.4, 2.6, -2.15, 14.3, 2.75, -2.15, 14.5, 3.2, -2.15, 13.8, 0.25, -3.65, 13.55, 0.25, -3.65, 12.45, -0.2, -3.65, 12.5, 7.25, -2.15, 12.45, 6.8, -2.15, 12.25, 6.8, -2.15, 13.55, 7.25, -2.15, 14.25, 3.65, -3.65, 16.75, 0.4, -3.65, 16.75, -0.2, -3.65, 17.25, 4.25, -3.65, 17.25, 7.25, -2.15, 14.25, 6.8, -2.15, 13.55, 6.65, -2.15, 13.75, 4.45, -3.6, 14.25, 7.25, -2.15, 14.25, 6.65, -2.15, 13.75, 4.4, -3.65, 13.75, 6.41, -2.15, 14.25, 1.55, -3.65, 11.8, 0.35, -3.65, 12.3, 3.55, -3.65, 12.25, 2.5, -3.65, 11.8, 4.3, -3.65, 14.35, 4.45, -3.6, 14.25, 4.4, -3.65, 13.75, 4.25, -3.65, 13.55, 3.8, -3.65, 16.55, 3.65, -3.65, 16.75, 4.25, -3.65, 17.25, 2.6, -2.15, 14.3, 3.2, -2.15, 13.8, 0.4, -3.65, 13.75, 0.45, -3.6, 14.25, 2.36, -2.2, 13.785, 3.75, -3.65, 12.4, 4.25, -3.65, 13.55, 4.25, -3.65, 11.8, 0.25, -3.65, 14.45, 0.45, -3.6, 14.25, 0.4, -3.65, 13.75, 0.25, -3.65, 13.55, 0.25, -3.65, 14.45, -0.2, -3.65, 12.5, -0.2, -3.65, 17.25, 0.25, -3.65, 16.55, 0.25, -3.65, 14.45, 0.25, -3.65, 13.55, -0.2, -3.65, 12.5, 4.75, -2.15, 9.4, 4.8, -0.6, 11.55, 5.25, -0.6, 11.8, 5.25, -2.15, 8.8, 3.55, -3.65, 12.25, 3.75, -3.65, 12.4, 4.25, -3.65, 11.8, 4.55, -2.15, 9.25, 4.75, -2.15, 9.4, 5.25, -2.15, 8.8, 4.55, -2.15, 9.25, 5.25, -2.15, 8.8, 1.8, -2.15, 8.8, 2.35, -2.15, 9.3, 3.55, -3.65, 12.25, 4.25, -3.65, 11.8, 2.5, -3.65, 11.8, 2.25, -2.15, 9.45, 2.35, -2.15, 9.3, 1.8, -2.15, 8.8, 2.25, -2.15, 9.45, 1.8, -2.15, 8.8, 1.8, -3.6, 11.55, 2.25, -3.6, 11.55, 1.8, -2.2, 9.625, -0.35, -3.65, 12.3, 0.35, -3.65, 12.3, 1.55, -3.65, 11.8, -7.2, -3.65, 11.8, -7.2, -3.65, 12.25, 2.5, -0.6, 11.8, 1.8, -0.6, 11.8, 1.8, -0.6, 12.25, 5.25, -0.6, 12.25, 5.25, -0.6, 11.8, 4.55, -0.6, 11.8, 4.55, -0.6, 11.8, 2.5, -0.6, 11.8, 1.8, -0.6, 12.25, 5.25, -0.6, 12.25, -0.55, 0.15, 15.8, -1.25, 0.15, 15.8, -1.25, 0.15, 16.25, 2.5, -2.1, 15.8, -0.55, 0.15, 15.8, -1.25, 0.15, 16.25, -0.384615, 0.05, 16.1462, 8.8, -2.15, 16.45, 8.8, -2.15, 20.2, 9.25, -2.15, 20.2, 9.25, -2.15, 15.75, 3.45, -2.15, 15.8, -1.25, 0.15, 16.25, 8.55, -2.15, 16.2, 9.25, -2.15, 15.75, 2.56875, -2.15, 15.8844, -0.36875, 0.05, 16.1656, -0.301613, 0.05, 16.2452, 2.54355, -2.1, 16.2306, 8.55, -2.15, 16.2, 8.8, -2.15, 16.45, 9.25, -2.15, 15.75, 3.45, -2.15, 15.8, 2.5, -2.1, 15.8, -1.25, 0.15, 16.25, -0.36875, 0.05, 16.1656, 2.56875, -2.15, 15.8844, -0.384615, 0.05, 16.1462 )
+polygons = [ PoolIntArray( 2, 1, 0 ), PoolIntArray( 5, 4, 3 ), PoolIntArray( 8, 7, 6 ), PoolIntArray( 11, 10, 9 ), PoolIntArray( 14, 13, 12 ), PoolIntArray( 17, 16, 15 ), PoolIntArray( 20, 19, 18 ), PoolIntArray( 23, 22, 21 ), PoolIntArray( 26, 25, 24 ), PoolIntArray( 28, 27, 29 ), PoolIntArray( 29, 27, 30 ), PoolIntArray( 32, 35, 33 ), PoolIntArray( 33, 35, 31 ), PoolIntArray( 33, 31, 34 ), PoolIntArray( 38, 37, 36 ), PoolIntArray( 39, 42, 40 ), PoolIntArray( 40, 42, 41 ), PoolIntArray( 45, 44, 43 ), PoolIntArray( 51, 50, 46 ), PoolIntArray( 46, 50, 47 ), PoolIntArray( 47, 50, 52 ), PoolIntArray( 47, 52, 48 ), PoolIntArray( 48, 52, 49 ), PoolIntArray( 55, 54, 56 ), PoolIntArray( 56, 54, 57 ), PoolIntArray( 57, 54, 59 ), PoolIntArray( 59, 54, 53 ), PoolIntArray( 59, 53, 58 ), PoolIntArray( 62, 61, 63 ), PoolIntArray( 63, 61, 64 ), PoolIntArray( 63, 64, 60 ), PoolIntArray( 65, 68, 66 ), PoolIntArray( 66, 68, 69 ), PoolIntArray( 69, 68, 67 ), PoolIntArray( 73, 72, 70 ), PoolIntArray( 70, 72, 71 ), PoolIntArray( 76, 75, 77 ), PoolIntArray( 77, 75, 74 ), PoolIntArray( 77, 74, 78 ), PoolIntArray( 80, 79, 81 ), PoolIntArray( 81, 79, 82 ), PoolIntArray( 83, 85, 84 ), PoolIntArray( 88, 87, 86 ), PoolIntArray( 90, 89, 91 ), PoolIntArray( 91, 89, 92 ), PoolIntArray( 95, 94, 93 ), PoolIntArray( 99, 98, 96 ), PoolIntArray( 96, 98, 97 ), PoolIntArray( 101, 104, 102 ), PoolIntArray( 102, 104, 100 ), PoolIntArray( 102, 100, 103 ), PoolIntArray( 108, 109, 105 ), PoolIntArray( 105, 109, 107 ), PoolIntArray( 105, 107, 106 ), PoolIntArray( 111, 110, 112 ), PoolIntArray( 112, 110, 113 ), PoolIntArray( 116, 115, 114 ), PoolIntArray( 119, 118, 120 ), PoolIntArray( 120, 118, 117 ), PoolIntArray( 120, 117, 121 ), PoolIntArray( 121, 117, 122 ), PoolIntArray( 124, 128, 125 ), PoolIntArray( 125, 128, 127 ), PoolIntArray( 125, 127, 126 ), PoolIntArray( 126, 127, 123 ), PoolIntArray( 130, 129, 131 ), PoolIntArray( 131, 129, 132 ), PoolIntArray( 135, 134, 133 ), PoolIntArray( 138, 137, 136 ), PoolIntArray( 140, 139, 141 ), PoolIntArray( 141, 139, 142 ), PoolIntArray( 144, 143, 145 ), PoolIntArray( 145, 143, 146 ), PoolIntArray( 150, 149, 147 ), PoolIntArray( 147, 149, 148 ), PoolIntArray( 153, 152, 151 ), PoolIntArray( 155, 154, 156 ), PoolIntArray( 156, 154, 157 ), PoolIntArray( 161, 160, 162 ), PoolIntArray( 162, 160, 158 ), PoolIntArray( 158, 160, 159 ), PoolIntArray( 163, 165, 164 ), PoolIntArray( 166, 168, 167 ), PoolIntArray( 170, 169, 171 ), PoolIntArray( 171, 169, 172 ), PoolIntArray( 173, 176, 174 ), PoolIntArray( 174, 176, 175 ), PoolIntArray( 179, 178, 177 ), PoolIntArray( 181, 184, 182 ), PoolIntArray( 182, 184, 180 ), PoolIntArray( 182, 180, 183 ), PoolIntArray( 188, 187, 185 ), PoolIntArray( 185, 187, 186 ), PoolIntArray( 190, 189, 191 ), PoolIntArray( 191, 189, 192 ), PoolIntArray( 193, 195, 194 ), PoolIntArray( 197, 196, 200 ), PoolIntArray( 200, 196, 199 ), PoolIntArray( 200, 199, 198 ), PoolIntArray( 203, 202, 201 ), PoolIntArray( 206, 205, 207 ), PoolIntArray( 207, 205, 204 ), PoolIntArray( 211, 210, 208 ), PoolIntArray( 208, 210, 209 ), PoolIntArray( 214, 213, 212 ), PoolIntArray( 216, 215, 217 ), PoolIntArray( 217, 215, 218 ), PoolIntArray( 221, 220, 219 ), PoolIntArray( 224, 223, 222 ), PoolIntArray( 228, 227, 225 ), PoolIntArray( 225, 227, 226 ), PoolIntArray( 231, 230, 229 ), PoolIntArray( 234, 233, 232 ), PoolIntArray( 236, 235, 239 ), PoolIntArray( 239, 235, 237 ), PoolIntArray( 237, 235, 238 ), PoolIntArray( 241, 240, 242 ), PoolIntArray( 242, 240, 244 ), PoolIntArray( 242, 244, 243 ), PoolIntArray( 247, 246, 245 ), PoolIntArray( 250, 249, 248 ), PoolIntArray( 251, 254, 252 ), PoolIntArray( 252, 254, 253 ), PoolIntArray( 257, 256, 255 ), PoolIntArray( 260, 259, 261 ), PoolIntArray( 261, 259, 258 ), PoolIntArray( 263, 262, 264 ), PoolIntArray( 264, 262, 265 ), PoolIntArray( 267, 271, 272 ), PoolIntArray( 272, 271, 273 ), PoolIntArray( 273, 271, 270 ), PoolIntArray( 273, 270, 266 ), PoolIntArray( 273, 266, 268 ), PoolIntArray( 268, 266, 269 ), PoolIntArray( 276, 275, 274 ), PoolIntArray( 279, 282, 280 ), PoolIntArray( 280, 282, 278 ), PoolIntArray( 280, 278, 281 ), PoolIntArray( 281, 278, 277 ) ]
+sample_partition_type = 2
+cell_size = 0.05
+cell_height = 0.05
+agent_height = 1.0
+agent_radius = 0.25
+detail_sample_max_error = 6.0
+filter_ledge_spans = true
+
+[node name="MapSpiralPointsNavFix" type="NavigationMeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.054821, 0, 0 )
+navmesh = SubResource( 1 )
+
+[node name="Room3" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 11 )
+
+[node name="FloorTile3D15" parent="Room3" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 2 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D16" parent="Room3" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, 2 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D17" parent="Room3" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.5, 2 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D21" parent="Room3" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 3 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D22" parent="Room3" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, 3 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D23" parent="Room3" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.5, 3 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D29" parent="Room3" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.5, 4 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D27" parent="Room3" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 4 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D28" parent="Room3" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, 4 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D30" parent="Room3" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, 6 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D31" parent="Room3" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, 5 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D32" parent="Room3" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, 7 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D33" parent="Room3" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, 8 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D34" parent="Room3" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, 9 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3DSlant" parent="Room3" instance=ExtResource( 1 )]
+transform = Transform( -4.37113e-08, 2.62269e-08, -1, 0.750002, 0.799999, 0, 0.999999, -0.600001, -4.37114e-08, 3, 1.125, 1 )
+
+[node name="FloorTile3DSlant2" parent="Room3" instance=ExtResource( 1 )]
+transform = Transform( -4.37113e-08, 2.62269e-08, -1, 0.750002, 0.799999, 0, 0.999999, -0.600001, -4.37114e-08, 4, 1.125, 1 )
+
+[node name="FloorTile3DSlant3" parent="Room3" instance=ExtResource( 1 )]
+transform = Transform( -4.37113e-08, 2.62269e-08, -1, 0.750002, 0.799999, 0, 0.999999, -0.600001, -4.37114e-08, 2, 1.125, 1 )
+
+[node name="FloorTile3DSlant10" parent="Room3" instance=ExtResource( 1 )]
+transform = Transform( 0.999999, -0.600001, 0, 0.750002, 0.799999, 0, 0, 0, 1, 1, 1.125, 3 )
+
+[node name="FloorTile3DSlant11" parent="Room3" instance=ExtResource( 1 )]
+transform = Transform( 0.999999, -0.600001, 0, 0.750002, 0.799999, 0, 0, 0, 1, 1, 1.125, 2 )
+
+[node name="FloorTile3DSlant12" parent="Room3" instance=ExtResource( 1 )]
+transform = Transform( 0.999999, -0.600001, 0, 0.750002, 0.799999, 0, 0, 0, 1, 1, 1.125, 4 )
+
+[node name="FloorTile3DSlant4" parent="Room3" instance=ExtResource( 1 )]
+transform = Transform( -0.999999, 0.600001, 8.74228e-08, 0.750002, 0.799999, 0, -8.74227e-08, 5.24537e-08, -1, 5, 1.125, 2 )
+
+[node name="FloorTile3DSlant5" parent="Room3" instance=ExtResource( 1 )]
+transform = Transform( -0.999999, 0.600001, 8.74228e-08, 0.750002, 0.799999, 0, -8.74227e-08, 5.24537e-08, -1, 5, 1.125, 4 )
+
+[node name="FloorTile3DSlant6" parent="Room3" instance=ExtResource( 1 )]
+transform = Transform( -0.999999, 0.600001, 8.74228e-08, 0.750002, 0.799999, 0, -8.74227e-08, 5.24537e-08, -1, 5, 1.125, 3 )
+
+[node name="Hall1" type="Spatial" parent="."]
+
+[node name="FloorTile3D16" parent="Hall1" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.75, 9 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D17" parent="Hall1" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.75, 9 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D20" parent="Hall1" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.75, 8 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D21" parent="Hall1" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.75, 7 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D30" parent="Hall1" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.75, 6 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D34" parent="Hall1" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.75, 5 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D18" parent="Hall1" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.75, 9 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D19" parent="Hall1" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.75, 9 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D22" parent="Hall1" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.75, 12 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D23" parent="Hall1" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -0.75, 12 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D24" parent="Hall1" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -0.75, 12 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D25" parent="Hall1" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.75, 12 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3DSlant4" parent="Hall1" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 2.62269e-08, 1, 0.750002, 0.799999, -1.42108e-15, -0.999999, 0.600001, -4.37114e-08, 2, 0.375, 10 )
+
+[node name="FloorTile3DSlant5" parent="Hall1" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 2.62269e-08, 1, 0.750002, 0.799999, -1.42108e-15, -0.999999, 0.600001, -4.37114e-08, 2, -0.375, 11 )
+
+[node name="FloorTile3DSlant2" parent="Hall1" instance=ExtResource( 1 )]
+transform = Transform( -4.37113e-08, 2.62269e-08, -1, 0.750002, 0.799999, -1.42108e-15, 0.999999, -0.600001, -4.37114e-08, 5, 1.125, 10 )
+
+[node name="FloorTile3DSlant3" parent="Hall1" instance=ExtResource( 1 )]
+transform = Transform( -4.37113e-08, 2.62269e-08, -1, 0.750002, 0.799999, -1.42108e-15, 0.999999, -0.600001, -4.37114e-08, 5, 1.875, 11 )
+
+[node name="FloorTile3D26" parent="Hall1" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -2.25, 9 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D27" parent="Hall1" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -2.25, 9 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D28" parent="Hall1" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2.25, 9 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D29" parent="Hall1" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -2.25, 9 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D31" parent="Hall1" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -3.75, 12 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D32" parent="Hall1" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -3.75, 12 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D33" parent="Hall1" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -3.75, 12 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3DSlant6" parent="Hall1" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 2.62269e-08, 1, 0.750002, 0.799999, -1.42108e-15, -0.999999, 0.600001, -4.37114e-08, 2, -2.625, 10 )
+
+[node name="FloorTile3DSlant7" parent="Hall1" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 2.62269e-08, 1, 0.750002, 0.799999, -1.42108e-15, -0.999999, 0.600001, -4.37114e-08, 2, -3.375, 11 )
+
+[node name="FloorTile3DSlant8" parent="Hall1" instance=ExtResource( 1 )]
+transform = Transform( -4.37113e-08, 2.62269e-08, -1, 0.750002, 0.799999, -1.42108e-15, 0.999999, -0.600001, -4.37114e-08, 5, -1.875, 10 )
+
+[node name="FloorTile3DSlant9" parent="Hall1" instance=ExtResource( 1 )]
+transform = Transform( -4.37113e-08, 2.62269e-08, -1, 0.750002, 0.799999, -1.42108e-15, 0.999999, -0.600001, -4.37114e-08, 5, -1.125, 11 )
+
+[node name="Hall2" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 3 )
+
+[node name="FloorTile3D16" parent="Hall2" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 11 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D17" parent="Hall2" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 10 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D18" parent="Hall2" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 9 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D19" parent="Hall2" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -2.25, 11 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D20" parent="Hall2" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -2.25, 10 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D21" parent="Hall2" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -2.25, 9 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3DSlant" parent="Hall2" instance=ExtResource( 1 )]
+transform = Transform( -0.999999, 0.600001, -8.74228e-08, 0.750002, 0.799999, 0, 8.74227e-08, -5.24538e-08, -1, 2, 0.375, 11 )
+
+[node name="FloorTile3DSlant2" parent="Hall2" instance=ExtResource( 1 )]
+transform = Transform( -0.999999, 0.600001, -8.74228e-08, 0.750002, 0.799999, 0, 8.74227e-08, -5.24538e-08, -1, 1, 1.125, 11 )
+
+[node name="FloorTile3DSlant3" parent="Hall2" instance=ExtResource( 1 )]
+transform = Transform( -0.999999, 0.600001, -8.74228e-08, 0.750002, 0.799999, 0, 8.74227e-08, -5.24538e-08, -1, 0, 1.875, 11 )
+
+[node name="FloorTile3DSlant8" parent="Hall2" instance=ExtResource( 1 )]
+transform = Transform( 0.999999, -0.600001, 1.74846e-07, 0.750002, 0.799999, 0, -1.74845e-07, 1.04908e-07, 1, -3, -3.375, 11 )
+
+[node name="FloorTile3DSlant9" parent="Hall2" instance=ExtResource( 1 )]
+transform = Transform( 0.999999, -0.600001, 1.74846e-07, 0.750002, 0.799999, 0, -1.74845e-07, 1.04908e-07, 1, -2, -2.625, 11 )
+
+[node name="FloorTile3DSlant4" parent="Hall2" instance=ExtResource( 1 )]
+transform = Transform( 0.999999, -0.600001, 1.74846e-07, 0.750002, 0.799999, 0, -1.74845e-07, 1.04908e-07, 1, 0, -1.875, 9 )
+
+[node name="FloorTile3DSlant5" parent="Hall2" instance=ExtResource( 1 )]
+transform = Transform( 0.999999, -0.600001, 1.74846e-07, 0.750002, 0.799999, 0, -1.74845e-07, 1.04908e-07, 1, 1, -1.125, 9 )
+
+[node name="FloorTile3DSlant6" parent="Hall2" instance=ExtResource( 1 )]
+transform = Transform( 0.999999, -0.600001, 0, 0.750002, 0.799999, 0, 0, 0, 1, 2, -0.375, 9 )
+
+[node name="Hall4" type="Spatial" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0, 25 )
+
+[node name="FloorTile3D16" parent="Hall4" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 11 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D17" parent="Hall4" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 10 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D18" parent="Hall4" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 9 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D19" parent="Hall4" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -2.25, 11 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D20" parent="Hall4" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -2.25, 10 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D21" parent="Hall4" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -2.25, 9 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D22" parent="Hall4" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -2.25, 9 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D23" parent="Hall4" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2.25, 9 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D24" parent="Hall4" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -2.25, 9 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D25" parent="Hall4" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -2.25, 9 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D26" parent="Hall4" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, -2.25, 9 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D27" parent="Hall4" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -2.25, 9 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D28" parent="Hall4" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -2.25, 8 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D29" parent="Hall4" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -2.25, 7 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D30" parent="Hall4" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -2.25, 6 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D31" parent="Hall4" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -2.25, 5 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3DSlant" parent="Hall4" instance=ExtResource( 1 )]
+transform = Transform( -0.999999, 0.600001, -8.74228e-08, 0.750002, 0.799999, 0, 8.74227e-08, -5.24538e-08, -1, 2, 0.375, 11 )
+
+[node name="FloorTile3DSlant2" parent="Hall4" instance=ExtResource( 1 )]
+transform = Transform( -0.999999, 0.600001, -8.74228e-08, 0.750002, 0.799999, 0, 8.74227e-08, -5.24538e-08, -1, 1, 1.125, 11 )
+
+[node name="FloorTile3DSlant3" parent="Hall4" instance=ExtResource( 1 )]
+transform = Transform( -0.999999, 0.600001, -8.74228e-08, 0.750002, 0.799999, 0, 8.74227e-08, -5.24538e-08, -1, 0, 1.875, 11 )
+
+[node name="FloorTile3DSlant8" parent="Hall4" instance=ExtResource( 1 )]
+transform = Transform( -0.999999, 0.600001, -2.62268e-07, 0.750002, 0.799999, 0, 2.62268e-07, -1.57361e-07, -1, 0.999999, -3.375, 11 )
+
+[node name="FloorTile3DSlant9" parent="Hall4" instance=ExtResource( 1 )]
+transform = Transform( -0.999999, 0.600001, -2.62268e-07, 0.750002, 0.799999, 0, 2.62268e-07, -1.57361e-07, -1, -9.53674e-07, -2.625, 11 )
+
+[node name="FloorTile3DSlant4" parent="Hall4" instance=ExtResource( 1 )]
+transform = Transform( 0.999999, -0.600001, 1.74846e-07, 0.750002, 0.799999, 0, -1.74845e-07, 1.04908e-07, 1, 0, -1.875, 9 )
+
+[node name="FloorTile3DSlant5" parent="Hall4" instance=ExtResource( 1 )]
+transform = Transform( 0.999999, -0.600001, 1.74846e-07, 0.750002, 0.799999, 0, -1.74845e-07, 1.04908e-07, 1, 1, -1.125, 9 )
+
+[node name="FloorTile3DSlant6" parent="Hall4" instance=ExtResource( 1 )]
+transform = Transform( 0.999999, -0.600001, 1.74846e-07, 0.750002, 0.799999, 0, -1.74845e-07, 1.04908e-07, 1, 2, -0.375, 9 )
+
+[node name="Basement" type="Spatial" parent="."]
+
+[node name="FloorTile3D34" parent="Basement" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -3.75, 14 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D36" parent="Basement" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -3.75, 15 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D37" parent="Basement" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -3.75, 16 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D38" parent="Basement" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -3.75, 17 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D42" parent="Basement" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -3.75, 17 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D43" parent="Basement" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -3.75, 17 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D44" parent="Basement" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -3.75, 17 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D45" parent="Basement" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.75, 17 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D46" parent="Basement" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.75, 16 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D47" parent="Basement" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.75, 15 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D48" parent="Basement" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.75, 14 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D49" parent="Basement" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.75, 13 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D50" parent="Basement" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.75, 12 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D52" parent="Basement" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -3.75, 12 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D53" parent="Basement" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -3.75, 12 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D54" parent="Basement" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -3.75, 12 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D55" parent="Basement" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -3.75, 12 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D56" parent="Basement" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -3.75, 12 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D57" parent="Basement" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, -3.75, 12 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D58" parent="Basement" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -3.75, 12 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D51" parent="Basement" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -3.75, 12 )
+skeleton = NodePath("../..")
+
+[node name="FloorTile3D35" parent="Basement" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -3.75, 13 )
+skeleton = NodePath("../..")

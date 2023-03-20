@@ -18,13 +18,13 @@ func acquire_poem_text():
 	print("text index = " + str(text_index))
 	text_index = round(text_index)
 	print("text index = " + str(text_index))
-	text_index = int(text_index)
+#	text_index = int(text_index)
 	print("text index = " + str(text_index))
 	text_index += 1 # result is int in range 1 to 30
 	print("text index = " + str(text_index))
 	#var mod = (randi() % 11) - 5 ## rand int from -5 to 5
 	#text_index += mod
-	#text_index = int(clamp(text_index, 1, 30))
+	text_index = int(clamp(text_index, 1, 30))
 	poem_text.append(text_index)
 	poem_text.append(Global.poem_text_dict[text_index][0])
 	Global.poem_text_dict[text_index][2] = true

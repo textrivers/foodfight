@@ -150,7 +150,6 @@ signal done_selecting_action_target
 
 func _ready():
 	if OS.get_name() == "Windows":
-		print("adjusting background energy")
 		$WorldEnvironment.get_environment().background_energy = 4.0
 	var music = Global.audio.get_node("Music/AudioStreamPlayer")
 	music.stream = level_music
@@ -194,7 +193,6 @@ func _ready():
 		child.connect("power_up_chosen", self, "handle_power_up")
 	## populate the HPContainer
 	if Global.hit_maximum <= 10:
-		print(Global.hit_maximum)
 		for i in Global.hit_maximum:
 			var new_hprect = load("res://Scenes/HPRect.tscn").instance()
 			$GUI/Center/HPContainer/GridContainer.add_child(new_hprect)
@@ -275,16 +273,10 @@ func _on_HSlider_value_changed(value):
 # warning-ignore:unused_argument
 func _physics_process(delta):
 	## keyboard input, apologies to anyone reading this for the clumsy/naive approach
-	if Input.is_action_just_pressed("debug"):
-		debug = !debug
-		print("debug is " + str(debug))
-	
-	advance_time()
-	prompt_turns()
-	translate_cam_rig()
-	rotate_cam_rig()
-	update_progress_bars()
-	if whose_turn.player:
+#	if Input.is_action_just_pressed("debug"):
+#		debug = !debug
+#		print("debug is " + str(debug))
+	if whose_turn != null && whose_turn.player:
 		if $GUI/Right/PlayerOptions.visible == true:
 			if Input.is_action_just_pressed("read") && $GUI/Right/PlayerOptions/Read.disabled == false:
 				_on_Read_pressed()
@@ -297,6 +289,12 @@ func _physics_process(delta):
 		if $GUI/Right/ProceedCancel.visible == true:
 			if Input.is_action_just_pressed("cancel") && $GUI/Right/ProceedCancel/Cancel.disabled == false:
 				_on_Cancel_pressed()
+	advance_time()
+	prompt_turns()
+	translate_cam_rig()
+	rotate_cam_rig()
+	update_progress_bars()
+	
 
 func advance_time():
 	if advancing:
@@ -369,10 +367,12 @@ func AI_action_select():
 				current_action[1] = dest_tile.global_translation
 		## handle navigation for walking
 		if current_action[0] == "walk":
-			whose_turn.get_node("NavigationAgent").set_target_location(current_action[1])
+			var nav_agent = whose_turn.get_node("NavigationAgent")
+			nav_agent.set_target_location(current_action[1])
 			#await whose_turn.get_node("NavigationAgent3d").path_changed
-			yield(whose_turn.get_node("NavigationAgent"), "path_changed")
+			yield(nav_agent, "path_changed")
 			current_action[2] = calculate_walk_duration()
+			print("target reachable is " + str(nav_agent.is_target_reachable()))
 	reset_character_options()
 	hide_character_options()
 	emit_signal("GUI_action_taken")
@@ -381,13 +381,16 @@ func find_closest_food():
 	var nearest = null
 	var food_array = get_tree().get_nodes_in_group("throwable")
 	for food in food_array: 
-		if nearest == null:
-			nearest = food
+		if food.thrown:
 			continue
-		elif whose_turn.translation.distance_to(food.to_global(food.translation)) < whose_turn.translation.distance_to(nearest.to_global(nearest.translation)):
-			nearest = food
-	var nearest_translation = (nearest.translation + nearest.get_parent().translation)
-	return Vector3(nearest_translation.x, 0, nearest_translation.z)
+		else:
+			if nearest == null:
+				nearest = food
+				continue
+			elif whose_turn.global_translation.distance_to(food.global_translation) < whose_turn.global_translation.distance_to(nearest.global_translation):
+				nearest = food
+	var nearest_translation = (nearest.get_parent().global_translation)
+	return Vector3(nearest_translation)
 
 func resolve_turn():
 	## send the action info to the character
@@ -458,6 +461,7 @@ func display_character_options(_player):
 func reset_character_options():
 	for child in $GUI/Right/PlayerOptions.get_children():
 		child.show()
+	$GUI/Right/PlayerOptions/HBoxContainer.hide()
 	$GUI/Right/ReadOptions.hide()
 	$GUI/Right/WaitOptions.hide()
 	$GUI/Right/WalkOptions.hide()
@@ -787,7 +791,6 @@ func handle_power_up(_index, _icon, _tooltip):
 					Global.player_node.get_node("Viewport/CharacterSprite/Sprite").modulate = Global.get_random_palette_color() 
 		else: 
 			power_up_dict[child.power_up_index] = [child.text, child.hint_tooltip, child.icon.get_path()]
-			print(power_up_dict[child.power_up_index])
 	## default entry added back into power_up_dict so there will always be 3
 	## needs to be guaranteed unique int
 	while power_up_dict.size() < 3: 
