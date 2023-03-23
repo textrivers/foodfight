@@ -7,7 +7,7 @@ var scroll_rate: float = 0.5
 const FILE_NAME = "user://enough-of-a-mess-data.json"
 
 func _ready():
-	print("title screen ready")
+	#print("title screen ready")
 	var music = Global.audio.get_node("Music/AudioStreamPlayer")
 	if !music.playing:
 		music.stream = load("res://Assets/Audio/EG_PAM.ogg")

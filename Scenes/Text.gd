@@ -12,8 +12,8 @@ func _ready():
 
 func acquire_poem_text():
 	var splats = min((Global.visible_splat_count * 2), 100)
-	var bar_total = splats + Global.hilarity
-	print("splats = " + str(splats) + ", hilarity = " + str(Global.hilarity) + ", bar total = " + str(bar_total))
+	var bar_total = splats + min(Global.hilarity, 100)
+	print("splats = " + str(splats) + ", hilarity = " + str(min(Global.hilarity, 100)) + ", bar total = " + str(bar_total))
 	var text_index = bar_total / 6.8966 ## reduces a number between 0 - 200 to a number between 0 - 29
 	print("text index = " + str(text_index))
 	text_index = round(text_index)

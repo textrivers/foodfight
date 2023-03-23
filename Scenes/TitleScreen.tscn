@@ -461,7 +461,6 @@ align = 1
 valign = 1
 
 [node name="Options" parent="." instance=ExtResource( 9 )]
-visible = false
 light_mask = 0
 theme = SubResource( 31 )
 

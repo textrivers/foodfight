@@ -87,9 +87,10 @@ neighbor_dist = 10.0
 [node name="RayCast" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0 )
 enabled = true
-exclude_parent = false
+cast_to = Vector3( 0, -2, 0 )
 collision_mask = 3
 debug_shape_custom_color = Color( 0.831373, 0.239216, 0.262745, 1 )
+debug_shape_thickness = 4
 
 [node name="Area" type="Area" parent="."]
 collision_layer = 2
@@ -107,6 +108,7 @@ bus = "SFX"
 [connection signal="input_event" from="." to="." method="_on_Character3D_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_Character3D_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Character3D_mouse_exited"]
+[connection signal="visibility_changed" from="." to="." method="_on_Character4_visibility_changed"]
 [connection signal="velocity_computed" from="NavigationAgent" to="." method="_on_NavigationAgent_velocity_computed"]
 [connection signal="area_entered" from="Area" to="." method="_on_Area_area_entered"]
 [connection signal="area_exited" from="Area" to="." method="_on_Area_area_exited"]

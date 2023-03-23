@@ -53,7 +53,7 @@ var current_moment: int = 0
 var advancing: bool = true
 var screenshot_acquired: bool = false
 var mess_multiplier: float = 2.0
-var hilarity_multiplier: float = 0.25
+var hilarity_multiplier: float = 0.4
 
 var power_up_dict: Dictionary = {
 	0: ["Quickling's Quill", "Increased walk speed", "res://Assets/PowerUpIcons/QQ.png"], 
@@ -73,7 +73,7 @@ var power_up_dict: Dictionary = {
 #	14: ["Unwilling Disguise", "One opponent will only target opponents"], ## might be a huge pain in the ass
 	15: ["Dilettante's Diploma", "Spawn more ice cream cones", "res://Assets/PowerUpIcons/DD.png"],
 	16: ["Thaumaturge's Greeting Card", "Randomly teleport once", "res://Assets/PowerUpIcons/TM.png"],
-	17: ["Coriolis Scrubber", "Remove 1/2 of the floor splatters", "res://Assets/PowerUpIcons/CS.png"],
+	17: ["Coriolis Scrubber", "Remove all of the floor splatters", "res://Assets/PowerUpIcons/CS.png"],
 	18: ["Laser Level", "Set Hilarity to zero", "res://Assets/PowerUpIcons/LaLe.png"],
 	19: ["Pocket Quasar", "Level up while resting", "res://Assets/PowerUpIcons/PQ.png"], 
 	20: ["Banana Bonanza", "Spawn more bananas", "res://Assets/PowerUpIcons/BB.png"],
@@ -130,8 +130,8 @@ var power_up_dict: Dictionary = {
 	71: ["Thaumaturge's Greeting Card", "Randomly teleport once", "res://Assets/PowerUpIcons/TG.png"],
 	72: ["Thaumaturge's Greeting Card", "Randomly teleport once", "res://Assets/PowerUpIcons/TG.png"],
 	73: ["Thaumaturge's Greeting Card", "Randomly teleport once", "res://Assets/PowerUpIcons/TG.png"],
-	74: ["Coriolis Scrubber", "Remove 1/2 of the floor splatters", "res://Assets/PowerUpIcons/CS.png"],
-	75: ["Coriolis Scrubber", "Remove 1/2 of the floor splatters", "res://Assets/PowerUpIcons/CS.png"],
+	74: ["Coriolis Scrubber", "Remove all of the floor splatters", "res://Assets/PowerUpIcons/CS.png"],
+	75: ["Coriolis Scrubber", "Remove all of the floor splatters", "res://Assets/PowerUpIcons/CS.png"],
 	76: ["Laser Level", "Set Hilarity to zero", "res://Assets/PowerUpIcons/LaLe.png"],
 	77: ["Laser Level", "Set Hilarity to zero", "res://Assets/PowerUpIcons/LaLe.png"],
 	78: ["Licorice Lovebird", "Decreased vision range", "res://Assets/PowerUpIcons/LiLo.png"],
@@ -315,6 +315,7 @@ func prompt_turns():
 				turn_marker.translation.y = turn.translation.y + 0.6
 				turn_marker.translation.z = turn.translation.z
 				whose_turn = turn
+				turn.respawning = false
 				turn.set_deferred("knockback", false)
 				if !turn.player:
 					AI_action_select()
@@ -372,7 +373,7 @@ func AI_action_select():
 			#await whose_turn.get_node("NavigationAgent3d").path_changed
 			yield(nav_agent, "path_changed")
 			current_action[2] = calculate_walk_duration()
-			print("target reachable is " + str(nav_agent.is_target_reachable()))
+			#print("target reachable is " + str(nav_agent.is_target_reachable()))
 	reset_character_options()
 	hide_character_options()
 	emit_signal("GUI_action_taken")
@@ -589,7 +590,7 @@ func _on_Proceed_pressed():
 		var nav_agent = whose_turn.get_node("NavigationAgent")
 		nav_agent.set_target_location(action_target)
 		yield(nav_agent, "path_changed")
-		print("target reachable is " + str(nav_agent.is_target_reachable()))
+		#print("target reachable is " + str(nav_agent.is_target_reachable()))
 		if debug:
 			display_debug_path()
 		current_action[2] = calculate_walk_duration()
@@ -764,13 +765,14 @@ func handle_power_up(_index, _icon, _tooltip):
 					turn_marker.translation.x = Global.player_node.translation.x
 					turn_marker.translation.y = Global.player_node.translation.y + 0.6
 					turn_marker.translation.z = Global.player_node.translation.z
-				17, 74, 75: ## remove some floor splatter
-					var splats = get_tree().get_nodes_in_group("splat")
-					var remove_count: int = splats.size() / 2
-					for i in remove_count:
-						var j = randi() % splats.size()
-						splats[j].call_deferred("queue_free")
-					$GUI/Center/HBoxContainer/MessProgressBar.value = Global.visible_splat_count * mess_multiplier
+				17, 74, 75: ## remove all floor splatter
+#					var splats = get_tree().get_nodes_in_group("splat")
+#					var remove_count: int = splats.size() / 2
+#					for i in remove_count:
+#						var j = randi() % splats.size()
+#						splats[j].call_deferred("queue_free")
+					get_tree().call_group("splat", "queue_free")
+					$GUI/Center/HBoxContainer/MessProgressBar.value = 0
 				18, 76, 77: ## set hilarity to zero
 					Global.hilarity = 0
 					$GUI/Center/HBoxContainer2/HilarityProgressBar.value = Global.hilarity

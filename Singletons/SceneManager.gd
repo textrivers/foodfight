@@ -31,7 +31,7 @@ func goto_scene(current_scene, path):
 		elif err == OK:
 			var progress = float(loader.get_stage()) / loader.get_stage_count()
 			progress = int(progress * 12)
-			print(progress)
+			#print(progress)
 			transition_squares.get_node("SquaresContainer/Sprite50/AnimatedSprite2").frame = progress
 			progress = int(progress * 0.67)
 			transition_squares.get_node("SquaresContainer/Sprite28/AnimatedSprite").frame = progress

@@ -81,8 +81,10 @@ var actions: Array = [
 var red_light: bool = false
 var walking: bool = false
 var velocity
+var gravity = 0.2
 var walk_speed: float = 4.0
 var knockback: bool = false
+var knockback_target: Vector3
 var knockback_dist: float = 4.0
 var knockback_speed: float = 8.0
 var knockback_speed_attrition: float = 0.05
@@ -101,6 +103,8 @@ var selected: bool = false
 var waiting: bool = false
 var wait_modifier: float = 0.0
 var revert_color: Color
+var falling: bool = false
+var respawning: bool = false
 
 var sound_pickup = preload("res://Assets/Audio/pickup.wav")
 var sound_throw = preload("res://Assets/Audio/FF_throw_02.wav")
@@ -162,10 +166,12 @@ func generate_unique_name(name_prefix):
 		new_name = generate_unique_name(name_prefix)
 	return new_name
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	bullseye = Vector3(global_translation.x, global_translation.y + 0.6, global_translation.z)
 	var next_loc = $NavigationAgent.get_next_location()
 	if !red_light:
+		if respawning: 
+			global_translation.y += (2.0 / 90)
 		if food_contacts.size() > 0 && !self.has_node("MyFood"):
 #			$CharacterSound.stream = sound_pickup
 #			$CharacterSound.play()
@@ -184,15 +190,24 @@ func _physics_process(_delta):
 		if waiting:
 			Global.level_up_tracker += wait_modifier
 		if walking:
-			velocity = global_translation.direction_to(next_loc) * walk_speed
 			if knockback:
-				velocity = global_translation.direction_to(next_loc) * knockback_speed
+				velocity = global_translation.direction_to(knockback_target) * knockback_speed
 				knockback_speed -= knockback_speed * knockback_speed_attrition
+				if $RayCast.is_colliding():
+					global_translation.y = $RayCast.get_collision_point().y
+				else: 
+					start_falling()
+			elif falling:
+				velocity.y -= gravity
+				if global_translation.y <= -30:
+					start_respawn()
+			else:
+				velocity = global_translation.direction_to(next_loc) * walk_speed
 	# warning-ignore:return_value_discarded
 			move_and_slide(velocity)
 			if hunting: 
 				hunting = !acquire_target()
-			if !$CharacterSound.playing:
+			if !$CharacterSound.playing && !falling:
 				$CharacterSound.stream = footstep_array[footstep_index]
 				footstep_index = (footstep_index + 1) % footstep_array.size()
 				$CharacterSound.play()
@@ -326,9 +341,11 @@ func start_knockback(new_vel):
 	knockback = true
 	walking = true
 	hunting = false
+	respawning = false
 	knockback_speed = new_vel.length()
-	var new_pos = global_translation + (new_vel.normalized() * knockback_dist)
-	$NavigationAgent.set_target_location(new_pos)
+	knockback_target = global_translation + (new_vel.normalized() * knockback_dist * (new_vel.length() / 6)) 
+	velocity = global_translation.direction_to(knockback_target) * knockback_speed
+	$RayCast.cast_to = Vector3(0, -1, 0)
 #	if parent.debug:
 #		var new_sphere = load("res://Scenes/DebugSphere.tscn").instantiate()
 #		new_sphere.position = new_pos
@@ -336,8 +353,38 @@ func start_knockback(new_vel):
 #		new_mat.albedo_color = Global.palette_dict["pink_1"]
 #		new_sphere.material = new_mat
 #		parent.add_child(new_sphere)
-	yield($NavigationAgent, "path_changed")
+	## REVERT to these two lines below if knockback/fall doesn't work
+	#$NavigationAgent.set_target_location(new_pos)
+	#yield($NavigationAgent, "path_changed")
 	parent.turn_tracker[self] = ceil(parent.current_moment + (knockback_dist / knockback_speed * 60))
+
+func start_falling():
+	parent.turn_tracker[self] = parent.current_moment + 99999999
+	knockback = false
+	falling = true
+	#$CollisionShape.disabled = true
+	$CharacterSound.stream = load("res://Assets/Audio/BFXR_falling.wav")
+	$CharacterSound.play()
+	## give player a bunch of lvl-up points... or subtract if player?
+	if player: 
+		Global.level_up_tracker -= 20
+		if Global.level_up_tracker < 0:
+			Global.level_up_tracker = 0
+	else:
+		Global.level_up_tracker += 20
+
+func start_respawn():
+	falling = false
+	walking = false
+	respawning = true
+	var respawns = get_tree().get_nodes_in_group("respawn")
+	var respawn_loc = respawns[randi() % respawns.size()]
+	global_translation = respawn_loc.global_translation
+	velocity = Vector3.ZERO
+	#$CollisionShape.disabled = false
+	parent.turn_tracker[self] = ceil(parent.current_moment + (1.5 * 60)) # 60 fps x 1.5 seconds for sound
+	$CharacterSound.stream = load("res://Assets/Audio/BFXR_respawn_01.wav")
+	$CharacterSound.play()
 
 func _on_Area_body_entered(body):
 	if body.is_in_group("proximity"):
@@ -373,5 +420,8 @@ func _on_Area_area_exited(area):
 func _on_NavigationAgent_velocity_computed(safe_velocity):
 	velocity = safe_velocity
 
-
-
+func _on_Character4_visibility_changed():
+	##debug
+	if !visible:
+		pass
+		#print(self.name + " went invisible")

@@ -35,9 +35,9 @@ var palette_dict: Dictionary = {
 	"pink_2": Color("#921921")
 }
 
-var character_sprite = "res://Assets/CharacterSprites/Wid_Vanilla.png"
-var character_modulate = Color.white
-var character_light_mask = "res://Assets/CharacterSprites/Wid_Mask.png"
+var character_sprite = "res://Assets/CharacterSprites/Wid2_Horns.png"
+var character_modulate = Color("#c9b111")
+var character_light_mask = "res://Assets/CharacterSprites/Wid2_Mask.png"
 var light_mask_lookup: Dictionary = {
 	"res://Assets/CharacterSprites/Wid2_Vanilla.png" : "res://Assets/CharacterSprites/Wid2_Mask.png",
 	"res://Assets/CharacterSprites/Wid2_Halo.png" : "res://Assets/CharacterSprites/Wid2_Mask.png",
