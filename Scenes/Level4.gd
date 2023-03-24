@@ -78,8 +78,8 @@ var power_up_dict: Dictionary = {
 	19: ["Pocket Quasar", "Level up while resting", "res://Assets/PowerUpIcons/PQ.png"], 
 	20: ["Banana Bonanza", "Spawn more bananas", "res://Assets/PowerUpIcons/BB.png"],
 	21: ["Licorice Lovebird", "Decreased vision range", "res://Assets/PowerUpIcons/LiLo.png"],
-	22: ["Surrogate Scissor", "Take control of one opponent", "res://Assets/PowerUpIcons/SS.png"],
-	23: ["Surrogate Scissor", "Take control of one opponent", "res://Assets/PowerUpIcons/SS.png"],
+#	22: ["Surrogate Scissor", "Take control of one opponent", "res://Assets/PowerUpIcons/SS.png"],
+#	23: ["Surrogate Scissor", "Take control of one opponent", "res://Assets/PowerUpIcons/SS.png"],
 	24: ["Banana Bonanza", "Spawn more bananas", "res://Assets/PowerUpIcons/BB.png"],
 	25: ["Banana Bonanza", "Spawn more bananas", "res://Assets/PowerUpIcons/BB.png"],
 	26: ["Banana Bonanza", "Spawn more bananas", "res://Assets/PowerUpIcons/BB.png"],
@@ -159,7 +159,7 @@ func _ready():
 	Global.level_up_threshold = 10
 	cam_rig = $CameraRig
 	GUI = $GUI
-	turn_marker = $TurnMarker
+#	turn_marker = $TurnMarker
 	cam_rig_rot_target = Vector2(cam_rig.rotation_degrees.y, cam_rig.rotation_degrees.x)
 	cam_rig_zoom_target = $CameraRig/Camera.translation.z
 	place_objects()
@@ -310,10 +310,10 @@ func prompt_turns():
 				action_target = Vector3.ZERO
 				advancing = false
 				emit_signal("red_light")
-				turn_marker.show()
-				turn_marker.translation.x = turn.translation.x
-				turn_marker.translation.y = turn.translation.y + 0.6
-				turn_marker.translation.z = turn.translation.z
+#				turn_marker.show()
+#				turn_marker.translation.x = turn.translation.x
+#				turn_marker.translation.y = turn.translation.y + 0.6
+#				turn_marker.translation.z = turn.translation.z
 				whose_turn = turn
 				turn.respawning = false
 				turn.set_deferred("knockback", false)
@@ -402,7 +402,7 @@ func resolve_turn():
 	whose_turn = null
 	advancing = true
 	emit_signal("green_light")
-	turn_marker.hide()
+	#turn_marker.hide()
 
 func translate_cam_rig():
 	cam_rig.translation = cam_rig_trans_target.to_global(cam_rig_trans_target.translation)
@@ -489,7 +489,7 @@ func _on_Read_pressed():
 	if Global.poem_text_dict[available_text[0]][3] == false:
 		Global.game_text_count += 1 
 		Global.poem_text_dict[available_text[0]][3] = true
-	$TurnMarker.hide()
+	#$TurnMarker.hide()
 	$GUI/Right/PlayerOptions.hide()
 	$GUI/Right/ReadOptions.show()
 	$Panel.hide()
@@ -606,7 +606,7 @@ func _on_Cancel_pressed():
 	emit_signal("done_selecting_action_target")
 	$CameraRig/Camera.current = true
 	$PoemLabelContainer.hide()
-	$TurnMarker.show()
+	#$TurnMarker.show()
 	$GUI/Center.show()
 	screenshot_acquired = false
 	if $HumSound.playing:
@@ -762,9 +762,9 @@ func handle_power_up(_index, _icon, _tooltip):
 					var r = randi() % tiles.size()
 					var random_tile = tiles[r]
 					Global.player_node.global_translation = random_tile.global_translation
-					turn_marker.translation.x = Global.player_node.translation.x
-					turn_marker.translation.y = Global.player_node.translation.y + 0.6
-					turn_marker.translation.z = Global.player_node.translation.z
+#					turn_marker.translation.x = Global.player_node.translation.x
+#					turn_marker.translation.y = Global.player_node.translation.y + 0.6
+#					turn_marker.translation.z = Global.player_node.translation.z
 				17, 74, 75: ## remove all floor splatter
 #					var splats = get_tree().get_nodes_in_group("splat")
 #					var remove_count: int = splats.size() / 2
@@ -781,14 +781,14 @@ func handle_power_up(_index, _icon, _tooltip):
 				21, 78, 79: ## reduced vision
 					Global.player_node.get_node("Area/CollisionShape").get_shape().radius -= 2.0
 					Global.character_proximity_radius -= 2.0
-				22, 23: ## take control of another character
-					var all_chars = get_tree().get_nodes_in_group("character")
-					for _char in all_chars:
-						if _char.player == true:
-							all_chars.erase(_char)
-					var rand_char = all_chars[randi() % all_chars.size()]
-					rand_char.player = true
-					rand_char.get_node("Area").monitoring = true
+##				22, 23: ## take control of another character
+#					var all_chars = get_tree().get_nodes_in_group("character")
+#					for _char in all_chars:
+#						if _char.player == true:
+#							all_chars.erase(_char)
+#					var rand_char = all_chars[randi() % all_chars.size()]
+#					rand_char.player = true
+#					rand_char.get_node("Area").monitoring = true
 				_: ## default, change player color
 					Global.player_node.get_node("Viewport/CharacterSprite/Sprite").modulate = Global.get_random_palette_color() 
 		else: 
@@ -796,7 +796,7 @@ func handle_power_up(_index, _icon, _tooltip):
 	## default entry added back into power_up_dict so there will always be 3
 	## needs to be guaranteed unique int
 	while power_up_dict.size() < 3: 
-		power_up_dict[unique_power_int] = ["Ungreen Goggles", "That the “that\nit was what\nit was” is\nwhat mattered is\nlike an oversimplification?", "res://Assets/PowerUpIcons/blank_icon_200px.png"]
+		power_up_dict[unique_power_int] = ["Greenless Goggles", "Placeholder item -- changes your character color once", "res://Assets/PowerUpIcons/blank_icon_200px.png"]
 		unique_power_int += 1
 	## create an icon in the icon area
 	var new_icon = load("res://Scenes/PowerUpIcon.tscn").instance()

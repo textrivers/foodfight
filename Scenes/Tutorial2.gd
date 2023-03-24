@@ -161,7 +161,7 @@ func _ready():
 	Global.level_up_threshold = 10
 	cam_rig = $CameraRig
 	GUI = $GUI
-	turn_marker = $TurnMarker
+#	turn_marker = $TurnMarker
 	cam_rig_rot_target = Vector2(cam_rig.rotation_degrees.y, cam_rig.rotation_degrees.x)
 	cam_rig_zoom_target = $CameraRig/Camera.translation.z
 	place_objects()
@@ -318,10 +318,10 @@ func prompt_turns():
 				action_target = Vector3.ZERO
 				advancing = false
 				emit_signal("red_light")
-				turn_marker.show()
-				turn_marker.translation.x = turn.translation.x
-				turn_marker.translation.y = turn.translation.y + 0.6
-				turn_marker.translation.z = turn.translation.z
+#				turn_marker.show()
+#				turn_marker.translation.x = turn.translation.x
+#				turn_marker.translation.y = turn.translation.y + 0.6
+#				turn_marker.translation.z = turn.translation.z
 				whose_turn = turn
 				turn.set_deferred("knockback", false)
 				if !turn.player:
@@ -404,7 +404,7 @@ func resolve_turn():
 	whose_turn = null
 	advancing = true
 	emit_signal("green_light")
-	turn_marker.hide()
+#	turn_marker.hide()
 
 func translate_cam_rig():
 	cam_rig.translation = cam_rig_trans_target.to_global(cam_rig_trans_target.translation)
@@ -494,7 +494,7 @@ func _on_Read_pressed():
 	if Global.poem_text_dict[available_text[0]][3] == false:
 		Global.game_text_count += 1 
 		Global.poem_text_dict[available_text[0]][3] = true
-	$TurnMarker.hide()
+#	$TurnMarker.hide()
 	$GUI/Right/PlayerOptions.hide()
 	$GUI/Right/ReadOptions.show()
 	$Panel.hide()
@@ -611,7 +611,7 @@ func _on_Cancel_pressed():
 	emit_signal("done_selecting_action_target")
 	$CameraRig/Camera.current = true
 	#$PoemLabelContainer.hide()
-	$TurnMarker.show()
+#	$TurnMarker.show()
 	$GUI/Center.show()
 	screenshot_acquired = false
 	if $HumSound.playing:
@@ -770,9 +770,9 @@ func handle_power_up(_index, _icon, _tooltip):
 					var r = randi() % tiles.size()
 					var random_tile = tiles[r]
 					Global.player_node.global_translation = random_tile.global_translation
-					turn_marker.translation.x = Global.player_node.translation.x
-					turn_marker.translation.y = Global.player_node.translation.y + 0.6
-					turn_marker.translation.z = Global.player_node.translation.z
+#					turn_marker.translation.x = Global.player_node.translation.x
+#					turn_marker.translation.y = Global.player_node.translation.y + 0.6
+#					turn_marker.translation.z = Global.player_node.translation.z
 				17, 74, 75: ## remove some floor splatter
 					var splats = get_tree().get_nodes_in_group("splat")
 					var remove_count: int = splats.size() / 2
@@ -803,7 +803,7 @@ func handle_power_up(_index, _icon, _tooltip):
 	## default entry added back into power_up_dict so there will always be 3
 	## needs to be guaranteed unique int
 	while power_up_dict.size() < 3: 
-		power_up_dict[unique_power_int] = ["Ungreen Goggles", "That the “that\nit was what\nit was” is\nwhat mattered is\nlike an oversimplification?", "res://Assets/PowerUpIcons/blank_icon_200px.png"]
+		power_up_dict[unique_power_int] = ["Greenless Goggles", "Placeholder item -- changes your character color once!", "res://Assets/PowerUpIcons/blank_icon_200px.png"]
 		unique_power_int += 1
 	## create an icon in the icon area
 	var new_icon = load("res://Scenes/PowerUpIcon.tscn").instance()
@@ -827,7 +827,7 @@ func handle_state_update(state):
 				child.text = "\n(W)alk to food\nto pick it up\n\nYou only hold one food\nat a time"
 		2:
 			for child in $PoemLabelContainer.get_children():
-				child.text = "\n(T)hrow food at opponent!\na successful hit\n creates ice cream cone"
+				child.text = "\n(T)hrow food at opponent!\nsuccessful hit\n creates ice cream cone"
 		3:
 			for child in $PoemLabelContainer.get_children():
 				child.text = "\nPick up and (E)at ice cream\n to see poem text\nand gain experience"

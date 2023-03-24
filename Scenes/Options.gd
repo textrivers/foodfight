@@ -37,3 +37,12 @@ func _on_CheckBox_toggled(button_pressed):
 	Global.timer_visible = button_pressed
 	if get_parent().has_node("GUI/Center/HBoxContainer/SpeedrunTimer"):
 		get_parent().get_node("GUI/Center/HBoxContainer/SpeedrunTimer").visible = button_pressed
+
+func _on_Quit_pressed():
+	$AreYouSure.show()
+
+func _on_Yes_pressed():
+	get_tree().quit()
+
+func _on_No_pressed():
+	$AreYouSure.hide()

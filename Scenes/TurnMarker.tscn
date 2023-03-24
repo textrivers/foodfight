@@ -123,6 +123,7 @@ tracks/4/keys = {
 
 [node name="TurnMarker" type="Sprite3D"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0 )
+visible = false
 offset = Vector2( 0, 100 )
 billboard = 1
 double_sided = false

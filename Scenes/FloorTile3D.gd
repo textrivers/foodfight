@@ -23,11 +23,16 @@ func _process(_delta):
 		print("mat albedo not assigned correctly")
 
 func on_target_selecting():
+	if !timer.is_stopped():
+		yield(timer, "timeout")
+	if material_override.albedo_color.a > 0.1:
+		$StaticBody.input_ray_pickable = true
 	selected = false
 	selecting = true
 	material_override.albedo_color = Color(revert_color.r, revert_color.g, revert_color.b, material_override.albedo_color.a)
 
 func on_target_unselecting():
+	$StaticBody.input_ray_pickable = false
 	selecting = false
 
 func _on_StaticBody_mouse_entered():

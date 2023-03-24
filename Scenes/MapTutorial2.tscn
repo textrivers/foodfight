@@ -218,3 +218,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.15256e-07, 0, 5 )
 
 [node name="FloorTile3D7" parent="Hall3" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 5 )
+
+[editable path="Room1/FloorTile3D"]

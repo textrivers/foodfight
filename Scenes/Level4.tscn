@@ -66,6 +66,7 @@ current = true
 size = 10.0
 
 [node name="TurnMarker" parent="." instance=ExtResource( 5 )]
+visible = false
 
 [node name="PoemLabelContainer" type="Spatial" parent="."]
 visible = false

@@ -6,9 +6,9 @@ extends Sprite3D
 # var b = "text"
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	$AnimationPlayer.play("pulse")
+## Called when the node enters the scene tree for the first time.
+#func _ready():
+#	$AnimationPlayer.play("pulse")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

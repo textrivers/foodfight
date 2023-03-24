@@ -91,6 +91,7 @@ func _on_Proceed_pressed():
 	file.store_var(to_json(texts_for_save))
 	file.close()
 	$AreYouSure.hide()
+	Global.audio.fade_out()
 	SceneManager.goto_scene(self, "res://Scenes/TitleScreen.tscn")
 
 func _on_Cancel_pressed():

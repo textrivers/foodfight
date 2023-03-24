@@ -12,6 +12,8 @@ func _ready():
 
 func goto_scene(current_scene, path):
 	emit_signal("fade_to_black", true)
+	if current_scene.has_node("Options"):
+		current_scene.get_node("Options").queue_free()
 	yield(get_node("/root/Main/TransitionSquares/Tween"), "tween_all_completed")
 	current_scene.queue_free()
 	var loader = ResourceLoader.load_interactive(path)

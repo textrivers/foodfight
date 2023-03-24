@@ -305,10 +305,12 @@ func throw_food(targ):
 
 ## selectability
 func on_target_selecting():
+	input_ray_pickable = true
 	selecting = true
 	_on_Character3D_mouse_exited()
 
 func on_target_unselecting():
+	input_ray_pickable = false
 	selecting = false
 
 func _on_Character3D_input_event(camera, event, position, normal, shape_idx):
@@ -321,7 +323,7 @@ func _on_Character3D_input_event(camera, event, position, normal, shape_idx):
 func _on_Character3D_mouse_entered():
 	if selecting == true && selected == false:
 		if !player:
-			$Viewport/CharacterSprite/Sprite.modulate = Color.hotpink
+			$Viewport/CharacterSprite/Sprite.modulate = Global.palette_dict["pink_1"]
 
 func _on_Character3D_mouse_exited():
 	if selecting == true && selected == false:
@@ -390,7 +392,6 @@ func _on_Area_body_entered(body):
 	if body.is_in_group("proximity"):
 		var body_parent = body.get_parent()
 		if body_parent.is_in_group("tile"):
-			body.input_ray_pickable = true
 			body_parent.proximity_fade(true)
 		else:
 			body.visible = true
@@ -399,7 +400,6 @@ func _on_Area_body_exited(body):
 	if player && body.is_in_group("proximity"):
 		var body_parent = body.get_parent()
 		if body_parent.is_in_group("tile"):
-			body.input_ray_pickable = false
 			body_parent.proximity_fade(false)
 		else:
 			body.visible = false
