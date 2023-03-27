@@ -17,7 +17,8 @@ func _ready():
 	$Timer.connect("timeout", self, "solidify_words")
 
 func _process(_delta):
-	pass
+	if !$Timer.is_stopped():
+		$GUI/HBoxContainer/Control/TextureProgress.value = $Timer.time_left
 
 func parse_and_place():
 	line_dict.clear()
@@ -79,8 +80,10 @@ func place_words():
 		child.set_physics_process(true)
 	$Timer.wait_time = time_to_solid
 	$Timer.start()
+	$GUI/HBoxContainer/Control/TextureProgress.show()
 
 func solidify_words():
+	$GUI/HBoxContainer/Control/TextureProgress.hide()
 	for word in $WordContainer.get_children():
 		word.solidify()
 		word.set_deferred("rotation_degrees", 0.0)

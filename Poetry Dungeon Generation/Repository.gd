@@ -20,19 +20,35 @@ var AW_text_dict: Dictionary = {
 	12: "So we end up back at the beginning\nLike it's the only thing left\nBut I didn't used to talk like this...\nIt's the only way a poem can end"
 }
 
-## this text by Grant Maierhofer
-var GM_text_dict: Dictionary = {
-	
+## this text by Lewis Carroll
+var LC_text_dict: Dictionary = {
+	0: "\"How shall I be a poet?\nHow shall I write in rhyme?\nYou once told me \'the very wish\nPartook of the sublime.\'\nThen tell me how! Don't put me off\nWith your \'another time\'!\"",
+	1: "The old man smiled to see him,\nTo hear his sudden sally;\nHe liked the lad to speak his mind\nEnthusiastically;\nAnd thought, \"There's no hum-drum in him,\nNor any shilly-shally.\"",
+	2: "\"And would you be a poet\nBefore you've been to school?\nAh, well! I hardly thought you\nSo absolute a fool.\nFirst learn to be spasmodic--\nA very simple rule.",
+	3: "\"For first you write a sentence,\nAnd then you chop it small;\nThen mix the bits, and sort them out\nJust as they chance to fall:\nThe order of the phrases makes\nNo difference at all.",
+	4: "\"Then, if you'd be impressive,\nRemember what I say,\nThat abstract qualities begin\nWith capitals alway:\nThe True, the Good, the Beautiful--\nThose are the things that pay!",
+	5: "\"Next, when you are describing\nA shape, or sound, or tint,\nDon't state the matter plainly,\nBut put it in a hint;\nAnd learn to look at all things\nWith a sort of mental squint.\""
 }
 
-## this text by Francine J. Harris
-var FJH_text_dict: Dictionary = {
-	
+## this text by Sor Juana Inés de la Cruz
+var SJ_text_dict: Dictionary = {
+	0: "¿Cuál será aquella expresión\nque cuando el dolor provoca,\nantes de voz en la boca\nhace eco en el corazón?",
+	1: "¿Cuáles serán los despojos\nque al sentir algún despecho\nsiendo tormento en el pecho\nson desahogo en los ojos?",
+	2: "¿Cuál puede ser el favor\nque por oculta virtud,\nsi se logra es inquietud\ny si se espera temor?",
+	3: "¿Cuál es la temeridad\nde una alta presunción\nque pudiendo ser razón\npretende ser necedad?",
+	4: "¿Cuál el dolor puede ser\nque en repetido llorar,\nes su remedio cegar\nsiendo su achaque el no ver?",
+	5: "¿Cuál es aquella atención\nque con humilde denuedo\ndefendiendo con el miedo\nda esfuerzos a la razón?",
+	6: "¿Cuál es aquel arrebol\nde jurisdicción tan bella,\nque inclinado como estrella\ndeslumbra tal como el sol?",
+	7: "¿Cuál es aquel atrevido\nque indecentemente osado\nfuera respeto callado\ny es agravio proferido?"
 }
 
-## this text by Ian Dreiblatt
-var ID_text_dict: Dictionary = {
-	
+## this text by blank
+var B_text_dict: Dictionary = {
+	0: "",
+	1: "",
+	2: "",
+	3: "",
+	4: ""
 }
 
 ## this text by Jon Woodward
