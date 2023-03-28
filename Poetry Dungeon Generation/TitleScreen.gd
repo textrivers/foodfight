@@ -6,6 +6,7 @@ var text_dict_dict: Dictionary = {
 	2: [Repository.SJ_text_dict, "Sor Juana Inés de la Cruz"],
 	3: [Repository.GM_text_dict, "Grant Maierhofer"],
 	4: [Repository.B_text_dict, "[blank]"],
+	5: [Repository.ALI_text_dict, "Arabic lorem ipsum"],
 }
 
 func _ready():
