@@ -86,6 +86,7 @@ text = "How much longer will I be able to inhabit the divine sepulcher
 Of life, my great love?  Do dolphins plunge bottomward 
 To find the light?  Or is it rock 
 That is searched?  Unrelentingly?  Huh.  And if some day"
+wrap_enabled = true
 
 [node name="Control" type="Control" parent="GUI/HBoxContainer/SourceContainer"]
 margin_top = 490.0

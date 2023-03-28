@@ -4,7 +4,8 @@ var text_dict_dict: Dictionary = {
 	0: [Repository.AW_text_dict, "Andrew Weatherhead"],
 	1: [Repository.LC_text_dict, "Lewis Carroll"],
 	2: [Repository.SJ_text_dict, "Sor Juana Inés de la Cruz"],
-	3: [Repository.B_text_dict, "[blank]"],
+	3: [Repository.GM_text_dict, "Grant Maierhofer"],
+	4: [Repository.B_text_dict, "[blank]"],
 }
 
 func _ready():

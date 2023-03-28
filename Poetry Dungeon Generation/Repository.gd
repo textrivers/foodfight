@@ -52,6 +52,10 @@ var B_text_dict: Dictionary = {
 }
 
 ## this text by Jon Woodward
-var JW_text_dict: Dictionary = {
-	## TODO put stuff here
+var GM_text_dict: Dictionary = {
+	0: "I am not within the CIA going to Japan to root out the leftists. I am not an American leftist. I am not an American conservative. I am a body on the American step. I am not the American upon the orchard’s floor.",
+	1: "I am not a good and righteous American upon the orchard’s floor. I am not the saxophonist Arthur Doyle nor am I Peter Brötzmann nor am I Sir Arthur Conan Doyle. I am not an American upon the jet. ",
+	2: "I am not the redesigned airport there. I am not the good and righteous American there. I am not an American upon the dirt there under the dirt below there. I am not Frederick Exley weeping in the room. ",
+	3: "I am not Frederick Exley’s manuscript for Greenwich Mean Time. I am not Richard Parker or some other American person. I am not a good body of the American of the blood on the dining room floor or Yukio the fascist or Gertrude Stein the fascist. ",
+	4: "I am a bad avant gardeist. I go for walks by the fields within Idaho within America. I am not there within America. "
 }
