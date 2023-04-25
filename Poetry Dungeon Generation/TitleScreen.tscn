@@ -131,7 +131,7 @@ margin_right = 400.0
 margin_bottom = 262.0
 rect_min_size = Vector2( 400, 150 )
 theme = SubResource( 5 )
-items = [ "Andrew Weatherhead", null, false, "Lewis Carroll", null, false, "Sor Juana Inez de la Cruz", null, false, "Grant Maierhofer", null, false, "[blank -- add your own text]", null, false, "Arabic lorem ipsum for testing", null, false ]
+items = [ "Andrew Weatherhead", null, false, "Lewis Carroll", null, false, "Sor Juana Inez de la Cruz", null, false, "Grant Maierhofer", null, false, "[blank -- add your own text]", null, false ]
 allow_reselect = true
 
 [node name="StartButton" type="Button" parent="Control/VBoxContainer"]
