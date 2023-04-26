@@ -205,8 +205,10 @@ func _ready():
 			Global.hit_splat_array = []
 	else:
 		$GUI/Center/HPContainer.hide()
-	## subscribe to text signal
+	## subscribe to poem text signal, subscribe it to red_light and green_light
 	$PoemLabelContainer.connect("text_display_done", self, "deactivate_screenshot_button")
+	self.connect("red_light", $PoemLabelContainer, "do_red_light")
+	self.connect("green_light", $PoemLabelContainer, "do_green_light")
 
 func place_objects():
 	## place food
@@ -432,7 +434,7 @@ func display_character_options(_player):
 		$GUI/Right/PlayerOptions.show()
 		$GUI/Right/PlayerOptions/Label.text = "It is your turn"
 		for button in $GUI/Right/PlayerOptions.get_children():
-			if button is Button && button.name != "Read":
+			if button is Button && button.name != "Screenshot":
 				button.disabled = false
 		if whose_turn.has_node("MyFood"):
 			pass

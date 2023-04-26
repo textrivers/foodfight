@@ -59,7 +59,8 @@ func _physics_process(delta):
 					spawn_splatter_particles(coll.position, splat_col)
 			if coll.collider.is_in_group("character"):
 				coll.collider.add_splatter(splat_colors[randi() % splat_colors.size()])
-				get_parent()._on_Read_pressed()
+				if thrown_by_player:
+					get_parent()._on_Read_pressed()
 				if coll.collider.is_in_group("dummy"):
 					var parent = get_parent()
 					#coll.collider.call_deferred("queue_free")
@@ -77,7 +78,7 @@ func _physics_process(delta):
 				if coll.collider.player:
 					Global.game_hit_count += 1
 					emit_signal("player_hit", Color(splat_colors[randi() % splat_colors.size()]))
-				Global.hilarity += 40
+				Global.hilarity += 20
 			elif coll.collider.is_in_group("throwable"): 
 				Global.hilarity += 10
 				if thrown_by_player && !get_parent().is_in_group("tutorial"):

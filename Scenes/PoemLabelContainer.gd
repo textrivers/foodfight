@@ -18,6 +18,10 @@ func _on_PoemLabelTimer_timeout():
 	set_process(false)
 	## disable screenshot button
 	emit_signal("text_display_done")
+	for child in get_children():
+		if child is Label3D:
+			child.modulate.a = 0
+			child.outline_modulate.a = 0
 	
 func show_poems():
 	$PoemLabelTimer.wait_time = 1.0
@@ -26,8 +30,8 @@ func show_poems():
 
 func do_red_light():
 	red_light = true
-	$PoemLabelTimer.paused = true
+	$PoemLabelTimer.set_paused(true)
 
 func do_green_light():
 	red_light = false
-	$PoemLabelTimer.paused = false
+	$PoemLabelTimer.set_paused(false)

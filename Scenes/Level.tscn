@@ -93,6 +93,7 @@ transform = Transform( -0.573577, 0.212012, -0.79124, 0, 0.965926, 0.258819, 0.8
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4 )
 current = true
 size = 10.0
+far = 150.0
 
 [node name="TurnMarker" parent="." instance=ExtResource( 4 )]
 
@@ -103,8 +104,9 @@ script = ExtResource( 19 )
 transform = Transform( 1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 30, -80 )
 pixel_size = 0.1
 offset = Vector2( -750, 0 )
-modulate = Color( 0.0823529, 0.0627451, 0.109804, 1 )
-outline_modulate = Color( 0.0509804, 0.392157, 0.482353, 1 )
+shaded = true
+modulate = Color( 0.0823529, 0.0627451, 0.109804, 0 )
+outline_modulate = Color( 0.262745, 0.0980392, 0.466667, 0 )
 text = "Dealer deals eleven cards each.
 Ghosts (dealer and dealer’s opposite)
 hold their cards face out,
@@ -118,8 +120,9 @@ width = 2400.0
 transform = Transform( -1, -1.51808e-08, -8.60947e-08, 0, 0.984808, -0.173648, 8.74228e-08, -0.173648, -0.984808, 0, 30, 80 )
 pixel_size = 0.1
 offset = Vector2( -750, 0 )
-modulate = Color( 0.0823529, 0.0627451, 0.109804, 1 )
-outline_modulate = Color( 0.262745, 0.0980392, 0.466667, 1 )
+shaded = true
+modulate = Color( 0.0823529, 0.0627451, 0.109804, 0 )
+outline_modulate = Color( 1, 0.878431, 0.054902, 0 )
 text = "Dealer deals eleven cards each.
 Ghosts (dealer and dealer’s opposite)
 hold their cards face out,
@@ -133,8 +136,9 @@ width = 2400.0
 transform = Transform( -4.37114e-08, 0.173648, 0.984808, 0, 0.984808, -0.173648, -1, -7.59041e-09, -4.30473e-08, -80, 30, 0 )
 pixel_size = 0.1
 offset = Vector2( -750, 0 )
-modulate = Color( 0.0823529, 0.0627451, 0.109804, 1 )
-outline_modulate = Color( 0.443137, 0.615686, 1, 1 )
+shaded = true
+modulate = Color( 0.0823529, 0.0627451, 0.109804, 0 )
+outline_modulate = Color( 0.443137, 0.615686, 1, 0 )
 text = "Dealer deals eleven cards each.
 Ghosts (dealer and dealer’s opposite)
 hold their cards face out,
@@ -148,8 +152,9 @@ width = 2400.0
 transform = Transform( -4.37114e-08, -0.173648, -0.984808, 0, 0.984808, -0.173648, 1, -7.59041e-09, -4.30473e-08, 80, 30, 0 )
 pixel_size = 0.1
 offset = Vector2( -750, 0 )
-modulate = Color( 0.0823529, 0.0627451, 0.109804, 1 )
-outline_modulate = Color( 0.788235, 0.694118, 0.0666667, 1 )
+shaded = true
+modulate = Color( 0.0823529, 0.0627451, 0.109804, 0 )
+outline_modulate = Color( 0.0509804, 0.392157, 0.482353, 0 )
 text = "Dealer deals eleven cards each.
 Ghosts (dealer and dealer’s opposite)
 hold their cards face out,

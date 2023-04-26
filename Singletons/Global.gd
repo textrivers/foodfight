@@ -35,6 +35,8 @@ var palette_dict: Dictionary = {
 	"pink_2": Color("#921921")
 }
 
+export var color_palette_picker = Color.aquamarine
+
 var character_sprite = "res://Assets/CharacterSprites/Wid2_Horns.png"
 var character_modulate = Color("#c9b111")
 var character_light_mask = "res://Assets/CharacterSprites/Wid2_Mask.png"
