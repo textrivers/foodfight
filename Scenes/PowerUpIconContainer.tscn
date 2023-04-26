@@ -5,6 +5,7 @@ margin_left = 780.0
 margin_top = 156.0
 margin_right = 780.0
 margin_bottom = 228.0
+mouse_filter = 2
 size_flags_horizontal = 8
 size_flags_vertical = 3
 columns = 6

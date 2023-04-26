@@ -4,6 +4,7 @@
 margin_top = 117.0
 margin_right = 780.0
 margin_bottom = 152.0
+mouse_filter = 2
 alignment = 2
 
 [node name="Label" type="Label" parent="."]
@@ -19,4 +20,5 @@ margin_left = 780.0
 margin_right = 780.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 0, 35 )
+mouse_filter = 2
 columns = 10

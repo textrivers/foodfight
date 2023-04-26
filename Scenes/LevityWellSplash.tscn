@@ -211,7 +211,6 @@ texture = SubResource( 2 )
 centered = false
 
 [node name="Hill" type="Sprite" parent="Backdrop"]
-visible = false
 position = Vector2( 549, 309 )
 scale = Vector2( 1.5, 1.5 )
 z_index = 2

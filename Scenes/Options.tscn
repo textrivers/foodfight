@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Themes/GUI_Default.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/FoodSprites/bettericecreamcone/together_48px.PNG" type="Texture" id=2]
 [ext_resource path="res://Scenes/Options.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Audio/BFXR_splat_01.wav" type="AudioStream" id=4]
 [ext_resource path="res://Assets/PanoramaSky/A_pano_1.png" type="Texture" id=5]
+[ext_resource path="res://Assets/FoodSprites/bettericecreamcone/together_48px_pink.PNG" type="Texture" id=6]
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0.470588, 0.635294, 0.67451, 1, 0.484375, 0.484375, 0.484375, 1 )
@@ -20,7 +21,7 @@ fill_to = Vector2( 1, 1 )
 [sub_resource type="Theme" id=3]
 HSlider/icons/grabber = ExtResource( 2 )
 HSlider/icons/grabber_disabled = ExtResource( 2 )
-HSlider/icons/grabber_highlight = ExtResource( 2 )
+HSlider/icons/grabber_highlight = ExtResource( 6 )
 
 [sub_resource type="Gradient" id=4]
 colors = PoolColorArray( 0, 0, 0, 1, 0.511719, 0.511719, 0.511719, 1 )
