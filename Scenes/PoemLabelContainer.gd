@@ -31,7 +31,9 @@ func show_poems():
 func do_red_light():
 	red_light = true
 	$PoemLabelTimer.set_paused(true)
+	print("poem red light")
 
 func do_green_light():
 	red_light = false
 	$PoemLabelTimer.set_paused(false)
+	print("poem green light")

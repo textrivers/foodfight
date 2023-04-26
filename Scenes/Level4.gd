@@ -637,7 +637,7 @@ func _on_Cancel_pressed():
 	emit_signal("selecting_action_target")
 	emit_signal("done_selecting_action_target")
 	$CameraRig/Camera.current = true
-	$PoemLabelContainer.hide()
+#	$PoemLabelContainer.hide()
 	#$TurnMarker.show()
 	$GUI/Center.show()
 	screenshot_acquired = false

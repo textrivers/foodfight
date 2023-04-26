@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scenes/PoemCamRig.gd" type="Script" id=1]
 [ext_resource path="res://Assets/PanoramaSky/A_pano_FULL.png" type="Texture" id=2]
@@ -8,7 +8,7 @@
 [ext_resource path="res://Scenes/GiantIceCream.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Character4.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/Fonts/TCM_____.TTF" type="DynamicFontData" id=8]
-[ext_resource path="res://Assets/Fonts/ARCADE_I.TTF" type="DynamicFontData" id=9]
+[ext_resource path="res://Scenes/PoemLabelContainer.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Themes/ProgressBar.tres" type="Theme" id=10]
 [ext_resource path="res://Themes/GUI_Default.tres" type="Theme" id=11]
 [ext_resource path="res://Scenes/PowerUp.gd" type="Script" id=12]
@@ -18,16 +18,6 @@
 [ext_resource path="res://Scenes/LevelUpSound.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/HumSound.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Scenes/SpeedrunTimer.gd" type="Script" id=18]
-[ext_resource path="res://Scenes/PoemLabelContainer.gd" type="Script" id=19]
-
-[sub_resource type="DynamicFont" id=16]
-size = 60
-outline_size = 3
-use_filter = true
-extra_spacing_top = 16
-extra_spacing_bottom = 16
-extra_spacing_space = -18
-font_data = ExtResource( 9 )
 
 [sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0.490196, 0.584314, 0.788235, 0.270588 )
@@ -97,75 +87,7 @@ far = 150.0
 
 [node name="TurnMarker" parent="." instance=ExtResource( 4 )]
 
-[node name="PoemLabelContainer" type="Spatial" parent="."]
-script = ExtResource( 19 )
-
-[node name="Label3D" type="Label3D" parent="PoemLabelContainer" groups=["poem_label"]]
-transform = Transform( 1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 30, -80 )
-pixel_size = 0.1
-offset = Vector2( -750, 0 )
-shaded = true
-modulate = Color( 0.0823529, 0.0627451, 0.109804, 0 )
-outline_modulate = Color( 0.262745, 0.0980392, 0.466667, 0 )
-text = "Dealer deals eleven cards each.
-Ghosts (dealer and dealer’s opposite)
-hold their cards face out,
-can gain no knowledge, and do not play."
-font = SubResource( 16 )
-horizontal_alignment = 0
-autowrap = true
-width = 2400.0
-
-[node name="Label3D2" type="Label3D" parent="PoemLabelContainer" groups=["poem_label"]]
-transform = Transform( -1, -1.51808e-08, -8.60947e-08, 0, 0.984808, -0.173648, 8.74228e-08, -0.173648, -0.984808, 0, 30, 80 )
-pixel_size = 0.1
-offset = Vector2( -750, 0 )
-shaded = true
-modulate = Color( 0.0823529, 0.0627451, 0.109804, 0 )
-outline_modulate = Color( 1, 0.878431, 0.054902, 0 )
-text = "Dealer deals eleven cards each.
-Ghosts (dealer and dealer’s opposite)
-hold their cards face out,
-can gain no knowledge, and do not play."
-font = SubResource( 16 )
-horizontal_alignment = 0
-autowrap = true
-width = 2400.0
-
-[node name="Label3D3" type="Label3D" parent="PoemLabelContainer" groups=["poem_label"]]
-transform = Transform( -4.37114e-08, 0.173648, 0.984808, 0, 0.984808, -0.173648, -1, -7.59041e-09, -4.30473e-08, -80, 30, 0 )
-pixel_size = 0.1
-offset = Vector2( -750, 0 )
-shaded = true
-modulate = Color( 0.0823529, 0.0627451, 0.109804, 0 )
-outline_modulate = Color( 0.443137, 0.615686, 1, 0 )
-text = "Dealer deals eleven cards each.
-Ghosts (dealer and dealer’s opposite)
-hold their cards face out,
-can gain no knowledge, and do not play."
-font = SubResource( 16 )
-horizontal_alignment = 0
-autowrap = true
-width = 2400.0
-
-[node name="Label3D4" type="Label3D" parent="PoemLabelContainer" groups=["poem_label"]]
-transform = Transform( -4.37114e-08, -0.173648, -0.984808, 0, 0.984808, -0.173648, 1, -7.59041e-09, -4.30473e-08, 80, 30, 0 )
-pixel_size = 0.1
-offset = Vector2( -750, 0 )
-shaded = true
-modulate = Color( 0.0823529, 0.0627451, 0.109804, 0 )
-outline_modulate = Color( 0.0509804, 0.392157, 0.482353, 0 )
-text = "Dealer deals eleven cards each.
-Ghosts (dealer and dealer’s opposite)
-hold their cards face out,
-can gain no knowledge, and do not play."
-font = SubResource( 16 )
-horizontal_alignment = 0
-autowrap = true
-width = 2400.0
-
-[node name="PoemLabelTimer" type="Timer" parent="PoemLabelContainer"]
-one_shot = true
+[node name="PoemLabelContainer" parent="." instance=ExtResource( 9 )]
 
 [node name="You" parent="." instance=ExtResource( 7 )]
 visible = true
@@ -557,7 +479,6 @@ nextscene = "res://Scenes/Level5.tscn"
 [node name="HumSound" parent="." instance=ExtResource( 17 )]
 
 [connection signal="tree_exiting" from="." to="." method="_on_Level4_tree_exiting"]
-[connection signal="timeout" from="PoemLabelContainer/PoemLabelTimer" to="PoemLabelContainer" method="_on_PoemLabelTimer_timeout"]
 [connection signal="pressed" from="GUI/Right/PlayerOptions/Walk" to="." method="_on_Walk_pressed"]
 [connection signal="pressed" from="GUI/Right/PlayerOptions/Throw" to="." method="_on_Throw_pressed"]
 [connection signal="pressed" from="GUI/Right/PlayerOptions/Wait" to="." method="_on_Wait_pressed"]
