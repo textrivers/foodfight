@@ -59,6 +59,7 @@ func _physics_process(delta):
 					spawn_splatter_particles(coll.position, splat_col)
 			if coll.collider.is_in_group("character"):
 				coll.collider.add_splatter(splat_colors[randi() % splat_colors.size()])
+				get_parent()._on_Read_pressed()
 				if coll.collider.is_in_group("dummy"):
 					var parent = get_parent()
 					#coll.collider.call_deferred("queue_free")
@@ -121,9 +122,9 @@ func spawn_ice_cream(pos):
 	var new_ice_cream = load("res://Scenes/ClusterIceCream.tscn").instance()
 	get_parent().add_child(new_ice_cream)
 	new_ice_cream.global_translation = Vector3(round(pos.x), pos.y, round(pos.z))
-	var ice_cream_text = new_ice_cream.get_node("GoodIceCream/Text")
-	ice_cream_text.connect("enable_read_action", get_parent(), "activate_read_button")
-	ice_cream_text.connect("disable_read_action", get_parent(), "deactivate_read_button")
+#	var ice_cream_text = new_ice_cream.get_node("GoodIceCream/Text")
+#	ice_cream_text.connect("enable_read_action", get_parent(), "activate_read_button")
+#	ice_cream_text.connect("disable_read_action", get_parent(), "deactivate_read_button")
 
 func on_red_light():
 	if thrown:

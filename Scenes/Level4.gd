@@ -205,6 +205,8 @@ func _ready():
 			Global.hit_splat_array = []
 	else:
 		$GUI/Center/HPContainer.hide()
+	## subscribe to text signal
+	$PoemLabelContainer.connect("text_display_done", self, "deactivate_screenshot_button")
 
 func place_objects():
 	## place food
@@ -278,8 +280,8 @@ func _physics_process(delta):
 #		print("debug is " + str(debug))
 	if whose_turn != null && whose_turn.player:
 		if $GUI/Right/PlayerOptions.visible == true:
-			if Input.is_action_just_pressed("read") && $GUI/Right/PlayerOptions/Read.disabled == false:
-				_on_Read_pressed()
+#			if Input.is_action_just_pressed("read") && $GUI/Right/PlayerOptions/Read.disabled == false:
+#				_on_Read_pressed()
 			if Input.is_action_just_pressed("walk") && $GUI/Right/PlayerOptions/Walk.disabled == false:
 				_on_Walk_pressed()
 			if Input.is_action_just_pressed("throw") && $GUI/Right/PlayerOptions/Throw.disabled == false:
@@ -463,7 +465,7 @@ func reset_character_options():
 	for child in $GUI/Right/PlayerOptions.get_children():
 		child.show()
 	$GUI/Right/PlayerOptions/HBoxContainer.hide()
-	$GUI/Right/ReadOptions.hide()
+#	$GUI/Right/ReadOptions.hide()
 	$GUI/Right/WaitOptions.hide()
 	$GUI/Right/WalkOptions.hide()
 	$GUI/Right/ThrowOptions.hide()
@@ -474,41 +476,67 @@ func hide_character_options():
 	$Panel.hide()
 	$GUI/Right.hide()
 
-func activate_read_button():
-	$GUI/Right/PlayerOptions/Read.disabled = false
+#func activate_read_button():
+#	$GUI/Right/PlayerOptions/Read.disabled = false
 
-func deactivate_read_button():
-	$GUI/Right/PlayerOptions/Read.disabled = true
+#func deactivate_read_button():
+#	$GUI/Right/PlayerOptions/Read.disabled = true
 
 func _on_Read_pressed():
 	## acquire text at this moment
-	var text_node = whose_turn.get_node("MyFood/Text")
-	text_node.acquire_poem_text()
-	text_node.readable = true
-	available_text = text_node.poem_text
+	acquire_poem_text()
 	if Global.poem_text_dict[available_text[0]][3] == false:
 		Global.game_text_count += 1 
 		Global.poem_text_dict[available_text[0]][3] = true
-	#$TurnMarker.hide()
-	$GUI/Right/PlayerOptions.hide()
-	$GUI/Right/ReadOptions.show()
-	$Panel.hide()
-	$GUI/Center.hide()
-	$GUI/Right/ProceedCancel.show()
-	deactivate_read_button()
 	for child in $PoemLabelContainer.get_children():
-		child.text = available_text[1]
-	$PoemLabelContainer.show()
-	$You/PoemCamRig.global_translation = whose_turn.global_translation
-	$You/PoemCamRig.direction = !$You/PoemCamRig.direction
-	$You/PoemCamRig/PoemCam.current = true
-	Global.level_up_tracker += 15
-	Global.audio.pause_music()
-	$HumSound.play()
+		if child is Label3D:
+			child.text = available_text[1]
+	$PoemLabelContainer.show_poems()
+	$GUI/Right/PlayerOptions/Screenshot.disabled = false
+	#$TurnMarker.hide()
+#	$GUI/Right/PlayerOptions.hide()
+#	$GUI/Right/ReadOptions.show()
+#	$Panel.hide()
+#	$GUI/Center.hide()
+#	$GUI/Right/ProceedCancel.show()
+#	deactivate_read_button()
+#	$PoemLabelContainer.show()
+#	$You/PoemCamRig.global_translation = whose_turn.global_translation
+#	$You/PoemCamRig.direction = !$You/PoemCamRig.direction
+#	$You/PoemCamRig/PoemCam.current = true
+#	Global.level_up_tracker += 15
+#	Global.audio.pause_music()
+#	$HumSound.play()
+
+func acquire_poem_text():
+	var splats = min((Global.visible_splat_count * 2), 100)
+	var bar_total = splats + min(Global.hilarity, 100)
+	print("splats = " + str(splats) + ", hilarity = " + str(min(Global.hilarity, 100)) + ", bar total = " + str(bar_total))
+	var text_index = bar_total / 6.8966 ## reduces a number between 0 - 200 to a number between 0 - 29
+	print("text index = " + str(text_index))
+	text_index = round(text_index)
+	print("text index = " + str(text_index))
+#	text_index = int(text_index)
+	print("text index = " + str(text_index))
+	text_index += 1 # result is int in range 1 to 30
+	print("text index = " + str(text_index))
+	#var mod = (randi() % 11) - 5 ## rand int from -5 to 5
+	#text_index += mod
+	text_index = int(clamp(text_index, 1, 30))
+	var poem_text: Array = []
+	poem_text.append(text_index)
+	poem_text.append(Global.poem_text_dict[text_index][0])
+	Global.poem_text_dict[text_index][2] = true
+	available_text = poem_text
+
+func deactivate_screenshot_button():
+	$GUI/Right/PlayerOptions/Screenshot.disabled = true
 
 func _on_Screenshot_pressed():
-	$GUI/Right/ReadOptions.hide()
-	$GUI/Right/ProceedCancel/Cancel.hide()
+	$Panel.hide()
+	$GUI.hide()
+#	$GUI/Right/ReadOptions.hide()
+#	$GUI/Right/ProceedCancel/Cancel.hide()
 	yield(VisualServer, "frame_post_draw")
 	var new_screen = get_viewport().get_texture().get_data()
 	new_screen.flip_y()
@@ -522,11 +550,13 @@ func _on_Screenshot_pressed():
 		new_screen.save_png("res://" + "screenshot_" + date_string + ".png")
 # warning-ignore:return_value_discarded
 		OS.shell_open(ProjectSettings.globalize_path("res://"))
-	$GUI/Right/ReadOptions.show()
-	$GUI/Right/ProceedCancel/Cancel.show()
-	if screenshot_acquired == false:
-		Global.level_up_tracker += 25
-		screenshot_acquired = true
+#	$GUI/Right/ReadOptions.show()
+#	$GUI/Right/ProceedCancel/Cancel.show()
+	$Panel.show()
+	$GUI.show()
+#	if screenshot_acquired == false:
+#		Global.level_up_tracker += 25
+#		screenshot_acquired = true
 
 #func _on_PickUp_pressed():
 #	current_action[0] = "pick_up"
@@ -753,10 +783,10 @@ func handle_power_up(_index, _icon, _tooltip):
 						var new_ic = load("res://Scenes/ClusterIceCream.tscn").instance()
 						add_child(new_ic)
 						new_ic.global_translation = _tile.global_translation
-						var ice_cream_text = new_ic.get_node("GoodIceCream/Text")
-						var err = ice_cream_text.connect("enable_read_action", self, "activate_read_button") 
-						print(err)
-						ice_cream_text.connect("disable_read_action", self, "deactivate_read_button")
+#						var ice_cream_text = new_ic.get_node("GoodIceCream/Text")
+#						var err = ice_cream_text.connect("enable_read_action", self, "activate_read_button") 
+#						print(err)
+#						ice_cream_text.connect("disable_read_action", self, "deactivate_read_button")
 				16, 71, 72, 73: #randomly teleport
 					var tiles = get_tree().get_nodes_in_group("tile").duplicate()
 					var r = randi() % tiles.size()

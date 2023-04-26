@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Scenes/PoemCamRig.gd" type="Script" id=1]
 [ext_resource path="res://Assets/PanoramaSky/A_pano_FULL.png" type="Texture" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://Scenes/LevelUpSound.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/HumSound.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Scenes/SpeedrunTimer.gd" type="Script" id=18]
+[ext_resource path="res://Scenes/PoemLabelContainer.gd" type="Script" id=19]
 
 [sub_resource type="DynamicFont" id=16]
 size = 60
@@ -96,9 +97,9 @@ size = 10.0
 [node name="TurnMarker" parent="." instance=ExtResource( 4 )]
 
 [node name="PoemLabelContainer" type="Spatial" parent="."]
-visible = false
+script = ExtResource( 19 )
 
-[node name="Label3D" type="Label3D" parent="PoemLabelContainer"]
+[node name="Label3D" type="Label3D" parent="PoemLabelContainer" groups=["poem_label"]]
 transform = Transform( 1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 30, -80 )
 pixel_size = 0.1
 offset = Vector2( -750, 0 )
@@ -113,7 +114,7 @@ horizontal_alignment = 0
 autowrap = true
 width = 2400.0
 
-[node name="Label3D2" type="Label3D" parent="PoemLabelContainer"]
+[node name="Label3D2" type="Label3D" parent="PoemLabelContainer" groups=["poem_label"]]
 transform = Transform( -1, -1.51808e-08, -8.60947e-08, 0, 0.984808, -0.173648, 8.74228e-08, -0.173648, -0.984808, 0, 30, 80 )
 pixel_size = 0.1
 offset = Vector2( -750, 0 )
@@ -128,7 +129,7 @@ horizontal_alignment = 0
 autowrap = true
 width = 2400.0
 
-[node name="Label3D3" type="Label3D" parent="PoemLabelContainer"]
+[node name="Label3D3" type="Label3D" parent="PoemLabelContainer" groups=["poem_label"]]
 transform = Transform( -4.37114e-08, 0.173648, 0.984808, 0, 0.984808, -0.173648, -1, -7.59041e-09, -4.30473e-08, -80, 30, 0 )
 pixel_size = 0.1
 offset = Vector2( -750, 0 )
@@ -143,7 +144,7 @@ horizontal_alignment = 0
 autowrap = true
 width = 2400.0
 
-[node name="Label3D4" type="Label3D" parent="PoemLabelContainer"]
+[node name="Label3D4" type="Label3D" parent="PoemLabelContainer" groups=["poem_label"]]
 transform = Transform( -4.37114e-08, -0.173648, -0.984808, 0, 0.984808, -0.173648, 1, -7.59041e-09, -4.30473e-08, 80, 30, 0 )
 pixel_size = 0.1
 offset = Vector2( -750, 0 )
@@ -157,6 +158,9 @@ font = SubResource( 16 )
 horizontal_alignment = 0
 autowrap = true
 width = 2400.0
+
+[node name="PoemLabelTimer" type="Timer" parent="PoemLabelContainer"]
+one_shot = true
 
 [node name="You" parent="." instance=ExtResource( 7 )]
 visible = true
@@ -195,54 +199,51 @@ rect_min_size = Vector2( 240, 0 )
 mouse_filter = 2
 
 [node name="PlayerOptions" type="VBoxContainer" parent="GUI/Right"]
-margin_left = 60.0
-margin_right = 179.0
+margin_left = 53.0
+margin_right = 186.0
 margin_bottom = 147.0
 size_flags_horizontal = 4
 alignment = 1
 
 [node name="Label" type="Label" parent="GUI/Right/PlayerOptions"]
-margin_right = 119.0
+margin_right = 133.0
 margin_bottom = 23.0
 text = "It is Derp's turn"
 align = 1
 
-[node name="Read" type="Button" parent="GUI/Right/PlayerOptions"]
-margin_left = 22.0
-margin_top = 27.0
-margin_right = 97.0
-margin_bottom = 54.0
-rect_min_size = Vector2( 75, 0 )
-size_flags_horizontal = 4
-disabled = true
-text = "Eat (E)"
-
 [node name="Walk" type="Button" parent="GUI/Right/PlayerOptions"]
-margin_left = 18.0
-margin_top = 58.0
-margin_right = 101.0
-margin_bottom = 85.0
+margin_left = 25.0
+margin_top = 27.0
+margin_right = 108.0
+margin_bottom = 54.0
 rect_min_size = Vector2( 75, 0 )
 size_flags_horizontal = 4
 text = "Walk (W)"
 
 [node name="Throw" type="Button" parent="GUI/Right/PlayerOptions"]
-margin_left = 21.0
-margin_top = 89.0
-margin_right = 98.0
-margin_bottom = 116.0
+margin_left = 28.0
+margin_top = 58.0
+margin_right = 105.0
+margin_bottom = 85.0
 rect_min_size = Vector2( 75, 0 )
 size_flags_horizontal = 4
 text = "Throw (T)"
 
 [node name="Wait" type="Button" parent="GUI/Right/PlayerOptions"]
-margin_left = 22.0
-margin_top = 120.0
-margin_right = 97.0
-margin_bottom = 147.0
+margin_left = 29.0
+margin_top = 89.0
+margin_right = 104.0
+margin_bottom = 116.0
 rect_min_size = Vector2( 75, 0 )
 size_flags_horizontal = 4
 text = "Rest (R)"
+
+[node name="Screenshot" type="Button" parent="GUI/Right/PlayerOptions"]
+margin_top = 120.0
+margin_right = 133.0
+margin_bottom = 147.0
+disabled = true
+text = "Take Screenshot"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/Right/PlayerOptions"]
 visible = false
@@ -267,17 +268,6 @@ margin_right = 203.0
 margin_bottom = 32.0
 size_flags_horizontal = 7
 text = "Pause during all turns"
-
-[node name="ReadOptions" type="VBoxContainer" parent="GUI/Right"]
-visible = false
-margin_top = 151.0
-margin_right = 240.0
-margin_bottom = 178.0
-
-[node name="Screenshot" type="Button" parent="GUI/Right/ReadOptions"]
-margin_right = 240.0
-margin_bottom = 27.0
-text = "Take Screenshot"
 
 [node name="WalkOptions" type="VBoxContainer" parent="GUI/Right"]
 visible = false
@@ -562,12 +552,12 @@ nextscene = "res://Scenes/Level5.tscn"
 [node name="HumSound" parent="." instance=ExtResource( 17 )]
 
 [connection signal="tree_exiting" from="." to="." method="_on_Level4_tree_exiting"]
-[connection signal="pressed" from="GUI/Right/PlayerOptions/Read" to="." method="_on_Read_pressed"]
+[connection signal="timeout" from="PoemLabelContainer/PoemLabelTimer" to="PoemLabelContainer" method="_on_PoemLabelTimer_timeout"]
 [connection signal="pressed" from="GUI/Right/PlayerOptions/Walk" to="." method="_on_Walk_pressed"]
 [connection signal="pressed" from="GUI/Right/PlayerOptions/Throw" to="." method="_on_Throw_pressed"]
 [connection signal="pressed" from="GUI/Right/PlayerOptions/Wait" to="." method="_on_Wait_pressed"]
+[connection signal="pressed" from="GUI/Right/PlayerOptions/Screenshot" to="." method="_on_Screenshot_pressed"]
 [connection signal="toggled" from="GUI/Right/PlayerOptions/HBoxContainer/CheckButton" to="." method="_on_CheckButton_toggled"]
-[connection signal="pressed" from="GUI/Right/ReadOptions/Screenshot" to="." method="_on_Screenshot_pressed"]
 [connection signal="pressed" from="GUI/Right/ProceedCancel/Proceed" to="." method="_on_Proceed_pressed"]
 [connection signal="pressed" from="GUI/Right/ProceedCancel/Cancel" to="." method="_on_Cancel_pressed"]
 [connection signal="pressed" from="LevelUpOptions/VBoxContainer/HBoxContainer/PowerUp1" to="LevelUpOptions/VBoxContainer/HBoxContainer/PowerUp1" method="_on_PowerUp_pressed"]

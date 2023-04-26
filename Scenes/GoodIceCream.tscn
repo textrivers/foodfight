@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scenes/Food.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/FoodSprites/bettericecreamcone/bettericecreamcone/1 cream.PNG" type="Texture" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://Assets/FoodSprites/bettericecreamcone/bettericecreamcone/3 cone.PNG" type="Texture" id=7]
 [ext_resource path="res://Assets/FoodSprites/bettericecreamcone/bettericecreamcone/5 cone.PNG" type="Texture" id=8]
 [ext_resource path="res://Assets/FoodSprites/bettericecreamcone/bettericecreamcone/0 cream.PNG" type="Texture" id=9]
-[ext_resource path="res://Scenes/Text.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Assets/FoodSprites/bettericecreamcone/bettericecreamcone/3 cream.PNG" type="Texture" id=11]
 [ext_resource path="res://Assets/FoodSprites/bettericecreamcone/bettericecreamcone/7 cone.PNG" type="Texture" id=12]
 [ext_resource path="res://Assets/FoodSprites/bettericecreamcone/bettericecreamcone/0 cone.PNG" type="Texture" id=13]
@@ -45,5 +44,3 @@ frames = SubResource( 1 )
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="Viewport/FoodSprite" index="1"]
 frames = SubResource( 2 )
 centered = false
-
-[node name="Text" parent="." index="4" instance=ExtResource( 10 )]

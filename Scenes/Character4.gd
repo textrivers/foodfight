@@ -184,9 +184,6 @@ func _physics_process(delta):
 				throw_food(food_par.global_translation)
 			else:
 				my_food.name = "MyFood"
-			if player && my_food.has_node("Text"):
-				var text_node = my_food.get_node("Text")
-				text_node.emit_signal("enable_read_action")
 		if waiting:
 			Global.level_up_tracker += wait_modifier
 		if walking:

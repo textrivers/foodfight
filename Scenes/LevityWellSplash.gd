@@ -15,14 +15,14 @@ func _ready():
 	if OS.get_name() == "Windows":
 		any_key_pressed = true
 		$AnimationPlayer.play("splash")
-		$AudioStreamPlayer.play()
+#		$AudioStreamPlayer.play()
 		$Backdrop/Hill.hide()
 
 func _input(event):
 	if event is InputEventKey && any_key_pressed == false:
 		any_key_pressed = true
 		$AnimationPlayer.play("splash")
-		$AudioStreamPlayer.play()
+#		$AudioStreamPlayer.play()
 		$Backdrop/Hill.hide()
 
 func _on_AnimationPlayer_animation_finished(anim_name):
